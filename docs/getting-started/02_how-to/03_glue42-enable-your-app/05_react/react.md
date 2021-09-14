@@ -305,7 +305,6 @@ Once the Glue42 React library has been initialized, your application has access 
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/javascript/index.html)
 - [Interop](../../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html)
-- [Activities](../../../../glue42-concepts/data-sharing-between-apps/activities/javascript/index.html)
 - [Pub/Sub](../../../../glue42-concepts/data-sharing-between-apps/pub-sub/javascript/index.html)
 - [Window Management](../../../../glue42-concepts/windows/window-management/javascript/index.html)
 - [Workspaces](../../../../glue42-concepts/windows/workspaces/javascript/index.html)

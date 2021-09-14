@@ -410,7 +410,7 @@ Interop streams are used extensively in [**Glue42 Enterprise**](https://glue42.c
 - to publish notifications about window status change (events);
 - to publish application configuration changes and notifications about application instance state changes (events);
 - in the Glue42 Notification Service (GNS) Desktop Manager and GNS Interop Servers - to publish Notifications (real-time data);
-- in the Window Management, Application Management, and Activities APIs (events);
+- in the Window Management and Application Management APIs (events);
 
 *See the JavaScript [Streaming example](https://github.com/Tick42/js-examples/tree/master/streaming-example) on GitHub.*
 

@@ -1,6 +1,6 @@
 ## Overview
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) provides a wide variety of Interop services – [Request/Response](../interop/overview/index.html), [Streaming](../interop/javascript/index.html#streaming), [Shared Contexts](../shared-contexts/overview/index.html), [Channels](../channels/overview/index.html), [Activities](../activities/overview/index.html) and [Pub/Sub](../pub-sub/overview/index.html). The rich Interop functionality of [**Glue42 Enterprise**](https://glue42.com/enterprise/) offers you a wide choice of solution options when developing your apps. Each Interop service is best applied in certain scenarios:
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) provides a wide variety of Interop services – [Request/Response](../interop/overview/index.html), [Streaming](../interop/javascript/index.html#streaming), [Shared Contexts](../shared-contexts/overview/index.html), [Channels](../channels/overview/index.html). The rich Interop functionality of [**Glue42 Enterprise**](https://glue42.com/enterprise/) offers you a wide choice of solution options when developing your apps. Each Interop service is best applied in certain scenarios:
 
 ## Request/Response
 
@@ -17,10 +17,6 @@ If you need to synchronize data across multiple applications (e.g., the user cli
 ## Channels 
 
 You can use the Channels API when you need to offer the user an UI for choosing which apps should be grouped together to synchronize data between each other. Channels are based on Shared Contexts and are UI driven. The user can select from any number of defined color Channels and assign any number and combination of applications to a certain Channel. This way, when the user changes a selection, or updates information in one app, all other apps will synchronize their data according to the user action.
-
-## Activities
-
-An activity application enables you to have a collection of windows that are organized in a layout and share a private context. Activities, like Channels, are also based on Shared Contexts. An activity has an owner window and helper windows. The owner window determines the lifetime of the activity. An activity application can be defined via a configuration file and started as an application from the toolbar, or it can be created programmatically on demand.  
 
 ## Pub/Sub  
 

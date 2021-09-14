@@ -47,10 +47,6 @@ In the example below, apps communicate and synchronize cross-application data be
 
 ![Channels](../../../images/channels/channels.gif)
 
-Below is an example of a Glue42 [Activity](../../../glue42-concepts/data-sharing-between-apps/activities/overview/index.html) - a predefined collection of applications, organized in a layout, sharing a private context to communicate with each other:
-
-![Activity](../../../images/activities/activity.gif)
-
 ## Global Layouts
 
 When you set up the apps on your desktop the way you like them, or arrange a set of apps and/or workspaces needed for a specific task, save this Layout and later restore it when you need to use it again. All your apps will be restored with the same position, size and state on the desktop. What's more, mark a saved Layout as a default Global Layout and it will be restored upon startup of [**Glue42 Enterprise**](https://glue42.com/enterprise/):

@@ -67,9 +67,7 @@ Right click anywhere on the grid and select "Export to Excel" from the context m
 
 ### Rows
 
-Each row represents an application and the information inside it is updated every 2 seconds. If a row is expandable, the row represents an [Activity](../../glue42-concepts/data-sharing-between-apps/activities/overview/index.html). Expand an Activity row to see all apps participating in it:
-
-![Activity](../../images/dev-tools/application-monitor/activity.gif)
+Each row represents an application and the information inside it is updated every 2 seconds. 
 
 - "Report" button - opens a new window with a [Performance Report](#performance_report) for an individual application. 
 - "Performance Report" button - select several apps and click the "Performance Report" button at the bottom to open a [Performance Report](#performance_report) for the selected apps.
@@ -92,8 +90,8 @@ Right click anywhere in the application information grid to choose which columns
 
 | Column | Description |
 |--------|-------------|
-| `NAME` | The name is either the application name or the Activity name registered in the App Manager. |
-| `TYPE` | The type of the monitored application - `window` or `activity`. |
+| `NAME` | The name is the application name registered in the App Manager. |
+| `TYPE` | The type of the monitored application. |
 | `PID` | The ID of the window process. |
 | `WINDOW ID` | The Glue42 window ID. |
 | `CREATION TIME` | The exact time the window was created. |
@@ -181,7 +179,7 @@ An Issue is a pre-defined rule that has been broken:
 
 ## Context Viewer
 
-Many applications use some type of Glue42 context to interact with other applications in the Glue42 environment. The Context Viewer provides a convenient way for a developer to edit and track the changes of a context object - a [Glue42 Window context](../../glue42-concepts/windows/window-management/javascript/index.html#context), an [Activity context](../../glue42-concepts/data-sharing-between-apps/activities/javascript/index.html#managing_activity_context), a [shared context](../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) or a [Channel context](../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html).  
+Many applications use some type of Glue42 context to interact with other applications in the Glue42 environment. The Context Viewer provides a convenient way for a developer to edit and track the changes of a context object - a [Glue42 Window context](../../glue42-concepts/windows/window-management/javascript/index.html#context), a [shared context](../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) or a [Channel context](../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html).  
 
 Editing and tracking context updates is useful if you want to ensure that your application interacts with context objects as intended. The visual aid and action options provided by the Context Viewer enable you to check whether your app updates the context correctly and whether it reacts to context updates as expected. In some cases, context updates may be happening very frequently rendering the task of retracing the process very difficult. In other cases, an application may be breaking the accepted context data format which in turn causes all other applications interacting with that context object to break. In such situations, the Context Viewer tool greatly simplifies the debugging process.
 
@@ -190,7 +188,6 @@ Editing and tracking context updates is useful if you want to ensure that your a
 The Context Viewer tracks the following types of contexts in the Glue42 framework:
 
 - Global/Shared Contexts - named objects used for sharing data between applications. [Shared contexts](../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) are also used by the Glue42 color [Channels](../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) as dedicated Channel context.
-- Activity Context - shared contexts used by [Activity](../../glue42-concepts/data-sharing-between-apps/activities/overview/index.html) instances;
 - Window Context - dedicated [Glue42 Window context](../../glue42-concepts/windows/window-management/javascript/index.html#context);
 
 ![Context types](../../images/dev-tools/context-viewer/context-types.png)

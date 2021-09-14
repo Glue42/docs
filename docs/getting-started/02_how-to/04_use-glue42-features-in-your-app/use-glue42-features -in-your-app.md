@@ -12,8 +12,6 @@
 
 - [Channels](../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) - named contexts, allowing users to dynamically group and instruct applications to work together;
 
-- [Activities](../../../glue42-concepts/data-sharing-between-apps/activities/overview/index.html) - create a collection of apps, sharing a private context, organized in a layout;
-
 **Manage your Glue42 enabled applications**
 
 - [Glue42 Toolbar](../../../glue42-concepts/glue42-toolbar/index.html) - use the Glue42 Floating Toolbar or the Glue42 Launchpad apps as application hubs;

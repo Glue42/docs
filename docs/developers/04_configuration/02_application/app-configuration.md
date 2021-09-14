@@ -206,84 +206,6 @@ Batch files can also be included as [**Glue42 Enterprise**](https://glue42.com/e
 
 For more details, see the [application configuration schema](../../../assets/configuration/application.json).
 
-### Activity
-
-An activity is an application which defines a set of windows that have a common context. Only the `"owner"` property is required:
-
-```json
-[
-    {
-        "title": "Clients",
-        "type": "activity",
-        "name": "clients",
-        "icon": "http://localhost:22080/resources/icons/client-list.ico",
-        "hidden": false,
-        "details": {
-            "initialContext": {
-                "context": "someContext"
-            },
-            "layout": {
-                "mode": "pixels"
-            },
-            "owner": {
-                "type": "clientlist",
-                "name": "ClientList",
-                "left": 20,
-                "top": 20,
-                "width": 400,
-                "height": 400
-            },
-            "windows": [    
-                {
-                    "type": "clientportfolio",
-                    "name": "ClientPortfolio",
-                    "left": 420,
-                    "top": 20,
-                    "width": 400,
-                    "height": 400
-                }
-            ]
-        }
-    },
-    {
-        "title": "Client List",
-        "type": "window",
-        "name": "ClientList",
-        "hidden": true,
-        "details": {
-            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientlist",
-            "mode": "html"
-        },
-        "activityTarget": {
-            "enabled": true,
-            "windowType": "clientlist"  
-        }                               
-    },
-    {
-        "title": "Client Portfolio",
-        "type": "window",
-        "name": "ClientPortfolio",
-        "hidden": true,
-        "details": {
-            "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientportfolio/",
-            "mode": "html"
-        },
-        "activityTarget": {
-            "enabled": true,
-            "windowType": "clientportfolio"
-        }
-    }
-]
-```
-
-| Property | Description |
-|----------|-------------|
-| `"owner"` | The owner window of the activity. |
-| `"windows"` | Array of helper windows. |
-| `"type"` | Unique window identifier within the Activities" API (defaults to the application name). |
-
-Only the `"owner"` property is required. It is useful to specify the `"activityTarget"` property in order to describe how your application will look when it is an activity window. The same is valid for the `"layout"` property, which specifies whether the window dimensions are in `"pixels"` (default) or relative to the screen (`"percents"`). For more details, you can see the [application configuration schema](../../../assets/configuration/application.json).
-
 ### Node.js
 
 An application which runs under Node.js:
@@ -392,7 +314,7 @@ The configuration below shows how to group applications in a subfolder:
 We offer a free [Glue42 Configuration Validator](https://marketplace.visualstudio.com/items?itemName=Tick42.glue42-configuration-validator) tool which you can install as a Visual Studio Code extension. The validator tool has several functionalities:
 
 - Performs real time validation of JSON files on save or change of the active editor.
-- Can generate template configurations for five types of Glue42 applications - `"window"`, `"exe"`, `"activity"`, `"node"` and Service Windows.
+- Can generate template configurations for different types of Glue42 applications - `"window"`, `"exe"`, `"node"` and Service Windows.
 - Can deploy (copy) the created configuration to a specified application configuration folder.
 
 *For more detailed information, see the [README](https://github.com/Tick42/vscode-glue42-app-config-validator/blob/master/README.md) of the Glue42 Configuration Validator.* 

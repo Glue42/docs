@@ -90,7 +90,7 @@ The application has initialized Glue42 and is deployed (`http-server`), now you 
 
 You can read more about Application Configuration in the [Configuration documentation](../../../developers/configuration/application/index.html) which explains in detail how the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configurations work. For this part of the tutorial, all you need to know is that:
 
-- [**Glue42 Enterprise**](https://glue42.com/enterprise/) components (windows, activities and native executables) are configured in JSON files, where the most important part is the URL (or path) of the component.
+- [**Glue42 Enterprise**](https://glue42.com/enterprise/) components (windows and native executables) are configured in JSON files, where the most important part is the URL (or path) of the component.
 - The configuration files are stored in `%LocalAppData%\Tick42\GlueDesktop\config`.
 
 **Note:**  Configuration changes are detected in real-time both in Configuration Manager and file configuration modes, so once you change a configuration file, you don't need to restart [**Glue42 Enterprise**](https://glue42.com/enterprise/) to detect the changes.
@@ -429,8 +429,6 @@ By using the **Application Management** API you don't need to know the URL of th
 
 Furthermore, the user might not be entitled to open a given app and using the **Window Management** API bypasses the entitlement checks done by Glue42, only to fail later when the newly opened window loads.
 
-Last but not least, the application you are trying to access might have been extended from a single window application to an **activity**. We will cover [**Activities**](../../../glue42-concepts/data-sharing-between-apps/activities/javascript/index.html) later in this tutorial, but with the **Application Management** API you don't need to worry about this issue.
-
 Modifying your code to use the **Application Management** API is quite easy. In `clients.js` locate the `TUTOR_TODO Chapter 5 Task 1` inside `openWindow()`. Here you will need to make two objects: one is the `context` and the other one is the `windowSettings` object. Basically, the second one should contain everything we currently have in the `options` object, apart from the `context` itself. After that, call the start of an application using the proper API: `glue.appManager.application("Portfolios").start(context, windowSettings)`.
 
 You can also remove the window style properties like [`minHeight`](../../../reference/glue/latest/windows/index.html#WindowSettings-minHeight) and [`allowMinimize`](../../../reference/glue/latest/windows/index.html#WindowSettings-allowMinimize) and set them in the configuration file.
@@ -562,39 +560,7 @@ Here is what your app will look like after you have implemented the functionalit
 
 ![Glue42 JavaScript Tutorial Chapter 10](../../../images/tutorials/enterprise-js/10.gif "Glue42 JavaScript Tutorial Chapter 10")
 
-## 11. Activities
-
-We were meant to develop a **Client Details** app for our users, but it turned out that another group has already developed it. Not only that, but they built the app so that it can work either standalone (using Interop), or be used in an **activity**, with a certain context that includes our `party` object.
-
-We spoke to the other team and they advised us to convert our application into an [Activity](../../../glue42-concepts/data-sharing-between-apps/activities/javascript/index.html) and define it to include their **Client Details** window as part of our activity. You can see how to do that in the [Activity Configuration](../../../glue42-concepts/data-sharing-between-apps/activities/javascript/index.html#configuring_an_activity) documentation section.
-
-You will have to re-organize the application by combining your windows in an activity. You also need to make sure that your application can work either as a part of an activity, or as a standalone app (just like up until now).
-
-Here you can find the documentation for the [application configuration](../../../developers/configuration/application/index.html).
-
-You will have to create an activity configuration file and name it `tutorial-activity-applications.json`. It contains the configuration for your:
-
-- **Clients** window - this time it is activity-aware, so `activityTarget` is set to `true`, `windowType` is set to `Client`, `isIndependent` is set to `false`, and `hidden` is set to `true` (so it doesn't appear in the App Manager).
-- **Portfolio** window - with window type `Portfolio` and same activity-related settings.
-- **Client Details** window - (provided as `client-details-window.html`) as type `ClientDetails`.
-- Activity definition - a new component named `ClientPortfolio` with type `activity` that lists:
-	- `Client` as the owner window;
-	- `Portfolio` as a helper window;
-	- `ClientDetails` as a helper window;
-
-You can paste the **Clients** and **Portfolio** window definitions you already have in JSON files into this new `tutorial-activity-applications.json` file. You will have to create the activity definition yourself, have a look at the [Activity Configuration](../../../glue42-concepts/data-sharing-between-apps/activities/javascript/index.html#configuring_an_activity) documentation for details.
-
-- in `clients.js` find `TUTOR_TODO Chapter 11 Task 1` and check whether you are in an activity, and if you are not - set up the frame buttons and frame button clicks;
-- in `clients.js` find `TUTOR_TODO Chapter 11 Task 2` and check whether you are in an activity, and if you are - update the activity context with the selected **client**, otherwise open a tab window and invoke the Interop method;
-- in `portfolio.js` find `TUTOR_TODO Chapter 11 Task 3` and only register the `SetParty()` method if you are not in an activity. If you are in an activity, subscribe for context changes and call `loadPortfolio()`;
-
-![Glue42 JavaScript Tutorial Chapter 11](../../../images/tutorials/enterprise-js/11.gif "Glue42 JavaScript Tutorial Chapter 11")
-
-To test that everything works - inside the App Manager `Shift + Click` on the application to read the newly created configuration file and bypass the caching.
-
-We are ready, we have just cut a lot of development time and money and will surely get our bonuses this year!!
-
-## 12. Metrics and Logging
+## 11. Metrics and Logging
 
 An operative just emailed us about a pilot user claiming that when he selects a **client**, either the client's **portfolio** will not load at all or will take too long to load. He cannot remember which **client** that was.
 
@@ -607,21 +573,21 @@ In this chapter, using the [Metrics](../../../glue42-concepts/metrics/javascript
 
 We will also put some [logging](../../../reference/glue/latest/logger/index.html) around the service call, which (for the purposes of this tutorial) will log to the developer console (`F12`). However, you can easily log to a file on the user's desktop so that we don't need to run analysis on the recorded metrics, if we happen to reproduce this on our end.
 
-In order to complete this chapter you need to create a sub-logger instance and use it in the `loadPortfolio()` method - write to the console (info) every time the request is successful. Find `TUTOR_TODO Chapter 12 Task 1` in `portfolio.js` and create the sub-logger. Then in `TUTOR_TODO Chapter 12 Task 2` log with `logger.info` and the provided `logMessage`.
+In order to complete this chapter you need to create a sub-logger instance and use it in the `loadPortfolio()` method - write to the console (info) every time the request is successful. Find `TUTOR_TODO Chapter 11 Task 1` in `portfolio.js` and create the sub-logger. Then in `TUTOR_TODO Chapter 11 Task 2` log with `logger.info` and the provided `logMessage`.
 
-Create a metrics instance, a sub-system, and set the state to `GREEN` in `TUTOR_TODO Chapter 12 Task 3`. Assign it to `serviceMetricsSystem`.
+Create a metrics instance, a sub-system, and set the state to `GREEN` in `TUTOR_TODO Chapter 11 Task 3`. Assign it to `serviceMetricsSystem`.
 
-Prepare the error count metric in `TUTOR_TODO Chapter 12 Task 4` and assign it to `serviceErrorCount`. Check out the [Metrics](../../../reference/glue/latest/metrics/index.html) API and see what `countMetric()` does.
+Prepare the error count metric in `TUTOR_TODO Chapter 11 Task 4` and assign it to `serviceErrorCount`. Check out the [Metrics](../../../reference/glue/latest/metrics/index.html) API and see what `countMetric()` does.
 
-In `TUTOR_TODO Chapter 12 Task 5` assign a new [`objectMetric`](../../../reference/glue/latest/metrics/index.html#ObjectMetric) to `lastServiceError`.
+In `TUTOR_TODO Chapter 11 Task 5` assign a new [`objectMetric`](../../../reference/glue/latest/metrics/index.html#ObjectMetric) to `lastServiceError`.
 
-Lastly, assign to `serviceLatency` a new [`timespanMetric`](../../../reference/glue/latest/metrics/index.html#TimespanMetric) in `TUTOR_TODO Chapter 12 Task 6`.
+Lastly, assign to `serviceLatency` a new [`timespanMetric`](../../../reference/glue/latest/metrics/index.html#TimespanMetric) in `TUTOR_TODO Chapter 11 Task 6`.
 
 Now that our metrics are set up, we should use them to change system state, if needed, increment error counts and so on:
-- As the portfolio starts loading, we should start the latency metric. Do this in `TUTOR_TODO Chapter 12 Task 7` by calling its [`start()`](../../../reference/glue/latest/metrics/index.html#TimespanMetric-start) method.
-- The latency metric should be stopped as soon as the load succeeds (`TUTOR_TODO Chapter 12 Task 8`) or fails (`TUTOR_TODO Chapter 12 Task 9`).
-- Now, assuming the load was successful, we need to alert if the load was too slow. If so, set the system state to **AMBER** in `TUTOR_TODO Chapter 12 Task 10`. Otherwise, set the system state to **GREEN** in `TUTOR_TODO Chapter 12 Task 11`.
-- Assuming the loading failed - we have already stopped the latency metric, but we have yet to increment the error count. Do this in `TUTOR_TODO Chapter 12 Task 12`. If the loading failed, we should also update the `lastServiceError` in `TUTOR_TODO Chapter 12 Task 13` and set the state of the system to **RED** in `TUTOR_TODO Chapter 12 Task 14`.
+- As the portfolio starts loading, we should start the latency metric. Do this in `TUTOR_TODO Chapter 11 Task 7` by calling its [`start()`](../../../reference/glue/latest/metrics/index.html#TimespanMetric-start) method.
+- The latency metric should be stopped as soon as the load succeeds (`TUTOR_TODO Chapter 11 Task 8`) or fails (`TUTOR_TODO Chapter 11 Task 9`).
+- Now, assuming the load was successful, we need to alert if the load was too slow. If so, set the system state to **AMBER** in `TUTOR_TODO Chapter 11 Task 10`. Otherwise, set the system state to **GREEN** in `TUTOR_TODO Chapter 11 Task 11`.
+- Assuming the loading failed - we have already stopped the latency metric, but we have yet to increment the error count. Do this in `TUTOR_TODO Chapter 11 Task 12`. If the loading failed, we should also update the `lastServiceError` in `TUTOR_TODO Chapter 11 Task 13` and set the state of the system to **RED** in `TUTOR_TODO Chapter 11 Task 14`.
 
 ## Congratulations!
 

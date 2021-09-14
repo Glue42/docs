@@ -140,14 +140,11 @@ When a Layout is saved, applications can store context data in it. When the Layo
 
 *Note that saving large volumes of custom data as window context (e.g., thousands of lines of table data) can lead to significant delays when saving a Layout. A Layout usually contains several (in some cases - many) applications and/or Workspaces (which can also contain many apps) and if one or more of the apps saves large amounts of context data each time a Layout is saved, this will significantly slow down the saving process. The methods for saving custom context work best with smaller amounts of data. If your application needs to save large amounts of data, you have to think about how to design this process better - for instance, you may store IDs, indices, etc., as context data, save the actual data to a database and when you restore the Layout, fetch the data using the data IDs saved as window context.*
 
-The context data can be one of two types:
-
-- **Window context** - each window (application) can store window specific context. When restored, the window will have the saved context;
-- **Activity context** - if running in an Activity, the owner window can store custom Activity context (different from the current Activity context). When restored, the Activity will have the saved context;
+Each window (application) can store window specific context. When restored, the window will have the saved context.
 
 ### Saving Context Data
 
-To save context data, applications can subscribe for Layout save requests using the [`onSaveRequested()`](../../../../reference/glue/latest/layouts/index.html#API-onSaveRequested) method. A Layout save request event is fired when the user attempts to save a Layout or close a window, Activity, Workspace, etc. The on `onSaveRequested()` method accepts a callback which will be invoked when a Layout save request is triggered. The callback will receive as an argument a [`SaveRequestContext`](../../../../reference/glue/latest/layouts/index.html#SaveRequestContext) object containing the Layout name, type and context. Use it to determine the type of the Layout and instruct your application to react accordingly:
+To save context data, applications can subscribe for Layout save requests using the [`onSaveRequested()`](../../../../reference/glue/latest/layouts/index.html#API-onSaveRequested) method. A Layout save request event is fired when the user attempts to save a Layout or close a window, Workspace, etc. The on `onSaveRequested()` method accepts a callback which will be invoked when a Layout save request is triggered. The callback will receive as an argument a [`SaveRequestContext`](../../../../reference/glue/latest/layouts/index.html#SaveRequestContext) object containing the Layout name, type and context. Use it to determine the type of the Layout and instruct your application to react accordingly:
 
 ```javascript
 glue.layouts.onSaveRequested((requestInfo) => {
@@ -168,7 +165,7 @@ glue.layouts.onSaveRequested((requestInfo) => {
 });
 ```
 
-The callback must return a [`SaveRequestResponse`](../../../../reference/glue/latest/layouts/index.html#SaveRequestResponse) object that has [`windowContext`](../../../../reference/glue/latest/layouts/index.html#SaveRequestResponse-windowContext) and/or [`activityContext`](../../../../reference/glue/latest/layouts/index.html#SaveRequestResponse-activityContext) properties.
+The callback must return a [`SaveRequestResponse`](../../../../reference/glue/latest/layouts/index.html#SaveRequestResponse) object that has a [`windowContext`](../../../../reference/glue/latest/layouts/index.html#SaveRequestResponse-windowContext) property.
 
 After the Layout has been restored, the saved context data will be available in the window context:
 

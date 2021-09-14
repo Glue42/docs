@@ -6,17 +6,13 @@ The Layouts library supports different types of Layouts:
 
 - **Global**
 
-This type of Layout can contain floating [Glue42 Windows](../../window-management/overview/index.html), [Glue42 Window Groups](../../window-management/javascript/index.html#window-groups), [Workspaces](../../workspaces/overview/index.html), [Activities](../../../data-sharing-between-apps/activities/overview/index.html). A Global Layout describes the bounds and context of all components participating in it.
+This type of Layout can contain floating [Glue42 Windows](../../window-management/overview/index.html), [Glue42 Window Groups](../../window-management/javascript/index.html#window-groups), [Workspaces](../../workspaces/overview/index.html). A Global Layout describes the bounds and context of all components participating in it.
 
 - **Application Default**
 
 The default Layout of an application instance describes the last saved window bounds, the window state (maximized, minimized, normal), whether the window is collapsed and the default window context.
 
 *Note that the `"ignoreSavedLayout"` property in the [application configuration](../../../../developers/configuration/application/index.html) can be used to ignore the last saved application Layout. In this case, when you restart the application, it will use its default bounds, state and context set in the application configuration file.*
-
-- **Activity**
-
-The Layout of an [Activity](../../../data-sharing-between-apps/activities/overview/index.html) instance describes the arrangement of all windows participating in the Activity, as well as the context of the Activity owner window.
 
 - **Workspace**
 
