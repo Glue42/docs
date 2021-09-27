@@ -20,6 +20,53 @@ For more details on configuring a Citrix application, see the [Application Confi
 
 *Note that this feature is experimental – although it has been properly tested, additional tests and adjustments might be necessary for your specific Citrix environment.*
 
+### .NET Citrix Apps
+
+To Glue42 enable a .NET Citrix app:
+
+1. In your Visual Studio project, reference the `Glue42.dll` available in the [Glue42 NuGet package](https://www.nuget.org/packages/Glue42/).
+ 
+2. Follow the standard procedure for [Glue42 enabling .NET applications](../../getting-started/how-to/glue42-enable-your-app/net/index.html). 
+
+3. After initializing Glue42, you can check whether your application is connected to Glue42 in the following manner: 
+
+```csharp 
+using Tick42.StartingContext; 
+
+if (InitializeOptions.IsCitrixGD) 
+{
+    // Running in Citrix, connected to Glue42 Enterprise. 
+} 
+else if (InitializeOptions.IsCitrixVirtualApp) 
+{
+    // Running in Citrix, not connected to Glue42 Enterprise.
+}
+```
+
+When your Citrix app is connected to [**Glue42 Enterprise**](https://glue42.com/enterprise/), you may want to remove any custom window decorations, since the top-level window chrome will be handled by [**Glue42 Enterprise**](https://glue42.com/enterprise/). 
+
+4. Add `%**` to the application arguments in the Citrix Application Settings:
+
+![Citrix Application Settings](../../images/citrix/citrix-settings-net.png)
+ 
+5. Configure your application as a [Glue42 Citrix app](../../developers/configuration/application/index.html#application_configuration-citrix_app).
+
+You will now be able to run your .NET Citrix application from [**Glue42 Enterprise**](https://glue42.com/enterprise/) and interoperate with it using the various Glue42 APIs.
+
+### Java Citrix Apps
+
+To Glue42 enable a Java Citrix app:
+
+1. Follow the standard procedure for [Glue42 enabling Java applications](../../getting-started/how-to/glue42-enable-your-app/java/index.html).  
+
+2. In the Citrix Application Settings, set the path to a `javaw.exe` or `java.exe` file, use standard VM arguments to launch your Java app, and add `%**` at the end of the application arguments:
+
+![Citrix Application Settings](../../images/citrix/citrix-settings-java.png)
+
+3. Configure your application as a [Glue42 Citrix app](../../developers/configuration/application/index.html#application_configuration-citrix_app).
+
+You will now be able to run your Java Citrix application from [**Glue42 Enterprise**](https://glue42.com/enterprise/) and interoperate with it using the various Glue42 APIs.
+
 ## Splash Screen
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) has a built-in splash screen, but also supports showing a custom splash screen. Your custom splash screen is loaded from a local file. 
