@@ -93,6 +93,16 @@ Setting the background color of windows when loading:
 
 ![Loading background color](../../../images/themes/loading-background-color.png)
 
+You can use XAML files to set a custom loading animation. Specify a path to the XAML file - either absolute or relative to the `%LocalAppData%\Tick42\GlueDesktop\config` folder:
+
+```json
+"properties": {
+    "loadingAnimation": "../custom/dotCircleSpinner.xaml",
+}
+```
+
+![Loading animation](../../../images/themes/dot-circle.png)
+
 ### Tabs
 
 The theme properties for individual tab windows are located under the `"tabs"` key in the `themes.json` file.
