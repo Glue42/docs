@@ -53,7 +53,7 @@ const config = { channels: true };
 window.glue = await Glue(config);
 ```
 
-*See the JavaScript [Channels example](https://github.com/Tick42/js-examples/tree/master/channels-example) on GitHub.*
+*See the JavaScript [Channels example](https://github.com/Glue42/js-examples/tree/master/channels-example) on GitHub.*
 
 ## Current Channel
 
@@ -212,4 +212,4 @@ glue.channels.onChanged(handler);
 
 ## Reference
 
-[Channels API Reference](../../../../reference/glue/latest/channels/index.html) 
+For a complete list of the available Channels API methods and properties, see the [Channels API Reference Documentation](../../../../reference/glue/latest/channels/index.html).

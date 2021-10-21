@@ -121,7 +121,7 @@ To access the [**Glue42 Enterprise**](https://glue42.com/enterprise/) APIs, init
 
 - #### GlueProvider
 
-Add the `<GlueProvider />` component by wrapping your other components inside it (preferably the root one). Pass the settings object to the `<GlueProvider />`. It will initialize the [**Glue42 Enterprise**](https://glue42.com/enterprise/) [JavaScript library](../../../../reference/glue/latest/glue/index.html#) and make the [**Glue42 Enterprise**](https://glue42.com/enterprise/) APIs available in your application by setting the returned `glue` object as the value of `GlueContext`:
+Add the `<GlueProvider />` component by wrapping your other components inside it (preferably the root one). Pass the settings object to the `<GlueProvider />`. It will initialize the [**Glue42 Enterprise**](https://glue42.com/enterprise/) [JavaScript library](../../../../reference/glue/latest/glue/index.html) and make the [**Glue42 Enterprise**](https://glue42.com/enterprise/) APIs available in your application by setting the returned `glue` object as the value of `GlueContext`:
 
 ```javascript
 //index.js
@@ -305,7 +305,6 @@ Once the Glue42 React library has been initialized, your application has access 
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/javascript/index.html)
 - [Interop](../../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html)
-- [Activities](../../../../glue42-concepts/data-sharing-between-apps/activities/javascript/index.html)
 - [Pub/Sub](../../../../glue42-concepts/data-sharing-between-apps/pub-sub/javascript/index.html)
 - [Window Management](../../../../glue42-concepts/windows/window-management/javascript/index.html)
 - [Workspaces](../../../../glue42-concepts/windows/workspaces/javascript/index.html)

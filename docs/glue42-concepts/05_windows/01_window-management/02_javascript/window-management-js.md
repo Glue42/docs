@@ -507,7 +507,7 @@ The following table describes the properties of the [`PlacementSettings`](../../
 |----------|---------|-------------|----------|
 | `snapped` | `boolean` | If `true`, the Glue42 Window will remain snapped to the specified screen position even in cases of resolution changes, window visibility changes or when the application virtualization window hosting the Glue42 Window has been resized. However, this doesn't include any API calls or manual user interaction which affect the window placement or bounds. If `false`, the window will be positioned at the specified screen location only once when created. | Yes |
 | `verticalAlignment` | `"top"` \| `"bottom"` \| `"center"` \| `"stretch"` | Defines a vertical alignment configuration. If `horizontalAlignment` is set, then `verticalAlignment` will default to `"stretch"`. | No |
-| `horizontalAlignment` | `"top"` \| `"bottom"` \| `"center"` \| `"stretch"` | Defines a vertical alignment configuration. If `verticalAlignment` is set, then `horizontalAlignment` will default to `"stretch"`. | No |
+| `horizontalAlignment` | `"left"` \| `"right"` \| `"center"` \| `"stretch"` | Defines a horizontal alignment configuration. If `verticalAlignment` is set, then `horizontalAlignment` will default to `"stretch"`. | No |
 | `margin` | `string` | Sets the margin for all four sides of the window. | No |
 | `width` | `number` \| `string` | Defines the window width. Use a `number` to define the width in pixels. Use a `string` to define the width in pixels or percentage of the screen width - e.g., `"10px"` or `"10%"`. | No |
 | `height` | `number` \| `string` | Defines the window height. Use a `number` to define the height in pixels. Use a `string` to define the height in pixels or percentage of the screen width - e.g., `"10px"` or `"10%"`. | No |
@@ -1226,7 +1226,7 @@ Flydown windows are helper windows which can be easily configured to appear on h
 
 ![Flydown](../../../../images/window-management/flydown.gif)
 
-*See the JavaScript [Flydown example](https://github.com/Tick42/js-examples/tree/master/flydown-example) on GitHub.*
+*See the JavaScript [Flydown example](https://github.com/Glue42/js-examples/tree/master/flydown-example) on GitHub.*
 
 *The delay times for showing and hiding flydown windows can be set using the global [Glue42 Window configuration](../../../../developers/configuration/glue42-windows/index.html#glue42_window_properties-flydown_windows).*
 
@@ -1425,7 +1425,7 @@ Popup windows are helper windows that can appear when the user clicks an area in
 
 ![Popup](../../../../images/window-management/popup.gif)
 
-*See the JavaScript [Popup example](https://github.com/Tick42/js-examples/tree/master/popup-example) on GitHub.*
+*See the JavaScript [Popup example](https://github.com/Glue42/js-examples/tree/master/popup-example) on GitHub.*
 
 Implementing the behavior of popup windows can be a very tedious task. You must handle all cases in which the popup may go out of screen, handle user input from multiple windows which may involve confusion with timeouts and potential race conditions. While not impossible, it is an endeavor prone to many errors, while the end result most often is unreliable. The [`showPopup()`](../../../../reference/glue/latest/windows/index.html#API-showPopup) method handles all these problems and almost no additional code is required to make it work smoothly in all cases. You can call [`showPopup()`](../../../../reference/glue/latest/windows/index.html#API-showPopup) either through `glue.windows.showPopup()` or directly on a window instance. This method accepts `targetWindowId` and a [`PopupOptions`](../../../../reference/glue/latest/windows/index.html#PopupOptions) object as arguments. If you call [`showPopup()`](../../../../reference/glue/latest/windows/index.html#API-showPopup) directly on a window instance, don't pass a `targetWindowId`, as the ID of the current window will be used to create the popup window.
 
@@ -1468,4 +1468,4 @@ const popup = await glue.windows.showPopup(myWindowID, popupOptions);
 
 ## Reference
 
-[Window Management API Reference](../../../../reference/glue/latest/windows/index.html) 
+For a complete list of the available Window Management API methods and properties, see the [Window Management API Reference Documentation](../../../../reference/glue/latest/windows/index.html).

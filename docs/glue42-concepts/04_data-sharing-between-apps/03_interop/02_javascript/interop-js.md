@@ -2,7 +2,7 @@
 
 The Interop API is accessible through the [`glue.interop`](../../../../reference/glue/latest/interop/index.html) object.
 
-*See the JavaScript [Interop example](https://github.com/Tick42/js-examples/tree/master/interop-example) on GitHub.*
+*See the JavaScript [Interop example](https://github.com/Glue42/js-examples/tree/master/interop-example) on GitHub.*
 
 To register an Interop method that will be available to all other Glue42 enabled applications, use the [`register()`](../../../../reference/glue/latest/interop/index.html#API-register) method. Provide a name for the method (or a [`MethodDefinition`](../../../../reference/glue/latest/interop/index.html#MethodDefinition) object) and a callback that will handle invocations from client applications:
 
@@ -410,9 +410,9 @@ Interop streams are used extensively in [**Glue42 Enterprise**](https://glue42.c
 - to publish notifications about window status change (events);
 - to publish application configuration changes and notifications about application instance state changes (events);
 - in the Glue42 Notification Service (GNS) Desktop Manager and GNS Interop Servers - to publish Notifications (real-time data);
-- in the Window Management, Application Management, and Activities APIs (events);
+- in the Window Management and Application Management APIs (events);
 
-*See the JavaScript [Streaming example](https://github.com/Tick42/js-examples/tree/master/streaming-example) on GitHub.*
+*See the JavaScript [Streaming example](https://github.com/Glue42/js-examples/tree/master/streaming-example) on GitHub.*
 
 The snippets below are based on the [Complete Streaming Example](#complete_streaming_example) at the end of the Streaming section. The example illustrates an application which retrieves real-time data about a financial instrument (`symbol`) from a data source and provides the data as a stream to other applications. The client applications subscribe for the stream data by providing a `symbol` value as an argument in their subscription requests.
 
@@ -898,4 +898,4 @@ createSubscription().catch(console.error);
 
 ## Reference
 
-[Interop API Reference](../../../../reference/glue/latest/interop/index.html) 
+For a complete list of the available Interop API methods and properties, see the [Interop API Reference Documentation](../../../../reference/glue/latest/interop/index.html).

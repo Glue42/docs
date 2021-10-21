@@ -98,7 +98,7 @@ You can create action buttons for the notification. When the user clicks on an a
 
 *Note that the action buttons in a Glue42 Notification are limited to two, as the web browsers currently support a maximum of two actions.*
 
-To handle action button clicks, use the `interop` property of the action object and specify an Interop method that will be [invoked](../../data-sharing-between-apps/interop/javascript/index.html#method_invocation) when the user clicks the action button in the notification:
+To handle action button clicks, use the `interop` property of the action object and specify an Interop method that will be [invoked](../../data-sharing-between-apps/interop/dash/index.html#method_invocation) when the user clicks the action button in the notification:
 
 ```python
 @app.callback(

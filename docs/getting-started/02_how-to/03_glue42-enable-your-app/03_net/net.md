@@ -6,12 +6,6 @@ To use any [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionality
 
 The Glue42 .NET library is available as a `NuGet` package which you can include and configure in your projects.
 
-```xml
-<packages>
-    <package id="Glue42" version="2018.2084.0" targetFramework="net45" />
-</packages> 
-```
-
 ![NuGet Package](../../../../images/nuget-package.gif)
 
 ### As a Standalone File
@@ -37,16 +31,16 @@ var initializeOptions = new InitializeOptions()
         IncludedFeatures = GDFeatures.UseAppManager | GDFeatures.UseGlueWindows
     };
 
-// the initialization options are not required; 
-// if skipped, Glue42 will be initialized with the default options 
-// (default assembly name for ApplicationName and with all features included)
+// The initialization options are not required.
+// If skipped, Glue42 will be initialized with the default options 
+// (default assembly name for ApplicationName and with all features included).
 
 Glue42 glue;
 Glue42.InitializeGlue(initializeOptions) 
                 .ContinueWith(glueInit =>
                     {
                         glue = glueInit.Result;
-                        // use glue here
+                        // Use Glue42 here.
                     });
 
 ```
@@ -86,21 +80,6 @@ For more detailed information about the application definitions, see the [Config
 
 *See the [.NET examples](https://github.com/Tick42/net-examples) at GitHub which demonstrate various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
 
-## Glue42 .NET Concepts
-
-Once the Glue42 .NET library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
-
-- [Application Management](../../../../glue42-concepts/application-management/net/index.html)
-- [Intents](../../../../glue42-concepts/intents/net/index.html)
-- [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/net/index.html)
-- [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/net/index.html)
-- [Interop](../../../../glue42-concepts/data-sharing-between-apps/interop/net/index.html)
-- [Pub/Sub](../../../../glue42-concepts/data-sharing-between-apps/pub-sub/net/index.html)
-- [Window Management](../../../../glue42-concepts/windows/window-management/net/index.html)
-- [Layouts](../../../../glue42-concepts/windows/layouts/net/index.html)
-- [Notifications](../../../../glue42-concepts/notifications/net/index.html)
-- [Metrics](../../../../glue42-concepts/metrics/net/index.html)
-
 ## Glue42 ClickOnce
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) offers support for ClickOnce applications. Below you can see how to initialize the Glue42 .NET library in your ClickOnce application and how to register a ClickOnce application in [**Glue42 Enterprise**](https://glue42.com/enterprise/).
@@ -116,16 +95,16 @@ var initializeOptions = new InitializeOptions()
         IncludedFeatures = GDFeatures.UseAppManager | GDFeatures.UseGlueWindows
     };
 
-// the initialization options are not required; 
-// if skipped, Glue42 will be initialized with the default options 
-// (default assembly name for ApplicationName and with all features included)
+// The initialization options are not required.
+// If skipped, Glue42 will be initialized with the default options 
+// (default assembly name for ApplicationName and with all features included).
 
 Glue42 glue;
 Glue42.InitializeGlue(initializeOptions) 
                 .ContinueWith(glueInit =>
                     {
                         glue = glueInit.Result;
-                        // use glue here
+                        // Use Glue42 here.
                     });
 
 ```
@@ -170,4 +149,19 @@ Here is an example configuration for a ClickOnce application:
 
 ## Glue42 Silverlight
 
-We offer a **Glue42 Silverlight** library as a version of the Glue42 .NET library. Glue42 Silverlight offers the same features and functionalities as the Glue42 .NET library, it is only tailored to meet the specifications of the MS Silverlight framework.  
+We offer a **Glue42 Silverlight** library as a version of the Glue42 .NET library. Glue42 Silverlight offers the same features and functionalities as the Glue42 .NET library, it is only tailored to meet the specifications of the MS Silverlight framework.
+
+## Glue42 .NET Concepts
+
+Once the Glue42 .NET library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
+
+- [Application Management](../../../../glue42-concepts/application-management/net/index.html)
+- [Intents](../../../../glue42-concepts/intents/net/index.html)
+- [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/net/index.html)
+- [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/net/index.html)
+- [Interop](../../../../glue42-concepts/data-sharing-between-apps/interop/net/index.html)
+- [Pub/Sub](../../../../glue42-concepts/data-sharing-between-apps/pub-sub/net/index.html)
+- [Window Management](../../../../glue42-concepts/windows/window-management/net/index.html)
+- [Layouts](../../../../glue42-concepts/windows/layouts/net/index.html)
+- [Notifications](../../../../glue42-concepts/notifications/net/index.html)
+- [Metrics](../../../../glue42-concepts/metrics/net/index.html)

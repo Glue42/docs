@@ -21,7 +21,7 @@ Another solution is to use workflow services. This allows a quick DIY approach t
 ## Explore Glue42 Enterprise
 
 - Download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) trial version from [here](https://glue42.com/).
-- See the [How To...](../../how-to/install-system-requirements/index.html) section for a quick start info on how to install and what you can do with [**Glue42 Enterprise**](https://glue42.com/enterprise/).
+- See the [How To...](../../how-to/install/index.html) section for a quick start info on how to install and what you can do with [**Glue42 Enterprise**](https://glue42.com/enterprise/).
 - See the full [Tutorials](../../../tutorials/javascript/index.html) on integrating [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionalities in your apps.
 - See the [Examples](../../../developers/examples/index.html) section for example [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionality implementations and example apps we have developed for testing purposes.
 - Get acquainted with the core [Glue42 Concepts](../../../glue42-concepts/glue42-toolbar/index.html) and see how to work programmatically with [**Glue42 Enterprise**](https://glue42.com/enterprise/). 

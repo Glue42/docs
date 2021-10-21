@@ -1,6 +1,6 @@
 ## Overview
 
-The Window Management API lets you create and manipulate windows and is the basis of the [Application Management](../../../application-management/overview/index.html) and [Activities](../../../data-sharing-between-apps/activities/overview/index.html) APIs. It allows users to group a set of desktop windows so that they move, maximize and minimize together. The Window Management API provides the following features, not found in any normal browser:
+The Window Management API lets you create and manipulate windows and is the basis of the [Application Management](../../../application-management/overview/index.html) API. It allows users to group a set of desktop windows so that they move, maximize and minimize together. The Window Management API provides the following features, not found in any normal browser:
 
 - 3 types of window modes: flat, tab or HTML
 - Complete control and customization of the windows:

@@ -5,7 +5,7 @@ In this quick tutorial you will learn how to:
 - Install and use **Spectron**.
 - Use **Mocha** and **Spectron** to write end-to-end tests to test your app in [**Glue42 Enterprise**](https://glue42.com/enterprise/). 
 
-*You can get the example app and test configuration used in this guide from [GitHub](https://github.com/Tick42/glue-spectron-example).*
+*You can get the example app and test configuration used in this guide from [GitHub](https://github.com/Glue42/glue42-spectron-example).*
 
 ## Installing Mocha and Spectron
 

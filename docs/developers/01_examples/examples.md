@@ -2,9 +2,9 @@
 
 Here you can find links to Glue42 examples in GitHub. These implementations are for showcase and testing purposes and demonstrate various [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionalities within different technology environments. See the respective repositories and experiment firsthand with the many cool features of [**Glue42 Enterprise**](https://glue42.com/enterprise/)!
 
-## JavaScript
+### JavaScript
 
-[JavaScript Examples Repository](https://github.com/Tick42/js-examples)
+[JavaScript Examples Repository](https://github.com/Glue42/js-examples)
 
 - Application Management Example
 - Application Preferences Example
@@ -19,7 +19,7 @@ Here you can find links to Glue42 examples in GitHub. These implementations are 
 - Themes Example
 - Window Management Example
 
-## .NET
+### .NET
 
 [.NET Examples Repository](https://github.com/Tick42/net-examples)
 
@@ -32,13 +32,13 @@ Here you can find links to Glue42 examples in GitHub. These implementations are 
 - Notifications Example
 - Blazor Example
 
-## Java
+### Java
 
 The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installer. You can find them in the `%LocalAppData%\Tick42\Demos\Java` folder.
 
-## Angular
+### Angular
 
-[Angular Examples Repository](https://github.com/Tick42/ng-glue-examples)
+[Angular Examples Repository](https://github.com/Glue42/ng-glue-examples)
 
 - Full demo application example
 - Application Management Example
@@ -48,14 +48,14 @@ The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.co
 - Notifications Example
 - Window Management Example
 
-## COM
+### COM
 
 [COM Examples Repository](https://github.com/Tick42/com-examples)
 
 - Delphi 10 Example
 - Delphi 7 Example
 
-## Dash
+### Dash
 
 [Dash Examples Repository](https://github.com/Glue42/glue-dash-example)
 
@@ -68,14 +68,12 @@ The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.co
 - "Oil and Gas" Example
 - Window Management Example
 
-## Other Examples
+### Other Examples
 
 - [Search Provider Example](https://github.com/Glue42/search-provider) - a basic search provider that can be used to return results for custom entities to the Global Search app.
 
-- [Node.js REST Config Example](https://github.com/Tick42/rest-config-example-node-js) - A simple Node.js REST server, which acts as a remote application, Layout, application preferences and system configuration store. You can use this example to test fetching applications, Layouts, application preferences and system configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
+- [Node.js REST Config Example](https://github.com/Glue42/rest-config-example-node-js) - A simple Node.js REST server, which acts as a remote application, Layout, application preferences and system configuration store. You can use this example to test fetching applications, Layouts, application preferences and system configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
 
 - [.NET REST Config Example](https://github.com/Tick42/rest-config-example-net) - A simple .NET REST server, which acts as a remote application and Layout store. You can use this example to test fetching applications and Layouts configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
 
-- [Extensions Example](https://github.com/Tick42/glue42-extension-template) - This repo includes functioning extension examples, as well as an extension template for creating and adding your own extensions to web-based apps hosted in [**Glue42 Enterprise**](https://glue42.com/enterprise/).
-
-- [Testing Example](https://github.com/Tick42/glue-spectron-example) - Here you can get an example web app and tests, which you can use to learn how to test your app within the Glue42 framework. 
+- [Testing Example](https://github.com/Glue42/glue42-spectron-example) - Here you can get an example web app and tests, which you can use to learn how to test your app within the Glue42 framework. 

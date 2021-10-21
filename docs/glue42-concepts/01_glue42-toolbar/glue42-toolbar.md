@@ -112,7 +112,9 @@ The [Placement](../windows/window-management/javascript/index.html#window_operat
 
 ## Custom Toolbar
 
-The source code for the Floating Toolbar and the Launchpad is available on GitHub - for access and more details, [contact us](https://glue42.com/contacts/) at `info@glue42.com`. You can use it as a template for creating your own custom toolbar.
+The source code for the Floating Toolbar is [available on GitHub](https://github.com/Glue42/toolbar). You can use it as a template for creating your own custom toolbar.
+
+The Launchpad is available as a React Component on `npm` - [`@glue42/launchpad-ui-react`](https://www.npmjs.com/package/@glue42/launchpad-ui-react). You can use the component in your own apps and also modify it by passing different options. For more details, see the README file of the [`@glue42/launchpad-ui-react`](https://www.npmjs.com/package/@glue42/launchpad-ui-react) package.
 
 Once you have implemented a toolbar, you must host it, create an [application configuration](../../developers/configuration/application/index.html#application_configuration) file for it and add it to your application store. Make sure to set the `"shell"` top-level key to `true`:
 

@@ -545,6 +545,6 @@ Currently, support is offered for RDBMS, ElasticSearch and VaranDB (Tick42 propr
 
 ## Visualization
 
-All visualizations and analyses of the gathered information is handled by the client with their preferred tools and infrastructure.
+All visualizations and analyses of the gathered information are handled by the client with their preferred tools and infrastructure.
 
 See also the [Glue42 Insights](https://glue42.com/insights/) product which provides means for aggregating and visualizing the collected metrics information. 

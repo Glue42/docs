@@ -377,4 +377,4 @@ Upon launching, the Glue42 Excel Connector registers the following streams and m
 
 ## Reference
 
-[**Reference**](../../../../reference/glue4office/latest/excel/index.html) 
+For a complete list of the available Excel Connector API methods and properties, see the [Excel Connector Reference Documentation](../../../../reference/glue4office/latest/excel/index.html).

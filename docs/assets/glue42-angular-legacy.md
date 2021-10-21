@@ -136,7 +136,7 @@ Below is an example configuration:
 
 The **Application Management** service can be accessed by injecting `AppManagerService` in any Angular component or service.
 
-*See the Angular [Application Management example](https://github.com/Tick42/ng-glue-examples/tree/master/projects/examples/src/app/app-manager) on GitHub.*
+*See the Angular [Application Management example](https://github.com/Glue42/ng-glue-examples/tree/master/projects/examples/src/app/app-manager) on GitHub.*
 
 ```typescript
 import { AppManagerService } from "@glue42/ng-glue";
@@ -488,7 +488,7 @@ channelsService.currentChannel
 
 The **Interop** service can be accessed by injecting `InteropService` in any Angular component or service.
 
-*See the Angular [Interop example](https://github.com/Tick42/ng-glue-examples/tree/master/projects/examples/src/app/interop) on GitHub.*
+*See the Angular [Interop example](https://github.com/Glue42/ng-glue-examples/tree/master/projects/examples/src/app/interop) on GitHub.*
 
 ```typescript
 import { InteropService } from "@glue42/ng-glue";
@@ -970,7 +970,7 @@ For more information on how to do that, see the [Activity Layouts](../../../wind
 
 The **Windows Management** service can be accessed by injecting `WindowsService` in any Angular component or service.
 
-*See the Angular [Glue42 Window](https://github.com/Tick42/ng-glue-examples/tree/master/projects/examples/src/app/gd-window) and [Window Management](https://github.com/Tick42/ng-glue-examples/tree/master/projects/examples/src/app/windows) examples on GitHub.*
+*See the Angular [Glue42 Window](https://github.com/Glue42/ng-glue-examples/tree/master/projects/examples/src/app/gd-window) and [Window Management](https://github.com/Glue42/ng-glue-examples/tree/master/projects/examples/src/app/windows) examples on GitHub.*
 
 ```typescript
 import { WindowsService } from "@glue42/ng-glue";
@@ -1627,7 +1627,7 @@ myGDWindow.detachTab(options).subscribe({
 
 The **Layouts** service can be accessed by injecting `LayoutsService` in any Angular component or service.
 
-*See the Angular [Layouts example](https://github.com/Tick42/ng-glue-examples/tree/master/projects/examples/src/app/layouts) on GitHub.*
+*See the Angular [Layouts example](https://github.com/Glue42/ng-glue-examples/tree/master/projects/examples/src/app/layouts) on GitHub.*
 
 ```typescript
 import { LayoutsService } from "@glue42/ng-glue";
@@ -1872,7 +1872,7 @@ notificationsService.raiseNotification({
 
 ![Raising Notifications](../../../images/notifications/js-raising-notification.png)
 
-*See the Angular [Notifications example](https://github.com/Tick42/ng-glue-examples/tree/master/projects/examples/src/app/notifications) on GitHub.*
+*See the Angular [Notifications example](https://github.com/Glue42/ng-glue-examples/tree/master/projects/examples/src/app/notifications) on GitHub.*
 
 ## Subscribing for Notifications
 

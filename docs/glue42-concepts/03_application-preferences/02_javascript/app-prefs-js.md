@@ -100,4 +100,4 @@ await glue.prefs.clearAll();
 
 ## Reference
 
-[Application Preferences API Reference](../../../reference/glue/latest/application%20preferences/index.html)
+For a complete list of the available Application Preferences API methods and properties, see the [Application Preferences API Reference Documentation](../../../reference/glue/latest/application%20preferences/index.html).

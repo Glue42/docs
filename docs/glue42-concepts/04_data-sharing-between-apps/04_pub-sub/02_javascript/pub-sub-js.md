@@ -10,7 +10,7 @@ window.glue = await Glue(config);
 
 The Pub/Sub API is accessible through the [`glue.bus`](../../../../reference/glue/latest/pub%20sub/index.html) object.
 
-*See the JavaScript [Pub/Sub example](https://github.com/Tick42/js-examples/tree/master/pub-sub-example) on GitHub.*
+*See the JavaScript [Pub/Sub example](https://github.com/Glue42/js-examples/tree/master/pub-sub-example) on GitHub.*
 
 ## Publish
 
@@ -132,4 +132,4 @@ The Pub/Sub API invokes the callback only for messages with a matching routing k
 
 ## Reference
 
-[Pub/Sub API Reference](../../../../reference/glue/latest/pub%20sub/index.html) 
+For a complete list of the available Pub/Sub API methods and properties, see the [Pub/Sub API Reference Documentation](../../../../reference/glue/latest/pub%20sub/index.html).

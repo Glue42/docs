@@ -42,4 +42,4 @@ glue.themes.onChanged(newTheme => {
 
 ## Reference
 
-[Themes API Reference](../../../../reference/glue/latest/themes/index.html) 
+For a complete list of the available Themes API methods and properties, see the [Themes API Reference Documentation](../../../../reference/glue/latest/themes/index.html).

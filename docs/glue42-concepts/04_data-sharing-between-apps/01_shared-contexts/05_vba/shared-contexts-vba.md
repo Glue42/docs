@@ -1,6 +1,6 @@
 ## Opening or Creating a Context
 
-Define a [`GlueContextManager`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager) instance and set its value using the [`GetGlueContext`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#getgluecontext) method passing the name of a context as an argument. Use the [`Open`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#open) method of the `GlueContextManager` instance to open the selected context. If a context with the specified name does not exist, it will be automatically created.
+Define a [`GlueContextManager`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager) instance and set its value using the [`GetGlueContext`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glue42-getgluecontext) method passing the name of a context as an argument. Use the [`Open`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager-open) method of the `GlueContextManager` instance to open the selected context. If a context with the specified name does not exist, it will be automatically created.
 
 Below is an example of a subroutine opening a context:
 
@@ -24,7 +24,7 @@ End Sub
 
 ## Subscribing for Context Updates
 
-To subscribe for context updates, use the [`HandleContextUpdate`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#handlecontextupdate) event exposed by the [`GlueContextManager`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager) instance. Its handler is executed when the context data has been updated.
+To subscribe for context updates, use the [`HandleContextUpdate`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager-handlecontextupdate) event exposed by the [`GlueContextManager`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager) instance. Its handler is executed when the context data has been updated.
 
 Below is an example of a context update handler:
 
@@ -53,7 +53,7 @@ End Sub
 
 ## Updating a Context
 
-Use the [`SetValue`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#setvalue) method of the [`GlueContextManager`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager) instance to update the context data:
+Use the [`SetValue`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager-setvalue) method of the [`GlueContextManager`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager) instance to update the context data:
 
 ```vbnet
 ' Create a root composite value and add data in it.
@@ -71,7 +71,7 @@ MyContext.SetValue "data", Data
 
 ## Listing All Available Contexts
 
-To get a list of all available contexts, use the [`GetKnownContexts`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#getknowncontexts) method:
+To get a list of all available contexts, use the [`GetKnownContexts`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glue42-getknowncontexts) method:
 
 ```vbnet
 Dim AllContexts() as GlueContext

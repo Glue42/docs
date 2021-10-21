@@ -8,7 +8,7 @@ Registering a VBA `UserForm` as a Glue42 Window will decorate it with a "sticky"
 
 *Note that registering a VBA `UserForm` as a Glue42 Window imposes some restrictions on it (for more details, see [VBA UserForm Restrictions](#vba_userform_restrictions)). You can still use Glue42 functionality in the `UserForm` without registering it as a Glue42 Window.*
 
-To register a VBA `UserForm` as a Glue42 Window with [default settings](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindowsettings), use the [`RegisterGlueWindow`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#registergluewindow) method:
+To register a VBA `UserForm` as a Glue42 Window with [default settings](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindowsettings), use the [`RegisterGlueWindow`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glue42-registergluewindow) method:
 
 ```vbnet
 Dim WithEvents GlueWin As GlueWindow
@@ -30,9 +30,9 @@ Private Sub RegisterGlueWindow()
 End Sub
 ```
 
-*The example uses the [GetFormHwnd](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#getformhwnd) helper function in order to retrieve the window handle (HWND) of the VBA `UserForm`.*
+*The example uses the [GetFormHwnd](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#glue42_vba_concepts-helper_functions-getformhwnd) helper function in order to retrieve the window handle (HWND) of the VBA `UserForm`.*
 
-You can also initiate the window registration with custom settings by using [`RegisterGlueWindowWithSettings`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#registergluewindowwithsettings) instead:
+You can also initiate the window registration with custom settings by using [`RegisterGlueWindowWithSettings`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glue42-registergluewindowwithsettings) instead:
 
 ```vbnet
 ' Create default window settings.
@@ -55,11 +55,11 @@ Set GlueWin = Glue.RegisterGlueWindowWithSettings(GetFormHwnd(Me), WinSettings, 
 
 You must provide implementations for the events that will be raised as a result of the interaction with the registered Glue42 Window.
 
-*The events [`HandleChannelChanged`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#handlechannelchanged) and [`HandleChannelData`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#handlechanneldata) are described in the [Channels](../../../data-sharing-between-apps/channels/vba/index.html) documentation.*
+*The events [`HandleChannelChanged`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlechannelchanged) and [`HandleChannelData`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlechanneldata) are described in the [Channels](../../../data-sharing-between-apps/channels/vba/index.html) documentation.*
 
 ### Window Ready
 
-The [`HandleWindowReady`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#handlewindowready) event of a [`GlueWindow`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow) instance is raised when the registration of the window has completed. You can use its handler to indicate that the registration has completed and is safe to perform other operations with the Glue42 Window instance (changing the title, visibility, etc.):
+The [`HandleWindowReady`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlewindowready) event of a [`GlueWindow`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow) instance is raised when the registration of the window has completed. You can use its handler to indicate that the registration has completed and is safe to perform other operations with the Glue42 Window instance (changing the title, visibility, etc.):
 
 ```vbnet
 Dim FormRegistered As Boolean
@@ -73,7 +73,7 @@ End Sub
 
 ### Window Destroyed
 
-The [`HandleWindowDestroyed`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#handlewindowdestroyed) event is raised when the Glue42 Window is being destroyed. The purpose for raising this event is to provide an opportunity for the VBA application to gracefully unload the VBA `UserForm` (see also [VBA UserForm Restrictions](#vba_userform_restrictions)):
+The [`HandleWindowDestroyed`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlewindowdestroyed) event is raised when the Glue42 Window is being destroyed. The purpose for raising this event is to provide an opportunity for the VBA application to gracefully unload the VBA `UserForm` (see also [VBA UserForm Restrictions](#vba_userform_restrictions)):
 
 ```vbnet
 Private Sub GlueWin_HandleWindowDestroyed(ByVal window As IGlueWindow)
@@ -88,7 +88,7 @@ Once the VBA window has been registered as a Glue42 Window, you can perform diff
 
 ### Title
 
-To get the current window title, use the [`GetTitle`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#gettitle) method of a window instance:
+To get the current window title, use the [`GetTitle`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-gettitle) method of a window instance:
 
 ```vbnet
 Dim WinTitle as String
@@ -96,7 +96,7 @@ Dim WinTitle as String
 WinTitle = GlueWin.GetTitle()
 ```
 
-To change the window title, use the [`SetTitle`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#settitle) method of a window instance:
+To change the window title, use the [`SetTitle`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-settitle) method of a window instance:
 
 ```vbnet
 GlueWin.SetTitle "New Title"
@@ -104,7 +104,7 @@ GlueWin.SetTitle "New Title"
 
 ### Visibility
 
-To check whether the window is visible, use [`IsVisible`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#isvisible). To hide or show a window, use [`SetVisible`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#setvisible) and pass a `Boolean` value as an argument:
+To check whether the window is visible, use [`IsVisible`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-isvisible). To hide or show a window, use [`SetVisible`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-setvisible) and pass a `Boolean` value as an argument:
 
 ```vbnet
 If GlueWin.IsVisible() Then
@@ -118,7 +118,7 @@ End If
 
 The following restrictions apply to a VBA `UserForm` when it has been registered as a Glue42 Window:
 
-- The application must provide a mandatory implementation of the [`HandleWindowDestroyed`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#handlewindowdestroyed) event in order to properly unload the VBA `UserForm`. Failing to unload the VBA `UserForm` will lead to deadlocks in the VBA execution thread.
+- The application must provide a mandatory implementation of the [`HandleWindowDestroyed`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlewindowdestroyed) event in order to properly unload the VBA `UserForm`. Failing to unload the VBA `UserForm` will lead to deadlocks in the VBA execution thread.
 - If implementing a handler for the `UserForm_QueryClose`, the application must not make any blocking calls (e.g., use I/O operations, display close confirmation popups to the user) or prevent the `UserForm` from unloading by setting a non-zero value to the `Cancel` parameter.
 - The application should not change directly the VBA `UserForm` visibility or position (e.g., with `Show`, `Hide`, `Move`).
 - After a `UserForm` has been closed/unloaded, it can be displayed again by using `Show`. In this case you will need to repeat the Glue42 initialization and Glue42 Window registration for the `UserForm`. 

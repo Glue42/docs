@@ -150,4 +150,4 @@ glue.intents.addIntentListener(intent, contextHandler);
 
 ## Reference
 
-[Intents API Reference](../../../reference/glue/latest/intents/index.html) 
+For a complete list of the available Intents API methods and properties, see the [Intents API Reference Documentation](../../../reference/glue/latest/intents/index.html).

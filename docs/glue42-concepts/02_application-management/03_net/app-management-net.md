@@ -184,6 +184,8 @@ Implementing the `Shutdown()` method:
 ```csharp
 public void Shutdown()
 {
+    // Here you can implement your own graceful cleanup of native resources, connections, etc., for this child app.
+    // After that, close the window - otherwise, Glue42 Enterprise will wait for it to timeout and then will force close it.
     Close();
 }
 ```

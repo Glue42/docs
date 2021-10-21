@@ -132,4 +132,4 @@ wordDoc.onClosed(doc => closeDocumentPreviewFor(doc));
 
 ## Reference
 
-[**Reference**](../../../../reference/glue4office/latest/word/index.html) 
+For a complete list of the available Word Connector API methods and properties, see the [Word Connector Reference Documentation](../../../../reference/glue4office/latest/word/index.html).

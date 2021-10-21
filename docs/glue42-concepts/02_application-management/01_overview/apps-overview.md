@@ -1,4 +1,4 @@
-## Application Management
+## Overview
 
 The Application Management API provides a way to manage [**Glue42 Enterprise**](https://glue42.com/enterprise/) applications. It offers abstractions for:
 
@@ -44,7 +44,7 @@ If you want to add an app store, add an object like the one below in the `appSto
 
 Application configurations can also be hosted on a server and obtained from a REST service. 
 
-For a reference implementation of a remote application configurations store, see the [Node.js REST Config](https://github.com/Tick42/rest-config-example-node-js) example that implements the [FDC3 App directory](https://fdc3.finos.org/docs/1.0/appd-intro) and is compatible with [**Glue42 Enterprise**](https://glue42.com/enterprise/). This basic implementation does not take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the `README.md` in the repository.
+For a reference implementation of a remote application configurations store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example that implements the [FDC3 App directory](https://fdc3.finos.org/docs/1.0/appd-intro) and is compatible with [**Glue42 Enterprise**](https://glue42.com/enterprise/). This basic implementation does not take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the `README.md` in the repository.
 
 For a .NET implementation of a remote application configurations store, see the [.NET REST Config](https://github.com/Tick42/rest-config-example-net) example.
 

@@ -386,4 +386,4 @@ You can change the default notification UI by changing the GNS application confi
 
 ## Reference
 
-[Notifications API Reference](../../../reference/glue/latest/notifications/index.html)
+For a complete list of the available Notifications API methods and properties, see the [Notifications API Reference Documentation](../../../reference/glue/latest/notifications/index.html).

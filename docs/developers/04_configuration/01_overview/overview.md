@@ -61,4 +61,4 @@ As you can see from the example, you can use Glue42 environment variables for re
 
 *Note that due to limitations regarding the Electron startup, the `"splash"`, `"cache"` and `"flash"` properties must be set locally in the `system.json` file.*
 
-*See the [Node.js REST Config](https://github.com/Tick42/rest-config-example-node-js) example to explore and test extending configurations from a REST store.*
+*See the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example to explore and test extending configurations from a REST store.*

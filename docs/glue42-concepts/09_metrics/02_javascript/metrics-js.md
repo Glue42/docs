@@ -151,4 +151,4 @@ Avoid leaking personal information (IDs are OK, names are not, URLs should be fi
 
 ## Reference
 
-[Metrics API Reference](../../../reference/glue/latest/metrics/index.html) 
+For a complete list of the available Metrics API methods and properties, see the [Metrics API Reference Documentation](../../../reference/glue/latest/metrics/index.html).

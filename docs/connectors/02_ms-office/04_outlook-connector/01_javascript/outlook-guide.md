@@ -365,4 +365,4 @@ outlook.showTask(ids)
 
 ## Reference
 
-[**Reference**](../../../../reference/glue4office/latest/outlook/index.html) 
+For a complete list of the available Outlook Connector API methods and properties, see the [Outlook Connector Reference Documentation](../../../../reference/glue4office/latest/outlook/index.html).

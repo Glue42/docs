@@ -2,7 +2,7 @@
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) is a desktop integration platform which brings order and efficiency to the business desktop. It helps you declutter your workspace and make the most use of the precious desktop real estate when your daily workflow requires you to use multiple applications. [**Glue42 Enterprise**](https://glue42.com/enterprise/) allows developers to integrate applications not only at a UI level - providing you with the look and feel of a single app, but also at a functional level - enabling applications to interoperate by communicating with each other. You no longer need to copy-paste your way through several applications multiple times a day just to get the necessary information - [**Glue42 Enterprise**](https://glue42.com/enterprise/) reduces this tiresome and time consuming process to just a single click! What's more, this works for legacy and modern desktop or web apps, and for apps using different technologies - JavaScript, Java, .NET, VBA, Delphi, Node.js, Angular, React, etc.
 
-*In the following sections you will get to know [**Glue42 Enterprise**](https://glue42.com/enterprise/) by using the trial demo edition. If you have not already done so, download the trial installer from the [official Glue42 site](https://glue42.com) and see the [How to Install](../install-system-requirements/index.html) section. Keep in mind that all functionalities and UIs of [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be fully redesigned and customized to suit your specific needs and requirements.*
+*In the following sections you will get to know [**Glue42 Enterprise**](https://glue42.com/enterprise/) by using the trial demo edition. If you have not already done so, download the trial installer from the [official Glue42 site](https://glue42.com) and see the [How to Install](../install/index.html) section. Keep in mind that all functionalities and UIs of [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be fully redesigned and customized to suit your specific needs and requirements.*
 
 ## Glue42 Toolbar
 
@@ -46,10 +46,6 @@ Besides UI integration, [**Glue42 Enterprise**](https://glue42.com/enterprise/) 
 In the example below, apps communicate and synchronize cross-application data between each other by using the Glue42 [Channels](../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html):
 
 ![Channels](../../../images/channels/channels.gif)
-
-Below is an example of a Glue42 [Activity](../../../glue42-concepts/data-sharing-between-apps/activities/overview/index.html) - a predefined collection of applications, organized in a layout, sharing a private context to communicate with each other:
-
-![Activity](../../../images/activities/activity.gif)
 
 ## Global Layouts
 
