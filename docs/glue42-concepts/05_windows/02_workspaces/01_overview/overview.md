@@ -1,3 +1,5 @@
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.10">
+
 ## Overview
 
 The [Workspaces API](../../../../reference/glue/latest/workspaces/index.html) offers advanced window management functionalities. Workspaces allow you to arrange multiple applications within the same visual window (called *Frame*). This is performed either programmatically or by dragging and dropping floating windows in a Workspace, rearranging windows that are already in the Workspace or extracting windows from the Workspace. Each application is treated as an individual building block that can be added, removed, moved or resized within the unifying frame. Save easily Workspace Layouts and restore them within the same frame or even in different frames. When a Workspace Layout is restored, the arrangement of the apps participating in it and their context data is preserved - resume working right from where you left off.
