@@ -70,8 +70,6 @@ You will now be able to run your Java Citrix application from [**Glue42 Enterpri
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) has a built-in splash screen, but also supports showing a custom splash screen. Your custom splash screen is loaded from a local file. 
 
-**Configuration**
-
 You can replace the splash screen HTML file in `%LocalAppData%\Tick42\GlueDesktop\assets\splash` with your own custom file. You can also set the size of the splash screen - the splash screen configuration can be set in the `system.json` file under the `"splash"` key:
 
 ```json
@@ -86,10 +84,6 @@ You can replace the splash screen HTML file in `%LocalAppData%\Tick42\GlueDeskto
 For the splash screen setup to work, you need to handle the following events: 
 
 ```javascript
-// using `ipcMain`
-
-const { ipcRenderer, remote } = require("electron");
-
 // updateStatus event
 ipcRenderer.on("updateStatus", (event, arg) => {
     console.log(`updating status to ${arg.text}`);
@@ -114,6 +108,24 @@ ipcRenderer.on("setEnvRegion", (event, arg) => {
     var edition = document.getElementById("version");
     edition.innerHTML += ` -${arg.text}`;
 });
+```
+
+## Preload Scripts
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
+
+The [application configuration](../../developers/configuration/application/index.html) file allows you to specify preload scripts for an application. The preload scripts will be executed before the actual web app is loaded. Use the `"preloadScripts"` array of the `"details"` top-level key in the application configuration file to define the scripts and they will be executed in the specified order. This allows for easily injecting Glue42 functionality into 3rd party web applications over which you have little to no control.
+
+The following example demonstrates defining two preload scripts by providing their respective URLs:
+
+```json
+"details": {
+    ...
+    "preloadScripts": [
+        "https://my-domain.com/my-script.js",
+        "https://my-domain.com/my-other-script.js"
+    ]
+}
 ```
 
 ## Global Protocol Handler
@@ -167,7 +179,7 @@ You can use exact URL values or regular expressions to specify allowed and forbi
 
 The Glue42 global protocol can be used in different formats depending on what you want to do.
 
-**Applications**
+#### Applications
 
 To start a Glue42 enabled application, use the `app` protocol option and pass the application name: 
 
@@ -183,7 +195,7 @@ glue42://app/clientlist&left=100&context.clientID=1
 
 *To specify a property of an object as an option, use the standard dot notation - e.g., `&context.clientID=42`.*
 
-**Layouts**
+#### Layouts
 
 To restore a Global Layout, use the `layout` protocol option and pass the name of the Layout:
 
@@ -191,7 +203,7 @@ To restore a Global Layout, use the `layout` protocol option and pass the name o
 glue42://layout/StartOfDay
 ```
 
-**Workspaces**
+#### Workspaces
 
 To open a Workspace, use the `workspace` protocol option and pass the Workspace name:
 
@@ -207,7 +219,7 @@ glue42://workspace/StartOfDay&context.clientID=1
 
 *To specify a property of an object as an option, use the standard dot notation - e.g., `&context.clientID=42`.*
 
-**Glue42 Windows**
+#### Glue42 Windows
 
 To open a URL in a Glue42 Window, use the `url` protocol option and pass the URL:
 
@@ -223,7 +235,7 @@ glue42://url/https://google.com&&left=100&top=200
 
 *To specify a property of an object as a setting, use the standard dot notation - e.g., `&downloadSettings.autoSave=false`.*
 
-**Interop Methods**
+#### Interop Methods
 
 To invoke an Interop method, use the `invoke` protocol option and pass the method name:
 
@@ -322,6 +334,22 @@ When downloading the selected file, the cookies for that domain are taken and se
 **Using the Window Management API**
 
 Download settings can also be specified using the [Window Management](../windows/window-management/javascript/index.html) API (for more details, see [Downloads](../windows/window-management/javascript/index.html#window_settings-downloads).
+
+## Opening URLs in the Default Browser
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
+
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a predefined application which can be used to open a URL in the default browser using the [Application Management API](../application-management/overview/index.html). The following example shows how to open a URL in the default browser by using the [JavaScript Application Management API](../application-management/javascript/index.html).
+
+Get the [`Application`](../../reference/glue/latest/appmanager/index.html#Application) instance by passing the name of the app - `"open-browser"`, invoke the [`start`](../../reference/glue/latest/appmanager/index.html#Application-start) method to start the app and pass a starting context with a `url` property holding the URL:
+
+```javascript
+const url = "https://glue42.com";
+
+await glue.appManager.application("open-browser").start({ url });
+```
+
+*Note that only URLs with HTTP or HTTPS protocols can be opened.*
 
 ## Web App Search
 
@@ -554,8 +582,6 @@ unsubscribe();
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) provides a way for applications to programmatically capture screenshots of the available monitors. Based on custom logic you can capture one or all monitors in order to save a snapshot of the visual state at a given moment.
 
-The Displays API is accessible through the [`glue.displays`](../../reference/glue/latest/displays/index.html) object.
-
 ### Configuration
 
 To enable display capturing you must add the `"allowCapture"` property to your application configuration file and set it to `true`.
@@ -575,7 +601,9 @@ To enable display capturing you must add the `"allowCapture"` property to your a
 
 ### Displays API
 
-**All displays**
+The Displays API is accessible through the [`glue.displays`](../../reference/glue/latest/displays/index.html) object.
+
+#### All Displays
 
 To get all displays, use the [`all()`](../../reference/glue/latest/displays/index.html#API-all) method. It returns an array of all available [`Display`](../../reference/glue/latest/displays/index.html#Display) objects:
 
@@ -583,7 +611,7 @@ To get all displays, use the [`all()`](../../reference/glue/latest/displays/inde
 const allDsiplays = await glue.displays.all();
 ```
 
-**Primary display**
+#### Primary Display
 
 You can get the primary display with the [`getPrimary()`](../../reference/glue/latest/displays/index.html#API-getPrimary) method:
 
@@ -599,7 +627,7 @@ const display = await glue.displays.getPrimary();
 const screenshot = await display.capture({ scale:0.5 });
 ```
 
-**Specific display**
+#### Specific Display
 
 To get a specific display, use the [`get()`](../../reference/glue/latest/displays/index.html#API-get) method. It accepts a display ID as an argument and resolves with a [`Display`](../../reference/glue/latest/displays/index.html#Display) object:
 
@@ -610,7 +638,7 @@ const displayID = 2528732444;
 const display = await glue.displays.get(displayID); 
 ```
 
-**The Display object**
+#### The Display Object
 
 The [`Display`](../../reference/glue/latest/displays/index.html#Display) object has the following properties:
 
@@ -626,7 +654,7 @@ The [`Display`](../../reference/glue/latest/displays/index.html#Display) object 
 | `aspectRatio` | Display aspect ratio (e.g., 16:9). |
 | `scaleFactor` | The scale factor of the returned display (e.g., 1.25 = 125%). |
 
-**Capturing all displays**
+#### Capturing All Displays
 
 To capture all displays, use the [`captureAll()`](../../reference/glue/latest/displays/index.html#API-captureAll) method. It accepts a [`CaptureAllOptions`](../../reference/glue/latest/displays/index.html#CaptureAllOptions) object and returns a `base64` encoded string or an array of `base64` encoded strings depending on the specified [`combined`](../../reference/glue/latest/displays/index.html#CaptureAllOptions-combined) option.
 
@@ -643,7 +671,7 @@ The [`CaptureAllOptions`](../../reference/glue/latest/displays/index.html#Captur
 | `combined` | `boolean` | **Required**. If `true`, will return a single image of all captured displays. If `false`, will return separate images for all captured displays. |
 | `size` | `object` | *Optional*. Accepts either a [`ScaleOptions`](../../reference/glue/latest/displays/index.html#ScaleOptions) or an [`AbsoluteSizeOptions`](../../reference/glue/latest/displays/index.html#AbsoluteSizeOptions) object, specifying the size of the output image. |
 
-**Capturing a single display**
+#### Capturing a Single Display
 
 To capture a single display, use the `capture()` method at top level of the API or on a [`Display`](../../reference/glue/latest/displays/index.html#Display) instance. 
 
@@ -687,7 +715,7 @@ const screenshots = await Promise.all(
             .map(display => display.capture({ scale: 0.5 })));
 ```
 
-**Capturing windows and window groups**
+#### Capturing Windows and Window Groups
 
 You can use the [`capture()`](../../reference/glue/latest/windows/index.html#GDWindow-capture) method of a Glue42 Window instance or a Glue42 Window group to capture the respective window or window group. This method works also for minimized windows and window groups but doesn't work for hidden windows.
 
@@ -697,6 +725,21 @@ const windowScreenshot = await glue.windows.my().capture();
 
 // Capture the current group.
 const groupScreenshot = await glue.windows.groups.my.capture();
+```
+
+#### Events
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
+
+The [`onDisplayChanged()`](../../reference/glue/latest/displays/index.html#API-onDisplayChanged) method allows you to handle the event that fires when a display has been modified - its resolution or position has changed, a display has been connected or disconnected, etc. Pass a handler that will be invoked each time a display changes and use the list of [`Display`](../../reference/glue/latest/displays/index.html#Display) objects that it receives as an argument to react to the changes:
+
+```javascript
+const handler = (displays) => {
+    // React to DPI changes, display connected or disconnected, monitor position changed, etc.
+    console.log(displays);
+};
+
+glue.displays.onDisplayChanged(handler);
 ```
 
 For a complete list of the available Displays API methods and properties, see the [Displays API Reference Documentation](../../reference/glue/latest/displays/index.html).
@@ -778,7 +821,42 @@ Here is how an actual entry in a log file looks like:
     at <anonymous>:1:8
 ```
 
-For a complete list of the available Logger API methods and properties, see the [Logger API Reference Documentation](../../reference/glue/latest/logger/index.html).s
+For a complete list of the available Logger API methods and properties, see the [Logger API Reference Documentation](../../reference/glue/latest/logger/index.html).
+
+## Accessing OS Info
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
+
+You can allow applications to access OS information (list of running processes, OS version, Glue42 start time) through their [application configuration](../../developers/configuration/application/index.html). The information can then be retrieved through the `glue42gd` object injected in the global `window` object when the application is started.
+
+### Configuration
+
+Set the `"allowOSInfo"` property to `true` in the `"details"` top-level key to allow an app to access OS information:
+
+```json
+"details": {
+    ...
+    "allowOSInfo": true
+}
+```
+
+### Retrieving Info
+
+Use the `glue42gd` object injected in the global `window` object to retrieve the necessary information:
+
+```javascript
+// Returns a list of all running processes.
+const processes = await glue42gd.os.getProscesses();
+
+// Extracting the PID, name and start time of the first process from the list.
+const { pid, name, startTime } = processes[0];
+
+// Returns the OS version as a string.
+const version = glue42gd.os.getVersion();
+
+// Returns the Glue42 start time as a string - e.g., "2021-10-20T06:54:49.411Z".
+const startTime = glue42gd.glue42StartTime;
+```
 
 ## Process Reuse
 

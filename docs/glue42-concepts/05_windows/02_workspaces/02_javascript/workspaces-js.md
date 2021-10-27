@@ -319,6 +319,44 @@ const targetElement = myWorkspace.getBox((boxElement) => {
 await targetElement.addWindow({ appName: "app-three" });
 ```
 
+### Manipulating Workspace Elements
+
+Once you have a reference to any [`Box`](../../../../reference/glue/latest/workspaces/index.html#Box) or [`WorkspaceWindow`](../../../../reference/glue/latest/workspaces/index.html#WorkspaceWindow) element, you can use its methods to manipulate its state and content.
+
+#### Maximize and Restore
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
+
+To maximize a Workspace element relatively to its parent, use its `maximize()` method:
+
+```javascript
+await targetElement.maximize();
+```
+
+To restore a Workspace element after maximizing it, use its `restore()` method:
+
+```javascript
+await targetElement.restore();
+```
+
+#### Remove a Child Element
+
+To remove an immediate child element from any [`Box`](../../../../reference/glue/latest/workspaces/index.html#Box) element, use its `removeChild()` method. It accepts a predicate that you can use as a filter to find the desired child element:
+
+```javascript
+const predicate = child => child.id === "target-id";
+
+await targetElement.removeChild(predicate);
+```
+
+#### Close
+
+To close any Workspace element (and all its children, if any), use its `close()` method:
+
+```javascript
+await targetElement.close();
+```
+
 ### Size Constraints
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.12">

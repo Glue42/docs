@@ -688,6 +688,28 @@ await myWindow.printToPDF(printOptions);
 
 *For details on how to configure the default printing options on system and application level, see the [Printing](../../../../developers/configuration/system/index.html#window_settings-printing) section.*
 
+### Download
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
+
+To download a file, use the [`download()`](../../../../reference/glue/latest/windows/index.html#GDWindow-download) method. Pass a URL to the file to download and an optional [`DownloadOptions`](../../../../reference/glue/latest/windows/index.html#DownloadOptions) object:
+
+```javascript
+const url = "https://example.com/logo.png";
+const options = {
+    autoOpenDownload: true,
+    name: "my-logo"
+};
+
+const { path, size, url } = await myWindow.download(url, options);
+
+console.log(`Download path: ${path}, File size: ${size}, URL: ${url}`);
+```
+
+The method returns a [`DownloadResult`](../../../../reference/glue/latest/windows/index.html#DownloadResult) object containing the path to the downloaded file, the file size and the download URL.
+
+*For details on how to configure the window download behavior at runtime, see the [Window Settings](#window_settings-downloads) section.*
+
 ### Close
 
 To close a Glue42 Window, use the [`close()`](../../../../reference/glue/latest/windows/index.html#GDWindow-close) method of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance:
