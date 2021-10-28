@@ -115,7 +115,7 @@ Performance Report visualizes all events happening during the life cycle of an a
 
 ### Built-in Event Types
 
-**Browser Events**
+#### Browser Events
 
 The browser events are defined using the [Performance Timing](https://www.w3.org/TR/navigation-timing/#sec-navigation-timing-interface) API which offers smart mappings that define when the browser considers a page as loaded, how much time CSS and media take to load, etc.
 
@@ -128,15 +128,15 @@ Some use-cases defined as browser events:
 - `loaded` - document loading time using the `loadEventStart` and `loadEventEnd` events;
 - `request` - measures the HTTP request/response transaction time using the `requestStart` and `responseEnd` events;
 
-**Glue42 Events** 
+#### Glue42 Events
 
 All events grouped as "Glue" events (`connection`, `interop`, `appManager`, `glue`, etc.) measure the time it takes to initialize the respective Glue42 components. These events mark the important initialization stages Glue42 goes through in order for you to be able to use it in your application.
 
-**System Events** 
+#### System Events
 
 All Electron events - refreshes, interactions, events concerning browser/window creation, etc.
 
-**Requests** 
+#### Requests 
 
 Network requests and redirects made by the monitored applications.   
 
@@ -144,31 +144,31 @@ Network requests and redirects made by the monitored applications.
 
 Events are visualized in 2 different ways - **Data Grid** and **Timeline**. 
 
-**Data Grid**
+#### Data Grid
 
 ![Data Grid](../../images/dev-tools/performance-report/data-grid.png)
 
 The Data Grid view provides easy filtering, sorting and exporting to Excel (from the right-click context menu). It also has a visual representation in time in the last column.
 
-**Timeline**
+#### Timeline
 
 ![Timeline](../../images/dev-tools/performance-report/timeline.png)
 
 The Timeline view shows the events on a time chart. If you want to find out which apps/events take up the most time, this view will help you. Zoom and drag the timeline chart to see when events take place in comparison to other events. The chart supports comparison of events with a big time difference between them. Unused space on the chart is cut off.
 
-**Requests View**
+#### Requests View
 
 ![Requests](../../images/dev-tools/performance-report/requests.png)
 
 All requests grouped by application with their time, status code, status text and size.
 
-**Console Messages View**
+#### Console Messages View
 
 ![Console Messages](../../images/dev-tools/performance-report/console-messages.png)
 
 A unified view of all console messages of all monitored applications. Start the Chrome Dev Tools from this tab (convenient for hidden applications).
 
-**Issues View**
+#### Issues View
 
 ![Issues](../../images/dev-tools/performance-report/issues.gif)
 

@@ -38,6 +38,6 @@
 
 - [Metrics](../../../glue42-concepts/metrics/overview/index.html) - gather extensive metrics describing the user journey;
 
-**Integrate 3rd Applications (MS Office, Bloomberg, Salesforce)**
+**Integrate third-party applications (MS Office, Bloomberg, Salesforce)**
 
-- [Connectors](../../../connectors/general-overview/index.html) - take advantage of the functionalities offered by 3rd party applications like Excel, Outlook, Bloomberg Terminal, Salesforce Lightning, etc.
+- [Connectors](../../../connectors/general-overview/index.html) - take advantage of the functionalities offered by third-party applications like Excel, Outlook, Bloomberg Terminal, Salesforce Lightning, etc.

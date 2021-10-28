@@ -80,8 +80,6 @@ You can change the default notification UI by changing the GNS application confi
 }
 ```
 
-![Notification with actions](../../../images/notifications/custom-notification.png)
+![Notification with actions](../../../images/notifications/custom-notification.png) 
 
-**Example** 
-
-You can check out the **Glue42 Notification Service** example in our Glue42 .NET examples repository at [GitHub](https://github.com/Glue42/net-examples) (`notifications` folder). 
+*See the .NET [Notifications example](https://github.com/Glue42/net-examples/tree/master/notifications) on GitHub.*

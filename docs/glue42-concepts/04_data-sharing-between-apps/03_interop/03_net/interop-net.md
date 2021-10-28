@@ -504,4 +504,4 @@ if (streamingMethod.TryGetBranch(out IEventStreamBranch streamBranch, "myBranchN
 
 Streams are special Interop methods, so you can use the [Interop Discovery](#discovery) API to find available streams. The only difference is that streaming methods are flagged with a property `IMethod.Definition.Flags.HasFlag(DOT.AGM.MethodFlags.SupportsStreaming)`.
 
-*You can download a full .NET Streaming example from [GitHub](https://github.com/Glue42/net-examples/tree/master/streaming)*  
+*See the full .NET [Streaming example](https://github.com/Glue42/net-examples/tree/master/streaming) on GitHub.*  

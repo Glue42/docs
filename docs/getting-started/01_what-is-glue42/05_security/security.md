@@ -13,7 +13,7 @@ In most cases, [**Glue42 Enterprise**](https://glue42.com/enterprise/) is transp
 
 2. Authentication for remote application stores    
  
-In enterprise scenarios, the application store would be deployed on the same infrastructure as the applications themselves and protected in the same manner. [**Glue42 Enterprise**](https://glue42.com/enterprise/) can use the same authentication mechanisms as in the previous case, or mix and match - i.e., applications can use one type of authentication and application stores (for example when deployed in a public cloud)
+In enterprise scenarios, the [application store](../../../glue42-concepts/application-management/overview/index.html#application_stores) would be deployed on the same infrastructure as the applications themselves and protected in the same manner. [**Glue42 Enterprise**](https://glue42.com/enterprise/) can use the same authentication mechanisms as in the previous case, or mix and match - i.e., applications can use one type of authentication and application stores (for example when deployed in a public cloud)
 can use different ones. 
  
 3. Glue42 Gateway authentication

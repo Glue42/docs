@@ -85,7 +85,7 @@ The `glueChannelContext` can then be used for reading, writing and subscribing f
 
 To track the data in the current Channel, use the `subscribe()` method:
 
-**Untyped Subscriptions**
+### Untyped Subscriptions
 
 The event handler will be invoked on each Channel update. The delta items contain the changed keys and values:
 
@@ -98,7 +98,8 @@ ChannelContext.Subscribe(new LambdaGlueChannelEventHandler(
         DeltaItem[] removed = update.Removed;
     }, null), "contact");
 ```
-**Typed Subscriptions**
+
+### Typed Subscriptions
 
 An alternative to the untyped subscriptions are the typed subscriptions which ease the update handling:
 

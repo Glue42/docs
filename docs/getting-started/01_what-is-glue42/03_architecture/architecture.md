@@ -48,7 +48,7 @@ To add an application to [**Glue42 Enterprise**](https://glue42.com/enterprise/)
 
 ### Connectors
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a set of [Connectors](../../../connectors/general-overview/index.html) for integrating 3rd party applications (MS Office, Bloomberg, Salesforce, etc.) with Glue42 enabled applications. The Connectors expose functionalities provided by a specific 3rd party application, so that they can be re-used in Glue42 enabled apps.The Glue42 [Excel Connector](../../../connectors/ms-office/excel-connector/javascript/index.html), for instance, allows applications to open an Excel sheet, populate it with data from the application and receive updates when the data in Excel is changed.
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a set of [Connectors](../../../connectors/general-overview/index.html) for integrating third-party applications (MS Office, Bloomberg, Salesforce, etc.) with Glue42 enabled applications. The Connectors expose functionalities provided by a specific third-party application, so that they can be re-used in Glue42 enabled apps.The Glue42 [Excel Connector](../../../connectors/ms-office/excel-connector/javascript/index.html), for instance, allows applications to open an Excel sheet, populate it with data from the application and receive updates when the data in Excel is changed.
 
 ## Additional Services
 

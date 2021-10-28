@@ -473,7 +473,7 @@ request.open();
 
 ## Session
 
-**It is strongly recommended to use the default session settings when opening a request.**
+*Note that it is strongly recommended to use the default session settings when opening a request.*
 
 For advanced scenarios, however, you can pass an optional object parameter to the `open()` method of a request instance where you can specify what type of session you want to use (or create). The BBG Market Data library also offers a Sessions API with which you can retrieve all currently open user-defined sessions (opened via the API and only by *this* instance of the API), as well as explicitly close a custom session.
 

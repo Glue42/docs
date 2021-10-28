@@ -22,7 +22,7 @@ A single search bar in an existing application that enables searches across othe
 
 **Extending Applications** 
 
-Toolbars or windows can be added to one application, which allows you to view and interact with data from another application. For example, viewing CRM data in Outlook or streaming data from a 3rd party source, such as the Reuters Eikon. 
+Toolbars or windows can be added to one application, which allows you to view and interact with data from another application. For example, viewing CRM data in Outlook or streaming data from a third-party source, such as the Reuters Eikon. 
 
 **Seamless Legacy Migration** 
 
@@ -45,11 +45,11 @@ By utilizing UX integration with [**Glue42 Enterprise**](https://glue42.com/ente
 **Code Reuse** 
 
 No, really - we mean it!!    
-With [**Glue42 Enterprise**](https://glue42.com/enterprise/), code reuse is not just a dream. UI Integration allows developers to reuse existing functionalities in new applications. Developers can easily reuse Glue42 components developed by other teams. For example, one team creates a Glue42 component that displays stock prices from a 3rd party system inside a CRM system. This component can be reused in another project, by another team, say, to display stock prices in Excel.  
+With [**Glue42 Enterprise**](https://glue42.com/enterprise/), code reuse is not just a dream. UI Integration allows developers to reuse existing functionalities in new applications. Developers can easily reuse Glue42 components developed by other teams. For example, one team creates a Glue42 component that displays stock prices from a third-party system inside a CRM system. This component can be reused in another project, by another team, say, to display stock prices in Excel.  
 
 **DevOps Release Process** 
 
-Release rapidly and often, with low risk. [**Glue42 Enterprise**](https://glue42.com/enterprise/) allows developers to release quickly and often due to the componentized nature of the [**Glue42 Enterprise**](https://glue42.com/enterprise/) platform. The risk is low as the Glue42 window is using existing code from legacy to 3rd party systems. In addition, Glue42 allows the rollback of Glue42 apps, further lowering the risk. In fact, you can release different versions of an application to different users depending on their permissions.
+Release rapidly and often, with low risk. [**Glue42 Enterprise**](https://glue42.com/enterprise/) allows developers to release quickly and often due to the componentized nature of the [**Glue42 Enterprise**](https://glue42.com/enterprise/) platform. The risk is low as the Glue42 window is using existing code from legacy to third-party systems. In addition, Glue42 allows the rollback of Glue42 apps, further lowering the risk. In fact, you can release different versions of an application to different users depending on their permissions.
 
 **Rich Functionality**
 

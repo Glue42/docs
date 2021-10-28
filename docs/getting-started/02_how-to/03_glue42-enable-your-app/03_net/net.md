@@ -78,7 +78,7 @@ Application configuration example:
 
 For more detailed information about the application definitions, see the [Configuration](../../../../developers/configuration/application/index.html#application_configuration-exe) documentation.
 
-*See the [.NET examples](https://github.com/Glue42/net-examples) at GitHub which demonstrate various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
+*See the [.NET examples](https://github.com/Glue42/net-examples) on GitHub which demonstrate various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
 
 ## Glue42 ClickOnce
 

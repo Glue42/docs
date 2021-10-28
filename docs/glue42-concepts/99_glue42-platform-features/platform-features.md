@@ -16,9 +16,13 @@ Service windows may be useful in many scenarios. For instance, you may have a nu
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) provides *experimental* support for Citrix Virtual Apps. Citrix applications can participate in the Glue42 environment as first-class citizens - they can be configured and added to the Glue42 Toolbar, saved in Layouts and Workspaces, and can use all Glue42 functionalities like Interop, Channels, etc.
 
+Additionally, [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be run as a Citrix Virtual App itself, in which case any other Virtual Apps from the same VDA can be configured as normal applications. See [Dynamic Gateway Port](../../developers/configuration/system/index.html#dynamic_gateway_port) for configuration specifics.
+
 For more details on configuring a Citrix application, see the [Application Configuration](../../developers/configuration/application/index.html#application_configuration-citrix_app) section. For details on configuring the system-wide Citrix Virtual Apps support, see the [System Configuration](../../developers/configuration/system/index.html#citrix_apps) section.
 
 *Note that this feature is experimental – although it has been properly tested, additional tests and adjustments might be necessary for your specific Citrix environment.*
+
+*Note that in order for [**Glue42 Enterprise**](https://glue42.com/enterprise/) to run Citrix Virtual Apps, Citrix Workspace must be installed on the user's machine and the user must be logged into it using their Citrix StoreFront URL and credentials. If you have access to a web-based StoreFront, you can configure your local Citrix Workspace by clicking on the "Activate" link in the settings or user preferences menu and running the downloaded file. The StoreFront SSL certificate must be trusted by the user's machine.*
 
 ### .NET Citrix Apps
 
@@ -114,7 +118,7 @@ ipcRenderer.on("setEnvRegion", (event, arg) => {
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
 
-The [application configuration](../../developers/configuration/application/index.html) file allows you to specify preload scripts for an application. The preload scripts will be executed before the actual web app is loaded. Use the `"preloadScripts"` array of the `"details"` top-level key in the application configuration file to define the scripts and they will be executed in the specified order. This allows for easily injecting Glue42 functionality into 3rd party web applications over which you have little to no control.
+The [application configuration](../../developers/configuration/application/index.html) file allows you to specify preload scripts for an application. The preload scripts will be executed before the actual web app is loaded. Use the `"preloadScripts"` array of the `"details"` top-level key in the application configuration file to define the scripts and they will be executed in the specified order. This allows for easily injecting Glue42 functionality into third-party web applications over which you have little to no control.
 
 The following example demonstrates defining two preload scripts by providing their respective URLs:
 

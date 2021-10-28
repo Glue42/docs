@@ -375,7 +375,9 @@ var subscription = window.Subscribe(
 
 ## WPF Example
 
-This is a minimalistic WPF example that registers its main window as a Glue42 window. You can clone the repo with our Glue42 .NET examples on [GitHub](https://github.com/Glue42/net-examples) (`wpf-sw` subfolder example).
+This is a minimalistic WPF example that registers its main window as a Glue42 window. 
+
+*See the .NET [WPF example](https://github.com/Glue42/net-examples/tree/master/wpf-sw) on GitHub.*
 
 `App.xaml` - initialize Glue42:
 

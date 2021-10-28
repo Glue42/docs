@@ -10,7 +10,7 @@ The purpose of this tutorial is to introduce [**Glue42 Enterprise**](https://glu
 
 ## Resources
 
-Before you start the tutorial, see the [.NET examples](https://github.com/Glue42/net-examples) at GitHub - a repository with sample projects that use the Glue42 .NET API. 
+Before you start the tutorial, see the [.NET examples](https://github.com/Glue42/net-examples) on GitHub - a repository with sample projects that use the Glue42 .NET API. 
 
 ## Setup
 
@@ -66,7 +66,7 @@ Glue42 offers many ways to share data between applications, the easiest one bein
 
 First, we will start from the `Clients` project. In the code you can find the `ClientList_MouseDoubleClick()` method. The `CurrentParty` context in it should be updated, so that every time the user clicks on a row, the context is updated. The `Portfolio` application should listen for changes and display the data. You should now follow the instructions in the code and implement this functionality. More information about the Shared Contexts API can be found [here](../../../glue42-concepts/data-sharing-between-apps/shared-contexts/net/index.html).
 
-**Note**: *Despite not being required, the instructions suggest that you should strongly type your context with an interface instead of using it as a `Dictionary<string,object>`*.
+*Note that despite not being required, the instructions suggest that you should strongly type your context with an interface instead of using it as a `Dictionary<string,object>`.*
 
 ![Glue .Net Tutorial Chapter 2](../../../images/tutorials/enterprise-net/2-net.gif)
 

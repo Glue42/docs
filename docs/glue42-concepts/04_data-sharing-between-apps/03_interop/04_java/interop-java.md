@@ -120,7 +120,7 @@ System.out.println(glue.interop().getMethods());
 
 ### Searching for Methods
 
-**Live Search Query**
+#### Live Search Query
 
 Glue42 Java offers a fluent API for finding Interop methods. It enables you to make a **live query** when you search for methods to invoke. This means that once you have an initial result from the search query, methods will be automatically added to/removed from that result when they become available or, respectively, unavailable. 
 
@@ -143,7 +143,7 @@ The `in()` method specifies the Interop instance (`glue.interop()`) which the qu
 
 Instead of `name()`, you can also use the `nameMatches()` method to pass a regex string or a `Pattern` for the name of the method(s) you are interested in.
 
-**Local and Remote Methods**
+#### Local and Remote Methods
 
 You can look for methods offered both by local and remote servers by using the `localOnly()` method. Pass a boolean value to it to specify whether you need methods offered only by local servers or by both local and remote servers. The method `localOnly()` defaults to `true`, so if you omit it in the search, only methods offered by local servers will be returned.
 
@@ -179,13 +179,13 @@ System.out.println(glue.interop().getServers());
 
 ### Overview
 
-**Interop** streams can be used by your application to:
+Interop streams can be used by your application to:
 
 - publish events which can be observed by other applications or provide real-time data (market data, news alerts, notifications, etc.) to other applications by publishing to an Interop stream;
 
 - receive and react to the above events and data by creating an Interop stream subscription;
 
-We call applications which create and publish to Interop streams **publishers**, and applications which subscribe to Interop streams - **subscribers**. An application can be both.
+We call applications which create and publish to Interop streams *publishers*, and applications which subscribe to Interop streams - *subscribers*. An application can be both.
 
 Interop Streams are used extensively in [**Glue42 Enterprise**](https://glue42.com/enterprise/) products and APIs.
 

@@ -148,7 +148,7 @@ The [`@glue42/workspaces-ui-react`](https://www.npmjs.com/package/@glue42/worksp
 
 Hot module reloading is supported, but keep in mind that each refresh closes all apps and Workspaces in the Frame.
 
-*Note that the `@glue42/workspaces-ui-react` library doesn't include a built Workspaces App. A Workspaces App is provided in [**Glue42 Enterprise**](https://glue42.com/enterprise/). You can also use and customize the [Workspaces App template](https://github.com/Glue42/templates/tree/master/workspaces-react) provided in the [**Glue42 Core**](https://glue42.com/core/) GitHub repo.*
+*Note that the `@glue42/workspaces-ui-react` library doesn't include a built Workspaces App. A Workspaces App is provided in [**Glue42 Enterprise**](https://glue42.com/enterprise/). You can also use and customize the [Workspaces App template](https://github.com/Glue42/templates/tree/master/workspaces-react).*
 
 *If your Workspaces App is meant for a [**Glue42 Core**](https://glue42.com/core/) project, skip the [Workspace App Configuration](#extending_workspaces-workspaces_app_configuration) and the [Limitations](#extending_workspaces-limitations) sections, as well as the instructions for ensuring Windows 7 support, as they are relevant only for [**Glue42 Enterprise**](https://glue42.com/enterprise/) projects.*
 

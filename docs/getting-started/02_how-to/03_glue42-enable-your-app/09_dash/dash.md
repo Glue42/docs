@@ -103,7 +103,7 @@ The example below shows a simple application configuration:
 
 For more information on configuring your applications, see the [Application Configuration](../../../../developers/configuration/application/index.html) section.
 
-*See also the [Glue42 Dash examples](https://github.com/Glue42/glue-dash-example) at GitHub, demonstrating the various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
+*See also the [Glue42 Dash examples](https://github.com/Glue42/glue-dash-example) on GitHub, demonstrating the various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
 
 ## Glue42 Dash Concepts
 

@@ -24,7 +24,7 @@ When deploying your application in production, it is recommended to always refer
 <script type="text/javascript" src="desktop.umd.min.js"></script>
 ```
 
-**Using the Glue42 CDN**
+### Using the Glue42 CDN
 
 You can alternatively point to Glue42 JavaScript `npm` packages and files via the [Glue42 CDN](https://cdn.glue42.com/) by using URLs in the format:
 
@@ -257,7 +257,7 @@ The `"name"`, `"type"`, `"details"` and `"url"` properties are required.
 
 See the [Application Configuration](../../../../developers/configuration/application/index.html) section for more information.
 
-*See the [JavaScript examples](https://github.com/Glue42/js-examples) at GitHub which demonstrate various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
+*See the [JavaScript examples](https://github.com/Glue42/js-examples) on GitHub which demonstrate various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
 
 ## Glue42 JavaScript Concepts
 

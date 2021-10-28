@@ -55,7 +55,7 @@ When you set up the apps on your desktop the way you like them, or arrange a set
 
 ## Glue42 Connectors
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) provides [Connectors](../../../connectors/general-overview/index.html) for 3rd party applications like MS Office, Bloomberg, Salesforce, Fidessa, etc. The Glue42 Connectors allow you to continue using all applications with which you are already familiar and comfortable.
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) provides [Connectors](../../../connectors/general-overview/index.html) for third-party applications like MS Office, Bloomberg, Salesforce, Fidessa, etc. The Glue42 Connectors allow you to continue using all applications with which you are already familiar and comfortable.
 
 See how convenient and easy it is to open a client's portfolio in an Excel sheet at the click of a button:
 

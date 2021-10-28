@@ -10,7 +10,7 @@ The following examples demonstrate some of the available system level configurat
 
 ## Dynamic Gateway Port
 
-The Glue42 Gateway starts on port 8385 by default. In environments where multiple user sessions run on the same machine (e.g., Citrix Virtual Apps), using a predefined port will not work, as the first instance of [**Glue42 Enterprise**](https://glue42.com/enterprise/) will occupy that port and all other instances will not be able to connect. To avoid this, the Glue42 Gateway can be configured from the `system.json` file to choose dynamically a free port on startup.
+The Glue42 Gateway starts on port 8385 by default. In environments where multiple user sessions run on the same machine (e.g., running [**Glue42 Enterprise**](https://glue42.com/enterprise/) as a Citrix Virtual App), using a predefined port will not work, as the first instance of [**Glue42 Enterprise**](https://glue42.com/enterprise/) will occupy that port and all other instances will not be able to connect. To avoid this, the Glue42 Gateway can be configured from the `system.json` file to choose dynamically a free port on startup.
 
 To configure the Glue42 Gateway to use a random free port, go to the `"configuration"` object under the `"gw"` top-level key and set its `"port"` property to `0`:
 
@@ -28,14 +28,14 @@ To configure the Glue42 Gateway to use a random free port, go to the `"configura
 
 ## Application Stores
 
-To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load application configuration files from a local path, use the `"appStores"` top-level key. Set the `"type"` property to `"path"` and specify a relative or absolute path to the application definitions. The environment variables set by [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be used as values:
+To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load application configuration files from a local path, use the `"appStores"` top-level key. Set the `"type"` property to `"path"` and specify a relative or an absolute path to the application definitions. The environment variables set by [**Glue42 Enterprise**](https://glue42.com/enterprise/) can also be used as values:
 
 ```json
 "appStores": [
     {
         "type": "path",
         "details": {
-            "path": "./config/apps"
+            "path": "../config/apps"
         }
     },
     {
@@ -70,7 +70,14 @@ To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load app
 ]
 ```
 
-The only required properties are `"type"` and `"url"` (the URL to the remote application store). The examples demonstrates also how to set the authentication, the polling interval, the cache persistence and the cache folder.
+The only required properties are `"type"`, which should be set to `"rest"`, and `"url"`, which is the address of the remote application store. You can also set the authentication, polling interval, cache persistence and cache folder.
+
+| Property | Description |
+|----------|-------------|
+| `"auth"` | Authentication configuration. Can be one of `"no-auth"`, `"negotiate"` or `"kerberos"`. |
+| `"pollInterval"` | Interval at which to poll the REST service for updates. |
+| `"enablePersistentCache"` | Whether to cache and persist the configuration files locally (e.g., in case of connection interruptions). |
+| `"cacheFolder"` | Where to keep the persisted configuration files. |
 
 ## Application Settings
 
