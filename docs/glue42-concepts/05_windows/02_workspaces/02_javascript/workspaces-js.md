@@ -327,7 +327,7 @@ Once you have a reference to any [`Box`](../../../../reference/glue/latest/works
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
 
-To maximize a Workspace element relatively to its parent, use its `maximize()` method:
+To maximize a Workspace element within the bounds of the Workspace, use its `maximize()` method:
 
 ```javascript
 await targetElement.maximize();
