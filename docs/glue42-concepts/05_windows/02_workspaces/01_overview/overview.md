@@ -297,6 +297,8 @@ It is possible to add custom components in the Workspaces App header area in the
 - Add Workspace zone
 - System Buttons zone
 
+*The Move Area zone, located between the Add Workspace and the System Buttons zones, can't be used to add custom components in it, but can be relocated by using the `<MoveArea />` component (see [Move Area Component](#extending_workspaces-header_area_components-move_area_component)).*
+
 The Logo zone is located at the leftmost part of the header area, to the left of the Workspace tabs, and hosts the `<GlueLogo />` component. By default, it renders the Glue42 logo:
 
 ![Logo component](../../../../images/workspaces/logo-component.png)
@@ -382,7 +384,11 @@ Adding a custom toolbar with buttons to the Workspaces App:
 
 ### Header Area Components
 
-Use the default header components or replace them with your custom ones. Compose more than one component in a [header area zone](#extending_workspaces-header_area_zones) by passing a function that returns a `<Fragment />` component. The following example demonstrates composing the Glue42 logo and a custom button in the Logo zone:
+Use the default header components or replace them with your custom ones. Compose more than one component in a [header area zone](#extending_workspaces-header_area_zones) by passing a function that returns a `<Fragment />` component. 
+
+#### Logo
+
+The following example demonstrates composing the Glue42 logo and a custom button in the Logo zone:
 
 ```javascript
 import React from "react";
@@ -409,6 +415,8 @@ export default App;
 Adding a custom button in the Logo zone:
 
 ![Button logo zone](../../../../images/workspaces/button-logo-zone.png)
+
+#### Add Workspace
 
 The following example demonstrates replacing the default Add Workspace component with a custom button:
 
@@ -437,6 +445,8 @@ export default App;
 Using a custom button for the Add Workspace component:
 
 ![Button add workspace](../../../../images/workspaces/button-add-workspace.png)
+
+#### System Buttons
 
 The following example demonstrates adding a custom button to the System Buttons zone and using the default Minimize, Maximize and Close buttons:
 
@@ -478,6 +488,50 @@ export default App;
 Adding a custom button in the System Buttons zone:
 
 ![Button logo zone](../../../../images/workspaces/button-system-zone.png)
+
+#### Move Area
+
+The `<MoveArea />` component allows you to place the move area wherever you like in your custom Workspaces App. If you use the `<MoveArea />` component anywhere in your app, the default move area will be automatically disabled, there is no need to do that manually in the code.
+
+*Note that you must use only one instance of the `<MoveArea />` component.*
+
+The following examples demonstrates placing the move area at the bottom of a custom Workspaces App by wrapping it in a custom component:
+
+```javascript
+// Wrapping the move area in a custom component.
+import React from "react";
+import { MoveArea } from "@glue42/workspaces-ui-react";
+import CustomLogo from "./CustomLogo";
+
+const CustomFrameComponent = () => {
+    return (
+        <div className="custom-frame">
+            <CustomLogo />
+            <MoveArea />
+        </div>
+    );
+};
+```
+
+```javascript
+// Placing the move area at the bottom of the Workspaces App.
+import React from "react";
+import Workspaces from "@glue42/workspaces-ui-react";
+import CustomFrameComponent from "./CustomFrameComponent";
+
+const App = () => {
+    return (
+        <div className="App">
+            <Workspaces />
+            <CustomFrameComponent />
+        </div>
+    );
+};
+
+export default App;
+```
+
+For a demonstration of using the `<MoveArea />` component, see the [Workspace with Header](https://github.com/Glue42/workspace-with-header) example on GitHub.
 
 ### Custom Popups
 

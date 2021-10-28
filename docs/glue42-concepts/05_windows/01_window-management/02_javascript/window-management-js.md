@@ -698,6 +698,7 @@ To download a file, use the [`download()`](../../../../reference/glue/latest/win
 const url = "https://example.com/logo.png";
 const options = {
     autoOpenDownload: true,
+    // The file extension is taken from the downloaded file.
     name: "my-logo"
 };
 
