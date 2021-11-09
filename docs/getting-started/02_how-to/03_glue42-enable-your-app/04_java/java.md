@@ -129,7 +129,7 @@ To add your Java application to the [**Glue42 Enterprise**](https://glue42.com/e
 | `"command"` | The actual command to execute (`java`). |
 | `"parameters"` | Specifies command line arguments. |
 
-*Note that the definition must be a valid JSON file (you should either use forward slash or escape the backslash).*
+*Note that the definition must be a valid JSON file (you should either use a forward slash or escape the backslash).*
 
 *To be able to start Glue42 Java on a **dual core** machine, you have to pass the `-Dglue.gateway.ws.max-pool-size=3` parameter to the JVM by adding it to the `"parameters"` property described above.*
 

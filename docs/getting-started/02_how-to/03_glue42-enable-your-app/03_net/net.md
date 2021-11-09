@@ -80,7 +80,7 @@ Application configuration example:
 | `"command"` | The actual command to execute (the EXE file name). |
 | `"parameters"` | Specifies command line arguments. |
 
-*Note that the definition should be a valid JSON file (you should either use forward slash or escape the backslash).*
+*Note that the definition should be a valid JSON file (you should either use a forward slash or escape the backslash).*
 
 For more detailed information about the application definitions, see the [Configuration](../../../../developers/configuration/application/index.html#application_configuration-exe) documentation.
 
