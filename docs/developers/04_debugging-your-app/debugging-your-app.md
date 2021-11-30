@@ -1,6 +1,6 @@
 ## Guide
 
-To start debugging your [**Glue42 Enterprise**](https://glue42.com/enterprise/) app, execute the following steps:
+To start debugging your [**Glue42 Enterprise**](https://glue42.com/enterprise/) app in Visual Studio Code, execute the following steps:
 
 1. Start [**Glue42 Enterprise**](https://glue42.com/enterprise/) with the `--remote-debugging-port` command line argument and specify a debugging port:
 
