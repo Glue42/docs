@@ -248,9 +248,9 @@ Selector.SelectedIndex = appState?.SelectedIndex ?? -1;
 
 A common use-case is to have a bootstrapping application that handles user login and launches your apps. The bootstrapper can be any application and in the general case it isn't Glue42 enabled, but the applications it launches are. This scenario can be handled both through [application configuration](#bootstrapped_apps-application_configuration) or [runtime configuration](#bootstrapped_apps-runtime_configuration) when initializing Glue42 in the respective apps. 
 
-*Note that defining application configurations for Glue42 enabled .NET apps isn't mandatory, but if you decide to do so, the name of the bootstrapper specified in the `"name"` property of the bootstrapper configuration, in the `"launcherApp"` property of the bootstrapped app configuration, and in the initialization options in the bootstrapped app code must be the same.*
+*Note that defining application configurations for Glue42 enabled .NET apps isn't mandatory. Glue42 enabled .NET applications announce themselves to [**Glue42 Enterprise**](https://glue42.com/enterprise/) automatically when started. The configuration file is necessary only if you want your app to be launchable from [**Glue42 Enterprise**](https://glue42.com/enterprise/). If you decide to create application configurations for the bootstrapper and the bootstrapped apps, the name of the bootstrapper specified in the `"name"` property of the bootstrapper configuration, in the `"launcherApp"` property of the bootstrapped app configuration, and in the initialization options in the bootstrapped app code must be the same.*
 
-In both cases, you must specify the name of the bootstraping app and clear the starting context passed by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to it. Clearing the starting context is very important, because [**Glue42 Enterprise**](https://glue42.com/enterprise/) by default will store the command line arguments with which the bootstrapper has been started and will try to pass them again on restore, which in some cases may not be possible or may lead to undesired results.
+You must specify the name of the bootstraping app and clear the starting context passed by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to it. Clearing the starting context is very important, because [**Glue42 Enterprise**](https://glue42.com/enterprise/) by default will store the command line arguments with which the bootstrapper has been started and will try to pass them again on restore, which in some cases may not be possible or may lead to undesired results.
 
 ### Application Configuration
 
@@ -305,7 +305,9 @@ To clear the starting context for the bootstrapper, set the `"startingContextMod
 
 ### Runtime Configuration
 
-When using a bootstrapper, it is mandatory to specify its name in the `InitializeOptions` object during the [initialization](../../../getting-started/how-to/glue42-enable-your-app/net/index.html) of Glue42 in your bootstrapped app. The following example demonstrates how to instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to:
+It is mandatory to specify the name of the bootstrapper in the `InitializeOptions` object during the [initialization](../../../getting-started/how-to/glue42-enable-your-app/net/index.html) of Glue42 in your bootstrapped app, irrespective of whether you have created an [application configuration](../../../developers/configuration/application/index.html#application_configuration-exe) for it. This is necessary, because when a Glue42 enabled .NET app announces itself to [**Glue42 Enterprise**](https://glue42.com/enterprise/), it overwrites the configuration settings specified in its configuration file.
+
+The following example demonstrates how to instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to:
 
 - prevent closing the bootstrapped app on shutdown;
 - prevent passing previously saved by [**Glue42 Enterprise**](https://glue42.com/enterprise/) startup arguments to the bootstrapped app on restore;
