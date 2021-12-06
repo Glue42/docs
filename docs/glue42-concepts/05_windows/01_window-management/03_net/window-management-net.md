@@ -373,9 +373,28 @@ var subscription = window.Subscribe(
 );
 ```
 
+## Frame Buttons
+
+The Window Management API allows placing custom buttons in the frame area of the window and handling clicks on them.
+
+To add a frame button, use the `Update()` method of a Glue42 Window instance. The following example demonstrates how to add a frame button, specify an icon for it and handle clicks on it:
+
+```csharp
+glueWindow.Update(windowUpdate => windowUpdate.AddButton(button =>
+    {
+        button.ButtonId = "btn" + Guid.NewGuid().ToString("N");
+        // To set a button icon you can also use `button.ImageBase64` and supply the respective base64 encoded string.
+        button.Image = Image.FromFile("button-image.png");
+        button.OnClickAction = (@event, buttonInfo) =>
+        {
+            // Handle button clicks.
+        };
+    }));
+```
+
 ## WPF Example
 
-This is a minimalistic WPF example that registers its main window as a Glue42 window. 
+This is a minimalistic WPF example that registers its main window as a Glue42 Window. 
 
 *See the .NET [WPF example](https://github.com/Glue42/net-examples/tree/master/wpf-sw) on GitHub.*
 
