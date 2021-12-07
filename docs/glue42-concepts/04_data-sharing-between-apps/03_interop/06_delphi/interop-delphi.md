@@ -1,13 +1,15 @@
 ## Method Registration
 
-To expose a Glue42 method that can be invoked by other Glue42 enabled applications, you must register the method in Glue42 and provide its implementation. The application must also implement the [`IGlueRequestHandler`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluerequesthandler) interface to handle the method invocation requests. This can be simplified by using the [`TGlueRequestHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit-classes_for_handling_events-tgluerequesthandler) class of the [Glue42 Helper Unit](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit).
+To expose a Glue42 method that can be invoked by other Glue42 enabled applications, you must register the method in Glue42 and provide its implementation. The application must also implement the [`IGlueRequestHandler`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluerequesthandler) interface to dispatch and handle the method invocation requests.  
+
+This can be simplified by using the [`TGlueRequestHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit-classes_for_handling_events-tgluerequesthandler) class of the [Glue42 Helper Unit](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit) which takes care of implementing [`IGlueRequestHandler`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluerequesthandler) and dispatching the request to a specific Delphi procedure.
 
 ### Registering Methods
 
-To register an Interop method, use the [`RegisterMethod`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-registermethod) method of the [`IGlue42`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42) interface after Glue42 has been initialized. Provide a name and a [method implementation]():
+To register an Interop method, use the [`RegisterMethod`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-registermethod) method of the [`IGlue42`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42) interface after Glue42 has been initialized. Provide a name and a [method implementation](#method_registration-method_implementation):
 
 ```delphi
-TMainForm = class(TForm, IGlueContextHandler)
+TMainForm = class(TForm)
 ...
 private
   G42: IGlue42;
@@ -98,7 +100,7 @@ end;
 
 ## Method Invocation
 
-To invoke Interop methods, use [`BuildAndInvoke`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-buildandinvoke), [`InvokeMethod`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethod) or [`InvokeMethods`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethods). [`BuildAndInvoke`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-buildandinvoke) accepts an instance of [`IGlueContextBuilderCallback`]() for building the arguments that will be passed to the invoked Interop method, while the other two methods accept the invocation arguments directly as a `PSafeArray`. Use [`InvokeMethod`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethod) to invoke an Interop method registered by a specific single instance, and [`InvokeMethods`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethods) to invoke an Interop method on a single or multiple instances that have registered it (see [Targeting](#method_invocation-targeting)). After invoking an Interop method, you must [handle the returned result](#method_invocation-handling_invocation_results), if any.
+To invoke Interop methods, use [`BuildAndInvoke`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-buildandinvoke), [`InvokeMethod`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethod) or [`InvokeMethods`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethods). [`BuildAndInvoke`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-buildandinvoke) accepts an instance of [`IGlueContextBuilderCallback`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontextbuildercallback) for building the arguments that will be passed to the invoked Interop method, while the other two methods accept the invocation arguments directly as a `PSafeArray`. If multiple applications or application instances have registered the same Interop method, you may select the instances which will service the method invocation (see [Targeting](#method_invocation-targeting)). After invoking an Interop method, you must [handle the returned result](#method_invocation-handling_invocation_results), if any.
 
 ### Invoking Methods
 
@@ -120,18 +122,37 @@ SafeArrayDestroy(psaArgs);
 
 ### Targeting
 
-To target a single application instance that has registered the Interop method you want to invoke, use the [`InvokeMethod`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethod) method. As a first argument, pass a [`GlueMethod`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#types-gluemethod) object holding the desired [`GlueInstance`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#types-glueinstance) you want to target in its `Instance` property:
+Targeting allows to invoke a method on one or more specific applications or application instances that have registered the same Interop method.  
+
+The following example demonstrates how to use [`InvokeMethods`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethods) to target various application instances:
 
 ```delphi
-// TODO example for InvokeMethod
-```
+var
+  psaArgs: PSafeArray;
+  psaInstances: PSafeArray;
+  instances: TGlueInstanceArray;
+  instance: GlueInstance;
+begin
+...
+  // Invoke a method on any of the application instances.
+  G42.InvokeMethods('DelphiAdd', psaArgs, nil, False,
+    GlueInstanceIdentity_None, MethodAddHandler, 3000, '');
 
-To target multiple application instances that have registered the same Interop method, use the [`InvokeMethods`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethods) method. Pass a `PSafeArray` of [`GlueInstance`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#types-glueinstance) objects as a third argument to specify the targeted instances. To choose whether to invoke the Interop method on all selected targets or only on the first one, pass a fourth `WordBool` argument.
+  // Invoke a method on all application instances.
+  G42.InvokeMethods('DelphiAdd', psaArgs, nil, True,
+    GlueInstanceIdentity_None, MethodAddHandler, 3000, '');
 
-The following example demonstrates invoking an Interop method on only the first instance from a list of selected targets:
+  // Invoke a method on any instance of an application named "specific-app".
+  ZeroMemory(@instance, sizeof(instance));
+  instance.ApplicationName := 'specific-app';
+  SetLength(instances, 1);
+  instances[0] := instance;
+  psaInstances := CreateInstanceArray_SA(instances);
 
-```delphi
-// TODO example for InvokeMethods
+  G42.InvokeMethods('DelphiAdd', psaArgs, psaInstances, False,
+    GlueInstanceIdentity_ApplicationName, MethodAddHandler, 1000, '');
+  SafeArrayDestroy(psaInstances);
+...
 ```
 
 ### Handling Invocation Results
@@ -156,6 +177,8 @@ procedure TMainForm.InitializeGlue;
   MethodAddHandler := TGlueResultHandler.Create(nil, HandleAddResult);
   ...  
 ```
+
+When invoking multiple instances at once, the result handler will receive the result from each invocation in an element of the `GlueInvResults` array. If there aren't any available instances that match the targeting criteria, a single error result will be received by the handler.
 
 The following example demonstrates a sample implementation of the result handler:
 

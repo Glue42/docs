@@ -16,7 +16,7 @@ protected
 
 The form acting as a Glue42 application factory may be invisible.
 
-After initializing Glue42, register the main form as an app factory. The following example demonstrates registering two Glue42 applications as app factories:
+After initializing Glue42, register the main form as an app factory. The following example demonstrates registering the main form as an app factory for two Glue42 applications:
 
 ```delphi
 procedure TMainForm.InitializeGlue;
@@ -27,14 +27,14 @@ begin
   ...
   G42.Start(inst);
   ...
-  // Register an application as a factory.
+  // Register an application.
   ZeroMemory(@appDef, sizeof(appDef));
   appDef.Name := 'DelpiFormApp01';
   appDef.title := 'Delphi Form App 01';
   appDef.Category := 'COM Apps';
   G42.AppFactoryRegistry.RegisterAppFactory(appDef, Self);
 
-  // Register another application as a factory.
+  // Register another application.
   ZeroMemory(@appDef, sizeof(appDef));
   appDef.Name := 'DelpiFormApp02';
   appDef.title := 'Delphi Form App 02';

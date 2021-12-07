@@ -1,6 +1,6 @@
 ## Using Shared Contexts
 
-In order to use shared contexts, you must implement the [`IGlueContextHandler`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontexthandler) interface:
+In order to use shared contexts, you must implement the [`IGlueContextHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontexthandler) interface:
 
 ```delphi
 TMainForm = class(TForm, IGlueContextHandler)
@@ -17,7 +17,7 @@ protected
 
 ## Subscribing for Context Updates
 
-To subscribe for context updates, use the [`SubscribeGlueContext`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-subscribegluecontext) method. If the context doesn't exist, a new empty context will be created:
+To subscribe for context updates, use the [`SubscribeGlueContext`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-subscribegluecontext) method. If the context doesn't exist, a new empty context will be created:
 
 ```delphi
 TMainForm = class(TForm, IGlueContextHandler)
@@ -32,7 +32,7 @@ TMainForm = class(TForm, IGlueContextHandler)
 
 ## Handling Context Updates
 
-To handle a newly activated shared context subscription, use the [`HandleContext`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontexthandler-handlecontext) method:
+To handle a newly activated shared context subscription, use the [`HandleContext`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontexthandler-handlecontext) method:
 
 ```delphi
 function TMainForm.HandleContext(const context: IGlueContext): HResult; stdcall;
@@ -45,7 +45,7 @@ begin
 end;
 ```
 
-To handle updates of the shared context data, use the [`HandleContextUpdate`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontexthandler-handlecontextupdate) method:
+To handle updates of the shared context data, use the [`HandleContextUpdate`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontexthandler-handlecontextupdate) method:
 
 ```delphi
 function TMainForm.HandleContextUpdate(const contextUpdate: IGlueContextUpdate): HResult; stdcall;
@@ -67,7 +67,7 @@ end;
 
 ## Updating a Context
 
-To update the data of a shared context, use the [`SetContextData`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontext-setcontextdata) method of the [`IGlueContext`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontext) interface. The data must be provided as a `PSafeArray` containing [`GlueContextValue`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#types-gluecontextvalue) values:
+To update the data of a shared context, use the [`SetContextData`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontext-setcontextdata) method of the [`IGlueContext`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontext) interface. The data must be provided as a `PSafeArray` containing [`GlueContextValue`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#types-gluecontextvalue) values:
 
 ```delphi
 var
@@ -121,7 +121,7 @@ The resulting context data from the previous example, represented as JSON:
 
 ## Listing All Available Contexts
 
-To obtain a list of all available contexts, use the [`GetKnownContexts`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-getknowncontexts) method:
+To obtain a list of all available contexts, use the [`GetKnownContexts`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-getknowncontexts) method:
 
 ```delphi
 var

@@ -125,7 +125,7 @@ TODO
 
 The `GlueHelper` unit contains native [type definitions](#glue42_helper_unit-types) and additional helper classes and methods facilitating the use of the Glue42 COM library. 
 
-It is recommended to use the [conversion functions](#conversion_functions) provided in the `GlueHelper` unit to transform the parameters or return values from a `PSafeArray` to native types and vice-versa:
+It is recommended to use the [conversion functions](#glue42_helper_unit-working_with_psafearray-conversion_functions) provided in the `GlueHelper` unit to transform the parameters or return values from a `PSafeArray` to native types and vice-versa:
 
 - The functions in the `Create[type]_SA` format can be used to transform various native types to a `PSafeArray`. The returned values need to be destroyed with `SafeArrayDestroy` when no longer needed.  
 
@@ -145,11 +145,11 @@ The following array types are defined in the `GlueHelper` unit:
 | `GlueValueArray` | [`GlueValue`](#types-gluevalue) |
 | `TDateTimeArray` | `TDateTime` |
 | `TDoubleArray` | `Double` |
-| `TGlueContextValueArray` | [`TGlueContextValue`](#tgluecontextvalue) |
+| `TGlueContextValueArray` | [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue) |
 | `TGlueInstanceArray` | [`GlueInstance`](#types-glueinstance) |
 | `TGlueInvocationResultArray` | [`GlueInvocationResult`](#types-glueinvocationresult) |
 | `TGlueMethodArray` | [`GlueMethod`](#types-gluemethod) |
-| `TGlueValueArray` | [`TGlueValue`](#tgluevalue) (pointer) |
+| `TGlueValueArray` | [`TGlueValue`](#glue42_helper_unit-types-tgluevalue) (pointer) |
 | `TInt64Array` | `Int64` |
 | `TIntArray` | `Integer` |
 | `TStrArray` | `String` |
@@ -167,7 +167,7 @@ The following pointer types are defined in the `GlueHelper` unit:
 | `PGlueMethod` | [`GlueMethod`](#types-gluemethod) |
 | `PGlueResult` | [`GlueResult`](#types-glueresult) |
 | `PGlueValue` | [`GlueValue`](#types-gluevalue) |
-| `PTGlueValue` | [`TGlueValue`](#tgluevalue) |
+| `PTGlueValue` | [`TGlueValue`](#glue42_helper_unit-types-tgluevalue) |
 
 #### Native Record Types
 
@@ -180,7 +180,7 @@ This is a translated version (i.e. not using `PSafeArray` directly or indirectly
 | Name | Type | Description |
 |------|------|-------------|
 | `Name` | `WideString` | Name associated with the value. |
-| `Value` | `PTGlueValue` | Pointer to [`TGlueValue`](#tgluevalue). |
+| `Value` | `PTGlueValue` | Pointer to [`TGlueValue`](#glue42_helper_unit-types-tgluevalue). |
 
 #### TGlueValue  
 
@@ -207,7 +207,7 @@ The following properties will be initialized according to `GlueType` and `IsArra
 | `StringArray` | `TStrArray` | Array of `String` values. |
 | `DateTimeArray` | `TDateTimeArray` | Array of `TDateTime` values. |
 | `Tuple` | `TGlueValueArray` | Array of `TGlueValue` values. |
-| `CompositeValue` | `TGlueContextValueArray` | Array of [`TGlueContextValue`](#tgluecontextvalue) values. |
+| `CompositeValue` | `TGlueContextValueArray` | Array of [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue) values. |
 
 ### Working with PSafeArray  
 
@@ -228,7 +228,7 @@ The table below summarizes the available functions to convert from/to `PSafeArra
 | `GlueStreamSubscriberArray` | [`IGlueStreamSubscriber`](#interfaces-igluestreamsubscriber) | `SA_AsGlueStreamSubscriberArray` | `-` |
 | `GlueContextArray` | [`GlueContext`](#types-gluecontext) | `SA_AsGlueContextArray` | `-` |
 | `GlueContextValueArray` | [`GlueContextValue`](#types-gluecontextvalue) | `SA_AsGlueContextValueArray` | `CreateContextValues_SA` |
-| `TGlueContextValueArray` | [`TGlueContextValue`](#tgluecontextvalue) | `SA_AsTranslatedContextValues` | `AsGlueContextValueArray`, then `CreateContextValues_SA` |
+| `TGlueContextValueArray` | [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue) | `SA_AsTranslatedContextValues` | `AsGlueContextValueArray`, then `CreateContextValues_SA` |
 | `TGlueInstanceArray` | [`GlueInstance`](#types-glueinstance) | `SA_AsGlueInstanceArray` | `CreateInstanceArray_SA` |
 | `TGlueInvocationResultArray` | [`GlueInvocationResult`](#types-glueinvocationresult) | `SA_AsGlueInvocationResultArray` | `-` |
 | `TGlueMethodArray` | [`GlueMethod`](#types-gluemethod) | `SA_AsGlueMethodArray` | `-` |
@@ -259,7 +259,7 @@ All conversion functions take a single parameter of the respective type. The ret
 | `SA_AsGlueValueArray` | `PSafeArray` | `GlueValueArray` | [`GlueValue`](#types-gluevalue) |
 | `SA_AsInt64Array` | `PSafeArray` | `TInt64Array` | `Int64` |
 | `SA_AsStringArray` | `PSafeArray` | `TStrArray` | `String` |
-| `SA_AsTranslatedContextValues` | `PSafeArray` | `TGlueContextValueArray` | [`TGlueContextValue`](#tgluecontextvalue) |
+| `SA_AsTranslatedContextValues` | `PSafeArray` | `TGlueContextValueArray` | [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue) |
 | `SA_AsWideStringArray` | `PSafeArray` | `TWideStringArray` | `WideString` |
 | `SA_AsWordBoolArray` | `PSafeArray` | `TWordBoolArray` | `WordBool` |
 
@@ -267,20 +267,20 @@ All conversion functions take a single parameter of the respective type. The ret
 
 #### CreateContextValue
   
-This function creates a [`TGlueContextValue`](#tgluecontextvalue) representing a name-value pair. It can be put in a `TGlueContextValueArray` and eventually be converted to a `PSafeArray` in order to be sent to Glue42.
+This function creates a [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue) representing a name-value pair. It can be put in a `TGlueContextValueArray` and eventually be converted to a `PSafeArray` in order to be sent to Glue42.
 
 *Parameters:*  
 
 | Name | Type | Description |
 |------|------|-------------|
 | `Name` | `string` | String representing the name in the name-value pair. |
-| `Value` | [`TGlueValue`](#tgluevalue)| The value of the name-value pair. |
+| `Value` | [`TGlueValue`](#glue42_helper_unit-types-tgluevalue)| The value of the name-value pair. |
 
-*Return value:* [`TGlueContextValue`](#tgluecontextvalue)  
+*Return value:* [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue)  
 
 #### CreateValue
 
-This is a set of overloaded functions for creating [`TGlueValue`](#tgluevalue) values from various types. The overloads accepting arrays will create composite values. Each function accepts the following types as a single parameter:
+This is a set of overloaded functions for creating [`TGlueValue`](#glue42_helper_unit-types-tgluevalue) values from various types. The overloads accepting arrays will create composite values. Each function accepts the following types as a single parameter:
 
 - `Double`  
 - `Int64`  
@@ -290,7 +290,7 @@ This is a set of overloaded functions for creating [`TGlueValue`](#tgluevalue) v
 - `TInt64Array`  
 - `TStrArray`  
 
-*Return value:* [`TGlueValue`](#tgluevalue)  
+*Return value:* [`TGlueValue`](#glue42_helper_unit-types-tgluevalue)  
 
 #### CreateComposite
 
@@ -300,10 +300,10 @@ This function creates a composite value from a `TGlueContextValueArray`.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `Value` | `TGlueContextValueArray` | An array of [`TGlueContextValue`](#tgluecontextvalue) values representing the contents of the composite value. |
+| `Value` | `TGlueContextValueArray` | An array of [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue) values representing the contents of the composite value. |
 | `IsArray` | `Bool` | Specifies whether the created composite value is an array. |
 
-*Return value:* [`TGlueValue`](#tgluevalue) 
+*Return value:* [`TGlueValue`](#glue42_helper_unit-types-tgluevalue) 
 
 #### CreateTuple
 
@@ -313,9 +313,9 @@ This function creates a composite value representing a tuple, i.e. an array of (
 
 | Name | Type | Description |
 |------|------|-------------|
-| `Value` | `TGlueValueArray` | An array of [`TGlueValue`](#tgluevalue) values representing the elements of the tuple. |
+| `Value` | `TGlueValueArray` | An array of [`TGlueValue`](#glue42_helper_unit-types-tgluevalue) values representing the elements of the tuple. |
 
-*Return value:* [`TGlueValue`](#tgluevalue)
+*Return value:* [`TGlueValue`](#glue42_helper_unit-types-tgluevalue)
 
 ### Classes for Handling Events
 
