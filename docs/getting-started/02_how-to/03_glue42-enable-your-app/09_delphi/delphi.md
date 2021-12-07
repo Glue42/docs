@@ -119,7 +119,16 @@ Application configuration example:
 
 ### Glue42 Time
 
-TODO
+Glue42 time is essentially a Unix timestamp: the number of milliseconds since the Unix epoch, i.e. `1970-01-01 00:00:00 UTC`, ignoring leap seconds.
+
+Glue42 timestamp parameters and values are stored in an `Int64` type. To convert from Glue42 time to Delphi `TDateTime` and vice versa, use the following functions defined in the `GlueHelper` unit:
+
+```delphi
+function GlueTimeToDateTime(msecs: Int64): TDateTime;
+function DateTimeToGlueTime(dt: TDateTime): Int64;
+```
+
+*Note that Glue42 uses UTC internally, so the resulting `TDateTime` timestamp will also be in UTC, and not in local time.*
 
 ## Glue42 Helper Unit
 
