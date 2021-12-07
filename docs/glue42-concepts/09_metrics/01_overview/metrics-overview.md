@@ -340,6 +340,9 @@ The `"publishers"` key specifies a list of metrics publishers, or a JavaScript f
 | Property | Type | Description |
 |----------|------|-------------|
 | `"endpoint"` | `string` | The REST URL. |                                                                |
+| `"timeout"` | `number` | The timeout (in milliseconds) for http requests. |
+| `"heartbeats"` | `number` | The period (in milliseconds) on which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
+| `"conflation"` | `object` | The number of metrics to collect before sending them to the publisher and at what interval (in ms) to send them. |
 | `"authentication"` | `object` | Optional object with keys `"user"` and `"password"` used for basic authentication. |
 
 ### JavaScript Metrics Publishers
@@ -359,7 +362,7 @@ Below is an example configuration for enabling a custom JavaScript publisher. Th
             {
                 "file": "%GDDIR%/assets/metrics-publishers/template/index.js",
                 "metricsConfiguration": { 
-                    "conflating": {           
+                    "conflation": {           
                         "max-size": 0,            
                         "interval": 1000       
                     },
@@ -380,7 +383,7 @@ Below is an example configuration for enabling a custom JavaScript publisher. Th
 |----------|------|-------------|
 | `"file"` | `string` | The path (absolute or relative) to the Node.js module that is to be loaded. |
 | `"metricsConfiguration"` | `object` | Configurations regarding the exact way the publisher will receive the metrics. |
-| `"conflating"` | `object` | The number of metrics to collect before sending them to the publisher and at what interval (in ms) to send them. |
+| `"conflation"` | `object` | The number of metrics to collect before sending them to the publisher and at what interval (in ms) to send them. |
 | `"buffer-size"` | `number` | The number of metrics to keep before starting to drop them (e.g., when publishing is slow). |
 | `"split-size"` | `number` | The number of pieces the metrics batch is split into when it is pushed to the publisher. |
 | `"publisherConfiguration"` | `object` | Custom configuration options that will be passed as an object argument to the function exported from the Node.js module defined in the `"file"` property. |
@@ -421,6 +424,56 @@ module.exports = function (publisherConfiguration) {
 | `startup()` | This function should notify you when everything needed to publish the metrics is set up and metrics can be received. |
 | `cleanup()` | This function should handle the cleanup process after publishing metrics. |
 | `handleMetric()` | This is the function that publishes the metrics. |
+
+### Publishing with Kafka
+
+You can configure the Glue42 Gateway to publish metrics using Kafka.
+Data is serialized in [Avro](https://avro.apache.org/) using our own schema.
+
+#### Configuration
+
+Below is an example of configuring the Glue42 Gateway to use Kafka to publish metrics:
+
+```json
+"gw": {
+        ...
+    "configuration": {
+        "metrics": {
+            "publishers": ["kafka"],
+            "kafka": {
+                "topic": "metrics",
+                "publisher-config": {
+                    "client.id": "gateway",
+                    "metadata.broker.list": "127.0.0.1:9092",
+                    "debug": "all",
+                    "dr_cb": true,
+                    "event_cb": true
+                },
+                "heartbeats": 1000
+            }
+        }
+    }
+}
+```
+
+Glue42 Gateway uses librdkafka under the hood. To configure the Kafka client for example for ssl or authentication add relevant configuration under `"publisher-config"` section.
+For details refer to https://github.com/edenhill/librdkafka/blob/v1.4.2/CONFIGURATION.md
+
+When creating the Kafka topic to publish metrics on (named `"metrics"` in the above example) you need to consider:
+
+* replication factor you need. For metrics replication factor 1 is usually good enough, but depending on your requirements you may considure increasing it.
+* number of partitions. The more partitions you have the more parallel subscribers you can run in a single consumer group.
+* data retention. It is good idea to set both size and time.
+
+Here is an example command to create a topic with 8 partitions, replication factor 1 and data retention capped to 20GB in size and a week in time:
+
+```sh
+kafka-topics.sh --zookeeper 127.0.0.1:2181 --create --topic metrics \
+  --replication-factor 1 \
+  --partitions 8 \
+  --config retention.ms=604800000 \
+  --config retention.bytes=21474836480
+```
 
 ### Publishing with Solace
 
