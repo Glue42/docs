@@ -243,3 +243,141 @@ var appState = glue.GetRestoreState<AppState>();
 
 Selector.SelectedIndex = appState?.SelectedIndex ?? -1;
 ```
+
+## Bootstrapped Apps
+
+A common use-case is to have a bootstrapping application that handles user login and launches your apps. The bootstrapper can be any application and in the general case it isn't Glue42 enabled, but the applications it launches are. This scenario can be handled both through [application configuration](#bootstrapped_apps-application_configuration) or [runtime configuration](#bootstrapped_apps-runtime_configuration) when initializing Glue42 in the respective apps. 
+
+*Note that defining application configurations for Glue42 enabled .NET apps isn't mandatory. Glue42 enabled .NET applications announce themselves to [**Glue42 Enterprise**](https://glue42.com/enterprise/) automatically when started. The configuration file is necessary only if you want your app to be launchable from [**Glue42 Enterprise**](https://glue42.com/enterprise/). If you decide to create application configurations for the bootstrapper and the bootstrapped apps, the name of the bootstrapper specified in the `"name"` property of the bootstrapper configuration, in the `"launcherApp"` property of the bootstrapped app configuration, and in the initialization options in the bootstrapped app code must be the same.*
+
+You must specify the name of the bootstraping app and clear the starting context passed by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to it. Clearing the starting context is very important, because [**Glue42 Enterprise**](https://glue42.com/enterprise/) by default will store the command line arguments with which the bootstrapper has been started and will try to pass them again on restore, which in some cases may not be possible or may lead to undesired results.
+
+### Application Configuration
+
+To specify the name of the bootstrapper in the [application configurations](../../../developers/configuration/application/index.html#application_configuration-exe) of the bootstrapped apps, use the `"launcherApp"` property of the `"details"` top-level key:
+
+```json
+// Configuration file for the bootstrapped app.
+{
+    "name": "BootstrappedApp",
+    "type": "exe",
+    "details": {
+        "path": "%GDDIR%/PathToBootstrappedApp/",
+        // Must match the application name specified in the
+        // bootstrapper configuration and in the bootstrapped app code.
+        "launcherApp": "MyBootstrapper"
+    }
+}
+```
+
+To clear the starting context for the bootstrapper, set the `"startingContextMode"` property of the `"details"` top-level key to `"none"`. The following example configuration demonstrates how to instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to:
+
+- prevent saving the bounds of the bootstrapper;
+- exclude the bootstrapper from participating in [Layouts](../../windows/layouts/overview/index.html);
+- prevent starting multiple instances of the bootstrapper;
+- run the bootstrapper as a hidden window;
+- clear the starting context for the bootstrapper;
+- track the bootstrapper using its process, because it isn't Glue42 enabled;
+- prevent closing the bootstrapper on shutdown; 
+
+```json
+// Example configuration file for the bootstrapper.
+{
+    "title": "My Bootstrapper",
+    "type": "exe",
+    // Must match the name specified in the `"launcherApp"` property of the
+    // bootstrapped app configuration and in the bootstrapped app code.
+    "name": "MyBootstrapper",
+    "ignoreSavedLayout": true,
+    "ignoreFromLayouts": true,
+    "allowMultiple": false,
+    "hidden": true,
+    "details": {
+        "path": "C:/PathToBootstrapper/",
+        "command": "MyBootstrapper.exe",
+        "parameters": "",
+        "startingContextMode": "none",
+        "trackingType": "Process",
+        "terminateOnShutdown": false,
+    }
+}
+```
+
+### Runtime Configuration
+
+It is mandatory to specify the name of the bootstrapper in the `InitializeOptions` object during the [initialization](../../../getting-started/how-to/glue42-enable-your-app/net/index.html) of Glue42 in your bootstrapped app, irrespective of whether you have created an [application configuration](../../../developers/configuration/application/index.html#application_configuration-exe) for it. This is necessary, because when a Glue42 enabled .NET app announces itself to [**Glue42 Enterprise**](https://glue42.com/enterprise/), it overwrites the configuration settings specified in its configuration file.
+
+The following example demonstrates how to instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to:
+
+- prevent closing the bootstrapped app on shutdown;
+- prevent passing previously saved by [**Glue42 Enterprise**](https://glue42.com/enterprise/) startup arguments to the bootstrapped app on restore;
+- exclude the bootstrapped app from participating in [Layouts](../../windows/layouts/overview/index.html);
+- prevent starting multiple instances of the bootstrapped app;
+
+```csharp
+// Must match the name specified in the configuration of the bootstrapper
+// and in the `"launcherApp"` property of the bootstrapped app configuration.
+const string LauncherApp = "MyBootstrapper";
+
+var initializeOptions = new InitializeOptions
+    {
+        // Must match the name specified in the bootstrapped app configuration, if any.
+        ApplicationName = "BootstrappedApp",
+        AppDefinition = new AppDefinition
+        {
+            Title = "My Bootstrapped App",
+            TerminateOnShutdown = false,
+            LauncherApp = LauncherApp,
+            StartupArguments = "",
+            IgnoreFromLayouts = true,
+            AllowMultiple = false
+        }
+    };
+```
+
+Optionally, you can also register the bootstrapper at runtime. The registration is executed by the bootstrapped app, because the bootstrapper isn't Glue42 enabled:
+
+```csharp
+// Must match the name specified in the configuration of the bootstrapper
+// and in the `"launcherApp"` property of the bootstrapped app configuration.
+const string LauncherApp = "MyBootstrapper";
+
+private static async Task RegisterBootstrapper(Glue42 glue, string bootstrapperLocation, string bootstrapperFile)
+{
+    var tcs = new TaskCompletionSource<(MethodInvocationStatus, string)>(TaskCreationOptions
+        .RunContinuationsAsynchronously);
+
+    glue.GetService<IApplicationRegistryService>().RegisterHostApplication(new AppConfig
+    {
+        Name = LauncherApp,
+        Type = "exe",
+        Details = new AppConfigDetails
+        {
+            // Clearing the starting context for the bootstrapper in order to prevent
+            // Glue42 Enteprise from passing startup arguments to it on restore.
+            StartingContextMode = StartingContextMode.None,
+            // Track the bootstrapper through its process, because it isn't Glue42 enabled.
+            TrackingType = TrackingType.Process,
+            Command = bootstrapperFile,
+            Path = bootstrapperLocation,
+            // Prevent closing the bootstrapper on shutdown.
+            TerminateOnShutdown = false
+        },
+        // Run the bootstrapper in a hidden Glue42 Window.
+        Hidden = true,
+        // Prevent starting multiple instances of the bootstrapper
+        AllowMultiple = false,
+        // Don't autostart the bootstrapper when Glue42 Entperise starts.
+        AutoStart = false,
+        // Exclude the bootstrapper from participating in Layouts.
+        IgnoreFromLayouts = true,
+        //Don't save the bootstrapper bounds.
+        IgnoreSavedLayout = true
+    }, AppDefinitionLifetime.Default, r => tcs.TrySetResult((r.Status, r.ResultMessage)));
+
+    if (await tcs.Task.ConfigureAwait(false) is var status && status.Item1 != MethodInvocationStatus.Succeeded)
+    {
+        throw new Exception(status.Item2);
+    }
+}
+```

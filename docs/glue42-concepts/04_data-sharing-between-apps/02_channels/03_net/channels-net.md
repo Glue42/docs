@@ -40,7 +40,7 @@ The callback is invoked when:
 
 The second callback (Channel change handle) is invoked when:
 - You switch the Channel and the application (window) is assigned to a new Channel. 
-- Your app (window) is not joined to a Channel anymore (e.g. you have deselected the current Channel). In this case, it will be **undefined/null**.
+- Your app (window) isn't joined to a Channel anymore (e.g. you have deselected the current Channel). In this case, it will be **undefined/null**.
 
 ### Channel Discovery
 

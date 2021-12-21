@@ -6,7 +6,7 @@ To Glue42 enable your app, you need to do 3 things:
 - initialize the Glue42 library;
 - create an application definition and add it to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configurations folder;
 
-The following is an example of configuring a simple web app. Create your own basic web app or use this [JavaScript test app skeleton](../../../../assets/js-test-app.zip) and follow the steps in the guide below to test in practice how to Glue42 enable an application and add it to the Glue42 Application Manager. If you choose to use the provided test app skeleton, see the `README.md` for instructions on how to run it.
+The following is an example of configuring a simple web app. Create your own basic web app or use this [JavaScript test app skeleton](../../../../assets/js-test-app.zip) and follow the steps in the guide below to test in practice how to Glue42 enable an application and add it to the Glue42 Application Manager. If you choose to use the provided test app skeleton, see the README file for instructions on how to run it.
 
 *See also how to reference and initialize Glue42 in a [.NET](../net/index.html), [Java](../java/index.html), [React](../react/index.html), [Angular](../angular/index.html), [Node.js](../nodejs/index.html) or [VBA](../vba/index.html) environment.*
 

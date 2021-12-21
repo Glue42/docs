@@ -1,6 +1,6 @@
 ## Installation
 
-1. Download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) trial installer from [here](https://glue42.com/).
+1. Download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) trial installer from [here](https://glue42.com/free-trial/).
 
 2. Run the installer file.
 

@@ -34,7 +34,7 @@ Get the [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame)
 
 ```javascript
 // This method will return the Frame of the current window.
-// If an error is thrown, the window is not part of a Workspace.
+// If an error is thrown, the window isn't part of a Workspace.
 const frame = await glue.workspaces.getMyFrame().catch(console.error);
 ```
 
@@ -107,7 +107,7 @@ const frameWorkspaces = await myFrame.workspaces();
 
 A [`Workspace`](../../../../reference/glue/latest/workspaces/index.html#Workspace) contains one or more application windows arranged in columns, rows or groups. 
 
-*A [`Group`](../../../../reference/glue/latest/workspaces/index.html#Group) is a Workspace element that holds tabbed windows. If a window is placed directly in a [`Column`](../../../../reference/glue/latest/workspaces/index.html#Column) or a [`Row`](../../../../reference/glue/latest/workspaces/index.html#Row), it will be static and without a tab - the user will not be able to move it or close it and manipulating it will be possible only through the API.*  
+*A [`Group`](../../../../reference/glue/latest/workspaces/index.html#Group) is a Workspace element that holds tabbed windows. If a window is placed directly in a [`Column`](../../../../reference/glue/latest/workspaces/index.html#Column) or a [`Row`](../../../../reference/glue/latest/workspaces/index.html#Row), it will be static and without a tab - the user won't be able to move it or close it and manipulating it will be possible only through the API.*  
 
 You can use the [`frame`](../../../../reference/glue/latest/workspaces/index.html#Workspace-frame) property of a Workspace to get a reference to the [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) containing it. 
 
@@ -123,7 +123,7 @@ To get the Workspace of the current window, use the [`getMyWorkspace()`](../../.
 
 ```javascript
 // This method will return the Workspace of the current window.
-// If an error is thrown, the window is not part of a Workspace.
+// If an error is thrown, the window isn't part of a Workspace.
 const workspace = await glue.workspaces.getMyWorkspace().catch(console.error);
 ```
 
@@ -211,7 +211,7 @@ const definition = {
 const workspace = await glue.workspaces.createWorkspace(definition);
 ```
 
-*If you insert an empty [`Column`](../../../../reference/glue/latest/workspaces/index.html#Column), [`Row`](../../../../reference/glue/latest/workspaces/index.html#Row) or [`Group`](../../../../reference/glue/latest/workspaces/index.html#Group) element in a Workspace (without a window as its content), it will be visually represented in the Workspace as an empty space with a grey background and a button in the middle from which the user will be able to add an application. The user will not be able to move or close this empty element.*
+*If you insert an empty [`Column`](../../../../reference/glue/latest/workspaces/index.html#Column), [`Row`](../../../../reference/glue/latest/workspaces/index.html#Row) or [`Group`](../../../../reference/glue/latest/workspaces/index.html#Group) element in a Workspace (without a window as its content), it will be visually represented in the Workspace as an empty space with a grey background and a button in the middle from which the user will be able to add an application. The user won't be able to move or close this empty element.*
 
 #### Workspaces Builder API
 

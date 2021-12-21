@@ -289,7 +289,7 @@ Glue42 Routing enables customization of GNS notifications delivery and display. 
 
 There are 4 customizations you can make:
 
-- specify an [Interop](../../data-sharing-between-apps/interop/javascript/index.html) handler method which will be called by the GNS Desktop Manager before passing a notification to GNS clients (UIs). The GNS Desktop Manager will call this method and if any application returns `true`, the GNS Desktop Manager will assume that the application will handle the notification and will not pass it to other clients.
+- specify an [Interop](../../data-sharing-between-apps/interop/javascript/index.html) handler method which will be called by the GNS Desktop Manager before passing a notification to GNS clients (UIs). The GNS Desktop Manager will call this method and if any application returns `true`, the GNS Desktop Manager will assume that the application will handle the notification and won't pass it to other clients.
 - specify an Interop popup method which should be called by GNS clients instead of displaying their own notifications;
 - specify an Interop detail method which should be called by GNS clients instead of displaying their own notification details view;
 - specify a list of Glue42 Actions associated with the notification which GNS clients can use to display buttons or a context menu with the actions applicable to a notification. Each action is tied to an Interop method which will be called when the action is executed.
@@ -310,7 +310,7 @@ Signature:
 bool HandleNotification(Notification notification)
 ```
 
-If present, the method will be called by the GNS Desktop Manager when a notification arrives. If the method returns `true` (meaning "handled"), the notification will not be passed to generic GNS Clients (i.e. UIs).
+If present, the method will be called by the GNS Desktop Manager when a notification arrives. If the method returns `true` (meaning "handled"), the notification won't be passed to generic GNS Clients (i.e. UIs).
 
 **Popup Method**
 

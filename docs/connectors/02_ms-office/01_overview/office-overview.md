@@ -11,7 +11,7 @@ The Glue42 MS Office Connectors allow you to:
 - Send and receive emails and manage tasks from web applications using all the familiar capabilities of Outlook. 
 
 
-If you are a developer working with users who love Excel, Outlook and Word, then the Glue42 MS Office Connectors will help you enable them to continue working with the applications they enjoy and prefer. The real time integration provided by [**Glue42 Enterprise**](https://glue42.com/enterprise/) means that centralized control of data in the organization does not have to limit users to in-house web apps. Instead, they can benefit from the functionality and familiarity of the MS Office desktop applications, without saving any data locally and being able to access all data from web applications as if they are still working in the browser.
+If you are a developer working with users who love Excel, Outlook and Word, then the Glue42 MS Office Connectors will help you enable them to continue working with the applications they enjoy and prefer. The real time integration provided by [**Glue42 Enterprise**](https://glue42.com/enterprise/) means that centralized control of data in the organization doesn't have to limit users to in-house web apps. Instead, they can benefit from the functionality and familiarity of the MS Office desktop applications, without saving any data locally and being able to access all data from web applications as if they are still working in the browser.
 
 ## Enabling Connectors Manually
 

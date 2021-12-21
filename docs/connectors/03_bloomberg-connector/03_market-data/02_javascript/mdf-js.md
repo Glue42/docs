@@ -6,7 +6,7 @@ The **BBG Market Data** library is available as an `npm` package - [`@glue42/bbg
 npm install @glue42/bbg-market-data
 ```
 
-The **BBG Market Data** API depends on Glue42 [Interop](../../../../glue42-concepts/data-sharing-between-apps/interop/overview/index.html), an instance of which must be passed to the `BBGMarketData()` factory function. The function also accepts as a second parameter a configuration object that controls logging behavior and can also provide an optional custom logger implementation. The configuration object can also specify the interval at which to attempt reconnection to the Bloomberg Connector if a connection does not exist or is interrupted.
+The **BBG Market Data** API depends on Glue42 [Interop](../../../../glue42-concepts/data-sharing-between-apps/interop/overview/index.html), an instance of which must be passed to the `BBGMarketData()` factory function. The function also accepts as a second parameter a configuration object that controls logging behavior and can also provide an optional custom logger implementation. The configuration object can also specify the interval at which to attempt reconnection to the Bloomberg Connector if a connection doesn't exist or is interrupted.
 
 ```typescript
 import BBGMarketData from "@glue42/bbg-market-data";
@@ -113,7 +113,7 @@ request.onData(function handleResponse(
 });
 ```
 
-If you want to directly get the final aggregated response from a static reference data request, you can await the `Promise` returned from the `open()` method of the request instance. (This applies only if you have not explicitly set the `aggregateResponse` property of the optional object passed to `open()` to `false`):
+If you want to directly get the final aggregated response from a static reference data request, you can await the `Promise` returned from the `open()` method of the request instance. (This applies only if you haven't explicitly set the `aggregateResponse` property of the optional object passed to `open()` to `false`):
 
 ```typescript
 const response: HistoricalData[] | undefined = await request.open();
@@ -141,7 +141,7 @@ To handle errors in a response, attach a callback to the `onError()` method of t
 
 - Unable to invoke the Bloomberg Connector.
 - The Bloomberg Connector has thrown an exception.
-- The Bloomberg Connector was not able to create the request to the Bloomberg service and returns an unsuccessful result.
+- The Bloomberg Connector wasn't able to create the request to the Bloomberg service and returns an unsuccessful result.
 - An active request to a Bloomberg service has failed (e.g., a "RequestFailure" message was received for a non-subscription request).
 
 ### Request Status
@@ -151,7 +151,7 @@ To track the current request status, attach a callback to the `onStatus()` metho
 There are six statuses:
 
 - `Created` - The request has been created but not sent to a Bloomberg service.
-- `Opened` - The actual request has been sent to a Bloomberg service, but is not active yet. Response still not available.
+- `Opened` - The actual request has been sent to a Bloomberg service, but isn't active yet. Response still not available.
 - `Active` - The request has been sent to a Bloomberg service successfully. Responses may be received.
 - `Failed` - The request has failed to open or an error is received from a Bloomberg service.
 - `Closed` - The request was closed before completing. No more responses will be received.

@@ -6,7 +6,7 @@ Global saving and restoring is an operation in which all applications running on
 
 The Layouts API is accessible through `glue.layouts()`.
 
-To save a global Layout, use the `save()` method and specify a name for the Layout. Note that if a Layout with the same name already exists, it will be replaced. If a name is not specified, a random name will be generated:
+To save a global Layout, use the `save()` method and specify a name for the Layout. Note that if a Layout with the same name already exists, it will be replaced. If a name isn't specified, a random name will be generated:
 
 ```java
 CompletionStage<Void> layout = glue.layouts().save(options -> options

@@ -1,6 +1,6 @@
 ## Configuration
 
-It is possible to configure the [Layouts](../../../../reference/glue/latest/layouts/index.html) library by using the `layouts` property of the optional [`Config`](../../../../reference/glue/latest/glue/index.html#Config-layouts) object passed during the initialization of the Glue42 JavaScript library. The Layouts library supports several [modes](../../../../reference/glue/latest/layouts/index.html#Mode) of initialization and can also be configured whether to auto save the context of individual windows in their [Application Default](../overview/index.html) Layout.
+It is possible to configure the [Layouts](../../../../reference/glue/latest/layouts/index.html) library by using the `layouts` property of the optional [`Config`](../../../../reference/glue/latest/glue/index.html#Config-layouts) object passed during the initialization of the Glue42 JavaScript library. The Layouts library supports several [modes](../../../../reference/glue/latest/layouts/index.html#Mode) of initialization. It can also be configured whether to auto save the context of individual windows and for which Layout types (Global, Application Default, Workspace) to save it.
 
 Below is an example of configuring the Layouts library:
 
@@ -8,14 +8,22 @@ Below is an example of configuring the Layouts library:
 const config = {
     layouts: {
         mode: "full",
-        autoSaveWindowContext: true
+        // Individual window context will be saved only when saving the specified types of Layouts.
+        autoSaveWindowContext: ["Global", "Workspace"]
     }
 };
 
 window.glue = await Glue(config);
 ```
 
-The different modes of the Layouts library restrict or enable certain functionalities. In `"slim"` mode, Layouts cannot be manipulated (created, removed, renamed) and Layout events are not available, but custom context data can still be saved. In `"full"` mode, all functionalities are available.
+The different modes of the Layouts library restrict or enable certain functionalities. In `"slim"` mode, Layouts can't be manipulated (created, removed, renamed) and Layout events aren't available, but custom context data can still be saved. In `"full"` mode, all functionalities are available.
+
+The `layouts` object has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `mode` | `"full"` \| `"slim"` \| `"fullWaitSnapshot"` | In `"full"` mode, all Layout functionalities are available. In `"slim"` mode, Layout events aren't tracked and Layouts can't be manipulated. The `"fullWaitSnapshot"` mode is the same as the `"full"` mode, except that the Layouts library will notify that it is ready a little later - when a snapshot of the available Layouts has been received. |
+| `autoSaveWindowContext` | `boolean` \| [`LayoutType[]`](../../../../reference/glue/latest/layouts/index.html#LayoutType) | If `true`, window context will be saved for all Layout types. If an array of Layout types is passed instead, window context will be saved only for the specified Layout types. Possible Layout types are `"Global"`, `"Application Default"` and `"Workspace"`. |
 
 ## Layout Types
 
@@ -49,7 +57,7 @@ To get a collection of all currently available [`Layout`](../../../../reference/
 const layouts = glue.layouts.list(); 
 ```
 
-*The `list()` method is not available in `"slim"` mode. Use [`export()`](#layout_operations-exporting_and_importing) instead.*
+*The `list()` method isn't available in `"slim"` mode. Use [`export()`](#layout_operations-exporting_and_importing) instead.*
 
 ### Saving and Restoring
 

@@ -125,7 +125,7 @@ To enable auto injection on a system level, edit the `"autoInjectAPI"` property 
 | `"version"` | **Required**. Specify a version of the library to inject. It is recommended to use a specific version and avoid wildcard versions (e.g., `5.6.*` or `5.*.*`). |
 | `"autoInit"` | *Optional*. Whether to initialize the library. Can accept either a `boolean` value or a [`Config`](../../../../reference/glue/latest/glue/index.html#Config) object with which to initialize the library. |
 
-You can see what versions of the Glue42 JavaScript library are available for auto injection in the `%LocalAppData%\Tick42\GlueDesktop\assets\glue42` folder. If you specify a version which is not available, [**Glue42 Enterprise**](https://glue42.com/enterprise/) will continue working normally without injecting a library in the applications running in it.
+You can see what versions of the Glue42 JavaScript library are available for auto injection in the `%LocalAppData%\Tick42\GlueDesktop\assets\glue42` folder. If you specify a version which isn't available, [**Glue42 Enterprise**](https://glue42.com/enterprise/) will continue working normally without injecting a library in the applications running in it.
 
 If the library is injected but *not* auto initialized, you can use the injected `Glue()` factory function in the `window` object to initialize it and pass a custom [`Config`](../../../../reference/glue/latest/glue/index.html#Config) object to it, if needed:
 
@@ -152,7 +152,7 @@ await gluePromise.catch(console.error);
 if (window.glue) {  
     console.log(`Glue42 JS version ${glue.version} has been successfully initialized!`);
 
-    // Channels are disabled by default. If you have not specified a custom initialization object that enables
+    // Channels are disabled by default. If you haven't specified a custom initialization object that enables
     // the Channels API in the `autoInit` property under `autoInjectAPI` (e.g., "autoInit": { "channels": true }),
     // then the check below will return `false`.
     console.log(`Channels are ${glue.channels ? "enabled" : "disabled"}.`);
@@ -163,7 +163,7 @@ if (window.glue) {
 
 You can whitelist and blacklist applications on a system level to control which applications should be auto injected with the library and which should use their own version of the library instead.
 
-- all whitelisted applications will be auto injected with the library, all other applications will not be auto injected:
+- all whitelisted applications will be auto injected with the library, all other applications won't be auto injected:
 
 ```json
 "windows": {

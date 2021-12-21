@@ -53,21 +53,16 @@ In the `system.json` file, set the `"useEmbeddedShell"` top-level key to `false`
 
 ```json
 {
-    ...
-    "useEmbeddedShell": false,
-    ...
+    "useEmbeddedShell": false
 }
 ```
 
 In the `launchpad.json` file, set the `"disabled"` top-level key to `false`:
 
 ```json
-[
-    {
-        "disabled": false,
-        ...
-    }
-]
+{
+    "disabled": false
+}
 ```
 
 Restart [**Glue42 Enterprise**](https://glue42.com/enterprise/) for the changes to take effect. To use the Floating Toolbar again, reverse the configuration changes and restart [**Glue42 Enterprise**](https://glue42.com/enterprise/).
@@ -76,9 +71,7 @@ The default shortcut for the Launchpad is `SUPER + \` (Windows key + backslash).
 
 ```json
 {
-    ...
-    "shortcut": "ctrl+alt+space",
-    ...
+    "shortcut": "ctrl+alt+space"
 }
 ```
 
@@ -86,9 +79,7 @@ The users can resize the Launchpad by dragging its borders and its new bounds wi
 
 ```json
 {
-    ...
-    "ignoreSaveOnClose": true,
-    ...
+    "ignoreSaveOnClose": true
 }
 ```
 
@@ -96,9 +87,7 @@ The [Placement](../windows/window-management/javascript/index.html#window_operat
 
 ```json
 {
-    ...
     "details": {
-        ...
         "placement": {
             "snapped": true,
             "verticalAlignment": "top",
@@ -120,19 +109,15 @@ Once you have implemented a toolbar, you must host it, create an [application co
 
 ```json
 {
-    ...
-    "shell": true,
-    ...
+    "shell": true
 }
 ```
 
-Also, modify the [system configuration](../../developers/configuration/system/index.html) of [**Glue42 Enterprise**](https://glue42.com/enterprise/) from the `system.json` file - set the `"useEmbeddedShell"` property to `false`:
+Modify the [system configuration](../../developers/configuration/system/index.html) of [**Glue42 Enterprise**](https://glue42.com/enterprise/) from the `system.json` file located in `%LocalAppData%\Tick42\GlueDesktop\config`. Set the `"useEmbeddedShell"` property to `false`:
 
 ```json
 {
-    ...
-    "useEmbeddedShell": false,
-    ...
+    "useEmbeddedShell": false
 }
 ```
 

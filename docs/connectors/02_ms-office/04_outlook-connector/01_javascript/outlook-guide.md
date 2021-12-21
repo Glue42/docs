@@ -82,7 +82,7 @@ Due to security reasons, [**Glue42 Enterprise**](https://glue42.com/enterprise/)
 
 ### Creating a New Email
 
-While there is no technical limitation for the Glue42 Outlook Connector to send an email, there are many reasons while this is not a good idea. So, "creating a new email" actually means that the Glue42 Outlook Connector will create a new email window and populate it, but it will not send the email automatically and will instead let the user press the "Send" button. You can, however, track whether the user sends or cancels the email, as explained below in this document.
+While there is no technical limitation for the Glue42 Outlook Connector to send an email, there are many reasons while this isn't a good idea. So, "creating a new email" actually means that the Glue42 Outlook Connector will create a new email window and populate it, but it won't send the email automatically and will instead let the user press the "Send" button. You can, however, track whether the user sends or cancels the email, as explained below in this document.
 
 To create an email, use the [`newEmail()`](../../../../reference/glue4office/latest/outlook/index.html#API-newEmail) method and pass one or more email properties in an [`EmailParams`](../../../../reference/glue4office/latest/outlook/index.html#EmailParams) object. The example below creates a new email with plain text. As with any email client, everything is optional - recipients, subject, body, etc.:
 
@@ -99,7 +99,7 @@ outlook.newEmail({
 
 Note that [`to`](../../../../reference/glue4office/latest/outlook/index.html#EmailParams-to), [`cc`](../../../../reference/glue4office/latest/outlook/index.html#EmailParams-cc) and [`bcc`](../../../../reference/glue4office/latest/outlook/index.html#EmailParams-bcc) allow you to set a single recipient (in a single string) or multiple recipients in an array.
 
-Also note that you cannot specify the sender of the email. The Glue42 Outlook Connector will automatically use your email account and set it up as a sender.
+Also note that you can't specify the sender of the email. The Glue42 Outlook Connector will automatically use your email account and set it up as a sender.
 
 ### Construct Emails with HTML
 
@@ -117,7 +117,7 @@ If you set both the [`body`](../../../../reference/glue4office/latest/outlook/in
 
 ### Tracking Sent or Canceled Emails
 
-Note that when the `Promise` of [`newEmail()`](../../../../reference/glue4office/latest/outlook/index.html#API-newEmail) resolves, it means that the call from your web app to the Glue42 Outlook Connector has succeeded and it is guaranteed that the user will see a new email window populated with the parameters, as in the example above. However, this does not necessarily mean that the user will press the "Send" button.
+Note that when the `Promise` of [`newEmail()`](../../../../reference/glue4office/latest/outlook/index.html#API-newEmail) resolves, it means that the call from your web app to the Glue42 Outlook Connector has succeeded and it is guaranteed that the user will see a new email window populated with the parameters, as in the example above. However, this doesn't necessarily mean that the user will press the "Send" button.
 
 In order to track whether the user has sent the email or dismissed the window and discarded the email, you need to pass one or two optional callbacks ([`onSent`](../../../../reference/glue4office/latest/outlook/index.html#NewEmailOptions-onSent) and [`onCanceled`](../../../../reference/glue4office/latest/outlook/index.html#NewEmailOptions-onCanceled)) in the [`NewEmailOptions`](../../../../reference/glue4office/latest/outlook/index.html#NewEmailOptions) object to get notified whether the user has sent or canceled the email:
 
@@ -274,7 +274,7 @@ outlook.newTask({
     .catch(console.error)
 ```
 
-Similarly to the [`newEmail()`](../../../../reference/glue4office/latest/outlook/index.html#API-newEmail) call, by default the Outlook Connector will not create and save the task automatically but will display the task creation window. You can change the behavior and create and save the task automatically by setting the `noUI` to `true`.
+Similarly to the [`newEmail()`](../../../../reference/glue4office/latest/outlook/index.html#API-newEmail) call, by default the Outlook Connector won't create and save the task automatically but will display the task creation window. You can change the behavior and create and save the task automatically by setting the `noUI` to `true`.
 
 If you want to be notified when the user saves or cancels the task, you need to pass one or two optional callbacks ([`onSaved`](../../../../reference/glue4office/latest/outlook/index.html#NewTaskOptions-onSaved) and [`onCanceled`](../../../../reference/glue4office/latest/outlook/index.html#NewTaskOptions-onCanceled)) in the [`NewTaskOptions`](../../../../reference/glue4office/latest/outlook/index.html#NewTaskOptions) object to be notified if the user has saved the task or this or another user has canceled it:
 

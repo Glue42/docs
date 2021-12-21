@@ -1,0 +1,135 @@
+{
+    "$id": "http://glue42.com/gd/authController.json",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "description": "Schema describing `AuthController` in the System Config schema.",
+    "title": "AuthController",
+    "type": "object",
+    "oneOf": [
+        {
+            "type": "object",
+            "properties": {
+                "authController": {
+                    "type": "string",
+                    "const": "gw"
+                },
+                "options": {
+                    "type": "object",
+                    "properties": {
+                        "theme": {
+                            "type": "string",
+                            "enum": [
+                                "black",
+                                "white"
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "authController"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "authController": {
+                    "type": "string",
+                    "const": "sso"
+                },
+                "options": {
+                    "$ref": "#/definitions/ssoConfig"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "authController",
+                "options"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "authController": {
+                    "type": "string",
+                    "const": "custom"
+                },
+                "options": {
+                    "type": "object",
+                    "properties": {}
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "authController"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "authController": {
+                    "type": "string",
+                    "const": "sspi"
+                },
+                "options": {
+                    "type": "object",
+                    "properties": {}
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "authController"
+            ]
+        }
+    ],
+    "definitions": {
+        "ssoConfig": {
+            "title": "SSOConfig",
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                },
+                "successUrl": {
+                    "type": "string"
+                },
+                "logoffUrl": {
+                    "type": "string"
+                },
+                "keepAlive": {
+                    "description": "Keeps alive the window, so that it can refresh the auth parameters (user, token and headers).",
+                    "type": "boolean"
+                },
+                "window": {
+                    "type": "object",
+                    "properties": {
+                        "width": {
+                            "description": "Width of the login window.",
+                            "type": "integer"
+                        },
+                        "height": {
+                            "description": "Height of the login window.",
+                            "type": "integer"
+                        },
+                        "mode": {
+                            "description": "Glue42 window type. Possible values are `flat`, `html`, `tab`.",
+                            "enum": [
+                                "flat",
+                                "tab",
+                                "html"
+                            ],
+                            "type": "string",
+                            "default": "html"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "additionalProperties": false
+        }
+    }
+}

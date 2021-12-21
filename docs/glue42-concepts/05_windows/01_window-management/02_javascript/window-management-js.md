@@ -213,14 +213,14 @@ The table below shows all available window settings:
 
 | Name | Type | Description | Default | Supported By | Runtime Update Support |
 |------|------|-------------|---------|--------------|------------------------|
-| `allowClose` | `boolean` | If `false`, the window will not contain a "Close" button. | `true` | All | Flat and HTML |
-| `allowCollapse` | `boolean` | If `false`, the window will not contain a "Collapse" button. | `true` | All | Flat and HTML |
-| `allowForward` | `boolean` | If `false`, the window will not contain an activity related "Forward" button. | `true` | HTML | None |
-| `allowLockUnlock` | `boolean` | If `false`, the window will not contain a "Lock/Unlock" button. | `false` | All | Flat and HTML |
-| `allowMaximize` | `boolean` | If `false`, the window will not contain a "Maximize" button. | `true` | All | Flat and HTML |
-| `allowMinimize` | `boolean` | If `false`, the window will not contain a "Minimize" button. | `true` | All | Flat and HTML |
-| `allowTabClose` | `boolean` | If `false`, the tab header will not contain a "Close" button. | `true` | Tab | None |
-| `allowUnstick` | `boolean` | If `false`, the window will not unstick from other windows. | `true` | All | None |
+| `allowClose` | `boolean` | If `false`, the window won't contain a "Close" button. | `true` | All | Flat and HTML |
+| `allowCollapse` | `boolean` | If `false`, the window won't contain a "Collapse" button. | `true` | All | Flat and HTML |
+| `allowForward` | `boolean` | If `false`, the window won't contain an activity related "Forward" button. | `true` | HTML | None |
+| `allowLockUnlock` | `boolean` | If `false`, the window won't contain a "Lock/Unlock" button. | `false` | All | Flat and HTML |
+| `allowMaximize` | `boolean` | If `false`, the window won't contain a "Maximize" button. | `true` | All | Flat and HTML |
+| `allowMinimize` | `boolean` | If `false`, the window won't contain a "Minimize" button. | `true` | All | Flat and HTML |
+| `allowTabClose` | `boolean` | If `false`, the tab header won't contain a "Close" button. | `true` | Tab | None |
+| `allowUnstick` | `boolean` | If `false`, the window won't unstick from other windows. | `true` | All | None |
 | `autoAlign` | `boolean` | If `true`, a snapped window will adjust its bounds to the same width/height of the window it has stuck to, and/or will occupy the space between other windows (if any). | `true` | All | None |
 | `autoSnap` | `boolean` | If `true`, when moving the window operation ends, the window will snap to one of the approaching edges of another window (if any edges of the other window are within the defined snapping distance).| `true` | All | None |
 | `base64ImageSource` | `string` | Image as Base64 string that will be used as a taskbar icon for the window. The supported formats are PNG, ICO, JPG, APNG. | `-` | All | All |
@@ -234,9 +234,9 @@ The table below shows all available window settings:
 | `downloadSettings.enable`| `boolean`| If `true`, enables the window to download files. | `true` | All | None |
 | `downloadSettings.enableDownloadBar`| `boolean`| If `true`, a download bar tracking the progress will appear at the bottom of the window when downloading. If `false`, the download process will be invisible. | `true` | All | None |
 | `downloadSettings.path`| `string`| Path where the downloaded file will be saved. Due to security reasons, it is only possible to provide two download paths: the Windows "Temp" or "Downloads" folder. | `-` | All | None |
-| `focus` | `boolean` | If `false`, the window will not be on focus when created. | `true` | All | All |
-| `hasMoveAreas` | `boolean` | If `false`, the window cannot be moved. | `true` | Flat and HTML | Flat |
-| `hasSizeAreas` | `boolean` | If `false`, the window cannot be resized by dragging its borders, maximizing, etc. | `true` | Flat and HTML | Flat |
+| `focus` | `boolean` | If `false`, the window won't be on focus when created. | `true` | All | All |
+| `hasMoveAreas` | `boolean` | If `false`, the window can't be moved. | `true` | Flat and HTML | Flat |
+| `hasSizeAreas` | `boolean` | If `false`, the window can't be resized by dragging its borders, maximizing, etc. | `true` | Flat and HTML | Flat |
 | `height` | `number` | Window height (in pixels). | `400` | All | All |
 | `hidden` | `boolean` | If `true`, the window will be started as a hidden window. | `false` | All | All |
 | `historyNavigationEnabled` | `boolean` | If `true`, this will allow the users to navigate back (`CTRL + Left`) and forward (`CTRL + Right`) through the web page history. | `GLOBAL CONFIG` | All | None |
@@ -254,7 +254,7 @@ The table below shows all available window settings:
 | `onTop` | `boolean` | If `true`, the window will appear on top of the z-order. | `false` | All | None |
 | `relativeDirection` | `string` | Direction (`"bottom"`, `"top"`, `"left"`, `"right"`) of positioning the window relatively to the `relativeTo` window. Considered only if `relativeTo` is supplied. | `"right"` | All | None |
 | `relativeTo` | `string` | The ID of the window that will be used to relatively position the new window. Can be combined with `relativeDirection`. | `-` | All | None |
-| `showInTaskbar` | `boolean` | If `false`, the window will not appear on the Windows taskbar. | `true` | All | None |
+| `showInTaskbar` | `boolean` | If `false`, the window won't appear on the Windows taskbar. | `true` | All | None |
 | `showTitleBar` | `boolean` | Determines whether the window will have a title bar. | `true` | Flat | None |
 | `sizeAreaThickness` | `string` | How much of the window area is to be considered as a sizing area (meaning you can resize the window using that area). The string value corresponds to the left, top, right and bottom borders. | `"5, 5, 5, 5"` | HTML | None |
 | `snappingEdges` | `string` | Specifies the active Glue42 Window snapping edges. Possible values are: `"top"`, `"left"`, `"right"`, `"bottom"`, `"all"` or any combination of them (e.g., `"left, right"`). | `"all"` | All | None |
@@ -1249,7 +1249,7 @@ Flydown windows are helper windows which can be easily configured to appear on h
 
 ![Flydown](../../../../images/window-management/flydown.gif)
 
-*See the JavaScript [Flydown example](https://github.com/Glue42/js-examples/tree/master/flydown-example) on GitHub.*
+*See the JavaScript [Flydown example](https://github.com/Glue42/js-examples/tree/master/flydown) on GitHub.*
 
 *The delay times for showing and hiding flydown windows can be set using the global [Glue42 Window configuration](../../../../developers/configuration/glue42-windows/index.html#glue42_window_properties-flydown_windows).*
 
@@ -1327,7 +1327,7 @@ const flydownOptions = {
         width: 200,
         height: 200
     },
-    // The flydown will not disappear while the user is hovering within that range.
+    // The flydown won't disappear while the user is hovering within that range.
     activeArea: activeArea,
     zones: [
         {
@@ -1411,7 +1411,7 @@ const flydownOptions = {
 const flydown = await myWindow.createFlydown(flydownOptions);
 ```
 
-*Note that this callback is not the place to make heavy calculations - you must return a response within 100 ms. Return a `Promise` from the callback if your logic is asynchronous.*
+*Note that this callback isn't the place to make heavy calculations - you must return a response within 100 ms. Return a `Promise` from the callback if your logic is asynchronous.*
 
 The [`Flydown`](../../../../reference/glue/latest/windows/index.html#Flydown) object has a [`destroy`](../../../../reference/glue/latest/windows/index.html#Flydown-destroy) property that you can use to destroy the zones that trigger the flydowns. This will only remove the flydown trigger zones and not the actual windows used as flydowns:
 
@@ -1448,7 +1448,7 @@ Popup windows are helper windows that can appear when the user clicks an area in
 
 ![Popup](../../../../images/window-management/popup.gif)
 
-*See the JavaScript [Popup example](https://github.com/Glue42/js-examples/tree/master/popup-example) on GitHub.*
+*See the JavaScript [Popup example](https://github.com/Glue42/js-examples/tree/master/popup) on GitHub.*
 
 Implementing the behavior of popup windows can be a very tedious task. You must handle all cases in which the popup may go out of screen, handle user input from multiple windows which may involve confusion with timeouts and potential race conditions. While not impossible, it is an endeavor prone to many errors, while the end result most often is unreliable. The [`showPopup()`](../../../../reference/glue/latest/windows/index.html#API-showPopup) method handles all these problems and almost no additional code is required to make it work smoothly in all cases. You can call [`showPopup()`](../../../../reference/glue/latest/windows/index.html#API-showPopup) either through `glue.windows.showPopup()` or directly on a window instance. This method accepts `targetWindowId` and a [`PopupOptions`](../../../../reference/glue/latest/windows/index.html#PopupOptions) object as arguments. If you call [`showPopup()`](../../../../reference/glue/latest/windows/index.html#API-showPopup) directly on a window instance, don't pass a `targetWindowId`, as the ID of the current window will be used to create the popup window.
 

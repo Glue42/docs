@@ -68,7 +68,7 @@ Always close the `Glue` instance once you are done with it, in order to free up 
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.10">
 
-When initializing Glue42, you can pass an event listener that will notify your application when it is about to be stopped. This is useful when your app/process is not started directly by Glue42, but rather by Glue42 invoking a script/batch file or another application that in turn starts your application. With this listener you can properly shut down your application, free resources, etc.
+When initializing Glue42, you can pass an event listener that will notify your application when it is about to be stopped. This is useful when your app/process isn't started directly by Glue42, but rather by Glue42 invoking a script/batch file or another application that in turn starts your application. With this listener you can properly shut down your application, free resources, etc.
 
 Below is an example of passing a shutdown request listener when initializing Glue42:
 
@@ -93,7 +93,7 @@ glue {
 
 Glue42 Java will look for a Glue42 configuration file in the application classpath. If you are using Maven or Gradle as a build tool, you can place the `glue.conf` file for your application in the `\src\main\resources` folder of your project directory.
 
-If you do not specify an application name in a `glue.conf` file, as in the example above, the name of the application will be taken from the [**Glue42 Enterprise**](https://glue42.com/enterprise/) starting context which contains configurations from the [application definition](#application_definition) file (see below).
+If you don't specify an application name in a `glue.conf` file, as in the example above, the name of the application will be taken from the [**Glue42 Enterprise**](https://glue42.com/enterprise/) starting context which contains configurations from the [application definition](#application_definition) file (see below).
 
 You can also set the application name runtime when initializing the Glue42 Java library, which will override any previous configurations:
 
@@ -103,7 +103,7 @@ Glue.builder().withApplicationName("My Java App").build();
 
 ## Application Definition
 
-To add your Java application to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) Application Manager, define a configuration file and add it to the application configuration store. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` should be replaced by the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). This way, your files will not be erased or overwritten, in case you decide to upgrade or change your [**Glue42 Enterprise**](https://glue42.com/enterprise/) version:
+To add your Java application to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) Application Manager, define a configuration file and add it to the application configuration store. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` should be replaced by the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). This way, your files won't be erased or overwritten, in case you decide to upgrade or change your [**Glue42 Enterprise**](https://glue42.com/enterprise/) version:
 
 ``` json
 [
@@ -129,7 +129,7 @@ To add your Java application to the [**Glue42 Enterprise**](https://glue42.com/e
 | `"command"` | The actual command to execute (`java`). |
 | `"parameters"` | Specifies command line arguments. |
 
-*Note that the definition must be a valid JSON file (you should either use forward slash or escape the backslash).*
+*Note that the definition must be a valid JSON file (you should either use a forward slash or escape the backslash).*
 
 *To be able to start Glue42 Java on a **dual core** machine, you have to pass the `-Dglue.gateway.ws.max-pool-size=3` parameter to the JVM by adding it to the `"parameters"` property described above.*
 

@@ -30,46 +30,73 @@ In the example below, you can see how the user first creates and then saves and 
 
 ## Layout Stores
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) can load Layouts from a local store or from a remote REST service.
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) can obtain Layouts from a local store and from a remote REST service. The settings for the Layout stores are defined in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in `%LocalAppData%\Tick42\GlueDesktop\config`.
 
-### Local Path Layout Store
+In the standard [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployment model, Layouts aren't stored locally on the user machine, but are served remotely. If [**Glue42 Enterprise**](https://glue42.com/enterprise/) is configured to use a remote Layout store, it will poll it periodically and discover new Layouts. The store implementation is usually connected to an entitlement system based on which different users can have different Layouts.
 
-By default, the Layouts are saved to and loaded from a local Layouts store, located in the `%LocalAppData%\Tick42\UserData\T42-DEMO\layouts` folder where you can store, customize and delete your Layout files locally.
+### Local Layout Stores
 
-### REST Service Layout Store
+By default, the Layouts are saved to and loaded from a local Layout store located in the `%LocalAppData%\Tick42\UserData\T42-DEMO\layouts` folder, where you can store, customize and delete your Layout files locally. 
 
-Layout definitions can also be hosted on a server and obtained from a REST service. 
-
-For a reference implementation of a remote Layout definitions store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example. This basic implementation stores the user Layouts in files (they have the same structure as the local Layouts files) and returns the same set of data for all users (does not take the user into account). New Layouts are stored in files (using the name of the Layout - there is no validation whether the Layouts name can be used as a file name). The remove Layout operation is not implemented and just logs to the console. For instructions on running the sample server on your machine, see the `README.md` file in the repository.
-
-For a .NET implementation of a remote Layout definitions store, see the [.NET REST Config](https://github.com/Tick42/rest-config-example-net) example.
-
-If your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy is not configured to load Layouts from a REST service, you need to edit the `system.json` file located in the `%LocalAppData%\Tick42\GlueDesktop\config` folder.
-
-1. Locate the `layouts` top-level property:
+The configuration for the Layout stores is found under the `"layouts"` top-level key of the `system.json` file and by default it is set to manage Layouts as local files:
 
 ```json
- "layouts": {
+"layouts" : {
     "store": {
         "type": "file"
     }
-  }
+}
 ```
 
-2. Update the Layouts store to:
+### Remote Layout Stores
+
+Layout definitions can also be hosted on a server and obtained from a REST service. 
+
+For a reference implementation of a remote Layout definitions store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example. The user Layouts are stored in files with the same structure as local Layout files. This basic implementation doesn't take the user into account and returns the same set of data for all users. New Layouts are stored in files using the name of the Layout and there isn't validation for the name. The operation for removing a Layout isn't implemented and just logs to the console. For instructions on running the sample server on your machine, see the README file in the repository.
+
+For a .NET implementation of a remote Layout definitions store, see the [.NET REST Config](https://github.com/Tick42/rest-config-example-net) example.
+
+To configure a connection to the REST service providing the Layout store, edit the `"layouts"` top-level key of the `system.json` file:
 
 ```json
- "layouts": {
+"layouts": {
     "store": {
         "type": "rest",
         "restURL": "http://localhost:8004/",
-        "restFetchInterval": 20
-      }
-  } 
+        "restFetchInterval": 20,
+        "restClientAuth": "no-auth"
+    }
+} 
 ```
 
 | Property | Description |
 |----------|-------------|
-| `"type"` | Can be `"file"` or `"rest"`, depending on the type of Layouts store you want to setup. |
+| `"type"` | Can be `"file"`, `"rest"` or `"server"`, depending on the type of Layout store. |
 | `"restURL"` | The URL address of the Layouts REST service. |
-| `"restFetchInterval"` | Interval (in seconds) for fetching Layouts from the REST service. | 
+| `"restFetchInterval"` | Interval (in seconds) for fetching Layouts from the REST service. |
+| `"restClientAuth"` | Authentication configuration. Can be one of `"no-auth"`, `"negotiate"` or `"kerberos"`. |
+
+*The `"restURL"`, `"restFetchInterval"` and `"restClientAuth"` properties are valid only when `"type"` is set to `"rest"`. Otherwise, they are ignored.*
+
+The remote store must return Layout definitions in the following response shape:
+
+```json
+{
+    "layouts": [
+        // List of Layout definition objects.
+        {...}, {...}
+    ]
+}
+```
+
+You can also use the [Glue42 Server](../../../glue42-server/index.html) for hosting and retrieving Layout stores. The [Glue42 Server](../../../glue42-server/index.html) is a complete server-side solution for providing data to Glue42. To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch application configurations from a [Glue42 Server](../../../glue42-server/index.html), set the `"type"` property to `"server"`:
+
+```json
+"layouts" : {
+    "store": {
+        "type": "server"
+    }
+}
+```
+
+*Note that when using the [Glue42 Server](../../../glue42-server/index.html) as a Layout store, Layout files aren't only fetched from the server, but are also saved on the server (e.g., when the user edits and saves an existing Layout).*

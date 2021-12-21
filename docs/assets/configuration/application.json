@@ -206,6 +206,10 @@
                 "shortcut": {
                     "description": "Will be registered as global shortcut and will start the app or focus it.",
                     "type": "string"
+                },
+                "launcherApp": {
+                    "description": "Name of the application to be used to launch this app.",
+                    "type": "string"
                 }
             }
         },
@@ -1186,7 +1190,8 @@
                     "enum": [
                         "environment",
                         "interop",
-                        "interopCmdLine"
+                        "interopCmdLine",
+                        "none"
                     ],
                     "default": "environment"
                 },
@@ -1644,7 +1649,8 @@
                     "enum": [
                         "environment",
                         "interop",
-                        "interopCmdLine"
+                        "interopCmdLine",
+                        "none"
                     ],
                     "default": "interop"
                 },
@@ -1865,7 +1871,8 @@
                     "enum": [
                         "environment",
                         "interop",
-                        "interopCmdLine"
+                        "interopCmdLine",
+                        "none"
                     ],
                     "default": "interopCmdLine"
                 },

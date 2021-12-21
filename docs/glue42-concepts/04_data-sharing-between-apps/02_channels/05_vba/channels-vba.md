@@ -4,7 +4,7 @@ The Glue42 Channels are enabled by default when registering a VBA window as a Gl
 
 To check whether the Channel Selector is visible, use the [`GetChannelSupport`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-getchannelsupport) method of a [`GlueWindow`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow) instance. To hide or show the Channel Selector, use the [`SetChannelSupport`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-setchannelsupport) method.
 
-*Note that currently the `SetChannelSupport` method only hides or shows the Channel Selector, but does not enable or disable the Channel support. This can be done only during window registration.*
+*Note that currently the `SetChannelSupport` method only hides or shows the Channel Selector, but doesn't enable or disable the Channel support. This can be done only during window registration.*
 
 ```vbnet
 ' Hiding the Channel selector.

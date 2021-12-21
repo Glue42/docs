@@ -328,7 +328,7 @@ The `StreamConsumer` reference can be used to:
 
 ### Multicasting Data Using Branches
 
-A single stream supports one or multiple named sub-streams that are called **branches**. In cases where it is not necessary for a stream to be split into multiple sub-streams, a **default** branch is used.
+A single stream supports one or multiple named sub-streams that are called **branches**. In cases where it isn't necessary for a stream to be split into multiple sub-streams, a **default** branch is used.
 
 ``` java
 glue.interop()
@@ -372,7 +372,7 @@ if (branch != null) {
     branch.push(data);
     System.out.printf("Pushed data to all subscribers on branch \"%s\"!%n", branch.getKey());
 } else {
-    System.out.printf("Branch \"%s\" does not exist!%n", branchKey);
+    System.out.printf("Branch \"%s\" doesn't exist!%n", branchKey);
 }
 ```
 

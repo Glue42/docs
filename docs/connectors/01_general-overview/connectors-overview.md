@@ -20,14 +20,14 @@ End users are able to work in whichever UI they prefer and use the supported app
 
 As a **developer**, you no longer need to waste time and effort struggling to understand and implement grid components and text editors that clients neither like, nor want to use. You can focus on implementing the things that add value to your business.
 
-- Download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) trial version from [here](https://glue42.com/).
+- Download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) trial version from [here](https://glue42.com/free-trial/).
 
 - See the [Getting Started](../../getting-started/what-is-glue42/general-overview/index.html) section, explore the [Glue42 Concepts](../../glue42-concepts/glue42-toolbar/index.html) and take a look at the Connector Development Guides in this section to start working programmatically with Glue42 Enterprise.
 
 ### End Users
 
-As an **end user**, you will continue working with a familiar environment and will not need to learn how to use new and incompatible application UIs. Enjoy the comfort of using all these familiar apps whenever and however you need to.
+As an **end user**, you will continue working with a familiar environment and won't need to learn how to use new and incompatible application UIs. Enjoy the comfort of using all these familiar apps whenever and however you need to.
 
 - See why organizations around the world are choosing [**Glue42 Enterprise**](https://glue42.com/enterprise/) as their desktop management solution: our partners' [success stories](https://glue42.com/success-stories/).
 
-- Download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) trial version from [here](https://glue42.com/). 
+- Download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) trial version from [here](https://glue42.com/free-trial/). 

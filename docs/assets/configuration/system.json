@@ -877,9 +877,37 @@
                     "default": true,
                     "description": "If `true`, will enable the Glue42 global protocol handler."
                 },
-                "defaultExecutable": {
-                    "type": "string",
-                    "description": "Path to an executable file that will be started if no other Glue42 instance is running. Defaults to the Glue42 executable file."
+                "startNewInstance": {
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "If `false`, won't allow starting a new instance of Glue42 when opening links with the Glue42 protocol."
+                        },
+                        "defaultExecutable": {
+                            "properties": {
+                                "path": {
+                                    "type": "string",
+                                    "description": "Path to an executable file that will be started if no other Glue42 instance is running. Defaults to the Glue42 executable file."
+                                },
+                                "args": {
+                                    "type": "array",
+                                    "default": [],
+                                    "description": "List of arguments.",
+                                    "items": {
+                                        "type": "string",
+                                        "description": "Argument."
+                                    }
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "errorMessage": {
+                            "type": "string",
+                            "description": "Will override the default error message displayed when starting a new Glue42 instance is disabled."
+                        }
+                    },
+                    "additionalProperties": false
                 },
                 "allowOpeningURLs": {
                     "description": "Specify allowed and/or forbidden URLs for the Glue42 global protocol handler. Can be set to a `boolean` value or to an `object` containing lists of allowed and forbidden URLs.",
@@ -1146,6 +1174,11 @@
                         "proxy": {
                             "description": "HTTP proxy to use when fetching data.",
                             "type": "string"
+                        },
+                        "rejectUnauthorized": {
+                            "description": "If `false`, SSL validation is disabled for the server.",
+                            "type": "boolean",
+                            "default": true
                         }
                     }
                 }
@@ -1473,7 +1506,7 @@
             "description": "Splash screen configuration.",
             "properties": {
                 "disabled": {
-                    "description": "If true welcome splash is disabled",
+                    "description": "If `true`, the splash screen will be disabled.",
                     "type": "boolean"
                 },
                 "url": {
@@ -1492,8 +1525,13 @@
                     "type": "number"
                 },
                 "blockStartup": {
-                    "description": "If true will block startup until the welcome splash is loaded. This is default behavior before 3.13. It was switched to false in 3.13",
+                    "description": "If `true`, will block startup until the splash screen has loaded. This is the default behavior before Glue42 3.13 and was switched to `false` in Glue42 3.13",
                     "default": false,
+                    "type": "boolean"
+                },
+                "showOnShutdown": {
+                    "description": "If `true`, will show the splash screen when Glue42 Enterprise is shutting down.",
+                    "default": true,
                     "type": "boolean"
                 }
             },
@@ -2098,6 +2136,11 @@
                                 "negotiate",
                                 "kerberos"
                             ]
+                        },
+                        "rejectUnauthorized": {
+                            "description": "If `false`, SSL validation is disabled for the server.",
+                            "type": "boolean",
+                            "default": true
                         }
                     }
                 },

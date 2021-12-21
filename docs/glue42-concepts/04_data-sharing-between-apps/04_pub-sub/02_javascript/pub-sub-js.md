@@ -10,7 +10,7 @@ window.glue = await Glue(config);
 
 The Pub/Sub API is accessible through the [`glue.bus`](../../../../reference/glue/latest/pub%20sub/index.html) object.
 
-*See the JavaScript [Pub/Sub example](https://github.com/Glue42/js-examples/tree/master/pub-sub-example) on GitHub.*
+*See the JavaScript [Pub/Sub example](https://github.com/Glue42/js-examples/tree/master/pub-sub) on GitHub.*
 
 ## Publish
 

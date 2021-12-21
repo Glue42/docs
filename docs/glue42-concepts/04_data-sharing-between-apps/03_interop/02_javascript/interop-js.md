@@ -2,7 +2,7 @@
 
 The Interop API is accessible through the [`glue.interop`](../../../../reference/glue/latest/interop/index.html) object.
 
-*See the JavaScript [Interop example](https://github.com/Glue42/js-examples/tree/master/interop-example) on GitHub.*
+*See the JavaScript [Interop Request/Response](https://github.com/Glue42/js-examples/tree/master/interop-request-response) and [Interop Streaming](https://github.com/Glue42/js-examples/tree/master/interop-streaming) examples on GitHub.*
 
 To register an Interop method that will be available to all other Glue42 enabled applications, use the [`register()`](../../../../reference/glue/latest/interop/index.html#API-register) method. Provide a name for the method (or a [`MethodDefinition`](../../../../reference/glue/latest/interop/index.html#MethodDefinition) object) and a callback that will handle invocations from client applications:
 
@@ -412,7 +412,7 @@ Interop streams are used extensively in [**Glue42 Enterprise**](https://glue42.c
 - in the Glue42 Notification Service (GNS) Desktop Manager and GNS Interop Servers - to publish Notifications (real-time data);
 - in the Window Management and Application Management APIs (events);
 
-*See the JavaScript [Streaming example](https://github.com/Glue42/js-examples/tree/master/streaming-example) on GitHub.*
+*See the JavaScript [Streaming example](https://github.com/Glue42/js-examples/tree/master/interop-streaming) on GitHub.*
 
 The snippets below are based on the [Complete Streaming Example](#complete_streaming_example) at the end of the Streaming section. The example illustrates an application which retrieves real-time data about a financial instrument (`symbol`) from a data source and provides the data as a stream to other applications. The client applications subscribe for the stream data by providing a `symbol` value as an argument in their subscription requests.
 
@@ -483,7 +483,7 @@ initiateStream().catch(console.error);
 
 ### Accepting or Rejecting Subscriptions
 
-Subscriptions are auto accepted by default. You can control this behavior by passing a [`subscriptionRequestHandler`](../../../../reference/glue/latest/interop/index.html#StreamOptions-subscriptionRequestHandler) in the [`StreamOptions`](../../../../reference/glue/latest/interop/index.html#StreamOptions) object. Note that this handler is called before the [`subscriptionAddedHandler`](../../../../reference/glue/latest/interop/index.html#StreamOptions-subscriptionAddedHandler), so if you reject the request, the `subscriptionAddedHandler` will not be called.
+Subscriptions are auto accepted by default. You can control this behavior by passing a [`subscriptionRequestHandler`](../../../../reference/glue/latest/interop/index.html#StreamOptions-subscriptionRequestHandler) in the [`StreamOptions`](../../../../reference/glue/latest/interop/index.html#StreamOptions) object. Note that this handler is called before the [`subscriptionAddedHandler`](../../../../reference/glue/latest/interop/index.html#StreamOptions-subscriptionAddedHandler), so if you reject the request, the `subscriptionAddedHandler` won't be called.
 
 The [`subscriptionRequest`](../../../../reference/glue/latest/interop/index.html#SubscriptionRequest) object, passed as an argument to the subscription request handler, has the following properties and methods:
 

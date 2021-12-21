@@ -1,6 +1,6 @@
 ## Opening or Creating a Context
 
-Define a [`GlueContextManager`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager) instance and set its value using the [`GetGlueContext`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glue42-getgluecontext) method passing the name of a context as an argument. Use the [`Open`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager-open) method of the `GlueContextManager` instance to open the selected context. If a context with the specified name does not exist, it will be automatically created.
+Define a [`GlueContextManager`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager) instance and set its value using the [`GetGlueContext`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glue42-getgluecontext) method passing the name of a context as an argument. Use the [`Open`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager-open) method of the `GlueContextManager` instance to open the selected context. If a context with the specified name doesn't exist, it will be automatically created.
 
 Below is an example of a subroutine opening a context:
 

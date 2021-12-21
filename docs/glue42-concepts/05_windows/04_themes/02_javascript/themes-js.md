@@ -4,6 +4,8 @@
 
 The Themes API is accessible through the [`glue.themes`](../../../../reference/glue/latest/themes/index.html) object.
 
+*See the JavaScript [Themes example](https://github.com/Glue42/js-examples/tree/master/themes) on GitHub.*
+
 ## Listing All Themes
 
 To get a list of all available themes, use the [`list()`](../../../../reference/glue/latest/themes/index.html#API-list) method:

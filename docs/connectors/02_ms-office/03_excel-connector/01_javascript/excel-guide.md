@@ -99,7 +99,7 @@ There are certain customizations you can apply by specifying the [`options`](../
 
 ### Column Customization
 
-If you are planning to take updates from the user into your app, you should not rely on the ordering of the rows when accepting the data because the user might have filtered or sorted the data before returning it to your application. This means that:
+If you are planning to take updates from the user into your app, you shouldn't rely on the ordering of the rows when accepting the data because the user might have filtered or sorted the data before returning it to your application. This means that:
 
 - all your rows must be keyed somehow, so you can track what has changed
 - you must not accept changes to columns containing keys
@@ -119,7 +119,7 @@ const columns = [
 
 ### Preventing Saving Temporary Workbooks
 
-If your users need to message data to Excel, but are not allowed to save it locally, and should instead return the data to be saved in your application, you can set the [`inhibitLocalSave`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-inhibitLocalSave) flag to `true` to prevent the users from saving temporary workbooks.
+If your users need to message data to Excel, but aren't allowed to save it locally, and should instead return the data to be saved in your application, you can set the [`inhibitLocalSave`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-inhibitLocalSave) flag to `true` to prevent the users from saving temporary workbooks.
 
 ### Custom Workbook, Sheet and Range
 
@@ -139,7 +139,7 @@ const config = {
 }
 ```
 
-Note that all these settings are optional. If the workbook does not exist, it is going to be created, otherwise re-opened. If there is data in the specified spreadsheet, it's going to be wiped, unless you've set [`clearGrid`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-clearGrid) to `false`. In the example above the data will be placed in the `John Doe` spreadsheet, starting on the 2nd row and column (B2). You can use also use Row/Column references, e.g., `R2C2` (row 2 column 2). Specifying [`dataRangeName`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-dataRangeName) names the range of cells which starts at `B2` and spans your data to `ClientData`.
+Note that all these settings are optional. If the workbook doesn't exist, it is going to be created, otherwise re-opened. If there is data in the specified spreadsheet, it's going to be wiped, unless you've set [`clearGrid`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-clearGrid) to `false`. In the example above the data will be placed in the `John Doe` spreadsheet, starting on the 2nd row and column (B2). You can use also use Row/Column references, e.g., `R2C2` (row 2 column 2). Specifying [`dataRangeName`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-dataRangeName) names the range of cells which starts at `B2` and spans your data to `ClientData`.
 
 ### Using Templates
 
@@ -263,7 +263,7 @@ const stateColumn = {
 }
 ```
 
-When your application has set the [`validation`](../../../../reference/glue4office/latest/excel/index.html#ColumnConfig-validation) property and the [`alert`](../../../../reference/glue4office/latest/excel/index.html#Validation-alert) is `Stop`, Excel will not even attempt to return data back to your application if the user input is invalid.
+When your application has set the [`validation`](../../../../reference/glue4office/latest/excel/index.html#ColumnConfig-validation) property and the [`alert`](../../../../reference/glue4office/latest/excel/index.html#Validation-alert) is `Stop`, Excel won't even attempt to return data back to your application if the user input is invalid.
 
 ### Programmatic Validation
 

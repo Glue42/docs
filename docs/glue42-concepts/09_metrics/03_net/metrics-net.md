@@ -8,8 +8,8 @@ The metric system is a composite structure. One metric system may contain other 
 
 Every metric system has one system state metric. The purpose of this state metric is to provide information about the condition of the metric system. The state can be:
 - `GREEN` - when the system is working properly;
-- `AMBER` - when the system cannot work properly because of a third-party component, but is trying to repair;
-- `RED` - when the system cannot continue working;
+- `AMBER` - when the system can't work properly because of a third-party component, but is trying to repair;
+- `RED` - when the system can't continue working;
 
 ## Metric System Repository
 

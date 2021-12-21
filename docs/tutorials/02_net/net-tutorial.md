@@ -35,9 +35,9 @@ So, now you have four applications that must be integrated with [**Glue42 Enterp
 
 Here are some common issues that you may encounter:
 - Application is missing from the App Manager - check its configuration file: it must be a valid `JSON`.
-- Application does not start after being clicked - make sure that the `path` property of the configuration file of the application points to the folder which contains the `exe`.
-- The `Clients` application does not visualize any data - the data provider `exe` must be running, so make sure that the `path` in its configuration file is valid and that port 8083 is free (this is where the data is hosted).
-- Some/All of my projects will not build - make sure that all projects reference the `Glue42.dll` located in `%LocalAppData%/Tick42/GlueSDK/Glue42NET/lib/net45`.
+- Application doesn't start after being clicked - make sure that the `path` property of the configuration file of the application points to the folder which contains the `exe`.
+- The `Clients` application doesn't visualize any data - the data provider `exe` must be running, so make sure that the `path` in its configuration file is valid and that port 8083 is free (this is where the data is hosted).
+- Some/All of my projects won't build - make sure that all projects reference the `Glue42.dll` located in `%LocalAppData%/Tick42/GlueSDK/Glue42NET/lib/net45`.
 
 ## Initializing the Glue42 Library
 
@@ -80,7 +80,7 @@ The [Interop](../../../glue42-concepts/data-sharing-between-apps/interop/overvie
 
 ### 3.2 Method Invocation
 
-The `Clients` app has data for visualization so it must invoke `PopulateData()` on every row click (do not forget to check if the service exists, because a row might be clicked when `Portfolio` is closed). When you implement this, you will see the same result as the one from the Shared Contexts. You can find more information on how to invoke a method [here](../../../glue42-concepts/data-sharing-between-apps/interop/net/index.html#declarative_model).
+The `Clients` app has data for visualization so it must invoke `PopulateData()` on every row click (don't forget to check if the service exists, because a row might be clicked when `Portfolio` is closed). When you implement this, you will see the same result as the one from the Shared Contexts. You can find more information on how to invoke a method [here](../../../glue42-concepts/data-sharing-between-apps/interop/net/index.html#declarative_model).
 
 ## 4. Notifications
 
@@ -96,7 +96,7 @@ If you click on a notification, a default screen will be opened with further inf
 
 Glue42 has an Application Management API through which you can execute all kinds of application management commands. For the current scenario you will only need to start a new instance of the `Contacts` application in the `ShowContacts()` method. To see how to use the Application Management API, click [here](../../../glue42-concepts/application-management/net/index.html). Keep in mind that the `Clients` app must be open when you click on a notification, if you want the `ShowContacts()` method to be invoked.
 
-So, now the `Contacts` app is opened, but you still need to have data in it. You can get your data from the `Clients` app. Go to the `ContactsService` class in `Clients`, implement the `FindWhoToCall()` method, invoke it from `Contacts` and use the result to update the UI. Do not forget to check if the service exists. 
+So, now the `Contacts` app is opened, but you still need to have data in it. You can get your data from the `Clients` app. Go to the `ContactsService` class in `Clients`, implement the `FindWhoToCall()` method, invoke it from `Contacts` and use the result to update the UI. Don't forget to check if the service exists. 
 
 ![Glue .Net Tutorial Chapter 5](../../../images/tutorials/enterprise-net/5-net.gif)
 

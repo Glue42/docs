@@ -2,7 +2,7 @@
 
 The Shared Contexts API is accessible through the [`glue.contexts`](../../../../reference/glue/latest/shared%20contexts/index.html) object.
 
-*See the JavaScript [Shared Contexts example](https://github.com/Glue42/js-examples/tree/master/shared-context-example) on GitHub.*
+*See the JavaScript [Shared Contexts example](https://github.com/Glue42/js-examples/tree/master/shared-contexts) on GitHub.*
 
 To get the names of all currently available shared contexts, use the [`all()`](../../../../reference/glue/latest/shared%20contexts/index.html#API-all) method:
 

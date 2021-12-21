@@ -327,7 +327,7 @@ There are several prerequisites when creating a custom Workspaces App:
 
 The `<Workspaces />` component has two props - `glue` and `components`. The `glue` prop expects the `glue` object returned by the initialized Glue42 library. The `components` prop is used to define the header area components (see [Header Area Components](#extending_workspaces-header_area_components)), the system popup components or apps (see [Replacing the System Popups](#extending_workspaces-custom_popups-replacing_the_system_popups)) and the Workspace content to be rendered (see [Composing Workspace Content](#extending_workspaces-composing_workspace_content)).
 
-*It is important to note that the `<Workspaces>` component is not meant to be used as a typical React component. Besides its rendering responsibilities, it also contains heavy logic. This component is meant to allow you to create a dedicated Workspaces App which must function as a standalone window - you must never use it as a part of another application, as this will lead to malfunctioning. The Workspaces App should be customized only using the available extensibility points.*
+*It is important to note that the `<Workspaces>` component isn't meant to be used as a typical React component. Besides its rendering responsibilities, it also contains heavy logic. This component is meant to allow you to create a dedicated Workspaces App which must function as a standalone window - you must never use it as a part of another application, as this will lead to malfunctioning. The Workspaces App should be customized only using the available extensibility points.*
 
 The following example shows the `<Workspaces />` component props, their properties and default values:
 
@@ -721,7 +721,7 @@ const popupRef = React.createRef();
 const [popupResized, popupHidden] = useWorkspacePopup(popupRef);
 ```
 
-- `useWorkspaceWindowClicked()` - accepts a callback that is invoked when a window in the Frame is focused. A generic `onClick` event will not work for handling window clicks, because although the Workspaces App is a web application, it contains different applications from different processes. The hook returns an unsubscribe function, however, this unsubscribe function is called when the component is unmounted so implementing cleanup logic is usually unnecessary;
+- `useWorkspaceWindowClicked()` - accepts a callback that is invoked when a window in the Frame is focused. A generic `onClick` event won't work for handling window clicks, because although the Workspaces App is a web application, it contains different applications from different processes. The hook returns an unsubscribe function, however, this unsubscribe function is called when the component is unmounted so implementing cleanup logic is usually unnecessary;
 
 The following example demonstrates how to create a custom popup using the `useWorkspacePopup()` and `useWorkspaceWindowClicked()` hooks:
 
@@ -789,7 +789,7 @@ const App = () => {
 export default App;
 ```
 
-*Note that it is not advisable to add complex components as additional Workspace content - the `WorkspaceContents` property is meant to allow you to add styling elements or interaction areas (simple toolbars, buttons, etc.) around the usual Workspace content.*
+*Note that it isn't advisable to add complex components as additional Workspace content - the `WorkspaceContents` property is meant to allow you to add styling elements or interaction areas (simple toolbars, buttons, etc.) around the usual Workspace content.*
 
 The `<WorkspaceContents />` component expects a Workspace ID as a prop.
 
@@ -845,8 +845,8 @@ To use custom styles for the Workspaces App, simply import a your CSS file after
 
 You should consider the following technical limitations when using the `@glue42/workspaces-ui-react` library:
 
-- Due to the mechanism used for rendering Glue42 Windows, when running under Windows 10 a single color must always be transparent. The color is specified in the [`stickywindows.json`](../../../../assets/configuration/stickywindows.json) system configuration file (see also [Glue42 Windows](../../../../developers/configuration/glue42-windows/index.html)) and should not be used individually or in a gradient as it will always be rendered as fully transparent.
+- Due to the mechanism used for rendering Glue42 Windows, when running under Windows 10 a single color must always be transparent. The color is specified in the [`stickywindows.json`](../../../../assets/configuration/stickywindows.json) system configuration file (see also [Glue42 Windows](../../../../developers/configuration/glue42-windows/index.html)) and shouldn't be used individually or in a gradient as it will always be rendered as fully transparent.
 - For the previous reason the popups must not have shadows or any transparency if they are positioned over any of the apps in the Workspace.
 - To ensure full compatibility with Windows 7 and Windows 10, you must use the `<WorkspacePopup />` component or the `useWorkspacePopup()` and `useWorkspaceWindowClicked()` hooks for your custom popups (except for any custom system popups where this is already handled internally).
 - The Frame doesn't have a Glue42 Window object (`glue.windows.my()` returns `undefined`).
-- Refs to the custom components passed to the `<Workspaces />` component shouldn't be used in any parent component of `<Workspaces />` because the children of `<Workspaces />` are not immediately rendered and therefore these refs will not work as expected. 
+- Refs to the custom components passed to the `<Workspaces />` component shouldn't be used in any parent component of `<Workspaces />` because the children of `<Workspaces />` aren't immediately rendered and therefore these refs won't work as expected. 

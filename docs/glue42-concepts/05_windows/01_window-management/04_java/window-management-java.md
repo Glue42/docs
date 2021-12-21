@@ -24,7 +24,7 @@ glue.windows().register(handle)
 
 ## Controlling the Window
 
-Once an application window is registered, Glue42 Windows will accept full control over the window position, size and visibility. The application should not use native methods (for example, Swing calls) to control the window as this will interfere with the Glue42 window management.
+Once an application window is registered, Glue42 Windows will accept full control over the window position, size and visibility. The application shouldn't use native methods (for example, Swing calls) to control the window as this will interfere with the Glue42 window management.
 
 The Java Window Management API allows you to control the following window properties:
 

@@ -129,7 +129,7 @@ Now that we have the applications defined, it is time to "glue" them together be
 
 We will start with the **Portfolio** window, where we will demonstrate **registering an Interop method** (`SetParty()`), which, when called, will trigger the window to re-load the portfolio for the selected **party** (client).
 
-Since different applications might be using different party identifiers, when we define a party, we will define it as a `Composite` and use the party ID's as members of this composite parameter. We also need to check if this has not been already defined, and either re-use it directly, if it contains all we need, or consult with the other developer teams to include our party ID.
+Since different applications might be using different party identifiers, when we define a party, we will define it as a `Composite` and use the party ID's as members of this composite parameter. We also need to check if this hasn't been already defined, and either re-use it directly, if it contains all we need, or consult with the other developer teams to include our party ID.
 
 Assuming we are the first to propose the **party** object, our method registration will have:
 
@@ -142,7 +142,7 @@ Assuming we are the first to propose the **party** object, our method registrati
 
 Your task is to register `SetParty()` - in `portfolio.js`, look for `TUTOR_TODO Chapter 2.1` and do that. Once your method is invoked, call `loadPortfolio()` and pass the `pId` of `party`. You may want to read about [Interop Method Definition](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_registration-method_definition) before you start implementing this part.
 
-**Note**: You don't need to move to the **Clients** window and code the method invocation there in order to test the method. Verify that it works by invoking `SetParty()` from the **Developer Console**. Simply typing `SetParty()` in the console will not work, because `SetParty()` is not a method that is defined in the global namespace. `SetParty()` is a special Interop method and should be invoked via the API:
+**Note**: You don't need to move to the **Clients** window and code the method invocation there in order to test the method. Verify that it works by invoking `SetParty()` from the **Developer Console**. Simply typing `SetParty()` in the console won't work, because `SetParty()` isn't a method that is defined in the global namespace. `SetParty()` is a special Interop method and should be invoked via the API:
 
 ```javascript
 const invokeArgs = {
@@ -310,16 +310,16 @@ These settings will make our application feel more like a single app, instead of
 
  In `clients.js` find `TUTOR_TODO Chapter 4.2 Task 1` - you will need to tweak the `options` object to set various `allow` attributes and dimensions. Your task is to make sure that the newly created **Portfolio** window:
 - is in HTML mode;
-- cannot be minimized, maximized, collapsed or closed;
+- can't be minimized, maximized, collapsed or closed;
 - has minimum height of 400 and minimum width of 600 pixels;
 
 The [window settings documentation](../../../glue42-concepts/windows/window-management/javascript/index.html#window_settings) may come in handy here.
 
 **Important note!**   
-*You may have noticed that we are configuring the **Portfolio** window twice (once in the config file and once from the `options` object in our code). The reason is that for the time being we are using the **Window Management** API to open a new window/application. When we do this, the application config file is not taken into account. The proper way to open an application is by using the **Application Management** API, which we will take a look at in **Chapter 5**. When we start using the **Application Management** API, our settings in the config file will be taken into account, but we could still override them with our `options` object.*
+*You may have noticed that we are configuring the **Portfolio** window twice (once in the config file and once from the `options` object in our code). The reason is that for the time being we are using the **Window Management** API to open a new window/application. When we do this, the application config file isn't taken into account. The proper way to open an application is by using the **Application Management** API, which we will take a look at in **Chapter 5**. When we start using the **Application Management** API, our settings in the config file will be taken into account, but we could still override them with our `options` object.*
 
 Finally, in order to detect when the **Clients** window is closed, you will use a **Window Management** API event ([`windowRemoved()`](../../../reference/glue/latest/windows/index.html#API-windowRemoved)), so that when **Clients** is closed, you will close the **Portfolio** window as well.
-But how would you know which window is the **Clients** window? The user could be running multiple instances, so you cannot simply test whether the name of the window starts with `clients_window`. So, we need to pass the instance (window [`id`](../../../reference/glue/latest/windows/index.html#GDWindow-id)) of the **Clients** window to the **Portfolio**. One way would be to pass it in the URL, but what if we want to pass more complex data (objects, arrays or a mix of them)?
+But how would you know which window is the **Clients** window? The user could be running multiple instances, so you can't simply test whether the name of the window starts with `clients_window`. So, we need to pass the instance (window [`id`](../../../reference/glue/latest/windows/index.html#GDWindow-id)) of the **Clients** window to the **Portfolio**. One way would be to pass it in the URL, but what if we want to pass more complex data (objects, arrays or a mix of them)?
 Glue42 allows one window to pass a context (JSON-serializable object, a non-cyclic directed graph) to another window, via configuration (in the JSON file) and programmatically (in the [`glue.windows.open()`](../../../reference/glue/latest/windows/index.html#API-open) call). So, you will need to pass your window [`id`](../../../reference/glue/latest/windows/index.html#GDWindow-id) as the initial context to the **Portfolio** window you are opening, so that in the **Portfolio** window you can subscribe for [`glue.windows.windowRemoved()`](../../../reference/glue/latest/windows/index.html#API-windowRemoved) and close the **Portfolio** window when the **Clients** window is closed. Create a `context` attribute (object) in the `options` object, and set any properties you want, e.g. `parentWindowId: yourWindowId`.
 After that, in `portfolio.js` find `TUTOR_TODO Chapter 4.2 Task 2` in the `setUpWindowEventsListeners()` function. You have to subscribe for [`glue.windows.onWindowRemoved()`](../../../reference/glue/latest/windows/index.html#API-onWindowRemoved) and in the callback, check whether the [`id`](../../../reference/glue/latest/windows/index.html#GDWindow-id) attribute of the passed window object matches the [`id`](../../../reference/glue/latest/windows/index.html#GDWindow-id) which you passed in the initial window context ([`glue.windows.my().context`](../../../reference/glue/latest/windows/index.html#GDWindow-context)), and if they do, close the **Portfolio** window ([`glue.windows.my().close()`](../../../reference/glue/latest/windows/index.html#GDWindow-close)).
 As a last touch, go to `clients.js` and add the loader animations in the `getClients()` function, where you will find `TUTOR_TODO chapter 4.2 Task 3` -  for showing the loader, and `TUTOR_TODO chapter 4.2 Task 4` - for hiding it. Show the loader before you initiate the request ([`glue.windows.my().showLoader()`](../../../reference/glue/latest/windows/index.html#GDWindow-showLoader)), and hide it ([`glue.windows.my().hideLoader()`](../../../reference/glue/latest/windows/index.html#GDWindow-hideLoader)) in the [**always**](http://api.jquery.com/jquery.ajax/) event of the `$.ajax` `Promise`.
@@ -328,7 +328,7 @@ As a last touch, go to `clients.js` and add the loader animations in the `getCli
 
 ### 4.3. Tabbed Windows
 
-The users say it would be great if they can see multiple client portfolios at once. They are not sure how this will work, because they worry about screen real estate.
+The users say it would be great if they can see multiple client portfolios at once. They aren't sure how this will work, because they worry about screen real estate.
 
 In this chapter we will use the **Tabbed Windows** feature to extend our application. We will keep the option to open a generic **Portfolio** window below the **Clients** window, but we will add the option to stack individual **Portfolio** tabs to the right of the **Clients** window. The idea here is to create a tab frame the first time we select a **client**, put the **Portfolio** window in it and every time the user clicks on a different **client**, we will add another window as a tab in the same tab frame. We are also going to name them after the selected **client** by using the `setTitle()` method on the window object, and also demonstrate passing context from the **Clients** to the **Portfolio** window, something which is unique to Glue42 Enterprise.
 
@@ -344,7 +344,7 @@ Opening a tab window means that you will have to use a different window mode in 
 To put the **Portfolio** windows on the right of the **Clients** window, make sure you pass the **Clients** window [`id`](../../../reference/glue/latest/windows/index.html#GDWindow-id) in the [`relativeTo`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeTo) attribute, and set [`relativeDirection`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeDirection) to `"right"`. Note that only the first **Portfolio** tab needs the [`relativeTo`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeTo) and [`relativeDirection`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeDirection) attributes. Provided that consequent tabs specify the same [`tabGroupId`](../../../reference/glue/latest/windows/index.html#GDWindow-tabGroupId), they will be grouped together. The documentation for [finding windows](../../../glue42-concepts/windows/window-management/javascript/index.html#finding_windows) may help you here.
 Finally, in order to pass the selected `party` to the newly created **Portfolio** tab, use the [`context`](../../../reference/glue/latest/windows/index.html#GDWindow-context) object to pass the `party` object.
 
-Next, in `portfolio.js`, navigate to `TUTOR_TODO chapter 4.3 Task 2` in the `setUpAppContent()` method. Up until now we registered the Interop methods, but now we may not need to do that. If the current **Portfolio** window is created as a tab, we should not register the method, because this will break our idea of individual portfolio windows. Achieving this effect is pretty easy:
+Next, in `portfolio.js`, navigate to `TUTOR_TODO chapter 4.3 Task 2` in the `setUpAppContent()` method. Up until now we registered the Interop methods, but now we may not need to do that. If the current **Portfolio** window is created as a tab, we shouldn't register the method, because this will break our idea of individual portfolio windows. Achieving this effect is pretty easy:
 
 - Get the window context ([`glue.windows.my().context`](../../../reference/glue/latest/windows/index.html#GDWindow-context)).
 - Check if it contains the passed `party` object.
@@ -421,7 +421,7 @@ Finally, upon clicking **Gather**, get the detached windows from the **Clients**
 
 ## 5. Application Management
 
-We are making a good progress with our application, but now is a good moment to take a step back and improve on something. Up until this moment we have been using the **Window Management** API to open applications. This works fine, but it is not the proper way to manage applications in Glue42 Enterprise. Now, we are going to take a look at the **Application Management** API and see how and why we should use it to open our applications.
+We are making a good progress with our application, but now is a good moment to take a step back and improve on something. Up until this moment we have been using the **Window Management** API to open applications. This works fine, but it isn't the proper way to manage applications in Glue42 Enterprise. Now, we are going to take a look at the **Application Management** API and see how and why we should use it to open our applications.
 
 As we previously discussed, opening applications via the **Window Management** API completely bypasses the settings in the JSON file. This leads to some confusion and possibly mistakes. Opening an application via the **Application Management** API ensures that our settings will be taken into account and we can still override them in our code (by providing a [`windowSettings`](../../../reference/glue/latest/windows/index.html#GDWindow-tabs) object).
 
@@ -434,7 +434,7 @@ Modifying your code to use the **Application Management** API is quite easy. In 
 You can also remove the window style properties like [`minHeight`](../../../reference/glue/latest/windows/index.html#WindowSettings-minHeight) and [`allowMinimize`](../../../reference/glue/latest/windows/index.html#WindowSettings-allowMinimize) and set them in the configuration file.
 
 Next, in the `openTabWindow()` function find `TUTOR_TODO Chapter 5 Task 2` and go through the same process as in `Task 1`.
-Note that you cannot re-use the filtering you (likely) did in `openTabWindow()`, because you cannot set the window name. So, you need to get creative. What else is unique to the tabs that we can use as a filtering condition?
+Note that you can't re-use the filtering you (likely) did in `openTabWindow()`, because you can't set the window name. So, you need to get creative. What else is unique to the tabs that we can use as a filtering condition?
 
 ## 6. Glue42 Search Service
 
@@ -550,7 +550,7 @@ After some brainstorming with developers from the other teams, we have decided t
 
 Using Glue42 [Shared Contexts](../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html), we will broadcast the theme change to all applications on the user's desktop. When our applications start, they will query the theme name by reading the shared context and will automatically switch to the currently used theme.
 
-In this assignment, you will need to add theme support in your application. We have already developed the theme switching application for you. It is not a big deal, just a couple of calls, but feel free to check out its code.
+In this assignment, you will need to add theme support in your application. We have already developed the theme switching application for you. It isn't a big deal, just a couple of calls, but feel free to check out its code.
 
 - Deploy the theme switching application in [**Glue42 Enterprise**](https://glue42.com/enterprise/) (copy the `tutorial-theme-chooser-applications.json` file from the `support` directory) to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) `config` folder.
 - Switch to your code and find `TUTOR_TODO Chapter 10 Task 1` in `clients.js` and `TUTOR_TODO Chapter 10 Task 2` in `portfolio.js`. Subscribe for context changes (the context event is called `theme`) in both tasks. You need to check the `name` property in the context change you receive - if it is `dark`, you will need to call `setTheme("bootstrap-dark.min.css")`, and if it is `light`, call `setTheme("bootstrap.min.css")`.
@@ -562,7 +562,7 @@ Here is what your app will look like after you have implemented the functionalit
 
 ## 11. Metrics and Logging
 
-An operative just emailed us about a pilot user claiming that when he selects a **client**, either the client's **portfolio** will not load at all or will take too long to load. He cannot remember which **client** that was.
+An operative just emailed us about a pilot user claiming that when he selects a **client**, either the client's **portfolio** won't load at all or will take too long to load. He can't remember which **client** that was.
 
 In this chapter, using the [Metrics](../../../glue42-concepts/metrics/javascript/index.html) API and [reference](../../../reference/glue/latest/metrics/index.html), we will make our application:
 

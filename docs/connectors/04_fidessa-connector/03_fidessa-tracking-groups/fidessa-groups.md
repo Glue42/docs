@@ -78,4 +78,4 @@ If there is no active mapping service, the value for the `instrument.id` propert
 }
 ```
 
-When a Glue42 enabled application updates the Channel context, the Fidessa Connector first tries to retrieve the instrument ID from the configured `fimPath` (see [Connection Settings](../connection/index.html#settings)) and if no instrument ID is available there, the value of the `instrument.id` property is sent to the mapping service. If no mapping service is available, or if the mapping service returns an object which does not contain an `instrument.id.fim` property, the update is ignored. 
+When a Glue42 enabled application updates the Channel context, the Fidessa Connector first tries to retrieve the instrument ID from the configured `fimPath` (see [Connection Settings](../connection/index.html#settings)) and if no instrument ID is available there, the value of the `instrument.id` property is sent to the mapping service. If no mapping service is available, or if the mapping service returns an object which doesn't contain an `instrument.id.fim` property, the update is ignored. 

@@ -105,7 +105,7 @@ glueWindowOptions.WithTitle("My Window");
 IGlueWindow glueWindow = await glue.GlueWindows.RegisterWindow(this.Handle, glueWindowOptions);
 ```
 
-WinForms windows do not support automatic unregistration. You should explicitly call `Unregister()` when the window is closed:
+WinForms windows don't support automatic unregistration. You should explicitly call `Unregister()` when the window is closed:
 
 ```csharp
 glueWindow.Unregister();
@@ -131,7 +131,7 @@ glue.GlueWindows.RegisterAppWindow(myWindow, myWindow, myWindowAppName,
 
 ## Window Operations
 
-Once an application window is registered, the Window Management API will accept full control over the window positioning, sizing and visibility. The application should not use *native* methods (for example, WPF/WinForms calls) to control the window as it will interfere with the Glue42 window management. 
+Once an application window is registered, the Window Management API will accept full control over the window positioning, sizing and visibility. The application shouldn't use *native* methods (for example, WPF/WinForms calls) to control the window as it will interfere with the Glue42 window management. 
 
 You can perform operations on the current window and on any other registered window.
 
@@ -373,9 +373,28 @@ var subscription = window.Subscribe(
 );
 ```
 
+## Frame Buttons
+
+The Window Management API allows placing custom buttons in the frame area of the window and handling clicks on them.
+
+To add a frame button, use the `Update()` method of a Glue42 Window instance. The following example demonstrates how to add a frame button, specify an icon for it and handle clicks on it:
+
+```csharp
+glueWindow.Update(windowUpdate => windowUpdate.AddButton(button =>
+    {
+        button.ButtonId = "btn" + Guid.NewGuid().ToString("N");
+        // To set a button icon you can also use `button.ImageBase64` and supply the respective base64 encoded string.
+        button.Image = Image.FromFile("button-image.png");
+        button.OnClickAction = (@event, buttonInfo) =>
+        {
+            // Handle button clicks.
+        };
+    }));
+```
+
 ## WPF Example
 
-This is a minimalistic WPF example that registers its main window as a Glue42 window. 
+This is a minimalistic WPF example that registers its main window as a Glue42 Window. 
 
 *See the .NET [WPF example](https://github.com/Glue42/net-examples/tree/master/wpf-sw) on GitHub.*
 

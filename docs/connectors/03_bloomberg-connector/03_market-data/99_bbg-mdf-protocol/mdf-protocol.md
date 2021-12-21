@@ -61,4 +61,4 @@ This allows you to "clear" and close existing sessions by name.
 T42.MDFApi.DescribeServiceSchemas (String operation, String service, Value settings)
 ```
 
-This allows you to describe service operations and get their request/response schemas. This is particularly helpful when you cannot remember the arguments of a request or you have typos/wrong types of values. If you don't specify the operation argument, the method will return all operations within the specified service. 
+This allows you to describe service operations and get their request/response schemas. This is particularly helpful when you can't remember the arguments of a request or you have typos/wrong types of values. If you don't specify the operation argument, the method will return all operations within the specified service. 

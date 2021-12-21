@@ -126,4 +126,4 @@ glue.intents().addIntentListener(intent, (context) -> {
 });
 ```
 
-*Note that when you register an Intent only at runtime (the Intent is not defined in the application configuration file), your application must be running in order to handle the Intent. If your application is not running when this Intent is raised, it will not be available as a possible Intent handler.*
+*Note that when you register an Intent only at runtime (the Intent isn't defined in the application configuration file), your application must be running in order to handle the Intent. If your application isn't running when this Intent is raised, it won't be available as a possible Intent handler.*

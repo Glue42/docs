@@ -12,7 +12,7 @@ When the Fidessa Connector is running, the Fidessa Tracking Groups and the [Glue
 
 The Fidessa Connector can be used together with the [Bloomberg Connector](../../bloomberg-connector/overview/index.html) in order to achieve syncing data between Fidessa, Bloomberg and all Glue42 enabled apps.
 
-*Note that the Glue42 Fidessa Connector is an optional component of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and is not available in the public trial installer. To find out more about the Fidessa Connector, please [contact us](https://glue42.com/sales-contact/) at `sales@glue42.com`.*
+*Note that the Glue42 Fidessa Connector is an optional component of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and isn't available in the public trial installer. To find out more about the Fidessa Connector, please [contact us](https://glue42.com/sales-contact/) at `sales@glue42.com`.*
 
 ## Requirements
 

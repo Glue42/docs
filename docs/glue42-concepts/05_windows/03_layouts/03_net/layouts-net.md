@@ -141,7 +141,7 @@ Another way of restoring your state is to fetch it from the Glue42 instance when
 
 ```csharp
 var initializeOptions = new InitializeOptions();
-// we do not specify a restore state callback but only save state callback
+// we don't specify a restore state callback but only save state callback
 initializeOptions.SetSaveRestoreStateEndpoint(saveState => new AppState
     {
         DarkThemeOn = false,

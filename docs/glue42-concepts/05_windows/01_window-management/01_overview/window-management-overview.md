@@ -10,7 +10,7 @@ The Window Management API lets you create and manipulate windows and is the basi
 	- add custom buttons to the windows and respond accordingly to user interaction with them;
 	- organize windows into tabs that the user can also tear off;
 
-Native applications, as opposed to web applications, can have more than one window. This means that after you make your native application Glue42 enabled, your application windows do not automatically become Glue42 enabled. You can choose which windows to register (or not register) as Glue42 windows so that they can use [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionalities.
+Native applications, as opposed to web applications, can have more than one window. This means that after you make your native application Glue42 enabled, your application windows don't automatically become Glue42 enabled. You can choose which windows to register (or not register) as Glue42 windows so that they can use [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionalities.
 
 Web and native windows are handled by [**Glue42 Enterprise**](https://glue42.com/enterprise/) as window abstractions. This means that:
 - You can use any technology adapter we offer (JavaScript, .NET, Java, etc.) to control any window (web or native).

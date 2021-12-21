@@ -84,7 +84,7 @@ Private Sub MyVBAMethod_HandleInvocationRequest(ByVal request As IGlueInvocation
     End If
   
     HandleErrors:
-        ' If an error occurs or "Operation" is not recognised,
+        ' If an error occurs or "Operation" isn't recognised,
         ' send an error message and an empty result value.
         request.SendFailure "Invalid argument(s) provided.", Glue.CreateGlueValues
 End Sub
@@ -213,7 +213,7 @@ End Sub
 
 - [`InvokeAsync`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator-invokeasync) handles the invocation results with the [`HandleInvocationResult`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator-handleinvocationresult) event of the [`GlueMethodInvocator`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator) instance. Its handler is executed when the associated method invocation has completed (successfully or otherwise). 
 
-*If you are not interested in the invocation result, you still need to provide an empty implementation for the `HandleInvocationResult` event or, alternatively, declare the `GlueMethodInvocator` instance without `WithEvents`.*
+*If you aren't interested in the invocation result, you still need to provide an empty implementation for the `HandleInvocationResult` event or, alternatively, declare the `GlueMethodInvocator` instance without `WithEvents`.*
 
 Below is an example of a subroutine handling an invocation result and demonstrating how to check the method invocation status and extract the return values:
 
@@ -394,7 +394,7 @@ Private Sub MyVbaStream_HandleSubscriber(ByVal subscriber As IVBGlueStreamSubscr
 End Sub
 ```
 
-*Note that new subscribers will not automatically get the data that has been previously published to the stream. This handler is the place where you can send private updates to the new subscriber, if necessary.* 
+*Note that new subscribers won't automatically get the data that has been previously published to the stream. This handler is the place where you can send private updates to the new subscriber, if necessary.* 
 
 #### Handling Removed Subscriptions
 
@@ -408,7 +408,7 @@ Private Sub MyVBAStream_HandleSubscriberLost(ByVal subscriber As IGlueStreamSubs
 End Sub
 ```
 
-Cancelling a subscription can be initiated either by the subscriber application or the stream publisher application. This handler is invoked in both cases. Handling this event can be useful if you want to record or propagate it. If this event is not significant for the application, you must provide an empty handler subroutine.
+Cancelling a subscription can be initiated either by the subscriber application or the stream publisher application. This handler is invoked in both cases. Handling this event can be useful if you want to record or propagate it. If this event isn't significant for the application, you must provide an empty handler subroutine.
 
 #### Default Event Handlers
 
@@ -440,7 +440,7 @@ You can also push data directly to a subscriber by using the [`Push`](../../../.
 
 Using stream branches allows you to group subscribers by any criterion and target stream data at specific groups of subscribers. Branches are distinguished by their name (key). Each Glue42 stream has a default (unnamed) branch on which it accepts subscribers and to which it pushes data if no branch is specified.
 
-To accept a subscription on a branch, specify the branch name when accepting the subscription. If the branch does not exist, it will be automatically created:
+To accept a subscription on a branch, specify the branch name when accepting the subscription. If the branch doesn't exist, it will be automatically created:
 
 ```vbnet
 request.Accept "branch_01", Nothing
@@ -572,7 +572,7 @@ Private Sub StreamConsumer_HandleStreamStatus(ByVal stream As IGlueMethodInfo, B
 End Sub
 ```
 
-You may provide an empty implementation if you are not interested in performing any actions when the stream subscription status changes.
+You may provide an empty implementation if you aren't interested in performing any actions when the stream subscription status changes.
 
 #### Stream Closed Handler
 
@@ -586,4 +586,4 @@ Private Sub StreamConsumer_HandleStreamClosed(ByVal stream As IGlueMethodInfo)
   ...
 End Sub
 ```
-You may provide an empty implementation if you are not interested in performing any actions when the subscription has been terminated. 
+You may provide an empty implementation if you aren't interested in performing any actions when the subscription has been terminated. 

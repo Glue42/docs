@@ -32,7 +32,7 @@ module.setState(100, "Disconnected from backend.");
 module.setState(0, "Connected to backend.");
 
 // State AMBER, some problems.
-module.setState(50, "Backend operational but some endpoints are not available.");
+module.setState(50, "Backend operational but some endpoints aren't available.");
 ```
 
 The state is a number between 0 and 100 and the description argument is a string explaining the state.
@@ -147,7 +147,7 @@ Wrapping the function also gives you the ability to mock responses for testing, 
 
 If you have instrumented your application properly, you should be able to debug any problem without having to look at log files, even if the problem is with the backend.
 
-Avoid leaking personal information (IDs are OK, names are not, URLs should be fine).
+Avoid leaking personal information (IDs are OK, names aren't, URLs should be fine).
 
 ## Reference
 

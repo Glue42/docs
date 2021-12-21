@@ -53,7 +53,7 @@ const config = { channels: true };
 window.glue = await Glue(config);
 ```
 
-*See the JavaScript [Channels example](https://github.com/Glue42/js-examples/tree/master/channels-example) on GitHub.*
+*See the JavaScript [Channels example](https://github.com/Glue42/js-examples/tree/master/channels) on GitHub.*
 
 ## Current Channel
 
@@ -124,7 +124,7 @@ The callback receives the data from the Channel and information about the curren
 The callback will be invoked in three cases:
 - the `data` property of the Channel you are currently on is updated;
 - the user has switched the Channel and you are receiving a snapshot of the new Channel data; 
-- your app is not joined to a Channel anymore (e.g., the user has deselected the current Channel). In this case, both `data` and `channelInfo` will be `undefined`;
+- your app isn't joined to a Channel anymore (e.g., the user has deselected the current Channel). In this case, both `data` and `channelInfo` will be `undefined`;
 
 To subscribe for updates from a specific Channel, use the [`subscribeFor()`](../../../../reference/glue/latest/channels/index.html#API-subscribeFor) method:
 
@@ -168,7 +168,7 @@ glue.channels.subscribe(handler);
 
 ## Publishing Data
 
-To update the context of the Channel, use [`publish()`](../../../../reference/glue/latest/channels/index.html#API-publish). The `publish()` method accepts two parameters - data to publish (required) and an optional Channel ID specifying which Channel context to update. If you do not specify a Channel ID, the current Channel will be updated.
+To update the context of the Channel, use [`publish()`](../../../../reference/glue/latest/channels/index.html#API-publish). The `publish()` method accepts two parameters - data to publish (required) and an optional Channel ID specifying which Channel context to update. If you don't specify a Channel ID, the current Channel will be updated.
 
 Updating the current Channel:
 
@@ -189,7 +189,7 @@ await glue.channels.publish(data, channelName);
 
 Note that a Channel may contain multiple data structures, e.g. `RIC` and `clientId`. When executing the code above, only the `RIC` field will be updated, leaving the other fields of the context unchanged.
 
-The [`publish()`](../../../../reference/glue/latest/channels/index.html#API-publish) method will throw an exception if you are not on a Channel and try to publish data.
+The [`publish()`](../../../../reference/glue/latest/channels/index.html#API-publish) method will throw an exception if you aren't on a Channel and try to publish data.
 
 ## Channel Events
 
@@ -201,7 +201,7 @@ const handler = (newChannel) => {
         // Handle the case where you have switched to another Channel.
         console.log(newChannel);
     } else {
-        // Handle the case where your app is not joined to any Channel 
+        // Handle the case where your app isn't joined to any Channel 
         // (e.g., the user has deselected the current Channel).
         console.log("No Channel selected.")
     };

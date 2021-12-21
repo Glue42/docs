@@ -31,7 +31,7 @@ var initializeOptions = new InitializeOptions()
         IncludedFeatures = GDFeatures.UseAppManager | GDFeatures.UseGlueWindows
     };
 
-// The initialization options are not required.
+// The initialization options aren't required.
 // If skipped, Glue42 will be initialized with the default options 
 // (default assembly name for ApplicationName and with all features included).
 
@@ -47,7 +47,7 @@ Glue42.InitializeGlue(initializeOptions)
 
 ## Application Configuration
 
-To add your .NET application to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) Application Manager, you need to define a JSON configuration file and add it to the application config store. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` should be replaced by the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). This way, your files will not be erased or overwritten, in case you decide to upgrade or change your [**Glue42 Enterprise**](https://glue42.com/enterprise/) version.
+To add your .NET application to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) Application Manager, you need to define a JSON configuration file and add it to the application config store. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` should be replaced by the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). This way, your files won't be erased or overwritten, in case you decide to upgrade or change your [**Glue42 Enterprise**](https://glue42.com/enterprise/) version.
 
 *Note that you can also launch manually your Glue42 enabled .NET app and it will automatically register itself and its child windows in the [**Glue42 Enterprise**](https://glue42.com/enterprise/) in-memory store. In this case, your app will be available in the Glue42 environment until the next restart of [**Glue42 Enterprise**](https://glue42.com/enterprise/). This is useful if you have a multi window Glue42 enabled application with dynamic Glue42 enabled child windows (e.g., different user configurations, software updates, etc.) - when your main window starts its child windows, they will be registered automatically.*
 
@@ -74,7 +74,7 @@ Application configuration example:
 | `"command"` | The actual command to execute (the EXE file name). |
 | `"parameters"` | Specifies command line arguments. |
 
-*Note that the definition should be a valid JSON file (you should either use forward slash or escape the backslash).*
+*Note that the definition should be a valid JSON file (you should either use a forward slash or escape the backslash).*
 
 For more detailed information about the application definitions, see the [Configuration](../../../../developers/configuration/application/index.html#application_configuration-exe) documentation.
 
@@ -95,7 +95,7 @@ var initializeOptions = new InitializeOptions()
         IncludedFeatures = GDFeatures.UseAppManager | GDFeatures.UseGlueWindows
     };
 
-// The initialization options are not required.
+// The initialization options aren't required.
 // If skipped, Glue42 will be initialized with the default options 
 // (default assembly name for ApplicationName and with all features included).
 

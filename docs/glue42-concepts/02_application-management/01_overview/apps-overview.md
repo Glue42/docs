@@ -4,24 +4,25 @@ The Application Management API provides a way to manage [**Glue42 Enterprise**](
 
 - *Application* - a program as a logical entity, registered in [**Glue42 Enterprise**](https://glue42.com/enterprise/) with some metadata (name, description, icon, etc.) and with all the configuration needed to spawn one or more instances of it. The Application Management API provides facilities for retrieving application metadata and for detecting when an application is started.
 
-*On how to define and configure an application, see the [Application Configuration](../../../developers/configuration/application/index.html) section of the documentation.*
+*For details on how to define and configure an application, see the [Application Configuration](../../../developers/configuration/application/index.html) section.*
 
-- *Instance* - a running copy of an application. The Application Management API provides facilities for starting/stopping application instances and tracking application related events.
+- *Instance* - a running copy of an application. The Application Management API provides facilities for starting and stopping application instances and tracking application related events.
 
 ![App Management](../../../images/app-management/app-management.gif)
 
 ## Application Stores
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) can obtain application configurations from a path to a local app configurations folder, as well as from a remote REST service. The settings for defining application configuration stores can be edited in the `system.json` file of Glue42 Enterprise, located in `%LocalAppData%\Tick42\GlueDesktop\config`.
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) can obtain application configurations from a local store and from a remote REST service. The settings for the application configuration stores are defined in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in `%LocalAppData%\Tick42\GlueDesktop\config`.
 
-In the standard [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployment model, application definitions are not stored locally on the user machine but are served remotely. If [**Glue42 Enterprise**](https://glue42.com/enterprise/) is configured to use a remote FDC3 App Directory compatible application store, it will poll it periodically and discover new application definitions. The store implementation is usually connected to an entitlement system based on which different users can have different applications or versions of the same application. In effect, [**Glue42 Enterprise**](https://glue42.com/enterprise/) lets users run multiple versions of the same application simultaneously and allows for seamless forward/backward application rolling. 
+In the standard [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployment model, application definitions aren't stored locally on the user machine, but are served remotely. If [**Glue42 Enterprise**](https://glue42.com/enterprise/) is configured to use a remote application store, it will poll it periodically and discover new application definitions. The store implementation is usually connected to an entitlement system based on which different users can have different applications or versions of the same application. In effect, [**Glue42 Enterprise**](https://glue42.com/enterprise/) lets users run multiple versions of the same application simultaneously and allows for seamless forward/backward application rolling.
 
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) respects the FDC3 standards and can retrieve standard Glue42, as well as FDC3-compliant application definitions. For more details on working with FDC3-compliant apps, see the [FDC3 Compliance](../../../getting-started/fdc3-compliance/index.html) section, the [FDC3 App Directory documentation](https://fdc3.finos.org/docs/app-directory/overview) and the [FDC3 Application](https://fdc3.finos.org/schemas/1.2/app-directory#tag/Application) schema.
 
 ![App Stores](../../../images/configuration-stores/app-stores.png)
 
-### Local Path App Stores
+### Local App Stores
 
-To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load application configuration files from a local path, use the `"appStores"` top-level key. Set the `"type"` property to `"path"` and specify a relative or an absolute path to the application definitions. The environment variables set by [**Glue42 Enterprise**](https://glue42.com/enterprise/) can also be used as values:
+To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load application configuration files from a local path, use the `"appStores"` top-level key of the `system.json` file. Set the `"type"` property of the app store configuration object to `"path"` and specify a relative or an absolute path to the application definitions. The environment variables set by [**Glue42 Enterprise**](https://glue42.com/enterprise/) can also be used as values:
 
 ```json
 "appStores": [
@@ -46,21 +47,15 @@ To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load app
 ]
 ```
 
-The `"type"` property must be set to `"path"` and the `"path"` property must provide an absolute or a relative path to the application store.
-
-### REST Service App Stores
+### Remote App Stores
 
 Application configurations can also be hosted on a server and obtained from a REST service. 
 
-For a reference implementation of a remote application configurations store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example that implements the [FDC3 App directory](https://fdc3.finos.org/docs/1.0/appd-intro) and is compatible with [**Glue42 Enterprise**](https://glue42.com/enterprise/). This basic implementation does not take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the `README.md` in the repository.
+For a reference implementation of a remote application configurations store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example that implements the [FDC3 App Directory](https://fdc3.finos.org/docs/1.0/appd-intro) and is compatible with [**Glue42 Enterprise**](https://glue42.com/enterprise/). This basic implementation doesn't take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the README file in the repository.
 
 For a .NET implementation of a remote application configurations store, see the [.NET REST Config](https://github.com/Tick42/rest-config-example-net) example.
 
-If your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy is not configured to retrieve its configuration from a remote source, you will need to edit the `system.json` file (located in the `%LOCALAPPDATA%\Tick42\GlueDesktop\config` directory).
-
-#### Connecting to the REST Service
-
-To configure a connection to the REST service providing the application store, add a new entry to the `"appStores"` top-level key:
+To configure a connection to the REST service providing the application store, add a new entry to the `"appStores"` top-level key of the `system.json` file:
 
 ```json
 "appStores": [
@@ -77,7 +72,7 @@ To configure a connection to the REST service providing the application store, a
 ]
 ```
 
-The only required properties are `"type"`, which should be set to `"rest"`, and `"url"`, which is the address of the remote application store. You can also set the authentication, polling interval, cache persistence and cache folder.
+The only required properties for each app store configuration object are `"type"`, which should be set to `"rest"`, and `"url"`, which is the address of the remote application store. You can also set the authentication, polling interval, cache persistence and cache folder.
 
 | Property | Description |
 |----------|-------------|
@@ -86,19 +81,23 @@ The only required properties are `"type"`, which should be set to `"rest"`, and 
 | `"enablePersistentCache"` | Whether to cache and persist the configuration files locally (e.g., in case of connection interruptions). |
 | `"cacheFolder"` | Where to keep the persisted configuration files. |
 
-## Default Application Bounds
-
-When an application is started from the [Glue42 Toolbar](../../glue42-toolbar/index.html), its initial size and position is defined in the [application configuration](../../../developers/configuration/application/index.html). When the user moves or resizes an application, [**Glue42 Enterprise**](https://glue42.com/enterprise/) remembers its last position and size and uses them as initial bounds the next time the application starts. Saving the last window bounds is enabled by default for all applications, but can be disabled per application using the `"ignoreSavedLayout"` property in its configuration:
+The remote store must return application definitions in the following response shape:
 
 ```json
 {
-    "name": "my-app",
-    "type": "window",
-    ...
-    "ignoreSavedLayout": true,
-    "details": {
-        "url": "https://example.com",
-        ...
-    }
+    "applications": [
+        // List of application definition objects.
+        {...}, {...}
+    ]
 }
-``` 
+```
+
+You can also use the [Glue42 Server](../../glue42-server/index.html) for hosting and retrieving application stores. The [Glue42 Server](../../glue42-server/index.html) is a complete server-side solution for providing data to Glue42. To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch application configurations from a [Glue42 Server](../../glue42-server/index.html), set the `"type"` property of the app store configuration object to `"server"`:
+
+```json
+"appStores": [
+    {
+        "type": "server"
+    }
+]
+```

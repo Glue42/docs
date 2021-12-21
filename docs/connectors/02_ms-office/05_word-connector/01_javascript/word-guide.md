@@ -65,7 +65,7 @@ unsubscribe();
 
 Typically, you would have some contents formatted as HTML in your web application and would like to let the user edit this in Word. When the user updates the document, you may want to get the changes back into your application.
 
-Most of the time this is works, because HTML can express lots in terms of formatting. However, certain objects in Word, such as WordArt, embedded Excel spreadsheets, etc., do not have a round-trip representation in HTML and are automatically converted to images by Word. That is why the Glue42 Word Connector API lets you send dually formatted documents back and forth between your application and Word - one in HMTL format, which is used to display the document, and another in `DOCX` (the Word `XML` document format) which you send from your application to Word so you can keep the original objects editable.
+Most of the time this is works, because HTML can express lots in terms of formatting. However, certain objects in Word, such as WordArt, embedded Excel spreadsheets, etc., don't have a round-trip representation in HTML and are automatically converted to images by Word. That is why the Glue42 Word Connector API lets you send dually formatted documents back and forth between your application and Word - one in HMTL format, which is used to display the document, and another in `DOCX` (the Word `XML` document format) which you send from your application to Word so you can keep the original objects editable.
 
 ### Creating a New Document
 
@@ -85,7 +85,7 @@ The `Promise` returned by the [`openDocument()`](../../../../reference/glue4offi
 
 ### Preventing Save of Temporary Documents
 
-If your users need to edit data in Word, but are not allowed to save it locally and should instead return the data to be saved in your application, you can set the `inhibitLocalSave` flag to `true`, which will prevent the users from saving the temporary document.
+If your users need to edit data in Word, but aren't allowed to save it locally and should instead return the data to be saved in your application, you can set the `inhibitLocalSave` flag to `true`, which will prevent the users from saving the temporary document.
 
 ### Opening Existing Documents
 

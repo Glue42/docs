@@ -2,7 +2,7 @@
 
 The Application Management API is accessible through the [`glue.appManager`](../../../reference/glue/latest/appmanager/index.html) object.
 
-*See the JavaScript [Application Management example](https://github.com/Glue42/js-examples/tree/master/app-management-example) on GitHub.*
+*See the JavaScript [Application Management example](https://github.com/Glue42/js-examples/tree/master/app-management) on GitHub.*
 
 To restart [**Glue42 Enterprise**](https://glue42.com/enterprise/), use the [`restart()`](../../../reference/glue/latest/appmanager/index.html#API-restart) method. This will close all running applications and their instances and then restart [**Glue42 Enterprise**](https://glue42.com/enterprise/):
 

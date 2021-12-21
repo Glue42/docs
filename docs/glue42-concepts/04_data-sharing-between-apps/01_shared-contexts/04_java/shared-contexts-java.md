@@ -17,7 +17,7 @@ glue.contexts().subscribe("app-styling")
         }));
 ```
 
-If the specified shared context object does not exist, it will be created. In the example above, the changes to the context object can be handled in the `context.data(data -> {})` callback.
+If the specified shared context object doesn't exist, it will be created. In the example above, the changes to the context object can be handled in the `context.data(data -> {})` callback.
 
 ## Updating a Context
 
@@ -27,7 +27,7 @@ You can also update a shared context object by using `glue.contexts().update()` 
 glue.contexts().update("app-styling", Collections.singletonMap("backgroundColor", "red"));
 ```
 
-If the key you pass in the `Map` object exists in the shared context object, it will be overwritten with the new value. If it does not exist, it will be created. If the value of a key in the `Map` you pass to `glue.contexts().update()` is `null`, then that key will be deleted from the shared context object. 
+If the key you pass in the `Map` object exists in the shared context object, it will be overwritten with the new value. If it doesn't exist, it will be created. If the value of a key in the `Map` you pass to `glue.contexts().update()` is `null`, then that key will be deleted from the shared context object. 
 
 Let's say you have subscribed to a shared context named `"app-styling"`, which already has two entries - `"backgroundColor", "red"` and `"alternativeColor", "yellow"`. In the example below:
 - `"backgroundColor"` will be overwritten with a new value - `"blue"`;

@@ -97,7 +97,7 @@ MyValue = DynamicValue("ChildNodeName")
 
 Depending on whether `"ChildNodeName"` exists and its type, the return value from the named indexing can be:
 
-- `Variant`/[`GlueDynamicValue`](#classes-gluedynamicvalue) if `"ChildNodeName"` represents a composite value. If `"ChildNodeName"` does not exist, it will be automatically created as an empty composite value.
+- `Variant`/[`GlueDynamicValue`](#classes-gluedynamicvalue) if `"ChildNodeName"` represents a composite value. If `"ChildNodeName"` doesn't exist, it will be automatically created as an empty composite value.
 - `Variant`/`<some native type>` if `"ChildNodeName"` represents an elementary field.
 
 As indexing can return another instance of `GlueDynamicValue`, this allows for chained indexing to access nested composite values:
@@ -136,10 +136,10 @@ Operand1 = Args("operands")(0)
 Operand2 = Args("operands")(1)
 ' Access a string value inside a composite value.
 Reason = Args("metadata")("reason")
-' This will raise a "Type Mismatch" exception: "metadata" is a composite value which cannot be cast to "Integer".
+' This will raise a "Type Mismatch" exception: "metadata" is a composite value which can't be cast to "Integer".
 Error = Args("metadata")            
 ```
-Elementary fields are automatically cast to the compatible native type. Trying to assign to an incompatible type will raise an exception. Array elements can be accessed by their numeric index. Arrays cannot be directly cast to a native array type. Accessing a field which does not exist will return an empty [GlueDynamicValue](#classes-gluedynamicvalue).  
+Elementary fields are automatically cast to the compatible native type. Trying to assign to an incompatible type will raise an exception. Array elements can be accessed by their numeric index. Arrays can't be directly cast to a native array type. Accessing a field which doesn't exist will return an empty [GlueDynamicValue](#classes-gluedynamicvalue).  
 
 You can also store a lower-level composite value or array in a temporary variable and use it to access its fields. This helps avoid unnecessary repetitions of the path to deeper nested composite values and extra calls to the Glue42 COM library:
 
@@ -218,7 +218,7 @@ End Function
 
 This reference describes the components in the Glue42 COM library relevant to VBA. 
 
-*Note that the library also contains components that are not intended to be directly used by VBA applications.*
+*Note that the library also contains components that aren't intended to be directly used by VBA applications.*
 
 ## Enums
 
@@ -569,7 +569,7 @@ Function RegisterGlueWindow(hwnd As Long, windowEventHandler As IGlueWindowEvent
 
 *Return value:* [`GlueWindow`](#classes-gluewindow)
 
-*Note that the returned instance of `GlueWindow` should not be used to interact with the Glue42 window until the [`HandleWindowReady`](#classes-gluewindow-handlewindowready) event has been raised (i.e., the window registration is complete).*
+*Note that the returned instance of `GlueWindow` shouldn't be used to interact with the Glue42 window until the [`HandleWindowReady`](#classes-gluewindow-handlewindowready) event has been raised (i.e., the window registration is complete).*
 
 #### RegisterGlueWindowWithSettings
 
@@ -591,7 +591,7 @@ Function RegisterGlueWindowWithSettings(hwnd As Long, settings As GlueWindowSett
 
 *Return value:* [`GlueWindow`](#classes-gluewindow)
 
-*Note that the returned instance of `GlueWindow` should not be used to interact with the Glue42 window until the [`HandleWindowReady`](#classes-gluewindow-handlewindowready) event has been raised (i.e., the window registration is complete).*
+*Note that the returned instance of `GlueWindow` shouldn't be used to interact with the Glue42 window until the [`HandleWindowReady`](#classes-gluewindow-handlewindowready) event has been raised (i.e., the window registration is complete).*
 
 #### StartWithAppName
 
@@ -689,11 +689,11 @@ Function GetReflectData(fieldPath As String) as Variant
 
 - `Variant`/[`GlueDynamicValue`](#classes-gluedynamicvalue) if `fieldPath` refers to a composite value;  
 - `Variant`/`<some native type>` if `fieldPath` refers to an elementary field;  
-- `Variant`/`Empty` if the specified `fieldPath` does not exist;
+- `Variant`/`Empty` if the specified `fieldPath` doesn't exist;
 
 #### Open
 
-Opens a Glue42 context. If the context does not exist, it is automatically created with an empty data value.
+Opens a Glue42 context. If the context doesn't exist, it is automatically created with an empty data value.
 
 *Signature:*
 
@@ -719,14 +719,14 @@ Sub SetValue(fieldPath As String, Value)
 
 | Name | Type | Description |
 |------|------|-------------|
-| `fieldPath` | `String` | Path to the composite value or field in the composite value structure. Non-existent elements in the path are automatically created as composite values. If any of the path elements (apart from the last one) exist but are not composite values, the call will fail. |
+| `fieldPath` | `String` | Path to the composite value or field in the composite value structure. Non-existent elements in the path are automatically created as composite values. If any of the path elements (apart from the last one) exist but aren't composite values, the call will fail. |
 | `Value` | `Variant` | An instance of [`GlueDynamicValue`](#classes-gluedynamicvalue) to which the composite value or field will be set. See [Building Composite Values](#glue42_vba_concepts-composite_values-building_composite_values) for details about obtaining and initializing a `GlueDynamicValue`. |
 
 *Return value:* None
 
 #### Nonapplicable Methods
 
-The following methods are not intended to be used in VBA:
+The following methods aren't intended to be used in VBA:
 
 - `BuildAndSetContextData`
 - `BuildAndUpdateContextData`
@@ -754,7 +754,7 @@ Sub GlueContextManager_HandleContextUpdate(ByVal contextUpdate As IGlueContextUp
 
 #### Nonapplicable events
 
-The following events are not intended to be used in VBA:
+The following events aren't intended to be used in VBA:
 
 - `HandleContext`
 
@@ -812,7 +812,7 @@ Function GetReflectData(fieldPath As String) as Variant
 
 - `Variant`/[`GlueDynamicValue`](#classes-gluedynamicvalue) if `fieldPath` refers to a composite value;  
 - `Variant`/`<some native type>` if `fieldPath` refers to an elementary field;  
-- `Variant`/`Empty` if the specified `fieldPath` does not exist;
+- `Variant`/`Empty` if the specified `fieldPath` doesn't exist;
 
 ### GlueDynamicValue
 
@@ -848,7 +848,7 @@ Function Contains(Name As String) As Boolean
 
 #### Nonapplicable Methods
 
-The following methods are not intended to be used in VBA:
+The following methods aren't intended to be used in VBA:
 
 - `GetEnumerator`
 
@@ -885,7 +885,7 @@ Function GetReflectData(fieldPath As String) as Variant
 
 - `Variant`/[`GlueDynamicValue`](#classes-gluedynamicvalue) if `fieldPath` refers to a composite value;  
 - `Variant`/`<some native type>` if `fieldPath` refers to an elementary field;  
-- `Variant`/`Empty` if the specified `fieldPath` does not exist;  
+- `Variant`/`Empty` if the specified `fieldPath` doesn't exist;  
 
 #### SendFailure
 
@@ -938,7 +938,7 @@ The following may be provided as `result`:
 
 | Type | Description |
 |------|-------------|
-| [`VBGlueResult`](#types-vbglueresult) | An instance of `VBGlueResult` fully describing the result which will be returned back to the caller. You may initialize some or all properties as needed. The `method` property does not need to be initialized (its value is ignored), it will be automatically populated by Glue42 when delivering the result to the caller. |
+| [`VBGlueResult`](#types-vbglueresult) | An instance of `VBGlueResult` fully describing the result which will be returned back to the caller. You may initialize some or all properties as needed. The `method` property doesn't need to be initialized (its value is ignored), it will be automatically populated by Glue42 when delivering the result to the caller. |
 | [`GlueDynamicValue`](#classes-gluedynamicvalue) | Composite value to return to the caller. This is equivalent to providing a `VBGlueResult` with `Status = GlueMethodInvocationStatus_Succeeded`, `GlueData` initialized with the provided composite value, and all other properties initialized with empty/default values. |
 | `Nothing` | No value will be returned to the caller. This is equivalent to sending a `VBGlueResult` with `Status = GlueMethodInvocationStatus_Succeeded` and all other properties initialized with empty/default values. |
 
@@ -1014,7 +1014,7 @@ Sub InvokeAsync(method As String, targetRegex As String, args, all As Boolean, c
 
 Invokes a Glue42 method synchronously.
 
-*Note that invoking this method will block VBA execution until the method invocation completes. As VBA code runs in a single thread, it is not possible to synchronously invoke methods registered by the same VBA application.*
+*Note that invoking this method will block VBA execution until the method invocation completes. As VBA code runs in a single thread, it isn't possible to synchronously invoke methods registered by the same VBA application.*
 
 *Signature:*
 
@@ -1216,7 +1216,7 @@ Sub Unregister()
 
 #### Nonapplicable Methods
 
-The following methods are not intended to be used in VBA:
+The following methods aren't intended to be used in VBA:
 
 - `GatBranch`
 - `Push`
@@ -1376,7 +1376,7 @@ Sub GlueStreamConsumer_HandleSubscriptionActivated(ByVal subscription As IGlueSt
 | `subscription` | `IGlueStreamSubscription` | An instance of [`GlueStreamSubscription`](#classes-gluestreamsubscription). |  
 | `correlationId` | `String` | Optional user-defined string which was passed as a parameter to [`Subscribe`](#classes-gluestreamconsumer-subscribe) when the application initiated the stream subscription. |
 
-*Note that when this event is invoked, the subscription request has not yet been resolved.*
+*Note that when this event is invoked, the subscription request hasn't yet been resolved.*
 
 ### GlueStreamSubscription
 
@@ -1429,12 +1429,12 @@ Function Accept(branch As String, result) As IGlueStreamBranch
 
 | Name | Type | Description |
 |------|------|-------------|
-| `branch` | `String` | Name of the branch on which to accept the new subscriber. If the branch does not exist, it will be automatically created. Providing an empty string will put the new subscriber on the default (unnamed) branch. |
-| `result` | `Variant` | This parameter is not applicable in VBA. Use `Nothing` when invoking the method. |
+| `branch` | `String` | Name of the branch on which to accept the new subscriber. If the branch doesn't exist, it will be automatically created. Providing an empty string will put the new subscriber on the default (unnamed) branch. |
+| `result` | `Variant` | This parameter isn't applicable in VBA. Use `Nothing` when invoking the method. |
 
 *Return value:* `IGlueStreamBranch`
 
-*Note that the return value is not intended to be used in VBA and can be ignored.*
+*Note that the return value isn't intended to be used in VBA and can be ignored.*
 
 #### GetReflectData
 
@@ -1456,7 +1456,7 @@ Function GetReflectData(fieldPath As String) as Variant
 
 - `Variant`/[`GlueDynamicValue`](#classes-gluedynamicvalue) if `fieldPath` refers to a composite value;  
 - `Variant`/`<some native type>` if `fieldPath` refers to an elementary field;  
-- `Variant`/`Empty` if the specified `fieldPath` does not exist;
+- `Variant`/`Empty` if the specified `fieldPath` doesn't exist;
 
 #### Reject
 
@@ -1502,7 +1502,7 @@ Function GetChannelSupport() As Boolean
 
 #### GetId
 
-Obtains the Glue42 Window identifier. The Glue42 Window identifier is an opaque value and the application should not try to interpret the contents of the value in any way.
+Obtains the Glue42 Window identifier. The Glue42 Window identifier is an opaque value and the application shouldn't try to interpret the contents of the value in any way.
 
 *Signature:*
 
@@ -1600,7 +1600,7 @@ Sub SetVisible(visible As Boolean)
 
 #### Nonapplicable Methods
 
-The following methods are not intended to be used in VBA:
+The following methods aren't intended to be used in VBA:
 
 - `Unregister`  
 
@@ -1683,28 +1683,28 @@ This class is used to store the settings to be used when registering a `UserForm
 
 **Properties**  
 
-| Name | Type | Description | Default |
-|------|------|-------------|---------|
-| `AllowMove` | `Boolean` | Specifies whether the window can be moved. (Currently unusable.) | `True` |
-| `AllowResize` | `Boolean` | Specifies whether the window can be resized. (Currently unusable.) | `True` |
-| `AllowTabClose` | `Boolean` | Specifies whether a tab window will have a "Close" button. Only applicable when the window `Type` is set to `"Tab"`. | `True` |
-| `AllowUnstick` | `Boolean` | Specifies whether the Glue42 Window can be separated from other Glue42 Windows once it has been stuck to another Glue42 Window or window group. | `True` |
-| `Channel` | `String` | Specifies the Channel to be initially selected. No Channel is selected by default. | "" |
-| `ChannelSupport` | `Boolean` | Specifies whether the window will have Channel support enabled. | `True` |
-| `FrameColor` | `String` | The color of the window frame. (Currently unusable.) | `""` |
-| `Icon` | `String` | Icon for the application. (Currently unusable.) | `""` |
-| `IsSticky` | `Boolean` | Specifies whether the window can be stuck to other Glue42 Windows or window groups. | `True` |
-| `MaxHeight` | `Long` | Specifies the maximum height (in pixels) to which the window can be resized. A value of `0` means no limit. The height of the window title bar is not included. | `0` |
-| `Maximizable` | `Boolean` | Specifies whether the window will have a "Maximize" button. | `True` |
-| `MaxWidth` | `Long` | Specifies the maximum width (in pixels) to which the window can be resized. A value of `0` means no limit. | `0` |
-| `MinHeight` | `Long` | Specifies the minimum height (in pixels) to which the window can be resized. The height of the window title bar is not included. | `0` |
-| `Minimizable` | `Boolean` | Specifies whether the window will have a "Minimize" button. | `True` |
-| `MinWidth` | `Long` | Specifies the minimum width (in pixels) to which the window can be resized. | `0` |
-| `ShowTaskbarIcon` | `Boolean` | Specifies whether the window should have an icon in the taskbar. | `True` |
-| `StandardButtons` | `String` | Optional list of comma-separated values specifying which command buttons will be available in the window title bar. See [StandardButtons](#classes-gluewindowsettings-standardbuttons) below. | `""` |
-| `SynchronousDestroy` | `Boolean` | VBA applications must always set this value to `True`. | `False` |
-| `Title` | `String` | Specifies the window title. If an empty string is provided, the initial window title will be set to the name of the Glue42 application registering the window. | `""` |
-| `Type` | `String` | Specifies the window type. The available types are `"Flat"` and  `"Tab"` | `"Flat"` |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `AllowMove` | `Boolean` | `True` | Specifies whether the window can be moved. (Currently unusable.) |
+| `AllowResize` | `Boolean` | `True` | Specifies whether the window can be resized. (Currently unusable.) |
+| `AllowTabClose` | `Boolean` | `True` | Specifies whether a tab window will have a "Close" button. Only applicable when the window `Type` is set to `"Tab"`. |
+| `AllowUnstick` | `Boolean` | `True` | Specifies whether the Glue42 Window can be separated from other Glue42 Windows once it has been stuck to another Glue42 Window or window group. |
+| `Channel` | `String` | `""` | Specifies the Channel to be initially selected. No Channel is selected by default. |
+| `ChannelSupport` | `Boolean` | `True` | Specifies whether the window will have Channel support enabled. |
+| `FrameColor` | `String` | `""` | The color of the window frame. (Currently unusable.) |
+| `Icon` | `String` | `""` | Icon for the application. (Currently unusable.) |
+| `IsSticky` | `Boolean` | `True` | Specifies whether the window can be stuck to other Glue42 Windows or window groups. |
+| `MaxHeight` | `Long` | `0` | Specifies the maximum height (in pixels) to which the window can be resized. A value of `0` means no limit. The height of the window title bar isn't included. |
+| `Maximizable` | `Boolean` | `True` | Specifies whether the window will have a "Maximize" button. |
+| `MaxWidth` | `Long` | `0` | Specifies the maximum width (in pixels) to which the window can be resized. A value of `0` means no limit. |
+| `MinHeight` | `Long` | `0` | Specifies the minimum height (in pixels) to which the window can be resized. The height of the window title bar isn't included. |
+| `Minimizable` | `Boolean` | `True` | Specifies whether the window will have a "Minimize" button. |
+| `MinWidth` | `Long` | `0` | Specifies the minimum width (in pixels) to which the window can be resized. |
+| `ShowTaskbarIcon` | `Boolean` | `True` | Specifies whether the window should have an icon in the taskbar. |
+| `StandardButtons` | `String` | `""` | Optional list of comma-separated values specifying which command buttons will be available in the window title bar. See [StandardButtons](#classes-gluewindowsettings-standardbuttons) below. |
+| `SynchronousDestroy` | `Boolean` | `False` | VBA applications must always set this value to `True`. |
+| `Title` | `String` | `""` | Specifies the window title. If an empty string is provided, the initial window title will be set to the name of the Glue42 application registering the window. |
+| `Type` | `String` | `"Flat"` | Specifies the window type. The available types are `"Flat"` and `"Tab"`. |
 
 #### StandardButtons
 
@@ -1712,7 +1712,7 @@ The `StandardButtons` property specifies which command buttons will be available
 
 | Value | Description |
 |-------|-------------|
-| `"None"` | No command buttons will be shown. This is used to hide all command buttons and cannot be combined with other values. |
+| `"None"` | No command buttons will be shown. This is used to hide all command buttons and can't be combined with other values. |
 | `"LockUnlock"` | Show the "Lock/Unlock" button. |
 | `"Extract"` | Show the "Extract" button. |
 | `"Collapse"` | Show the "Collapse" button. |
@@ -1734,7 +1734,7 @@ Instances of this class are returned by Glue42 when an asynchronous method invoc
 | Name | Type | Description |
 |------|------|-------------|
 | `correlationId` | `String` | User-defined string which was passed as a parameter to [`InvokeAsync`](#classes-gluemethodinvocator-invokeasync). |
-| `Results` | `VBGlueResult()` | A [`VBGlueResult`](#types-vbglueresult) array containing details about the invocation result. If the invocation request was sent to multiple target applications, the array will have an element for each result returned by each application. The array will always contain at least one element even if the invoked method is not available (e.g., the specified method is not registered by any application). |
+| `Results` | `VBGlueResult()` | A [`VBGlueResult`](#types-vbglueresult) array containing details about the invocation result. If the invocation request was sent to multiple target applications, the array will have an element for each result returned by each application. The array will always contain at least one element even if the invoked method isn't available (e.g., the specified method isn't registered by any application). |
 
 **Methods**
 
@@ -1764,7 +1764,7 @@ Sub Close(data)
 
 | Name | Type | Description |
 |------|------|-------------|
-| `data` | `Variant` | This parameter is not applicable in VBA. Use `Nothing` when invoking the method. |
+| `data` | `Variant` | This parameter isn't applicable in VBA. Use `Nothing` when invoking the method. |
 
 *Return value:* None
 

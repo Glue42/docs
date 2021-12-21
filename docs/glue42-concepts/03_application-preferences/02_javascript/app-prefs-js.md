@@ -4,6 +4,8 @@
 
 The Application Preferences API is accessible through the [`glue.prefs`](../../../reference/glue/latest/application%20preferences/index.html) object.
 
+*See the JavaScript [Application Preferences example](https://github.com/Glue42/js-examples/tree/master/app-preferences) on GitHub.*
+
 ## Get
 
 To retrieve the stored application preferences for the current application, use the [`get()`](../../../reference/glue/latest/application%20preferences/index.html#API-get) method:

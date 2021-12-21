@@ -1,10 +1,6 @@
-## Running Multiple Instances
-
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) supports running multiple instances in different environments/regions and any combination of these. Environments usually include development, testing, quality assurance, production environments in which [**Glue42 Enterprise**](https://glue42.com/enterprise/) is developed, tested or integrated. Regions can be any semantic groups, defined by the clients - geographic regions, user groups, product categories, etc. This allows running multiple instances of [**Glue42 Enterprise**](https://glue42.com/enterprise/) simultaneously on a single machine with different settings and configurations which is useful when testing application integration in various environments. Environment/region can be set in the `system.json` configuration file located in `%LocalAppData%\Tick42\GlueDesktop\config`. You can run multiple instances of [**Glue42 Enterprise**](https://glue42.com/enterprise/) by defining different system configuration files for the respective environments/regions.
-
 ## Service Windows
 
-Service windows are hidden windows which perform a specific supporting role for your applications. They can be configured as any normal window (name, URL, etc.), the difference being that a UI configuration is not necessary as it is assumed that the purpose of these windows is to provide some "behind-the-scenes" (hidden) service to your applications. Therefore, the user doesn't need to see them or interact with them.
+Service windows are hidden windows which perform a specific supporting role for your applications. They can be configured as any normal window (name, URL, etc.), the difference being that a UI configuration isn't necessary as it is assumed that the purpose of these windows is to provide some "behind-the-scenes" (hidden) service to your applications. Therefore, the user doesn't need to see them or interact with them.
 
 Service windows may be useful in many scenarios. For instance, you may have a number of applications that need to receive and process data from several different providers. Instead of setting up each application to receive and then process the data from every provider, you can create a hidden service window which will communicate with the providers, collect the data, pre-process it and route it to the respective applications. This way, your applications have to handle communication with only one end point, all the necessary data is consolidated, processed, filtered, etc., at one central data hub from where it can be sent to any window needing it. Depending on your needs or goals, you can configure your service windows to auto start on system startup, or to start when an application requests that service. The service windows approach offers you additional flexibility and versatility in designing solutions for the application services you need.
 
@@ -70,50 +66,6 @@ To Glue42 enable a Java Citrix app:
 
 You will now be able to run your Java Citrix application from [**Glue42 Enterprise**](https://glue42.com/enterprise/) and interoperate with it using the various Glue42 APIs.
 
-## Splash Screen
-
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) has a built-in splash screen, but also supports showing a custom splash screen. Your custom splash screen is loaded from a local file. 
-
-You can replace the splash screen HTML file in `%LocalAppData%\Tick42\GlueDesktop\assets\splash` with your own custom file. You can also set the size of the splash screen - the splash screen configuration can be set in the `system.json` file under the `"splash"` key:
-
-```json
-"splash": {
-        "width": 350,
-        "height": 233
-    }
-```
-
-![Splash](../../images/platform-features/splash.png)
-
-For the splash screen setup to work, you need to handle the following events: 
-
-```javascript
-// updateStatus event
-ipcRenderer.on("updateStatus", (event, arg) => {
-    console.log(`updating status to ${arg.text}`);
-    var status = document.getElementById("status");    
-    status.innerHTML = arg.text + "...";
-});
-
-// setVersion event
-ipcRenderer.on("setVersion", (event, arg) => {
-    var status = document.getElementById("version");
-    status.innerHTML = arg.text;
-});
-
-// setEdition event
-ipcRenderer.on("setEdition", (event, arg) => {
-    var edition = document.getElementById("version");
-    edition.innerHTML += ` (${arg.text})`;
-});
-
-// setEnvRegion event
-ipcRenderer.on("setEnvRegion", (event, arg) => {
-    var edition = document.getElementById("version");
-    edition.innerHTML += ` -${arg.text}`;
-});
-```
-
 ## Preload Scripts
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
@@ -139,8 +91,10 @@ The following example demonstrates defining two preload scripts by providing the
 When you install [**Glue42 Enterprise**](https://glue42.com/enterprise/), it is registered as the default handler of the Glue42 global protocol. The protocol is in the following format:
 
 ```cmd
-glue42://<option>/<identifier>[&args]
+glue42://<option>/<identifier>[?args&args]
 ```
+
+*To pass arguments when employing the different options of the Glue42 global protocol, use a single `?` after the identifier, except with `url` - use double `??` when passing arguments for the `url` protocol option. Use `&` between the arguments when specifying more than one argument.*
 
 The Glue42 global protocol allows you to create and send links which will open a URL in a Glue42 Window. You can also create links that will start a Glue42 enabled app, load a specified Workspace or Layout and even invoke Interop methods with custom arguments.
 
@@ -191,13 +145,13 @@ To start a Glue42 enabled application, use the `app` protocol option and pass th
 glue42://app/clientlist
 ```
 
-To pass startup options for a Glue42 enabled application, use `&` before each setting. The following example demonstrates passing a location and context for the started app:
+To pass startup options for a Glue42 enabled application, use `?` after the app identifier and `&` before each settings. The following example demonstrates passing a location and context for the started app:
 
 ```cmd
-glue42://app/clientlist&left=100&context.clientID=1
+glue42://app/clientlist?left=100&context.clientID=1
 ```
 
-*To specify a property of an object as an option, use the standard dot notation - e.g., `&context.clientID=42`.*
+*To specify a property of an object as an option, use the standard dot notation - e.g., `context.clientID=42`.*
 
 #### Layouts
 
@@ -215,13 +169,13 @@ To open a Workspace, use the `workspace` protocol option and pass the Workspace 
 glue42://workspace/StartOfDay
 ```
 
-To pass context for the Workspace, use `&context`:
+To pass context for the Workspace, use `context`:
 
 ```cmd
-glue42://workspace/StartOfDay&context.clientID=1
+glue42://workspace/StartOfDay?context.clientID=1
 ```
 
-*To specify a property of an object as an option, use the standard dot notation - e.g., `&context.clientID=42`.*
+*To specify a property of an object as an option, use the standard dot notation - e.g., `context.clientID=42`.*
 
 #### Glue42 Windows
 
@@ -231,13 +185,13 @@ To open a URL in a Glue42 Window, use the `url` protocol option and pass the URL
 glue42://url/https://google.com 
 ```
 
-To specify [Glue42 Window settings](../../reference/glue/latest/windows/index.html#WindowSettings) when opening a URL, use `&&` after the URL and `&` before each setting. The following example demonstrates passing a location for the newly opened window: 
+To specify [Glue42 Window settings](../../reference/glue/latest/windows/index.html#WindowSettings) when opening a URL, use `??` after the URL and `&` before each setting. The following example demonstrates passing a location for the newly opened window: 
 
 ```cmd
-glue42://url/https://google.com&&left=100&top=200
+glue42://url/https://google.com??left=100&top=200
 ```
 
-*To specify a property of an object as a setting, use the standard dot notation - e.g., `&downloadSettings.autoSave=false`.*
+*To specify a property of an object as a setting, use the standard dot notation - e.g., `downloadSettings.autoSave=false`.*
 
 #### Interop Methods
 
@@ -247,10 +201,10 @@ To invoke an Interop method, use the `invoke` protocol option and pass the metho
 glue42://invoke/Shutdown
 ```
 
-To pass arguments and/or target when invoking an Interop method, use `&args` and `&target`:
+To pass arguments and/or target when invoking an Interop method, use `args` and `target`:
 
 ```cmd
-glue42://invoke/ShowClient&args.clientId=1&target=best
+glue42://invoke/ShowClient?args.clientId=1&target=best
 ```
 
 ## Downloading Files
@@ -400,7 +354,7 @@ Enable the context menu:
 
 ## Hotkeys
 
-The Hotkeys API allows applications to register key combinations and receive notifications when a key combination is pressed by the user irrespective of whether the application is on focus or not. Hotkeys is useful for web applications that do not have access to system resources and cannot register global shortcuts.
+The Hotkeys API allows applications to register key combinations and receive notifications when a key combination is pressed by the user irrespective of whether the application is on focus or not. Hotkeys is useful for web applications that don't have access to system resources and can't register global shortcuts.
 
 ### Configuration
 
@@ -862,153 +816,6 @@ const version = glue42gd.os.getVersion();
 const startTime = glue42gd.glue42StartTime;
 ```
 
-## Process Reuse
-
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) is an Electron based application and as such uses the built-in [process management](https://electronjs.org/docs/tutorial/application-architecture#main-and-renderer-processes) mechanisms of Electron - each window has a separate renderer process. This, however, may lead to a large memory footprint. The concept of process reuse helps you achieve balance between performance and consumption of system resources.
-
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) offers configurable grouping of application instances in a single process. Process reuse can be configured both on a system from the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) or on an application level from the respective application configuration file. 
-
-Below are described some basic use-cases and the configurations needed for them. Use the [Applications View](../../getting-started/how-to/use-glue42/index.html#applications_view) to monitor how applications are grouped in the processes:
-
-- If you want every instance of your app to go into a dedicated process, go to the `"details"` top-level key of your application configuration and set the `"dedicatedProcess"` property of the `"processAffinity"` key to `true`:
-
-```json
-"details": {
-    ...
-    "processAffinity": {
-        "dedicatedProcess": true
-    }
-}
-```
-
-![Process Reuse](../../images/platform-features/dedicated-process.png)
-
-- If you want to group all instances of your application into a single process, assign a unique string value to the `"affinity"` property of the `"processAffinity"` key in your application configuration file:
-
-```json
-"details": {
-    ...
-    "processAffinity": {
-        "affinity": "XYZ"
-    }
-}
-```
-
-*Note that the number of instances that can be grouped into a single process is restricted by the value of the `"maxAppsInProcess"` property in the global process reuse configuration in the `system.json` file. Set it to a high number (e.g. `"maxAppsInProcess": 1000`) in order to be able to group all instances of your app in a single process with the `"affinity"` property.*
-
-![Process Reuse](../../images/platform-features/same-app-affinity.png)
-
-- If you want to group several apps into a single process, assign the same string value to the `"affinity"` property of the `"processAffinity"` key in the application configuration file of each app:
-
-Client List app:
-
-```json
-"name": "clientlist",
-...
-"details": {
-    ...
-    "processAffinity": {
-        "affinity": "XYZ"
-    }
-}
-```
-
-Portfolio app:
-
-```json
-"name": "portfolio",
-...
-"details": {
-    ...
-    "processAffinity": {
-        "affinity": "XYZ"
-    }
-}
-```
-
-*Again, consider setting the global process reuse configuration in the `system.json` file in order to achieve the desired results when grouping applications and application instances in a process. The `"maxAppsInProcess"` defines the maximum number of (any) instances that can go in the process and the `appSlotSize` property defines how many slots in that process are reserved for instances of the same application.*
-
-![Process Reuse](../../images/platform-features/two-apps-affinity.png)
-
-- If you want to increase the number of apps in a single process, use the `"maxAppsInPocess"` property of the global process reuse configuration in the `system.json` file:
-
-```json
-"processReuse": {
-        "enabled": true,
-        "visibleApps": {
-            "maxAppsInProcess": 50,
-            "appSlotSize": 2
-        },
-        "hiddenApps": {
-            "maxAppsInProcess": 20,
-            "appSlotSize": 1
-        }
-    }
-```
-
-### System Configuration
-
-Configure process reuse on a system level for both visible and hidden apps using the `"processReuse"` top-level key of the `system.json` file:
-
-```json
-"processReuse": {
-    "enabled": true,
-    "visibleApps": {
-        "maxAppsInProcess": 12,
-        "appSlotSize": 3
-    },
-    "hiddenApps": {
-        "maxAppsInProcess": 20,
-        "appSlotSize": 1
-    }
-}
-```
-
-| Property | Type | Description |
-|----------|------|-------------|
-| `"enabled"` | `boolean` | If `true`, will enable process reuse. |
-| `"maxAppsInProcess"` | `number` | The maximum number of application instances in a process (maximum slots in a process). |
-| `"appSlotSize"` | `number` | Sets the number of slots reserved for instances of the same application within a process. The total number of slots in the process is defined by the `"maxAppsInProcess"`. |
-
-If you want more apps to use the same process, increase the `"maxAppsInProcess"` value or decrease the `"appSlotSize"` value. If you set `"maxAppsInProcess"` to 1, then all apps and their instances will be in separate processes.
-
-The settings for visible apps in the example above (`{ "maxAppsInProcess": 12, "appSlotSize": 3 }`) show that a maximum of 12 slots per process will be available and that 3 slots will be reserved for instances of the same app in that process. This translates to the following:
-
-- If you start four instances of different apps and then start more instances of any of these apps, the fourth instance of any of the apps will be in another process, because there are only three slots per process available for instances of the same app:
-
-![Process Reuse](../../images/platform-features/process-slots.png)
-
-- If you start two different app instances and then start only instances of any of these two apps, their instances will run in the same process until the remaining two sets of three slots in the process are filled too:
-
-![Process Reuse](../../images/platform-features/slots-fill.png)
-
-### Application Configuration
-
-To set the process reuse behavior on an application level, use the `"processAffinity"` property under the `"details"` top-level key in the application configuration file: 
-
-```json
-"details": {
-    ...
-    "processAffinity": {
-        "dedicatedProcess": false,
-        "affinity": "XYZ"
-    }
-}
-```
-
-| Property | Type | Description |
-|----------|------|-------------|
-| `"dedicatedProcess"` | `boolean` | If `true`, each instance of the app will be started in a separate dedicated process. This property is useful if you have an important application and you want each instance of it to start in a dedicated process. |
-| `"affinity"` | `string` | All apps with the same affinity values will be grouped in the same process until the maximum number of slots (defined globally in the `"maxAppsInProcess"` property) in the process is reached. When `"affinity"` is set, the global `"appSlotSize"` property is ignored. This means that you can group different app instances with the same `"affinity"` however you like within the limits of the `"maxAppsInProcess"` property. Use this property if you want to group several apps in a process. |
-
-## Issue Reporting
-
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) has a built-in feedback form that allows users to send feedback with improvement suggestions or bug reports. The user can describe the problem/suggestion in the "Description" field and can optionally attach logs/configs to the report. The form can be configured to send an email with the report to our team and/or to automatically create a Jira ticket with the issue reported by the user. Both on-premise and cloud based Jira solutions are supported.
-
-The feedback form is an HTML app, which can be re-designed and re-configured to suit specific client needs and requirements. For more details, see the [system configuration schema](../../assets/configuration/system.json).
-
-![Feedback form](../../images/platform-features/feedback-form.png)
-
 ## Adding DevTools Extensions
 
 You can extend the Chrome DevTools in [**Glue42 Enterprise**](https://glue42.com/enterprise/) with additional extensions. To add a [DevTools Extension supported by Electron](https://electronjs.org/docs/tutorial/devtools-extension#supported-devtools-extensions), you need to have the extension installed and add a configuration for it in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and in the configuration file of your application. The example below demonstrates adding the React DevTools Extension to [**Glue42 Enterprise**](https://glue42.com/enterprise/):
@@ -1054,261 +861,3 @@ For instance:
 ```
 
 5. Start [**Glue42 Enterprise**](https://glue42.com/enterprise/), open your [Glue42 enabled](../../getting-started/how-to/glue42-enable-your-app/javascript/index.html) app and you should be able to see the added extension to the Chrome DevTools when you open the developer console. In this case, you will need a React app in order to be able to see the React DevTools Extension.
-
-## Extensible Installer Guide
-
-The [**Glue42 Enterprise**](https://glue42.com/enterprise/) installer supports extensibility mode, meaning you can repackage the installer with custom resources and installation settings. Some of the customizable features include replacing the icons, the installation screen, adding/removing or setting default install options or features of Glue42 Enterprise, adding other programs to be installed together with [**Glue42 Enterprise**](https://glue42.com/enterprise/).
-
-### Extensibility Mode
-
-The [**Glue42 Enterprise**](https://glue42.com/enterprise/) installer can be run with an argument `/ext:path\to\extensibility-file.json`, which defines the path to a file that allows the operation of the installer to be controlled.
-
-The installer defines a number of extensibility points, representing stages of the installation flow, each of which can be populated with one or more extensibility items, representing tasks to perform or settings to change. These items are listed in the extensibility file with the following structure:
-
-```json
-{
-    "<extensibility point 1>": [
-      { "type": "<extensibility item type>", "args": { "<arg>": <value>, ... }},
-      { "type": "<extensibility item type>", "args": { "<arg>": <value>, ... }},
-    ],
-    "<extensibility point 2>": [
-      { "type": "<extensibility item type>", "args": { "<arg>": <value>, ... }},
-      { "type": "<extensibility item type>", "args": { "<arg>": <value>, ... }},
-    ],
-}
-```
-In case of no arguments, an extensibility item can be shortened to just a string with its type: `{ "type": "unattended", "args": {} }` is shortened to `"unattended"`.
-
-Here is an example extensibility file content, listing most of the available extensibility points and items:
-
-*Note that this is just for illustrative purposes. Some of the following settings don't make sense together.*
-
-```json
-{
-    "startup": [
-        // uninstall Glue42 Enterprise
-        "uninstall",
-
-        // unattended installation
-        "unattended",
-
-        // NB: the installation cannot run while certain applications are running,
-        // e.g. a previous installation of Glue42 Enterprise, or Excel/Word/Outlook
-        // (unless the corresponding plugin is disabled in the artifacts extensibility point)
-
-        // By default, an unattended installer will exit with a non-zero exit code,
-        // but you can make it retry by adding the following arguments:
-
-        // - pop a message box for the user to dismiss (NB: this might cause
-        // the installation to stall if there is no user present)
-        // "args": { "conflictHandling": "ask" }
-
-        // - retry 10 times, with an interval of 1 second
-        // "args": { "conflictHandling": "retry", "waitMs": 1000, "retries": 10 }
-
-        // hidden installation: similar to "unattended", but without showing a window
-        "hidden",
-
-        // use a predefined license file
-        {
-            "type": "license",
-            "args": {
-                // either path or url
-                "file": "license.json",
-                "url": "https://example.com/license.json"
-            }
-        },
-
-        // logo to display in top-left corner
-        {
-            "type": "logo",
-            "args": {
-                // either path or url
-                "file": "logo.png",
-                "url": "https://example.com/logo.png",
-                "onClick": "https://example.com/example"
-            }
-        },
-
-        // large banner during installation
-        {
-            "type": "banner",
-            "args": {
-                // either path or url
-                "file": "banner.png",
-                "url": "https://example.com/banner.png",
-                "onClick": "https://example.com/example"
-            }
-        }
-    ],
-    "artifacts": [
-
-        // disable GlueXL artifact
-        {
-            "type": "GlueXL",
-            "args": {
-                "remove": true
-            }
-        },
-
-        // make GlueOutlook not selected by default;
-        // in unattended installations, this is the same as "remove"
-        {
-            "type": "GlueOutlook",
-            "args": {
-                "checkedByDefault": false
-            }
-        },
-
-        // make GlueWord required
-        {
-            "type": "GlueWord",
-            "args": {
-                "required": true
-            }
-        },
-    ],
-
-    // welcome screen
-    "welcome": [
-        {
-            "type": "run",
-            "args": {
-                "filename": "cmd.exe",
-                "args": "/c somebatchfile.bat",
-                // by default, exit code 0 is success,
-                // while any other means error message, followed by installer exiting
-                // you can override with "success" for success, any other string for error message
-                // (error messages are not shown in unattended installation to avoid stalling)
-                "exitCode1": "There was an error validating your installation",
-                "exitCode2": "There was an error contacting server",
-                "exitCode3": "success",
-                //other exit codes
-
-                // whether to hide the started process
-                "hide": true,
-
-                // whether to hide the installer while the process is running
-                "hideInstaller": false
-            }
-        }
-    ],
-
-    // ... other screens: downloadProgress, packages, previewAndConfirm, uninstall, ...
-
-    // package the Glue42 Enterprise installer with custom configuration files
-    "finalizing": [ 
-        {
-            "type": "gdConfig",
-            "args": {
-                // archive with custom config files for Glue42 Enterprise
-                "file": "custom-config.zip",
-                // If `false` (default), will merge the custom config files with the default ones from the installer
-                // by replacing any default file with the respective custom config file with the same name.
-                // If `true`, the default config files will be deleted and replaced by the specified custom config files.
-                // This means that you must provide all required configuration files for Glue42 Enterprise to function properly.
-                "wipe": false
-            }
-        }
-    ],
-
-    // final screen
-    "done": [
-        // show Glue42 Enterprise shortcut location - like the current "Launch" button behavior
-        "showGD",
-
-        // launch the Glue42 Enterprise executable - like the old "Launch" button behavior
-        "launchGD",
-
-        // shows a message box
-        {
-            "type": "message",
-            "args": {
-                "text": "Don't forget to be awesome!",
-                "title": "Reminder"
-            }
-        },
-
-        // this is a good place to use a "run" item if something else needs to
-        // happen after the installer is finished, e.g., run another installer
-
-        // exit from final screen without user having to click "Done"
-        {
-            "type": "exit",
-            "args": {
-                "exitCode": 0
-            }
-        }
-    ]
-}
-```
-
-Some types of extensibility items are only applicable to some extensibility points, e.g., `"unattended"` (which enables an unattended installation) is only applicable to the `"startup"` extensibility point. Others can be used anywhere - such as `"run"`, which executes an external program and waits for it to finish; or `"message"`, which shows a message to the user.
-
-Extensibility items are executed in the order they are specified. Multiple items of the same type can be present in the same extensibility point.
-
-### Step-By-Step Example
-
-Download an [extensible installer example](../../assets/sfx-installer-example.zip) to get you started. Use it to test how the extensible installer works, to tweak the setting, add your own files and, ultimately, create your own extensible installer.
-
-In this step-by-step guide you will be creating a custom [**Glue42 Enterprise**](https://glue42.com/enterprise/) extensible installer with the following additions and changes:
-
-- adding custom logos;
-
-- installing [**Glue42 Enterprise**](https://glue42.com/enterprise/) with custom `system.json` properties, in order to setup [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve application configuration settings from a REST service;
-
-It is assumed that you have your icon and install screen banner files ready, and also - you have set up your REST service and have it up and running.
-
-*Note that if you have your own [**Glue42 Enterprise**](https://glue42.com/enterprise/) installer file, then rename your installer to `GlueInstaller.exe` and in the `installer-and-other-files` folder replace the existing `GlueInstaller.exe` file with your own installer file.*
-
-1. Navigate to the directory where you have downloaded the `sfx-installer-example.zip` and extract the files in it.
-
-2. Open the `installer-and-other-files` folder and replace the provided `logo.png` and `banner.png` example files with your own logo and banner files.
-
-3. Open the `example-extensibility.json` in your preferred text editor and under the `startup` top key array edit the `arguments` object of the respective extensibility items for the installation banner and logo:
-
-- replace the `"file"` property values with the respective names of your logo and banner files;
-- if you want clicking on the logo or the banner during installation to open your site, replace the URL in the `"onClick"` property with a link to your site. Otherwise, remove it altogether;
-
-```json
-"startup": [
-    {
-        "type": "logo",
-        "args": {
-            "file": "MyCustomLogo.png",
-            "onClick": "https://www.my-site.com"
-        }
-    },
-    {
-        "type": "banner",
-        "args": {
-            "file": "MyCustomBanner.png",
-            "onClick": "https://my-site.com"
-        }
-    }
-]
-```
-
-4. The provided `system.json` file in `sfx-installer-example.zip` may not be the latest one, so you have to replace it with the `system.json` file from your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy located in `%LocalAppData%\Tick42\GlueDesktop\config`. Open the `system.json` file in your text editor and add the following configuration in order to enable [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve the application configuration settings directly from a REST service:
-
-```json
-"appStores": [
-    {
-        "type": "rest",
-        "details": {
-            // URL to your remote application store
-            "url": "http://localhost:3000/appd/v1/apps/search",
-            "auth": "no-auth",
-            "pollInterval": 30000,
-            "enablePersistentCache": true,
-            "cacheFolder": "%LocalAppData%/Tick42/UserData/%GLUE-ENV%-%GLUE-REGION%/gcsCache/"
-        }
-    }
-]
-```
-
-5. Go back to the folder where you extracted the files and double click on the `produce-sfx-installer.bat` file to produce the installer file. The output installer file is named `sfx-installer.exe`.
-
-6. Run `sfx-installer.exe` to install the product.
-
-*Note that the SFX installer should be Authenticode signed to avoid antivirus software raising false alerts. Also, to change its icon or file properties, you can use a resource editor, e.g. Resource Hacker. It is best to use a multi-size icon to support various resolutions and Windows Explorer view modes. The example used the Greenfish icon editor for this purpose.*

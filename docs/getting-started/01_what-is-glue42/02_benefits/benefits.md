@@ -44,7 +44,7 @@ By utilizing UX integration with [**Glue42 Enterprise**](https://glue42.com/ente
 
 ### Code Reuse
 
-No, really - we mean it!! With [**Glue42 Enterprise**](https://glue42.com/enterprise/), code reuse is not just a dream. UI Integration allows developers to reuse existing functionalities in new applications. Developers can easily reuse Glue42 components developed by other teams. For example, one team creates a Glue42 component that displays stock prices from a third-party system inside a CRM system. This component can be reused in another project, by another team, say, to display stock prices in Excel.  
+No, really - we mean it!! With [**Glue42 Enterprise**](https://glue42.com/enterprise/), code reuse isn't just a dream. UI Integration allows developers to reuse existing functionalities in new applications. Developers can easily reuse Glue42 components developed by other teams. For example, one team creates a Glue42 component that displays stock prices from a third-party system inside a CRM system. This component can be reused in another project, by another team, say, to display stock prices in Excel.  
 
 ### DevOps Release Process
 

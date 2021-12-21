@@ -4,6 +4,8 @@
 
 The Intents API is accessible through the [`glue.intents`](../../../reference/glue/latest/intents/index.html) object.
 
+*See the JavaScript [Intents example](https://github.com/Glue42/js-examples/tree/master/intents) on GitHub.*
+
 ## Finding Intents
 
 To find all registered Intents, use the [`all()`](../../../reference/glue/latest/intents/index.html#API-all) method:
@@ -146,7 +148,7 @@ function contextHandler (context) {
 glue.intents.addIntentListener(intent, contextHandler);
 ```
 
-*Note that when you register an Intent only at runtime (the Intent is not defined in an application configuration), your application must be running in order to handle the Intent and it will always be of type `"instance"`. If your application is not running when this Intent is raised, it will not be available as a possible Intent handler.*
+*Note that when you register an Intent only at runtime (the Intent isn't defined in an application configuration), your application must be running in order to handle the Intent and it will always be of type `"instance"`. If your application isn't running when this Intent is raised, it won't be available as a possible Intent handler.*
 
 ## Reference
 

@@ -120,5 +120,5 @@ The following restrictions apply to a VBA `UserForm` when it has been registered
 
 - The application must provide a mandatory implementation of the [`HandleWindowDestroyed`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlewindowdestroyed) event in order to properly unload the VBA `UserForm`. Failing to unload the VBA `UserForm` will lead to deadlocks in the VBA execution thread.
 - If implementing a handler for the `UserForm_QueryClose`, the application must not make any blocking calls (e.g., use I/O operations, display close confirmation popups to the user) or prevent the `UserForm` from unloading by setting a non-zero value to the `Cancel` parameter.
-- The application should not change directly the VBA `UserForm` visibility or position (e.g., with `Show`, `Hide`, `Move`).
+- The application shouldn't change directly the VBA `UserForm` visibility or position (e.g., with `Show`, `Hide`, `Move`).
 - After a `UserForm` has been closed/unloaded, it can be displayed again by using `Show`. In this case you will need to repeat the Glue42 initialization and Glue42 Window registration for the `UserForm`. 

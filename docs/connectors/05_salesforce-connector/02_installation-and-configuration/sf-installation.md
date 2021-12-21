@@ -56,7 +56,7 @@ If you have done everything correctly, the Salesforce Connector should be availa
 
 Enter a username, password and a Glue42 Gateway address to establish a connection. The default Gateway address is `ws://localhost:8385`.
 
-*Note that the username you supply to the Connector has to be the same as the one used by [**Glue42 Enterprise**](https://glue42.com/enterprise/), otherwise the Connector will not be able to see the Interop methods your apps have registered in [**Glue42 Enterprise**](https://glue42.com/enterprise/) under a different username. By default, [**Glue42 Enterprise**](https://glue42.com/enterprise/) uses the Windows username of the currently logged in user which you can see by right-clicking on the [**Glue42 Enterprise**](https://glue42.com/enterprise/) tray icon or by running the `echo %USERNAME%` command in a command prompt.*
+*Note that the username you supply to the Connector has to be the same as the one used by [**Glue42 Enterprise**](https://glue42.com/enterprise/), otherwise the Connector won't be able to see the Interop methods your apps have registered in [**Glue42 Enterprise**](https://glue42.com/enterprise/) under a different username. By default, [**Glue42 Enterprise**](https://glue42.com/enterprise/) uses the Windows username of the currently logged in user which you can see by right-clicking on the [**Glue42 Enterprise**](https://glue42.com/enterprise/) tray icon or by running the `echo %USERNAME%` command in a command prompt.*
 
 ### Default Credential Settings
 
@@ -96,7 +96,7 @@ Go back to the Custom Metadata Types section, set this address as a value for th
 
 If you have installed the Salesforce Connector using the AppExchange Marketplace, it isn't necessary to uninstall it first in order to update to a newer version. If you want only to uninstall the Connector, follow the steps below.
 
-If you have an older version of the Salesforce Connector which was not installed through the AppExchange Marketplace, you have to retrace the configuration and installation steps backwards in order to remove all package dependents first and then the package itself. For the example given in the [Actions](../actions/index.html#action_example) section this means:
+If you have an older version of the Salesforce Connector which wasn't installed through the AppExchange Marketplace, you have to retrace the configuration and installation steps backwards in order to remove all package dependents first and then the package itself. For the example given in the [Actions](../actions/index.html#action_example) section this means:
 
 1. Remove the Action button from the `Contact` page layout. 
 

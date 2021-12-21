@@ -273,7 +273,7 @@ g40RemoteService_.ShowClient(sender, new ServiceOptions(
          if (result == null || result.Status != MethodInvocationStatus.Succeeded || ex != null)
          {
              ShowNotification("Show client failed",
-                 "Cannot show client due to " +
+                 "can't show client due to " +
                  (result?.ToString() ?? "appropriate target method not found"));
          }
      }));
@@ -285,19 +285,18 @@ g40RemoteService_.ShowClient(sender, new ServiceOptions(
 
 ### Overview
 
-Your application can publish events that can be observed by other applications, or it can provide real-time data (e.g., market data, news alerts, notifications, etc.) to other applications by publishing an Interop stream.
-Your application can also receive and react to these events and data by creating an Interop stream subscription.
+Your application can publish events that can be observed by other applications and can provide real-time data (e.g., market data, news alerts, notifications, etc.) to other applications by publishing an Interop stream. It can also receive and react to these events and data by creating an Interop stream subscription.
 
-Applications that create and publish to Interop Streams are called **publishers**, and applications that subscribe to Interop Streams are called **subscribers**. An application can be both.
+Applications that create and publish to Interop streams are called *publishers*, and applications that subscribe to Interop Streams are called *subscribers*. An application can be both.
 
 ![Streaming](../../../../images/interop/interop-streaming.gif)
 
-Interop Streams are used extensively in [**Glue42 Enterprise**](https://glue42.com/enterprise/) products and APIs:
+Interop streams are used extensively in [**Glue42 Enterprise**](https://glue42.com/enterprise/) products and APIs:
 
-- in Glue42 Windows - to publish notifications about window status change (events);
-- in application configuration settings - to publish application configuration changes, and notifications about application instance state change (events);
-- in Glue42 Notification Service's (GNS) Desktop Manager and GNS Interop Servers - to publish Notifications (real-time data);
-- in the Window Management and Application Management (events);
+- to publish notifications about window status change (events);
+- to publish application configuration changes and notifications about application instance state changes (events);
+- in the Glue42 Notification Service (GNS) Desktop Manager and GNS Interop Servers - to publish Notifications (real-time data);
+- in the Window Management and Application Management APIs (events);
 
 ### Subscribing to a Stream
 
@@ -504,4 +503,85 @@ if (streamingMethod.TryGetBranch(out IEventStreamBranch streamBranch, "myBranchN
 
 Streams are special Interop methods, so you can use the [Interop Discovery](#discovery) API to find available streams. The only difference is that streaming methods are flagged with a property `IMethod.Definition.Flags.HasFlag(DOT.AGM.MethodFlags.SupportsStreaming)`.
 
-*See the full .NET [Streaming example](https://github.com/Glue42/net-examples/tree/master/streaming) on GitHub.*  
+## Basic Streaming Example
+
+The following is a basic example of creating and consuming an Interop stream.
+
+Creating a stream and publishing data to it:
+
+```csharp
+// Define the hierarchy of objects to publish.
+public class Fruit
+{
+    public string Type { get; set; } = "Generic";
+}
+public class Apple : Fruit
+{
+    public Apple()
+    {
+        Type = "Apple";
+    }
+    public string Color { get; set; }
+    public int Price { get; set; }
+}
+public class Pear : Fruit
+{
+    public Pear()
+    {
+        Type = "Pear";
+    }
+    public string Color { get; set; }
+    public int Price { get; set; }
+    public int Shape { get; set; }
+}
+
+// Create the streaming endpoint.
+var stream = Glue.Interop.RegisterStreamingEndpoint(asmb => { asmb.SetMethodName("FruitsStream"); },
+    new ServerEventStreamHandler(true));
+
+// Every 1000 msecs publish random fruits on this stream.
+var rnd = new Random();
+new Timer(state =>
+{
+    stream.Broadcast(cb =>
+        Enumerable.Range(1, rnd.Next(5, 25)).Each(i => cb.AddObject(Glue, $"fruit{i}",
+            i % 2 == 0 ? new Apple
+            {
+                Price = rnd.Next(),
+                Color = rnd.NextDouble().ToString(),
+            } :
+            i % 3 == 0 ? new Pear()
+            {
+                Price = rnd.Next(),
+                Color = rnd.NextDouble().ToString(),
+                Shape = rnd.Next()
+            } : new Fruit())));
+}).Change(1000, 1000);
+```
+
+Subscribing to the stream and consuming the data:
+
+```csharp
+// Consume the stream on the subscription side.
+var subscriptionStream = await Glue.Interop.Subscribe("FruitsStream", new ClientEventStreamHandler
+{
+    EventHandler = (info, data, _) =>
+    {
+        var fruits = data.ResultContext.DeserializeMap<string, Fruit>(Glue,
+            // This is the decider - can choose what specific object to create.
+            (value, serializer) =>
+            {
+                value.AsComposite.TryGetFieldPathValue("type", out var type);
+                Fruit fruit = null;
+                if (type == "Apple")
+                {
+                    fruit = new Apple();
+                }
+                else if (type == "Pear")
+                {
+                    fruit = new Pear();
+                }
+                return fruit ?? new Fruit();
+            });
+    }}).ConfigureAwait(false);
+```

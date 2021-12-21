@@ -17,7 +17,7 @@ Available applications:
 
 In addition, the following tools are also available for debugging:
 
-- [Applications View](../../getting-started/how-to/use-glue42/index.html#applications_view) - a tool that provides general overview of all running hidden or visible applications.
+- [Applications View](../../getting-started/general-overview/index.html#using_glue42_enterprise-applications_view) - a tool that provides general overview of all running hidden or visible applications.
 - Press `F12` on a focused Glue42 window to open the built-in browser developer console.
 - Add DevTools Extensions supported by Electron to [**Glue42 Enterprise**](https://glue42.com/enterprise/). See [Adding DevTools Extensions](../../glue42-concepts/glue42-platform-features/index.html#adding_devtools_extensions).
 
@@ -57,7 +57,7 @@ The Application Monitor toolbar offers the following grid display controls:
 |`Issues`| Opens a window with issue messages. |
 |`Help`| Opens a browser window with the Dev Tools documentation. |
 
-*The "Show All" and "Clear" buttons do not work when you use "Pause".*
+*The "Show All" and "Clear" buttons don't work when you use "Pause".*
 
 ![Toolbar](../../images/dev-tools/application-monitor/toolbar.png)
 
@@ -210,7 +210,7 @@ The following buttons may appear in the Editor toolbar (explained below in the s
 
 - "Context Closed" - appears when the context in the Editor is removed. This may happen when a window is closed, a shared context is destroyed or a Channel has been removed. You won't be able to make any manipulations to the context;
 - "Save" - Saves the current context.
-- "Update" - indicates that the context displayed in the editor is not the latest one. This button will appear only if the "Auto Update" button is turned off. Click on it to update the context;
+- "Update" - indicates that the context displayed in the editor isn't the latest one. This button will appear only if the "Auto Update" button is turned off. Click on it to update the context;
 - "Auto Update" - when turned on, the Context Viewer will always display the latest context in the editor. If the context changes, the content in the editor will be automatically updated.
 
 ### Context Manipulation
