@@ -303,7 +303,7 @@ Use this item to supply custom configuration files for [**Glue42 Enterprise**](h
 | `"file"` | `string` | Path to an archive file with custom configuration files for [**Glue42 Enterprise**](https://glue42.com/enterprise/). |
 | `"wipe"` | `boolean` | If `false` (default), will merge the custom configuration files with the default ones from the installer by replacing any default file with the respective custom file with the same name. If `true`, the default configuration files will be deleted and replaced with the custom ones. This means that you must provide all required configuration files for [**Glue42 Enterprise**](https://glue42.com/enterprise/) to function properly. |
 
-*See also the [Override Configurations](#post_installation-override_configurations) section.*
+*See also the [Overriding Configurations](#post_installation-overriding_configurations) section.*
 
 #### Extensibility Point: "done"
 
@@ -329,7 +329,7 @@ Use this item to exit the installation process with a specified exit code.
 |----------|------|-------------|
 | `"exitCode"` | `number` | Exit code for the installation process. |
 
-*See also the [Exit Installer](#post_installation-exit_installer) section.*
+*See also the [Exiting the Installer](#post_installation-exiting_the_installer) section.*
 
 #### Extensibility Item: "run"
 
@@ -1025,7 +1025,7 @@ To specify the client key received from the Glue42 support team, use the `"conte
 
 ## Post Installation
 
-### Override Configurations
+### Overriding Configurations
 
 To instruct the installer to replace or merge the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configuration files with your custom ones, use the `"finalizing"` extensibility point. The custom configuration files must be in a ZIP archive (archive the files directly, don't place them in a containing folder). The following example demonstrates how to provide a ZIP file with custom configuration files and merge them with the default ones:
 
@@ -1089,7 +1089,7 @@ The following example demonstrates how to open the folder containing the [**Glue
 
 *See also [Extensibility Point: "context"](#extensible_installer-extensibility_points__items-extensibility_point_context) and [Extensibility Point: "done"](#extensible_installer-extensibility_points__items-extensibility_point_done).*
 
-### Exit Installer
+### Exiting the Installer
 
 To instruct the installer to exit automatically after installation, use the `"done"` extensibility point:
 

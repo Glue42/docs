@@ -1,6 +1,6 @@
 ## Overview
 
-Rebranding the [**Glue42 Enterprise**](https://glue42.com/enterprise/) UI and customizing its functionalities enables it to be suited to specific client needs and requirements. In many cases clients use [**Glue42 Enterprise**](https://glue42.com/enterprise/) as the foundation for their internal desktop integration platform, tweaking its UI elements and adjusting its functionalities to satisfy the business demands and preferences of their organization. Some of the modifiable features include:
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) is highly customizable, both visually and functionally. In many cases, clients adopt [**Glue42 Enterprise**](https://glue42.com/enterprise/) as the foundation for their internal desktop integration platform, tweaking the visual elements and adjusting its features to satisfy their own business demands and preferences. Some of the modifiable elements include:
 
 - all configuration files;
 - images, icons, branding texts and more;
