@@ -70,7 +70,7 @@ You will now be able to run your Java Citrix application from [**Glue42 Enterpri
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
 
-The [application configuration](../../developers/configuration/application/index.html) file allows you to specify preload scripts for an application. The preload scripts will be executed before the actual web app is loaded. Use the `"preloadScripts"` array of the `"details"` top-level key in the application configuration file to define the scripts and they will be executed in the specified order. This allows for easily injecting Glue42 functionality into third-party web applications over which you have little to no control.
+The [application configuration](../../developers/configuration/application/index.html) file allows you to specify preload scripts for an application. The preload scripts will be executed before the actual web app is loaded and before each `<iframe>` on the page. Use the `"preloadScripts"` array of the `"details"` top-level key in the application configuration file to define the scripts and they will be executed in the specified order. This allows for easily injecting Glue42 functionality into third-party web applications over which you have little to no control.
 
 The following example demonstrates defining two preload scripts by providing their respective URLs:
 

@@ -44,7 +44,7 @@ The [`raise()`](../../../reference/glue/latest/intents/index.html#API-raise) met
 When raising an Intent, optionally target one or more Intent handlers using the [`target`](../../../reference/glue/latest/intents/index.html#IntentRequest-target) property of the [`IntentRequest`](../../../reference/glue/latest/intents/index.html#IntentRequest) object:
 
 ```javascript
-const intent = await glue.intents.find("ShowChart")[0];
+const intent = (await glue.intents.find("ShowChart"))[0];
 const intentHandler = intent.handlers[0];
 
 const intentRequest = {
