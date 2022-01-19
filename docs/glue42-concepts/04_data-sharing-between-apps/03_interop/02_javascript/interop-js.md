@@ -152,7 +152,7 @@ const result = await glue.interop.invoke(methodName, args, target, options);
 
 If multiple apps offer the same Interop method, you can choose to invoke it on the "best" application instance (this is the default behavior, if no `target` is passed), on a specific Interop instance, on a set of instances, or on all instances.
 
-![Targeting](../../../../images/interop/interop-targeting.gif)
+<glue42 name="diagram" image="../../../../images/interop/interop-targeting.gif">
 
 The following table describes the values accepted by the `target` property of the [`MethodDefinition`](../../../../reference/glue/latest/interop/index.html#MethodDefinition) object when invoking an Interop method:
 
@@ -403,7 +403,7 @@ Your application can publish events that can be observed by other applications a
 
 Applications that create and publish to Interop streams are called *publishers*, and applications that subscribe to Interop Streams are called *subscribers*. An application can be both.
 
-![Streaming](../../../../images/interop/interop-streaming.gif)
+<glue42 name="diagram" image="../../../../images/interop/interop-streaming.gif">
 
 Interop streams are used extensively in [**Glue42 Enterprise**](https://glue42.com/enterprise/) products and APIs:
 
@@ -535,7 +535,7 @@ const symbolPriceCache = {
 };
 
 function onSubscriptionAdded(streamSubscription) {
-    
+
     const symbol = streamSubscription.arguments.symbol;
     const isFirstSubscription = symbolPriceCache[symbol] ? false : true;
 
@@ -572,7 +572,7 @@ Example of a handler for removed subscriptions:
 
 ```javascript
 function onSubscriptionRemoved(streamSubscription) {
-    
+
     const symbol = streamSubscription.arguments.symbol;
     const branch = streamSubscription.stream.branch(symbol);
 
@@ -754,7 +754,7 @@ To test the example:
 ### Stream Publisher
 
 ```javascript
-// Cache object that will contain all symbols and symbol prices 
+// Cache object that will contain all symbols and symbol prices
 // for which there are active subscriptions.
 const symbolPriceCache = {};
 
@@ -781,7 +781,7 @@ function onSubscriptionRequest(subscriptionRequest) {
 };
 
 function onSubscriptionAdded(streamSubscription) {
-    
+
     const symbol = streamSubscription.arguments.symbol;
     const isFirstSubscription = symbolPriceCache[symbol] ? false : true;
 
@@ -806,7 +806,7 @@ function onSubscriptionAdded(streamSubscription) {
 };
 
 function onSubscriptionRemoved(streamSubscription) {
-    
+
     const symbol = streamSubscription.arguments.symbol;
     const branch = streamSubscription.stream.branch(symbol);
 
@@ -856,7 +856,7 @@ function stopDataRequests(symbol) {
     const pollingTask = symbolPriceCache[symbol].pollingTask;
 
     // Stop the requests to the data source.
-    clearInterval(pollingTask); 
+    clearInterval(pollingTask);
 };
 
 function fetchMarketData(symbol) {

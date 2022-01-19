@@ -26,7 +26,7 @@ End Sub
 
 ### Method Implementation
 
-The [`GlueServerMethod`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueservermethod) class exposes an event called [`HandleInvocationRequest`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueservermethod-handleinvocationrequest). Provide a method implementation as its handler which will be executed when the registered method is invoked.  
+The [`GlueServerMethod`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueservermethod) class exposes an event called [`HandleInvocationRequest`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueservermethod-handleinvocationrequest). Provide a method implementation as its handler which will be executed when the registered method is invoked.
 
 Below is an example of a subroutine handling an invocation request for a registered method.
 
@@ -45,7 +45,7 @@ Details about the example:
 ```
 
 - the example demonstrates how to extract elementary fields from a composite value (see [Accessing Composite Value Fields](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#glue42_vba_concepts-composite_values-accessing_composite_value_fields)) and how to build a composite return value (see [Building Composite Values](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#glue42_vba_concepts-composite_values-building_composite_values));
-  
+
 - the example demonstrates how to send a response to the caller by using [`SendResult`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueinvocationrequest-sendresult) to send the return value to the caller and [`SendFailure`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueinvocationrequest-sendfailure) to indicate failure and send an error message and an empty result value to the caller.
 
 ```vbnet
@@ -82,7 +82,7 @@ Private Sub MyVBAMethod_HandleInvocationRequest(ByVal request As IGlueInvocation
         request.SendResult Result
         Exit Sub
     End If
-  
+
     HandleErrors:
         ' If an error occurs or "Operation" isn't recognised,
         ' send an error message and an empty result value.
@@ -125,16 +125,16 @@ Public Sub InvokeMethod()
     ' Create an empty root value.
     Dim Args
     Set Args = Glue.CreateGlueValues
-    
+
     ' Add the arguments.
     Args("operation") = "AddSub"
-        
+
     Dim OperandsArray(0 To 1) As Integer
     OperandsArray(0) = 5
     OperandsArray(1) = 3
     Args("operands") = OperandsArray
-        
-    Args("metadata")("reason") = "testing"  
+
+    Args("metadata")("reason") = "testing"
     ...
 End Sub
 ```
@@ -149,7 +149,7 @@ Below is an example of using `InvokeAsync` to invoke the registered Glue42 metho
 Public Sub InvokeMethod()
     ...
     MyMethodProxy.InvokeAsync "MyVBAMethod", "", Args, False, "", 3000
-    ...  
+    ...
 End Sub
 ```
 
@@ -165,18 +165,18 @@ Public Sub InvokeMethod()
     If MyMethodProxy Is Nothing Then
         Set MyMethodProxy = Glue.CreateMethodInvocator
     End If
-    
+
     ' Building the argument values.
     Dim Args
     Set Args = Glue.CreateGlueValues
-    
+
     Args("operation") = "AddSub"
-        
+
     Dim OperandsArray(0 To 1) As Integer
     OperandsArray(0) = 5
     OperandsArray(1) = 3
     Args("operands") = OperandsArray
-        
+
     Args("metadata")("reason") = "testing"
 
     ' Invoking the method.
@@ -209,44 +209,44 @@ End Sub
 
 ### Handling Invocation Results
 
-- [`InvokeSync`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator-invokesync) returns the invocation results synchronously as а [`VBGlueInvocationResult`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-vbglueinvocationresult). 
+- [`InvokeSync`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator-invokesync) returns the invocation results synchronously as а [`VBGlueInvocationResult`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-vbglueinvocationresult).
 
-- [`InvokeAsync`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator-invokeasync) handles the invocation results with the [`HandleInvocationResult`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator-handleinvocationresult) event of the [`GlueMethodInvocator`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator) instance. Its handler is executed when the associated method invocation has completed (successfully or otherwise). 
+- [`InvokeAsync`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator-invokeasync) handles the invocation results with the [`HandleInvocationResult`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator-handleinvocationresult) event of the [`GlueMethodInvocator`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluemethodinvocator) instance. Its handler is executed when the associated method invocation has completed (successfully or otherwise).
 
 *If you aren't interested in the invocation result, you still need to provide an empty implementation for the `HandleInvocationResult` event or, alternatively, declare the `GlueMethodInvocator` instance without `WithEvents`.*
 
 Below is an example of a subroutine handling an invocation result and demonstrating how to check the method invocation status and extract the return values:
 
 - The instance of [`IGlueInvocationResult`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-vbglueinvocationresult) passed to the event handler has a `Results` property which is an array of [`VBGlueResult`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#types-vbglueresult) containing details about the invocation results. An array is used because the invocation request can be sent to multiple target applications at once. The `Results` array always contains at least one element.
-- In the full invocation example the invocation request is sent to only one target application, therefore only one result is expected and extracted. 
+- In the full invocation example the invocation request is sent to only one target application, therefore only one result is expected and extracted.
 - The `Status` property of a `VBGlueResult` is a [`GlueMethodInvocationStatus`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#enums-gluemethodinvocationstatus) enumeration value.
 - For details on how to extract data from composite values, see [Accessing Composite Value Fields](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#glue42_vba_concepts-composite_values-accessing_composite_value_fields).
 
 ```vbnet
 Private Sub MyMethodProxy_HandleInvocationResult(ByVal result As IGlueInvocationResult)
     On Error GoTo HandleErrors
-    
+
     Dim ResultArr() As VBGlueResult
     Dim FirstResult As VBGlueResult
-    
+
     ' Get the first result.
     ResultArr = result.Results
     FirstResult = ResultArr(0)
-    
+
     If Not FirstResult.Status = GlueMethodInvocationStatus_Succeeded Then
         ' Handle unsuccessful invocation.
         ...
         Exit Sub
     End If
-    
+
     ' Extract the result fields from the composite value.
     Dim ResultArray
     ResultArray = FirstResult.GlueData.GetReflectData("resultArray")
-    
+
     Dim AdditionResult, SubtractionResult As Integer
     AdditionResult = ResultArray(0)
     SubtractionResult = ResultArray(1)
-        
+
     ' Do something with the result.
     ...
 
@@ -302,7 +302,7 @@ Your application can also receive and react to these events and data by creating
 
 Applications that create and publish to Interop Streams are called **publishers**, and applications that subscribe to Interop Streams are called **subscribers**. An application can be both.
 
-![Streaming](../../../../images/interop/interop-streaming.gif)
+<glue42 name="diagram" image="../../../../images/interop/interop-streaming.gif">
 
 Interop Streams are used extensively in [**Glue42 Enterprise**](https://glue42.com/enterprise/) products and APIs:
 
@@ -331,7 +331,7 @@ Public Sub RegisterStream()
         MyVBAStream.Register
     End If
     Exit Sub
-    
+
     HandleErrors:
     ' Handle exceptions.
     ...
@@ -352,13 +352,13 @@ Private Sub MyVBAStream_HandleSubscriptionRequest(ByVal request As IGlueSubscrip
     ' Extract the subscriber-defined `subscriptionCode` field from the request arguments.
     Dim SubscriptionCode As String
     SubscriptionCode = request.GetReflectData("subscriptionCode")
-    
+
     If SubscriptionCode = "rejectme" Then
         ' Reject the subscription request with a message.
         request.Reject "Invalid subscription code."
         Exit Sub
     End If
-    
+
     ' Accept the request on the default branch.
     request.Accept "", Nothing
     Exit Sub
@@ -394,11 +394,11 @@ Private Sub MyVbaStream_HandleSubscriber(ByVal subscriber As IVBGlueStreamSubscr
 End Sub
 ```
 
-*Note that new subscribers won't automatically get the data that has been previously published to the stream. This handler is the place where you can send private updates to the new subscriber, if necessary.* 
+*Note that new subscribers won't automatically get the data that has been previously published to the stream. This handler is the place where you can send private updates to the new subscriber, if necessary.*
 
 #### Handling Removed Subscriptions
 
-[`GlueServerStream`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueserverstream) exposes an event called [`HandleSubscriberLost`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueserverstream-handlesubscriberlost). Its handler is executed when an existing subscriber unsubscribes from the stream.  
+[`GlueServerStream`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueserverstream) exposes an event called [`HandleSubscriberLost`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glueserverstream-handlesubscriberlost). Its handler is executed when an existing subscriber unsubscribes from the stream.
 
 Below is an example of an empty handler subroutine:
 
@@ -471,17 +471,17 @@ Dim WithEvents StreamConsumer As GlueStreamConsumer
 ...
 Public Sub SubscribeToStream()
     On Error GoTo HandleErrors
-    
+
     ' Obtain a stream consumer instance.
     If StreamConsumer Is Nothing Then
         Set StreamConsumer = Glue.CreateStreamConsumer
     End If
-    
+
     ' Build the arguments to send with the subscription request.
     Dim Args
     Set Args = Glue.CreateGlueValues
     Args("subscriptionCode") = "hello"
-    
+
     ' Send the subscription request.
     StreamConsumer.Subscribe "MyVBAStream", "", Args, False, "", 3000
     Exit Sub
@@ -506,17 +506,17 @@ Below is an example of a subroutine handling incoming data from a stream:
 ```vbnet
 Private Sub StreamConsumer_HandleStreamData(ByVal stream As IGlueMethodInfo, ByVal data As IGlueData)
     On Error GoTo HandleErrors
-    
+
     ' Extract information about the data publisher.
     Dim StreamName as String
     Dim ApplicationName as String
     StreamName = stream.method.Name
     ApplicationName = stream.method.Instance.ApplicationName
-    
+
     ' Extract data from the composite value.
     Dim Info As String
     Info = Data.GetReflectData("info")
-    
+
     ' Do something with the data.
     ...
     Exit Sub
@@ -544,14 +544,14 @@ End Sub
 
 #### Stream Status Handler
 
-[`GlueStreamConsumer`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluestreamconsumer) exposes an event called [`HandleStreamStatus`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluestreamconsumer-handlestreamstatus). Its handler is executed when the [`GlueStreamState`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#enums-gluestreamstate) of the associated stream subscription changes. 
+[`GlueStreamConsumer`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluestreamconsumer) exposes an event called [`HandleStreamStatus`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluestreamconsumer-handlestreamstatus). Its handler is executed when the [`GlueStreamState`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#enums-gluestreamstate) of the associated stream subscription changes.
 
 Below is an example of a subroutine handling the event:
 
 ```vbnet
 Private Sub StreamConsumer_HandleStreamStatus(ByVal stream As IGlueMethodInfo, ByVal state As GlueStreamState, ByVal Message As String, ByVal dateTime As Double)
     On Error GoTo HandleErrors
-    
+
     Select Case state
     Case GlueStreamState_Pending
         ' Subscription request is pending.
@@ -586,4 +586,4 @@ Private Sub StreamConsumer_HandleStreamClosed(ByVal stream As IGlueMethodInfo)
   ...
 End Sub
 ```
-You may provide an empty implementation if you aren't interested in performing any actions when the subscription has been terminated. 
+You may provide an empty implementation if you aren't interested in performing any actions when the subscription has been terminated.

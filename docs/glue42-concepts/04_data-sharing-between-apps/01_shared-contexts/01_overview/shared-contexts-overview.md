@@ -7,4 +7,4 @@ The Shared Contexts API offers a simple and effective solution for sharing data 
 - instruct the "Clients" app to publish updates to a context object holding the `id` of the currently selected client;
 - instruct the "Portfolio" app to subscribe for updates of that same context object and specify how the "Portfolio" app should handle the received data in order to update its current state;
 
-![Shared Contexts](../../../../images/shared-contexts/shared-contexts.gif) 
+<glue42 name="diagram" image="../../../../images/shared-contexts/shared-contexts.gif">

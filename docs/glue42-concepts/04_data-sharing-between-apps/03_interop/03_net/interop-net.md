@@ -16,7 +16,7 @@ public interface ICRMService : IDisposable
 `CRMServiceImpl` holds the actual application logic that will handle **Interop** calls:
 
 ```csharp
-public class CRMServiceImpl : ICRMService 
+public class CRMServiceImpl : ICRMService
 {
     public bool SynchronizeContact(TContact contact)
     {
@@ -82,7 +82,7 @@ public class StateService : IStateService
 {
     public void GetState(Action<ClientPortfolioDemoState> handleResult)
     {
-        ThreadPool.QueueUserWorkItem(_ => 
+        ThreadPool.QueueUserWorkItem(_ =>
         {
             handleResult(new ClientPortfolioDemoState());
         });
@@ -141,7 +141,7 @@ IServerMethod interopMethod = Glue.Interop.RegisterEndpoint(mdb => mdb.SetMethod
 
 ```csharp
     Glue.Interop.Invoke("DoWork", mib => mib.SetContext(cb => cb.AddValue("id", Guid.NewGuid().ToString("N")))
-    .SkipInvocationMetrics().SetInvocationLoggingLevel(LogLevel.Info), 
+    .SkipInvocationMetrics().SetInvocationLoggingLevel(LogLevel.Info),
     new TargetSettings().WithTargetInvokeTimeout(TimeSpan.FromSeconds(8)).WithTargetType(MethodTargetType.Any))
     .ContinueWith(r =>
         {
@@ -252,7 +252,7 @@ internal class OptionsAdapter : IAGMServiceOptionsAdapter<IServiceOptions>
 
 ## Best Practices
 
-**Using service options adapters** 
+**Using service options adapters**
 
 In this example, the `IServiceOptions` is the sample service options adapter logic provided in the `Glue42` library. You can define and implement a different interface that hides/adapts all Interop specifics:
 
@@ -262,14 +262,14 @@ public interface IG40DemoRemoteService : IDisposable
 {
     [ServiceOperation]
     void ShowClient(T42Contact contact, [AGMServiceOptions] IServiceOptions serviceOption);
-}       
+}
 
 g40RemoteService_.ShowClient(sender, new ServiceOptions(
      (so, invocation, result, ex) =>
      {
          logger_.Info($"{nameof(g40RemoteService_.ShowClient)} of {sender.Name} completed with {result}", ex);
          Facts.Instance.AddNormalEvent($"{invocation} completed with {result}");
-         
+
          if (result == null || result.Status != MethodInvocationStatus.Succeeded || ex != null)
          {
              ShowNotification("Show client failed",
@@ -289,7 +289,7 @@ Your application can publish events that can be observed by other applications a
 
 Applications that create and publish to Interop streams are called *publishers*, and applications that subscribe to Interop Streams are called *subscribers*. An application can be both.
 
-![Streaming](../../../../images/interop/interop-streaming.gif)
+<glue42 name="diagram" image="../../../../images/interop/interop-streaming.gif">
 
 Interop streams are used extensively in [**Glue42 Enterprise**](https://glue42.com/enterprise/) products and APIs:
 
@@ -369,7 +369,7 @@ Glue.Interop.Subscribe(streamName,
             DispatchAction(() =>
             {
                 var isOOB = data.IsCallbackStream;
-                // if isOOB is true (out-of-band), the data has been pushed only to this subscriber 
+                // if isOOB is true (out-of-band), the data has been pushed only to this subscriber
                 LogMessage($"{data.ResultContext.AsString()}");
             })
     },
@@ -411,13 +411,13 @@ IServerEventStream streamingMethod = Glue.Interop.RegisterStreamingEndpoint(
 
         //  SubscriptionRequestHandler = (stream, request, cookie) =>
         //  {
-        //      //  register a subscriber and associate it to a branch; 
+        //      //  register a subscriber and associate it to a branch;
         //      //  "null" branch key means to associate it to the main branch, i.e. the stream itself
 
         //      return request.Accept(reply => reply.SetMessage("subscribed").Build(), branchKey: null);
         //      or accept the subscriber on a named branch (represented by any object you want)
 
-        //      Assigning a branch will effectively group the subscribers (that use the same subscription arguments) 
+        //      Assigning a branch will effectively group the subscribers (that use the same subscription arguments)
         //      on a stream branch and then publish to that branch, which will multicast data to all these subscribers:
 
         //      return request.Accept(reply => reply.SetMessage("subscribed").Build(), branchKey: "myBranchName");

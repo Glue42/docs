@@ -1,6 +1,6 @@
 ## Overview
 
-What is a notification? A notification is an event important enough to be brought to the attention of a user. 
+What is a notification? A notification is an event important enough to be brought to the attention of a user.
 
 A few contextual examples:
 
@@ -26,4 +26,4 @@ The Glue42 Notification Service (GNS) is an unopinionated architecture, a set of
 
 ## Architecture
 
-![GNS Architecture](../../../images/notifications/gns.gif) 
+<glue42 name="diagram" image="../../../images/notifications/gns.gif">

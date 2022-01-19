@@ -17,7 +17,7 @@ var data = new { RIC = "AAPL.O" };
 await glue.Bus.Publish(topic, data);
 ```
 
-![Publish to All](../../../../images/pub-sub/pub-sub-all.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-all.gif">
 
 ### To Specific Applications
 
@@ -36,7 +36,7 @@ await glue.Bus.Publish(topic, data, (messageOptions) =>
 }
 ```
 
-![Publish Specific App](../../../../images/pub-sub/pub-sub-specific-app.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-specific-app.gif">
 
 The Pub/Sub API compares the `appName` argument with the identity of each application subscribed to the topic and delivers the message only to subscribers with a matching application name.
 
@@ -52,13 +52,13 @@ await glue.Bus.Publish(topic, data, options => options.WithRoutingKey(routingKey
 
 The Pub/Sub API delivers messages with a routing key to all subscribers with the same routing key and to the ones with no routing key.
 
-![Publish Routing](../../../../images/pub-sub/pub-sub-routing.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-routing.gif">
 
 ## Subscribe
 
 ### Messages from Any Application
 
-To subscribe for messages from all applications on a specific topic, use the `Subscribe()` method. Upon successful subscription, it returns a subscription object of type `IDisposable`. Use its `Dispose()` method to stop receiving messages on that topic. 
+To subscribe for messages from all applications on a specific topic, use the `Subscribe()` method. Upon successful subscription, it returns a subscription object of type `IDisposable`. Use its `Dispose()` method to stop receiving messages on that topic.
 
 Provide the topic on which you want to receive messages and a handler function for the messages:
 
@@ -74,7 +74,7 @@ IDisposable stocksSubscription = await glue.Bus.Subscribe(topic, (message) =>
 stocksSubscription.Dispose();
 ```
 
-![Subscribe to All](../../../../images/pub-sub/pub-sub-all.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-all.gif">
 
 ### Messages from Specific Applications
 
@@ -93,7 +93,7 @@ options => options.WithTarget(target));
 
 The Pub/Sub API compares the `target` argument with the identity of the publisher. It invokes the message handler only if the `target` argument entries match the respective entries in the identity of the publisher.
 
-![Subscribe Specific App](../../../../images/pub-sub/pub-sub-specific-app.gif) -->
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-specific-app.gif"> -->
 
 The example below demonstrates how to subscribe for messages with a specific routing key:
 
@@ -110,7 +110,7 @@ options => options.WithRoutingKey(routingKey));
 
 The Pub/Sub API invokes the handler only for messages with a matching routing key and for the ones with no routing key.
 
-![Subscribe Routing](../../../../images/pub-sub/pub-sub-routing.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-routing.gif">
 
 ## Typed Message Buses
 
@@ -170,7 +170,7 @@ The data which which fails to deserialize to the required type is accessible thr
 ```csharp
 await intBus.Subscribe(topic, (message) =>
 {
-    if (message.HasDeserializationError) 
+    if (message.HasDeserializationError)
     {
         Console.WriteLine($"Received wrong data type: {message.UntypedData}");
     }

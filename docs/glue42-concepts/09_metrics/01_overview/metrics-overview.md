@@ -4,11 +4,11 @@ To improve the efficiency of your business processes, you often find the need to
 
 ## Metrics Pipeline
 
-![Metrics Pipeline](../../../images/metrics/metrics-pipeline.png)
+<glue42 name="diagram" image="../../../images/metrics/metrics-pipeline.png">
 
 ## Generation
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) starts to generate metrics automatically when initialized. To control what data you want to receive, add configuration for the metrics in the `"configuration"` property of the `"gw"` top-level key of the `system.json` file, located in `%LocalAppData%\Tick42\GlueDesktop\config`. 
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) starts to generate metrics automatically when initialized. To control what data you want to receive, add configuration for the metrics in the `"configuration"` property of the `"gw"` top-level key of the `system.json` file, located in `%LocalAppData%\Tick42\GlueDesktop\config`.
 
 The example configuration below shows how to allow only the [User Journey](#generation-user_journey_metrics) metrics from all publishers and publish them to a local file:
 
@@ -175,7 +175,7 @@ And here is how the metric describing the transition from the "Client Portfolio"
 
 ### Click Stream Metrics
 
-The Click Stream metrics provide you with information about what the user has clicked in the application window. This can be useful in determining the most efficient workflow patterns and best practices when using an application. 
+The Click Stream metrics provide you with information about what the user has clicked in the application window. This can be useful in determining the most efficient workflow patterns and best practices when using an application.
 
 Here is how a Click Stream metric may look like when a user clicks on a DOM element in an app:
 
@@ -215,7 +215,7 @@ Here is how a Click Stream metric may look like when a user clicks on a DOM elem
 
 The Glue42 Gateway can be configured to publish [Interop](../../data-sharing-between-apps/interop/overview/index.html) related metrics that are subject to black/white listing (methods and arguments). This can be useful when you want to track which application has invoked which method and with what arguments.
 
-Below is an example configuration for publishing Interop Metrics to a local file. Data will be collected about all methods whose names start with `"T42.Wnd"` (these are actual methods for handling windows in [**Glue42 Enterprise**](https://glue42.com/enterprise/)). Further filtering of the matched methods will be applied in order to exclude metrics about methods which have an argument called `"email"` - to avoid leaking personal information.  
+Below is an example configuration for publishing Interop Metrics to a local file. Data will be collected about all methods whose names start with `"T42.Wnd"` (these are actual methods for handling windows in [**Glue42 Enterprise**](https://glue42.com/enterprise/)). Further filtering of the matched methods will be applied in order to exclude metrics about methods which have an argument called `"email"` - to avoid leaking personal information.
 
 - `"identity"` must be present;
 - the `"enabled"` property of the `"interop"` key must be set to `true`;
@@ -264,8 +264,8 @@ See below how an actual Interop Metric (structured as a FAV Metric) may look lik
             "action": {             // A more specific action you want to track. In this case - Interop events.
                 "value": "event"
             },
-            "value": {              // The recorded information about the specified action. In this case - 
-                                    // information about the invoked method (method name, result from the invocation), 
+            "value": {              // The recorded information about the specified action. In this case -
+                                    // information about the invoked method (method name, result from the invocation),
                                     // the instance that has invoked it and contextual system information.
                 "value": "{\"subscription_id\":\"r-91647ca3d11f49c5a41cc8ba466fc1df-45\",
                 \"subscriber\":{\"machine\":\"::1\",\"application\":\"js-gns-dialog-panel\",
@@ -361,12 +361,12 @@ Below is an example configuration for enabling a custom JavaScript publisher. Th
         "customMetricsPublishers": [
             {
                 "file": "%GDDIR%/assets/metrics-publishers/template/index.js",
-                "metricsConfiguration": { 
-                    "conflation": {           
-                        "max-size": 0,            
-                        "interval": 1000       
+                "metricsConfiguration": {
+                    "conflation": {
+                        "max-size": 0,
+                        "interval": 1000
                     },
-                    "buffer-size": 10000,        
+                    "buffer-size": 10000,
                     "split-size": 1
                 },
                 "publisherConfiguration": {
@@ -517,25 +517,25 @@ The filtering configuration has the following syntax:
 
 ```json
 {
-    "metrics": {   
+    "metrics": {
         "filters": {
             "publishers": [<publisher configuration>],
             "non-matched": <non matched configuration>
-        }          
+        }
     }
 }
 ```
- 
+
 - `<publisher configuration>` is a `Map` with the following structure:
 
 ```json
 {
     "publisher": {<identity key>: <value regex/string>},
     "metrics": {
-        "whitelist": [<value regex/string>], 
+        "whitelist": [<value regex/string>],
         "blacklist": [<value regex/string>]
     }
-}   
+}
 ```
 
 To match the publisher, the value of its identity needs to match the regex (or direct string) that is specified in the `"publisher"` configuration. For every configuration that is matched, the `"whitelist"` and `"blacklist"` are checked against the metric name. If a single blacklist or no whitelists match, then the metric won't be published.
@@ -593,7 +593,7 @@ Below is a configuration that allows all metrics from a publisher whose service 
 
 ## Transformation and Storage
 
-The Glue42 metrics are published as structured JSON trees. Once published to a server, they are transformed and routed to the respective storage (or to another transport bus, depending on the client infrastructure and intentions). The transformation is done using the [JSLT](https://github.com/schibsted/jslt) language. The fields in the JSON files are queried and if they meet certain requirements, the metrics are routed to the respective storage/bus. 
+The Glue42 metrics are published as structured JSON trees. Once published to a server, they are transformed and routed to the respective storage (or to another transport bus, depending on the client infrastructure and intentions). The transformation is done using the [JSLT](https://github.com/schibsted/jslt) language. The fields in the JSON files are queried and if they meet certain requirements, the metrics are routed to the respective storage/bus.
 
 Glue42 provides solutions for metrics transformation depending on the respective storage and data volumes: [Metrics Server](#transformation_and_storage-metrics_server) - for lower record volumes, and [Metrics Recorder](#transformation_and_storage-metrics_recorder) - for large record volumes. Also available is a [Metrix in a Box](#transformation_and_storage-metrics_in_a_box) solution which includes the Metrics Server connected with a preconfigured SQL database and allows clients to quickly connect an analytics tool of their choice in order to evaluate the Metrics Server.
 
@@ -603,22 +603,22 @@ Currently, storage support is offered for RDBMS, ElasticSearch and VaranDB (Tick
 
 The Metrics Server is a server-side component combining a REST and a transformation service. It can receive metrics via a REST protocol, Kafka and Solace. The Metrics Server transforms the Glue42 metrics allowing for direct storage in SQL databases. Clients can also insert custom code to write to any data store of their choice. The Metrics server is a solution suitable for lower record volumes. The actual volumes depend on the number of metrics and the capacity of the SQL database, but the Metrics Server can handle hundreds of desktops.
 
-![Metrics Server](../../../images/metrics/metrics-server.png)
+<glue42 name="diagram" image="../../../images/metrics/metrics-server.png">
 
 ### Metrics in a Box
 
 The Metrics in a Box solution allows developers to easily setup and evaluate the [Metrics Server](#transformation_and_storage-metrics_server). It comes as two docker images that contain the Metrics Server and an SQL database. The SQL database is preconfigured with tables which store some of the default Glue42 metrics. The Metrics Server transforms the metrics so that they can be used in these tables. Based on this setup, users can connect an analytics software of their choice (e.g., Tableau or Qlik) to the SQL database.
 
-![Metrics in a Box](../../../images/metrics/metrics-in-a-box.png)
+<glue42 name="diagram" image="../../../images/metrics/metrics-in-a-box.png">
 
 ### Metrics Recorder
 
 The Metrics Recorder is a Glue42 Java application based on the Tick42 proprietary VaranDB library. The Metrics Recorder can transform large volumes of metrics (from tens of thousands of users) and store them using Cassandra and ElasticSearch storage engines. Supported transports are REST API, Kafka, Solace. A site-specific data extraction process is required to extract the data from the Cassandra/ElasticSearch store and use it for reports. Typically, this involves writing the extracted data to an SQL store for use by a business intelligence system.
 
-![Metrics Recorder](../../../images/metrics/metrics-recorder.png)
+<glue42 name="diagram" image="../../../images/metrics/metrics-recorder.png">
 
 ## Visualization
 
 All visualizations and analyses of the gathered information are handled by the client with their preferred tools and infrastructure.
 
-See also the [Glue42 Insights](https://glue42.com/insights/) product which provides means for aggregating and visualizing the collected metrics information. 
+See also the [Glue42 Insights](https://glue42.com/insights/) product which provides means for aggregating and visualizing the collected metrics information.
