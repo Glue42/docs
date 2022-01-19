@@ -8,7 +8,7 @@ Service windows are hidden windows which perform a specific supporting role for 
 
 Service windows may be useful in many scenarios. For instance, you may have a number of applications that need to receive and process data from several different providers. Instead of setting up each application to receive and then process the data from every provider, you can create a hidden service window which will communicate with the providers, collect the data, pre-process it and route it to the respective applications. This way, your applications have to handle communication with only one end point, all the necessary data is consolidated, processed, filtered, etc., at one central data hub from where it can be sent to any window needing it. Depending on your needs or goals, you can configure your service windows to auto start on system startup, or to start when an application requests that service. The service windows approach offers you additional flexibility and versatility in designing solutions for the application services you need.
 
-![Service Window](../../images/platform-features/service-windows.png)
+<glue42 name="diagram" image="../../images/platform-features/service-windows.png">
 
 ## Citrix Applications
 
@@ -30,23 +30,23 @@ To Glue42 enable a .NET Citrix app:
 
 1. In your Visual Studio project, reference the `Glue42.dll` available in the [Glue42 NuGet package](https://www.nuget.org/packages/Glue42/).
 
-2. Follow the standard procedure for [Glue42 enabling .NET applications](../../getting-started/how-to/glue42-enable-your-app/net/index.html). 
+2. Follow the standard procedure for [Glue42 enabling .NET applications](../../getting-started/how-to/glue42-enable-your-app/net/index.html).
 
-3. After initializing Glue42, you can check whether your application is connected to Glue42 in the following manner: 
+3. After initializing Glue42, you can check whether your application is connected to Glue42 in the following manner:
 
-```csharp 
-using Tick42.StartingContext; 
-if (InitializeOptions.IsCitrixGD) 
+```csharp
+using Tick42.StartingContext;
+if (InitializeOptions.IsCitrixGD)
 {
-    // Running in Citrix, connected to Glue42 Enterprise. 
-} 
-else if (InitializeOptions.IsCitrixVirtualApp) 
+    // Running in Citrix, connected to Glue42 Enterprise.
+}
+else if (InitializeOptions.IsCitrixVirtualApp)
 {
     // Running in Citrix, not connected to Glue42 Enterprise.
 }
 ```
 
-When your Citrix app is connected to [**Glue42 Enterprise**](https://glue42.com/enterprise/), you may want to remove any custom window decorations, since the top-level window chrome will be handled by [**Glue42 Enterprise**](https://glue42.com/enterprise/). 
+When your Citrix app is connected to [**Glue42 Enterprise**](https://glue42.com/enterprise/), you may want to remove any custom window decorations, since the top-level window chrome will be handled by [**Glue42 Enterprise**](https://glue42.com/enterprise/).
 
 4. Add `%**` to the application arguments in the Citrix Application Settings:
 
@@ -60,7 +60,7 @@ You will now be able to run your .NET Citrix application from [**Glue42 Enterpri
 
 To Glue42 enable a Java Citrix app:
 
-1. Follow the standard procedure for [Glue42 enabling Java applications](../../getting-started/how-to/glue42-enable-your-app/java/index.html).  
+1. Follow the standard procedure for [Glue42 enabling Java applications](../../getting-started/how-to/glue42-enable-your-app/java/index.html).
 
 2. In the Citrix Application Settings, set the path to a `javaw.exe` or `java.exe` file, use standard VM arguments to launch your Java app, and add `%**` at the end of the application arguments:
 
@@ -72,7 +72,7 @@ You will now be able to run your Java Citrix application from [**Glue42 Enterpri
 
 ## Splash Screen
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) has a built-in splash screen, but also supports showing a custom splash screen. Your custom splash screen is loaded from a local file. 
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) has a built-in splash screen, but also supports showing a custom splash screen. Your custom splash screen is loaded from a local file.
 
 You can replace the splash screen HTML file in `%LocalAppData%\Tick42\GlueDesktop\assets\splash` with your own custom file. You can also set the size of the splash screen - the splash screen configuration can be set in the `system.json` file under the `"splash"` key:
 
@@ -85,13 +85,13 @@ You can replace the splash screen HTML file in `%LocalAppData%\Tick42\GlueDeskto
 
 ![Splash](../../images/platform-features/splash.png)
 
-For the splash screen setup to work, you need to handle the following events: 
+For the splash screen setup to work, you need to handle the following events:
 
 ```javascript
 // updateStatus event
 ipcRenderer.on("updateStatus", (event, arg) => {
     console.log(`updating status to ${arg.text}`);
-    var status = document.getElementById("status");    
+    var status = document.getElementById("status");
     status.innerHTML = arg.text + "...";
 });
 
@@ -155,10 +155,10 @@ When the link is clicked, [**Glue42 Enterprise**](https://glue42.com/enterprise/
 The Glue42 global protocol can be configured from the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) using the `"potocolHandler"` top-level key:
 
 ```json
-"protocolHandler": { 
+"protocolHandler": {
     "enabled": true,
-    "allowOpeningURLs": { 
-        "allowed": ["https://glue42.com"], 
+    "allowOpeningURLs": {
+        "allowed": ["https://glue42.com"],
         "forbidden": ["https://youtube.com/.*", "https://facebook.com/.*"]
     }
 }
@@ -187,7 +187,7 @@ The Glue42 global protocol can be used in different formats depending on what yo
 
 #### Applications
 
-To start a Glue42 enabled application, use the `app` protocol option and pass the application name: 
+To start a Glue42 enabled application, use the `app` protocol option and pass the application name:
 
 ```cmd
 glue42://app/clientlist
@@ -233,7 +233,7 @@ To open a URL in a Glue42 Window, use the `url` protocol option and pass the URL
 glue42://url/https://google.com 
 ```
 
-To specify [Glue42 Window settings](../../reference/glue/latest/windows/index.html#WindowSettings) when opening a URL, use `??` after the URL and `&` before each setting. The following example demonstrates passing a location for the newly opened window: 
+To specify [Glue42 Window settings](../../reference/glue/latest/windows/index.html#WindowSettings) when opening a URL, use `??` after the URL and `&` before each setting. The following example demonstrates passing a location for the newly opened window:
 
 ```cmd
 glue42://url/https://google.com??left=100&top=200
@@ -317,8 +317,8 @@ When a user clicks on a download link in the website, the download will start an
 
 The user has options to:
 
-- cancel the download; 
-- pause and later resume the download; 
+- cancel the download;
+- pause and later resume the download;
 - open the downloaded file in the containing folder;
 
 **Invoking an Interop Method**
@@ -365,11 +365,11 @@ Search in web apps opened in Glue42 Windows just like in a browser with the `CTR
 
 ![Search](../../images/platform-features/search-document.gif)
 
-Use `ENTER` and `SHIFT + ENTER` to scroll through the results. Click `ESC` to close the search bar. 
+Use `ENTER` and `SHIFT + ENTER` to scroll through the results. Click `ESC` to close the search bar.
 
 ## Context Menu
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) has a right-click context menu available in all Glue42 apps for which it has been enabled. It offers standard cut/copy/paste actions, zoom and spelling controls: 
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) has a right-click context menu available in all Glue42 apps for which it has been enabled. It offers standard cut/copy/paste actions, zoom and spelling controls:
 
 ![Context menu](../../images/platform-features/context-menu.png)
 
@@ -553,23 +553,23 @@ Zoom in:
 
 ```javascript
 // Will zoom in the window to the next factor in the "factors" array.
-await win.zoomIn(); 
+await win.zoomIn();
 ```
 
 Zoom out:
 
 ```javascript
 // Will zoom out the window to the previous factor in the "factors" array
-await win.zoomOut();  
+await win.zoomOut();
 ```
 
 Set a desired zoom factor:
 
 ```javascript
-await win.setZoomFactor(number); 
+await win.setZoomFactor(number);
 ```
 
-Carefully consider all cases if you intend to pass a zoom factor value based on a logic in your app. Negative values will cause unexpected behavior. Passing positive values lower than 25 will cause zoom out with a factor of 25, positive values higher than 500 will cause zoom in with a factor of 500 and passing zero as a factor will preserve the previous zoom factor. 
+Carefully consider all cases if you intend to pass a zoom factor value based on a logic in your app. Negative values will cause unexpected behavior. Passing positive values lower than 25 will cause zoom out with a factor of 25, positive values higher than 500 will cause zoom in with a factor of 500 and passing zero as a factor will preserve the previous zoom factor.
 
 Listening for zoom factor changes:
 
@@ -623,7 +623,7 @@ You can get the primary display with the [`getPrimary()`](../../reference/glue/l
 
 ```javascript
 // Returns the primary display.
-const primaryDisplay =  await glue.displays.getPrimary(); 
+const primaryDisplay =  await glue.displays.getPrimary();
 ```
 
 Example of finding and capturing the primary display:
@@ -641,7 +641,7 @@ To get a specific display, use the [`get()`](../../reference/glue/latest/display
 const displayID = 2528732444;
 
 // returns a display by ID
-const display = await glue.displays.get(displayID); 
+const display = await glue.displays.get(displayID);
 ```
 
 #### The Display Object
@@ -679,9 +679,9 @@ The [`CaptureAllOptions`](../../reference/glue/latest/displays/index.html#Captur
 
 #### Capturing a Single Display
 
-To capture a single display, use the `capture()` method at top level of the API or on a [`Display`](../../reference/glue/latest/displays/index.html#Display) instance. 
+To capture a single display, use the `capture()` method at top level of the API or on a [`Display`](../../reference/glue/latest/displays/index.html#Display) instance.
 
-When you use the [`capture()`](../../reference/glue/latest/displays/index.html#API-capture) method at top level of the API, pass a [`CaptureOptions`](../../reference/glue/latest/displays/index.html#CaptureOptions) object. The following example demonstrates how to use the display ID to find and capture the desired display and also how to specify capturing options. The `width` and `height` of the output image will be half the width and height of the captured monitor. The captured image is returned as a `base64` encoded string: 
+When you use the [`capture()`](../../reference/glue/latest/displays/index.html#API-capture) method at top level of the API, pass a [`CaptureOptions`](../../reference/glue/latest/displays/index.html#CaptureOptions) object. The following example demonstrates how to use the display ID to find and capture the desired display and also how to specify capturing options. The `width` and `height` of the output image will be half the width and height of the captured monitor. The captured image is returned as a `base64` encoded string:
 
 ```javascript
 const displayID = 2528732444;
@@ -700,7 +700,7 @@ The [`CaptureOptions`](../../reference/glue/latest/displays/index.html#CaptureOp
 | `id` | `number` | **Required**. ID of the targeted display. |
 | `size` | `object` | *Optional*. Accepts either a [`ScaleOptions`](../../reference/glue/latest/displays/index.html#ScaleOptions) or an [`AbsoluteSizeOptions`](../../reference/glue/latest/displays/index.html#AbsoluteSizeOptions) object, specifying the size of the output image. |
 
-The [`ScaleOptions`](../../reference/glue/latest/displays/index.html#ScaleOptions) object has only one property - `scale`, which accepts a number. The value you pass to it specifies the size of the output image relative to the actual screen size. For instance, if you use `scale: 0.5` the height and width of the output image will be half the height and width of the captured screen. 
+The [`ScaleOptions`](../../reference/glue/latest/displays/index.html#ScaleOptions) object has only one property - `scale`, which accepts a number. The value you pass to it specifies the size of the output image relative to the actual screen size. For instance, if you use `scale: 0.5` the height and width of the output image will be half the height and width of the captured screen.
 
 The [`AbsoluteSizeOptions`](../../reference/glue/latest/displays/index.html#AbsoluteSizeOptions) object has the following properties, all of which are optional:
 
@@ -758,7 +758,7 @@ For a complete list of the available Displays API methods and properties, see th
 
 ### Logging to Files from Your JavaScript Application
 
-Adding logging to files to your JavaScript apps can be helpful in a variety of ways. Having a well-designed and meaningful logging structure in your apps and their components can save a lot of time when debugging an app during development or troubleshooting problems with an app in production. 
+Adding logging to files to your JavaScript apps can be helpful in a variety of ways. Having a well-designed and meaningful logging structure in your apps and their components can save a lot of time when debugging an app during development or troubleshooting problems with an app in production.
 
 *Logging to files for JavaScript applications is available from Glue42 JavaScript version 4.8.0 or later and [**Glue42 Enterprise**](https://glue42.com/enterprise/) 3.9 or later.*
 
@@ -1060,7 +1060,7 @@ Here is an example extensibility file content, listing most of the available ext
     // ... other screens: downloadProgress, packages, previewAndConfirm, uninstall, ...
 
     // package the Glue42 Enterprise installer with custom configuration files
-    "finalizing": [ 
+    "finalizing": [
         {
             "type": "gdConfig",
             "args": {

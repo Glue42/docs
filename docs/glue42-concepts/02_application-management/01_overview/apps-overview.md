@@ -8,7 +8,7 @@ The Application Management API provides a way to manage [**Glue42 Enterprise**](
 
 - *Instance* - a running copy of an application. The Application Management API provides facilities for starting and stopping application instances and tracking application related events.
 
-![App Management](../../../images/app-management/app-management.gif)
+<glue42 name="diagram" image="../../../images/app-management/app-management.gif">
 
 ## Application Stores
 
@@ -18,7 +18,7 @@ In the standard [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployme
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) respects the FDC3 standards and can retrieve standard Glue42, as well as FDC3-compliant application definitions. For more details on working with FDC3-compliant apps, see the [FDC3 Compliance](../../../getting-started/fdc3-compliance/index.html) section, the [FDC3 App Directory documentation](https://fdc3.finos.org/docs/app-directory/overview) and the [FDC3 Application](https://fdc3.finos.org/schemas/1.2/app-directory#tag/Application) schema.
 
-![App Stores](../../../images/configuration-stores/app-stores.png)
+<glue42 name="diagram" image="../../../images/app-management/app-stores.png">
 
 ### Local App Stores
 
@@ -49,7 +49,7 @@ To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load app
 
 ### Remote App Stores
 
-Application configurations can also be hosted on a server and obtained from a REST service. 
+Application configurations can also be hosted on a server and obtained from a REST service.
 
 For a reference implementation of a remote application configurations store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example that implements the [FDC3 App Directory](https://fdc3.finos.org/docs/1.0/appd-intro) and is compatible with [**Glue42 Enterprise**](https://glue42.com/enterprise/). This basic implementation doesn't take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the `README.md` file in the repository.
 

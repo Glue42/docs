@@ -4,7 +4,7 @@
 
 Glue42 Server is a server-side application that provides data to Glue42 (applications, Layouts, preferences) and allows monitoring and interacting with users running Glue42. It also includes an Admin UI that helps managing the data stored in the Glue42 Server easier.
 
-![Glue42 Server](../../images/server/server-architecture.png)
+<glue42 name="diagram" image="../../images/server/server-architecture.png">
 
 The Glue42 Server is available on GitHub - for access and more details, [contact us](https://glue42.com/contacts/) at `info@glue42.com`.
 

@@ -25,7 +25,7 @@ const data = { RIC: "AAPL.O" };
 glue.bus.publish(topic, data);
 ```
 
-![Publish to All](../../../../images/pub-sub/pub-sub-all.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-all.gif">
 
 ### To Specific Applications
 
@@ -45,15 +45,15 @@ The example below demonstrates how to publish a message to another application (
 const topic = "stocks";
 const data = { RIC: "AAPL.O" };
 const options = {
-    target: { 
-        application: "client-portfolio" 
+    target: {
+        application: "client-portfolio"
     }
 };
 
 glue.bus.publish(topic, data, options);
 ```
 
-![Publish Specific App](../../../../images/pub-sub/pub-sub-specific-app.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-specific-app.gif">
 
 The Pub/Sub API compares the [`target`](../../../../reference/glue/latest/pub%20sub/index.html#MessageOptions-target) property of the `options` argument with the identity of each application subscribed to the topic. It delivers the message only to subscribers with identity properties matching the respective properties of the [`target`](../../../../reference/glue/latest/pub%20sub/index.html#MessageOptions-target) object.
 
@@ -63,8 +63,8 @@ The example below demonstrates how to publish messages with a specific routing k
 const topic = "stocks";
 const data = { RIC: "AAPL.O" };
 const options = {
-    target: { 
-        routingKey: "portfolio" 
+    target: {
+        routingKey: "portfolio"
     }
 };
 
@@ -73,7 +73,7 @@ glue.bus.publish(topic, data, options);
 
 The Pub/Sub API delivers messages with a [`routingKey`](../../../../reference/glue/latest/pub%20sub/index.html#MessageOptions-routingKey) to all subscribers with the same routing key and to the ones with no routing key.
 
-![Publish Routing](../../../../images/pub-sub/pub-sub-routing.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-routing.gif">
 
 ## Subscribe
 
@@ -90,7 +90,7 @@ const handler = (data, topic, source) => console.log(data, topic, source);
 const { unsubscribe } = await glue.bus.subscribe(topic, handler);
 ```
 
-![Subscribe to All](../../../../images/pub-sub/pub-sub-all.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-all.gif">
 
 ### Messages from Specific Applications
 
@@ -110,7 +110,7 @@ const { unsubscribe } = await glue.bus.subscribe(topic, handler, options);
 
 The Pub/Sub API compares the [`target`](../../../../reference/glue/latest/pub%20sub/index.html#MessageOptions-target) property of the `options` argument with the identity of the publisher. It invokes the callback only if all the properties of the [`target`](../../../../reference/glue/latest/pub%20sub/index.html#MessageOptions-target) object match the respective properties of the identity of the publisher.
 
-![Subscribe Specific App](../../../../images/pub-sub/pub-sub-specific-app.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-specific-app.gif">
 
 The example below demonstrates how to subscribe for messages with a specific routing key:
 
@@ -128,7 +128,7 @@ const { unsubscribe } = await glue.bus.subscribe(topic, handler, options);
 
 The Pub/Sub API invokes the callback only for messages with a matching routing key and for the ones with no routing key.
 
-![Subscribe Routing](../../../../images/pub-sub/pub-sub-routing.gif)
+<glue42 name="diagram" image="../../../../images/pub-sub/pub-sub-routing.gif">
 
 ## Reference
 

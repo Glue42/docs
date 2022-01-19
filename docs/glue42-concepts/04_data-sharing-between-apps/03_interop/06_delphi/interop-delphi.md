@@ -1,6 +1,6 @@
 ## Method Registration
 
-To expose a Glue42 method that can be invoked by other Glue42 enabled applications, you must register the method in Glue42 and provide its implementation. The application must also implement the [`IGlueRequestHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluerequesthandler) interface to dispatch and handle the method invocation requests.  
+To expose a Glue42 method that can be invoked by other Glue42 enabled applications, you must register the method in Glue42 and provide its implementation. The application must also implement the [`IGlueRequestHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluerequesthandler) interface to dispatch and handle the method invocation requests.
 
 This can be simplified by using the [`TGlueRequestHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit-classes_for_handling_events-tgluerequesthandler) class of the [Glue42 Helper Unit](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit) which takes care of implementing [`IGlueRequestHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluerequesthandler) and dispatching the request to a specific Delphi procedure.
 
@@ -80,7 +80,7 @@ begin
 
   ZeroMemory(@gResult, sizeof(gResult));
 
-  // Send an error message and a failed method invocations status if the arguments are invalid. 
+  // Send an error message and a failed method invocations status if the arguments are invalid.
   if not (aValid and bValid) then begin
     gResult.Status := GlueMethodInvocationStatus_Failed;
     gResult.Message := errorMessage;
@@ -122,7 +122,7 @@ SafeArrayDestroy(psaArgs);
 
 ### Targeting
 
-Targeting allows to invoke a method on one or more specific applications or application instances that have registered the same Interop method.  
+Targeting allows to invoke a method on one or more specific applications or application instances that have registered the same Interop method.
 
 The following example demonstrates how to use [`InvokeMethods`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-invokemethods) to target various application instances:
 
@@ -175,7 +175,7 @@ procedure TMainForm.InitializeGlue;
   ...
   // Create a method handler linked to the `HandleAddResult` procedure.
   MethodAddHandler := TGlueResultHandler.Create(nil, HandleAddResult);
-  ...  
+  ...
 ```
 
 When invoking multiple instances at once, the result handler will receive the result from each invocation in an element of the `GlueInvResults` array. If there aren't any available instances that match the targeting criteria, a single error result will be received by the handler.
@@ -190,7 +190,7 @@ procedure TMainForm.HandleAddResult(Sender: TGlueResultHandler;
 var
   gResult: GlueResult;
   data: TGlueContextValueArray;
-  sum: Int64;    
+  sum: Int64;
 begin
   gResult := GlueInvResults[0].result;
   if gResult.Status <> GlueMethodInvocationStatus_Succeeded then begin
@@ -221,12 +221,12 @@ To find all registered Interop methods/streams, use use [`GetAllMethods`](../../
 var
   saMethods: PSafeArray;
   methods: array of GlueContext;
-begin    
+begin
   saMethods := G42.GetAllMethods();
   methods := SA_AsGlueContextArray(saMethods);
   ...
   SafeArrayDestroy(saMethods);
-end;    
+end;
 ```
 
 ### Listing Methods and Streams for Target
@@ -271,7 +271,7 @@ Your application can publish events that can be observed by other applications, 
 
 Applications that create and publish to Interop Streams are called *publishers*, and applications that subscribe to Interop Streams are called *subscribers*. An application can be both.
 
-![Streaming](../../../../images/interop/interop-streaming.gif)
+<glue42 name="diagram" image="../../../../images/interop/interop-streaming.gif">
 
 Interop Streams are used extensively in [**Glue42 Enterprise**](https://glue42.com/enterprise/) products and APIs:
 
@@ -282,7 +282,7 @@ Interop Streams are used extensively in [**Glue42 Enterprise**](https://glue42.c
 
 ## Publishing Stream Data
 
-To expose a data stream to which other applications can subscribe, you must register a stream and provide implementations for handling the server side streaming events (subscription requests, added/removed subscribers). Once a stream has been successfully registered, the publishing application can start pushing data to it.  
+To expose a data stream to which other applications can subscribe, you must register a stream and provide implementations for handling the server side streaming events (subscription requests, added/removed subscribers). Once a stream has been successfully registered, the publishing application can start pushing data to it.
 
 ### Creating Streams
 
@@ -423,8 +423,8 @@ function TMainForm.HandleSubscriptionRequest(stream: GlueMethod;
   requestValues: PSafeArray;
   const callback: IGlueServerSubscriptionCallback): HResult; stdcall;
 var
-  gResult: GlueResult;  
-begin  
+  gResult: GlueResult;
+begin
   // Accept the subscriber on branch "branch01".
   ZeroMemory(@gResult, sizeof(gResult));
   callback.Accept('branch01',gResult);
@@ -455,7 +455,7 @@ end;
 
 ## Consuming Stream Data
 
-To receive data published on an Interop stream, an application must subscribe to it using the [`SubscribeStream`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-subscribestream) or [`SubscribeStreams`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-subscribestreams) methods, and implement the [`IGlueStreamHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluestreamhandler) interface to be able to handle stream-related events. This can be simplified by using the [`TGlueStreamHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit-classes_for_handling_events-tgluestreamhandler) class of the [Glue42 Helper Unit](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit). 
+To receive data published on an Interop stream, an application must subscribe to it using the [`SubscribeStream`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-subscribestream) or [`SubscribeStreams`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglue42-subscribestreams) methods, and implement the [`IGlueStreamHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluestreamhandler) interface to be able to handle stream-related events. This can be simplified by using the [`TGlueStreamHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit-classes_for_handling_events-tgluestreamhandler) class of the [Glue42 Helper Unit](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit).
 
 ### Subscribing to Streams
 
@@ -476,7 +476,7 @@ protected
 ...
   procedure TMainForm.InitializeGlue;
   var
-    streamMethod: GlueMethod;  
+    streamMethod: GlueMethod;
 ...
   G42.Start(inst);
   // Subscribe to the stream and create a stream data handler linked to the `HandleDelphiStreamData` procedure.
@@ -497,7 +497,7 @@ procedure TMainForm.HandleDelphiStreamData(Method: GlueMethod;
 var
   I: integer;
   gValue: GlueValue;
-  initialData: WideString;  
+  initialData: WideString;
   instrument: WideString;
   price: Double;
 begin

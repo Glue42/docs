@@ -62,7 +62,7 @@ You can obtain asynchronous results by using the `registerAsync()` method to reg
 
 ``` java
 glue.interop().registerAsync("getQuote", (arg, caller) -> {
-    CompletableFuture<Map<String, Object>> future = doSomethingAsync(arg); 
+    CompletableFuture<Map<String, Object>> future = doSomethingAsync(arg);
     return future;
 });
 ```
@@ -122,7 +122,7 @@ System.out.println(glue.interop().getMethods());
 
 #### Live Search Query
 
-Glue42 Java offers a fluent API for finding Interop methods. It enables you to make a **live query** when you search for methods to invoke. This means that once you have an initial result from the search query, methods will be automatically added to/removed from that result when they become available or, respectively, unavailable. 
+Glue42 Java offers a fluent API for finding Interop methods. It enables you to make a **live query** when you search for methods to invoke. This means that once you have an initial result from the search query, methods will be automatically added to/removed from that result when they become available or, respectively, unavailable.
 
 The query starts from the `Search` class. You can use different methods of the `Search` class to specify criteria for the query:
 
@@ -189,7 +189,7 @@ We call applications which create and publish to Interop streams *publishers*, a
 
 Interop Streams are used extensively in [**Glue42 Enterprise**](https://glue42.com/enterprise/) products and APIs.
 
-![Streaming](../../../../images/interop/interop-streaming.gif)
+<glue42 name="diagram" image="../../../../images/interop/interop-streaming.gif">
 
 ### Subscribing to a Stream
 
@@ -384,4 +384,4 @@ branch.closeAsync();
 
 ### Stream Discovery
 
-Streams are special Interop methods on which `isSupportsStreaming()` returns `true`. You can use the [Interop Discovery](#discovery) to find available streams. 
+Streams are special Interop methods on which `isSupportsStreaming()` returns `true`. You can use the [Interop Discovery](#discovery) to find available streams.

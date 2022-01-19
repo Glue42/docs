@@ -9,6 +9,6 @@ The Interop API enables applications to:
 
 Applications which offer methods and streams are called *Interop servers*, and applications which consume them - *Interop clients*, and collectively - *Interop instances*.
 
-![Interop instances](../../../../images/interop/interop.gif)
+<glue42 name="diagram" image="../../../../images/interop/interop.gif">
 
 Any running instance of an application is identified by its *Interop instance*, which is a set of known key/value pairs uniquely identifying an application.

@@ -2,7 +2,7 @@
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.12">
 
-The Glue42 Global Search is a search bar web application that can be opened by the user with a configurable keyboard shortcut and provides an easy way to find and start applications, Layouts, Workspaces and perform [actions](#actions) (switching the theme, saving and restoring Layouts, etc.) by simply typing in the search field and choosing from the relevant results. 
+The Glue42 Global Search is a search bar web application that can be opened by the user with a configurable keyboard shortcut and provides an easy way to find and start applications, Layouts, Workspaces and perform [actions](#actions) (switching the theme, saving and restoring Layouts, etc.) by simply typing in the search field and choosing from the relevant results.
 
 ![Global Search](../../images/search/global-search-usage.gif)
 
@@ -90,7 +90,7 @@ shutdown
 
 ## Creating Search Providers
 
-![Architecture](../../images/search/gs-architecture.png)
+<glue42 name="diagram" image="../../images/search/gs-architecture.png">
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) is by default a search provider for applications, Layouts and actions. You can create your own search providers for the entities you want to use - e.g., Clients, Instruments, etc. The search provider is usually a [hidden service app](../glue42-platform-features/index.html#service_windows) that starts automatically and may be connected to a REST service. On start up, each search provider must [register an Interop method](../data-sharing-between-apps/interop/javascript/index.html#method_registration) named "T42.Search.Provider" which will be invoked by the Global Search app when the user performs searches. Use this method to implement your search logic, return the results for the desired entities and specify what should happen when the user clicks on a result item. Once you have implemented a search provider, you must host it and add an [application configuration](../../developers/configuration/application/index.html#application_configuration-service_window) for it to your application store.
 
