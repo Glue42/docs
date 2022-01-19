@@ -30,8 +30,6 @@ The `"options"` object has the following properties:
 |----------|------|-------------|
 | `"url"` | `string` | **Required.** Location of the login screen. |
 | `"window"` | `object` | Settings for the Glue42 Window in which the login screen will be loaded. |
-| `"successUrl"` | `string` | Location of the screen for successful authentication. |
-| `"logoffUrl"` | `string` | Location of the log off screen. |
 | `"keepAlive"` | `boolean` | If `true`, [**Glue42 Enterprise**](https://glue42.com/enterprise/) won't close the login window. This way, you can hide it yourself and use it to refresh the authentication parameters (user, token and headers) when necessary. |
 
 The only required property of the `"options"` object is `"url"`, which must point to the location of the login screen.
