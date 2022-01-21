@@ -29,7 +29,7 @@ var notification = new DesktopNotification(Title.Text,
 	Description.Text,
 	"category",
 	"source",
-	"DetailsHandler"      
+	"DetailsHandler"
 );
 ```
 
@@ -57,29 +57,11 @@ var notification = new DesktopNotification(Title.Text,
     Description.Text,
     "category",
     "source",
-    "DetailsHandler",              
+    "DetailsHandler",
     actions
 );
 ```
 
 ![Notification with actions](../../../images/notifications/actions.png)
-
-## Custom Notification UI
-
-You can change the default notification UI by changing the GNS application configuration:
-- if you are running in local mode, go to `%LOCALAPPDATA%\Tick42\GlueDesktop\config\apps\gns.json`
-- find the GNS application;
-- add a `customProperties` section (or update the existing one):
-
-```json
-"customProperties": {
-	"toastUrl": "https://enterprise-demos.tick42.com/gns-custom-toasts/",
-	"width": 250,
-	"height": 125,
-	"count": 3
-}
-```
-
-![Notification with actions](../../../images/notifications/custom-notification.png) 
 
 *See the .NET [Notifications example](https://github.com/Glue42/net-examples/tree/master/notifications) on GitHub.*

@@ -90,7 +90,7 @@ The following table lists all supported URL parameters for opening PDF files:
 |-----------|-------------|----------|
 | `page` | Specifies which page to display. Accepts an integer as a value. The first page of the document has a value of 1. | To open the PDF file to page 3, use `page=3`. |
 | `toolbar` | Whether to enable or disable the PDF toolbar. Accepts 0 or 1 as values. | To hide the PDF toolbar, use `toolbar=0`. |
-| `zoom` | Specifies the zoom factor and also the vertical and horizontal scroll position of the page in regard to the top left corner of the window. Accepts integer or floating point values. | To set the zoom factor to 150.5%, use `zoom=150.5`. To set the zoom factor to 120% and scroll the page 200px vertically and 100px horizontally, use `zoom=120,200,100`. 
+| `zoom` | Specifies the zoom factor and also the vertical and horizontal scroll position of the page in regard to the top left corner of the window. Accepts integer or floating point values. | To set the zoom factor to 150.5%, use `zoom=150.5`. To set the zoom factor to 120% and scroll the page 200px vertically and 100px horizontally, use `zoom=120,200,100`.
 | `view` | Specifies the view mode of the page using values defined in the PDF language specification. See the possible values in the next table. Use the `page` parameter before `view`. | To fit the page in the window, use `view=Fit`. To fit the page vertically, use `view=FitV`. To fit the page horizontally and scroll it 200px vertically, use `view=FitH,200`. |
 
 The following table lists the possible values for the `view` parameter:
@@ -353,7 +353,7 @@ const url = "https://docs.glue42.com/assets/js-test-app.zip";
 // Specify window download behavior.
 const options = {
     downloadSettings: {
-        autoSave: true,  
+        autoSave: true,
         autoOpenDownload: true
     }
 };
@@ -369,7 +369,7 @@ The Window Management API enables you to control a [`GDWindow`](../../../../refe
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.11">
 
-The Glue42 Window stickiness enables users to easily organize the windows on their desktop in visual groups. 
+The Glue42 Window stickiness enables users to easily organize the windows on their desktop in visual groups.
 
 Window stickiness is enabled by default, but can be controlled programmatically and through [application configuration](../../../../developers/configuration/application/index.html). The Sticky button (disabled by default) in the window header allows the users to toggle the stickiness of individual windows from the UI:
 
@@ -389,7 +389,7 @@ To set the stickiness or the visibility of the Sticky button programmatically on
 
 ```javascript
 // Turn off the stickiness and hide the Sticky button globally.
-const windowsConfig = { 
+const windowsConfig = {
     sticky: false,
     showStickyButton: false
 };
@@ -485,7 +485,7 @@ To get the current placement settings for a window, use the [`placementSettings`
 const placementSettings = myWindow.placementSettings;
 ```
 
-To place a window at a specific position on the screen, use the [`place()`](../../../../reference/glue/latest/windows/index.html#GDWindow-place) method of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance and pass a [`PlacementSettings`](../../../../reference/glue/latest/windows/index.html#PlacementSettings) object as an argument. 
+To place a window at a specific position on the screen, use the [`place()`](../../../../reference/glue/latest/windows/index.html#GDWindow-place) method of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance and pass a [`PlacementSettings`](../../../../reference/glue/latest/windows/index.html#PlacementSettings) object as an argument.
 
 The following example shows how to place the window at the top of the screen, stretched horizontally (`horizontalAlignment` defaults to `"stretch"` when `verticalAlignment` is set, see the Placement Settings table below) and with height set to 40 pixels. The `snapped` property is set to `true` in order to instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) that this Glue42 Window must always occupy that position, even when the screen resolution changes or the application virtualization window hosting it is resized:
 
@@ -721,7 +721,7 @@ await myWindow.close();
 
 ## Context
 
-Each Glue42 Window has a dedicated [context](../../../data-sharing-between-apps/shared-contexts/javascript/index.html). The window context is a JavaScript object which may contain any information regarding the window instance in the form of key/value pairs. 
+Each Glue42 Window has a dedicated [context](../../../data-sharing-between-apps/shared-contexts/javascript/index.html). The window context is a JavaScript object which may contain any information regarding the window instance in the form of key/value pairs.
 
 Contexts can be set/passed initially on window creation and updated at runtime. Context changes can be tracked by subscribing to an event which fires when the window context has been updated (see [Window Events](#window_events)).
 
@@ -928,7 +928,7 @@ The Window Management API offers methods for managing Glue42 Window groups. The 
 
 #### Listing
 
-To get a collection of all window groups, use the [`list()`](../../../../reference/glue/latest/windows/index.html#GroupsAPI-list) method: 
+To get a collection of all window groups, use the [`list()`](../../../../reference/glue/latest/windows/index.html#GroupsAPI-list) method:
 
 ```javascript
 const allGroups = glue.windows.groups.list();
@@ -1132,6 +1132,12 @@ const options = {
 const g42Window = await glue.windows.open(name, url, options);
 ```
 
+Use the `tabGroupId` property of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance to retrieve the tab group ID of a window:
+
+```javascript
+const tabGroup = myWindow.tabGroupId;
+```
+
 ### Attaching and Detaching Tabs
 
 To attach a tab to an existing tab window, use the [`attachTab()`](../../../../reference/glue/latest/windows/index.html#GDWindow-attachTab) method of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance. Pass a window ID or a `GDWindow` object as a first argument:
@@ -1192,7 +1198,7 @@ const buttonInfo = {
     buttonId: "search-button",
     tooltip: "Search",
     order: 1,
-    imageBase64: "iVBORw0KGgoAAAAN..." 
+    imageBase64: "iVBORw0KGgoAAAAN..."
 }
 
 await myWindow.addFrameButton(buttonInfo);
@@ -1269,7 +1275,7 @@ const myFlydownWindow = await glue.windows.open(name, url, options);
 
 // Define a unique zone identifier for each zone that will trigger the flydown.
 const myWindowID = glue.windows.find("MyWindow").id;
-const zoneID = "uniqueZoneIdentifier";  
+const zoneID = "uniqueZoneIdentifier";
 const flydownWindowID = myFlydownWindow.id;
 const buttonBounds = { left:42, top:42, height:42, width:42 };
 const flydownOptions = {
@@ -1288,7 +1294,7 @@ const flydownOptions = {
             flydownSize: {
                 width: 300,
                 height: 400
-            }  
+            }
         }
     ]
 };
@@ -1303,12 +1309,12 @@ const flydown = await glue.windows.createFlydown(myWindowID, flydownOptions);
 | `windowId` | The ID of the window which will be used as a flydown window. |
 | `targetLocation` | The location (`"bottom"`, `"top"`, `"left"`, `"right"` or `"none"`) where the flydown will appear relative to the defined flydown zone. If `"none"` is passed, the flydown will appear at `{ left: 0, top: 0 }` of the flydown trigger zone. |
 | `size` | The size of the rendered flydown window (`width` and `height`). Can be an object with a specific size or a callback that calculates the size. |
-| `zones` | An array of defined [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) objects which when triggered will show a flydown window. | 
+| `zones` | An array of defined [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) objects which when triggered will show a flydown window. |
 | `id` | A unique zone ID. |
 | `bounds` | Bounds of the zone which can trigger a flydown window. These bounds are relative to the target window - the coordinates `{ left: 0, top: 0 }` correspond to the top left corner of the target window, rather than the top left corner of the monitor. |
 | `flydownSize` | Either the desired size of the flydown or a callback invoked before the flydown is shown in order to calculate the flydown size or cancel the flydown. |
 
-The properties [`targetLocation`](../../../../reference/glue/latest/windows/index.html#FlydownZone-targetLocation) and [`windowId`](../../../../reference/glue/latest/windows/index.html#FlydownZone-windowId) can be set both in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object and/or in each [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object within the `zones` array. The values set in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object will be used as default values if no such value is specified in a [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object. If you specify a value for any of these properties both in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object and in a [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object, the one in the [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object will have higher priority than the one in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object. 
+The properties [`targetLocation`](../../../../reference/glue/latest/windows/index.html#FlydownZone-targetLocation) and [`windowId`](../../../../reference/glue/latest/windows/index.html#FlydownZone-windowId) can be set both in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object and/or in each [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object within the `zones` array. The values set in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object will be used as default values if no such value is specified in a [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object. If you specify a value for any of these properties both in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object and in a [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object, the one in the [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object will have higher priority than the one in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object.
 
 The size of the flydown window, however, is handled a little differently. Since its value can be either a size object or a callback for calculating the size (see [Dynamic Size Calculation](#flydown_windows-dynamic_size_calculation)), there are several cases if you set the flydown size both in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object (the `size` property) and in a [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object (the [`flydownSize`](../../../../reference/glue/latest/windows/index.html#FlydownZone-flydownSize) property). In any case, the values in the [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object have higher priority, except when you pass a callback in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object and specific size in the [`FlydownZone`](../../../../reference/glue/latest/windows/index.html#FlydownZone) object - then the callback in the [`FlydownOptions`](../../../../reference/glue/latest/windows/index.html#FlydownOptions) object will be taken into account.
 
@@ -1318,7 +1324,7 @@ To create a flydown window which is triggered by a particular area within your a
 
 ```javascript
 // Range where the flydown will remain active - values are relative to the target window.
-const activeArea = { left: 20, top: 20, height: 60, width: 60 }; 
+const activeArea = { left: 20, top: 20, height: 60, width: 60 };
 const flydownOptions = {
     windowId: flydownWindowID,
     // The flydown will appear at this position relative to the target (zone).
@@ -1337,7 +1343,7 @@ const flydownOptions = {
             flydownSize: {
                 width: 300,
                 height: 400
-            }  
+            }
         }
     ]
 };

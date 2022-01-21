@@ -365,25 +365,6 @@ const notificationOptions = {
 await glue.notifications.raise(notificationOptions);
 ```
 
-### Custom Notification UI
-
-You can change the default notification UI by changing the GNS application configuration:
-
-1. If you are running in local mode, go to `%LOCALAPPDATA%\Tick42\GlueDesktop\config\apps\gns.json`.
-2. Find the GNS application.
-3. Add a `customProperties` section (or update the existing one):
-
-```json
-"customProperties": {
-    "toastUrl": "https://enterprise-demos.tick42.com/gns-custom-toasts/",
-    "width": 250,
-    "height": 125,
-    "count": 3
-}
-```
-
-![Custom Notification](../../../images/notifications/custom-notification.png)
-
 ## Reference
 
 For a complete list of the available Notifications API methods and properties, see the [Notifications API Reference Documentation](../../../reference/glue/latest/notifications/index.html).
