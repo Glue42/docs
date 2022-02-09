@@ -2,7 +2,7 @@
 
 All [Glue42 .NET](../net/index.html) functionalities are available for your Blazor WebAssembly and Blazor Server apps through the [`GlueBase`](https://www.nuget.org/packages/GlueBase/) library.
 
-Your Glue42 enabled Blazor apps can be configured as Glue42 applications (see [Application Configuration](#application-configuration)) in order to be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) and hosted in [Glue42 Windows](../../../../glue42-concepts/windows/window-management/overview/index.html), or they can run independently in a browser.
+Your Glue42 enabled Blazor apps can be configured as Glue42 applications (see [Application Configuration](#application_configuration)) in order to be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) and hosted in [Glue42 Windows](../../../../glue42-concepts/windows/window-management/overview/index.html), or they can run independently in a browser.
 
 *For the differences in initializing the Glue42 library in hosted and browser Blazor apps, see the [Hosted & Browser Apps](#initialization-hosted__browser_apps) section).*
 
