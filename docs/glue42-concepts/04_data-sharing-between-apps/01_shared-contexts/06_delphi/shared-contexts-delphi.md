@@ -89,11 +89,11 @@ begin
     CreateContextValue('displayName', CreateValue('Vernon Mullen')),
     CreateContextValue('emails', CreateTuple(emails))
   ], false));
-  
+
   // Pack the native data into a `PSafeArray`.
   psaData := CreateContextValues_SA(AsGlueContextValueArray(nativeData));
 
-  // Update the context data.
+  // Replace the context data.
   context01.SetContextData(psaData);
 
   // Clean up.
@@ -117,6 +117,42 @@ The resulting context data from the previous example, represented as JSON:
         ]
     }
 }
+```
+
+If you don't want to overwrite the contents of the entire context, you can set a specific elementary or composite value by using the [`SetContextDataOnFieldPath`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontext-setcontextdataonfieldpath) method:
+
+```delphi
+var
+  psaData: PSafeArray;
+begin
+  // Pack the data into a `PSafeArray`.
+  psaData := CreateContextValues_SA(AsGlueContextValueArray([
+    CreateContextValue('name', CreateComposite([
+      CreateContextValue('firstName', CreateValue('Vernon')),
+      CreateContextValue('lastName', CreateValue('Mullen'))
+    ], false)),
+    CreateContextValue('displayName', CreateValue('Vernon Mullen')),
+    CreateContextValue('emails', CreateTuple([
+      CreateValue('vernon.mullen@acme.com'),
+      CreateValue('vernon.d.mullen@acme.com')
+    ]))
+  ]));
+
+  // Replace the context value for 'data.contact'.
+  context01.SetContextDataOnFieldPath('data.contact', psaData);
+
+  // Clean up.
+  SafeArrayDestroy(psaData);
+end;
+```
+
+You can also set a specific elementary or composite value by directly providing a JSON string to the [`UpdateContextDataJson`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluecontext-updatecontextdatajson) method:
+
+```delphi
+  ...
+  // Replace the context value for 'data.contact'.
+  context01.SetContextDataOnFieldPath('data.contact','{"name":{"firstName":"Vernon","lastName":"Mullen"}}');
+  ...
 ```
 
 ## Listing All Available Contexts

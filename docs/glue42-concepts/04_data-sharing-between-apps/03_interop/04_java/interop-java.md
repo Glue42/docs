@@ -62,7 +62,7 @@ You can obtain asynchronous results by using the `registerAsync()` method to reg
 
 ``` java
 glue.interop().registerAsync("getQuote", (arg, caller) -> {
-    CompletableFuture<Map<String, Object>> future = doSomethingAsync(arg); 
+    CompletableFuture<Map<String, Object>> future = doSomethingAsync(arg);
     return future;
 });
 ```
@@ -122,7 +122,7 @@ System.out.println(glue.interop().getMethods());
 
 #### Live Search Query
 
-Glue42 Java offers a fluent API for finding Interop methods. It enables you to make a **live query** when you search for methods to invoke. This means that once you have an initial result from the search query, methods will be automatically added to/removed from that result when they become available or, respectively, unavailable. 
+Glue42 Java offers a fluent API for finding Interop methods. It enables you to make a **live query** when you search for methods to invoke. This means that once you have an initial result from the search query, methods will be automatically added to/removed from that result when they become available or, respectively, unavailable.
 
 The query starts from the `Search` class. You can use different methods of the `Search` class to specify criteria for the query:
 
@@ -145,7 +145,7 @@ Instead of `name()`, you can also use the `nameMatches()` method to pass a regex
 
 #### Local and Remote Methods
 
-You can look for methods offered both by local and remote servers by using the `localOnly()` method. Pass a boolean value to it to specify whether you need methods offered only by local servers or by both local and remote servers. The method `localOnly()` defaults to `true`, so if you omit it in the search, only methods offered by local servers will be returned.
+You can look for methods offered both by local and remote servers by using the `localOnly()` method. Pass a Boolean value to it to specify whether you need methods offered only by local servers or by both local and remote servers. The method `localOnly()` defaults to `true`, so if you omit it in the search, only methods offered by local servers will be returned.
 
 Here is an example search for local methods:
 
@@ -384,4 +384,4 @@ branch.closeAsync();
 
 ### Stream Discovery
 
-Streams are special Interop methods on which `isSupportsStreaming()` returns `true`. You can use the [Interop Discovery](#discovery) to find available streams. 
+Streams are special Interop methods on which `isSupportsStreaming()` returns `true`. You can use the [Interop Discovery](#discovery) to find available streams.

@@ -26,7 +26,7 @@ To receive updates about changes in the connection between the **BBG Market Data
 
 ```typescript
 function handleConnectionChanges (status: ConnectionStatus): void {
-    
+
     if (status === ConnectionStatus.Connected) {
         // Connected.
     } else {
@@ -61,7 +61,7 @@ const request: HistoricalDataRequest = bbgMarketData.createHistoricalDataRequest
 To actually send the request to the Bloomberg service, invoke the `open()` method of the request instance. Requests can be opened/reopened when they have a `Created`, `Closed`, `Failed` or `Completed` status. When the request is pending (its status is `Opened` or `Active`), `open()` will immediately throw an error.
 
 ```typescript
-// Request options. 
+// Request options.
 const requestOptions: OpenRequestOptions = {
     session: Session.LargeHistoricalRequests,
     aggregateResponse: false
@@ -97,7 +97,7 @@ request
 
 To handle response data, attach a callback to the `onData()` method of the request instance. The method returns an `UnsubscribeFunction`. The `onData()` method handles data from real-time subscriptions and data from partial responses from static reference data requests.
 
-When handling data from a non-subscription request, the data is wrapped in a `ResponseData` object. The boolean property `isLast` is set to `false` when the response contains a Bloomberg `PARTIAL_RESPONSE` event and is set to `true` when the response contains a Bloomberg `RESPONSE` event. After a `RESPONSE` event, no more events will be received and the application can now process the returned data accordingly.
+When handling data from a non-subscription request, the data is wrapped in a `ResponseData` object. The Boolean property `isLast` is set to `false` when the response contains a Bloomberg `PARTIAL_RESPONSE` event and is set to `true` when the response contains a Bloomberg `RESPONSE` event. After a `RESPONSE` event, no more events will be received and the application can now process the returned data accordingly.
 
 Handling partial response data from static reference data requests:
 
@@ -196,7 +196,7 @@ request.onData(function handleSubscriptionsData(
     // Handle subscription updates.
 });
 
-// The callback in the `onFail()` method will be invoked when a subscription for a security 
+// The callback in the `onFail()` method will be invoked when a subscription for a security
 // fails on the Bloomberg side. E.g., you may have sent a request with
 // five subscriptions for five different securities and two of the subscriptions fail.
 request.onFail(function handleSubscriptionsError(
@@ -482,13 +482,13 @@ For advanced scenarios, however, you can pass an optional object parameter to th
 There are five `Session` types:
 
 - `RealTime` - Session for real-time subscriptions. Default for subscription requests.
-  
+
 - `DataRequests` - Session for static reference data. Default for non-subscription requests.
- 
+
 - `LargeHistoricalRequests` - Dedicated session for a large volume data request.
-  
+
 - `CreateNew` - Creates a new session which closes immediately after the request is completed.
-  
+
 - `Default` - Explicitly states that the default session should be used.
 
 If you need to use a session different from the default one, you need to pass an options object to the `open()` call, specifying the session type.
@@ -522,4 +522,4 @@ request.open(requestOptions);
 
 // Note that you must explicitly close a custom session.
 bbgMarketData.sessions.close("MyCustomSession");
-``` 
+```

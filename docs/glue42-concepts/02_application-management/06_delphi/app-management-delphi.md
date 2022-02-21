@@ -51,7 +51,7 @@ After the main form has been registered as an [app factory](#app_factories), it 
 TApp01Form = class(TForm, IGlueApp)
   ...
 protected
-  function SaveState(out pRetVal: GlueValue): HResult; stdcall;
+  function SaveState(const receiver: IGlueValueReceiver): HResult; stdcall;
   function Initialize(state: GlueValue; const glueWindow: IGlueWindow): HResult; stdcall;
   function Shutdown: HResult; stdcall;
   ...
@@ -66,7 +66,7 @@ begin
   Result := S_OK;
 end;
 
-function TApp01Form.SaveState(out pRetVal: GlueValue): HResult;
+function TApp01Form.SaveState(const receiver: IGlueValueReceiver): HResult;
 begin
   Result := S_OK;
 end;

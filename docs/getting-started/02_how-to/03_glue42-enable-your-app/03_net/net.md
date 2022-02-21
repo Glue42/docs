@@ -1,10 +1,10 @@
 ## Referencing
 
-To use any [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionality, you need to reference the Glue42 .NET library (either as a standalone `Glue42.dll` file or from as a `NuGet` package), instantiate and initialize a class called `Glue42`, which provides access to the different [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionalities.
+To use any [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionality, you need to reference the Glue42 .NET library (either as a standalone `Glue42.dll` file or as a [`NuGet` package](https://www.nuget.org/packages/Glue42/)), instantiate and initialize a class called `Glue42`, which provides access to the different [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionalities.
 
 ### As a NuGet Package
 
-The Glue42 .NET library is available as a `NuGet` package which you can include and configure in your projects.
+The [Glue42 .NET](https://www.nuget.org/packages/Glue42/) library is available as a `NuGet` package which you can include and configure in your projects.
 
 ![NuGet Package](../../../../images/nuget-package.gif)
 
@@ -27,16 +27,16 @@ Here is an example initialization:
 ```csharp
 var initializeOptions = new InitializeOptions()
     {
-        ApplicationName = "cl-wpf1", 
+        ApplicationName = "cl-wpf1",
         IncludedFeatures = GDFeatures.UseAppManager | GDFeatures.UseGlueWindows
     };
 
 // The initialization options aren't required.
-// If skipped, Glue42 will be initialized with the default options 
+// If skipped, Glue42 will be initialized with the default options
 // (default assembly name for ApplicationName and with all features included).
 
 Glue42 glue;
-Glue42.InitializeGlue(initializeOptions) 
+Glue42.InitializeGlue(initializeOptions)
                 .ContinueWith(glueInit =>
                     {
                         glue = glueInit.Result;
@@ -91,16 +91,16 @@ In a ClickOnce application, the .NET Glue42 library is initialized the same way 
 ```csharp
 var initializeOptions = new InitializeOptions()
     {
-        ApplicationName = "ClientProfileDemo", 
+        ApplicationName = "ClientProfileDemo",
         IncludedFeatures = GDFeatures.UseAppManager | GDFeatures.UseGlueWindows
     };
 
 // The initialization options aren't required.
-// If skipped, Glue42 will be initialized with the default options 
+// If skipped, Glue42 will be initialized with the default options
 // (default assembly name for ApplicationName and with all features included).
 
 Glue42 glue;
-Glue42.InitializeGlue(initializeOptions) 
+Glue42.InitializeGlue(initializeOptions)
                 .ContinueWith(glueInit =>
                     {
                         glue = glueInit.Result;
@@ -124,7 +124,7 @@ To show your ClickOnce application in the Application Manager of [**Glue42 Enter
 Here is an example configuration for a ClickOnce application:
 
 ```json
-{        
+{
     "title": "Client List - ClickOnce",
     "type": "clickonce",
     "name": "cl-clickonce",

@@ -18,6 +18,7 @@ protected
   function HandleChannelData(const glueWindow: IGlueWindow; const channelUpdate: IGlueContextUpdate): HResult; stdcall;
   function HandleChannelChanged(const glueWindow: IGlueWindow; const channel: IGlueContext; prevChannel: GlueContext): HResult; stdcall;
   function HandleWindowDestroyed(const glueWindow: IGlueWindow) : HResult; stdcall;
+  function HandleWindowEvent(const GlueWindow: IGlueWindow; eventType: GlueWindowEventType; eventData: GlueValue): HResult; stdcall;
   ...
 ```
 
@@ -47,7 +48,7 @@ end;
 
 ## Window Events
 
-You must provide implementations for the methods of the [`IGlueWindowEventHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluewindoweventhandler) interface. The following example demonstrates a minimal implementation of the event handlers:  
+You must provide implementations for the methods of the [`IGlueWindowEventHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluewindoweventhandler) interface. The following example demonstrates a minimal implementation of the event handlers:
 
 ```delphi
 //  Handles the event when the Glue42 Window registration has completed.
@@ -71,6 +72,12 @@ end;
 
 // Handles the event when the Glue42 Window is destroyed.
 function TMainForm.HandleWindowDestroyed(const glueWindow: IGlueWindow): HResult;
+begin
+  Result := S_OK;
+end;
+
+// Handles additional window events.
+function TMainForm.HandleWindowEvent(const GlueWindow: IGlueWindow; eventType: GlueWindowEventType; eventData: GlueValue): HResult;
 begin
   Result := S_OK;
 end;
@@ -101,11 +108,19 @@ glueWin.SetTitle('New Window Title');
 
 ### Visibility
 
-To check whether the window is visible, use [`IsVisible`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluewindow-isvisible). To hide or show a window, use [`SetVisible`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluewindow-setvisible) and pass a `WordBool` value as an argument:  
+To check whether the window is visible, use [`IsVisible`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluewindow-isvisible). To hide or show a window, use [`SetVisible`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluewindow-setvisible) and pass a `WordBool` value as an argument:
 
 ```delphi
 if glueWin.IsVisible() then
   glueWin.SetVisible(False)
 else
   glueWin.SetVisible(True);
+```
+
+### Activation
+
+You can activate the window by using the [`Activate`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluewindow-activate) method:
+
+```delphi
+glueWin.Activate();
 ```

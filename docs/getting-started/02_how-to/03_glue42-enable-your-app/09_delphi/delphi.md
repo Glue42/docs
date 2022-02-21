@@ -1,12 +1,14 @@
 ## Overview
 
-The Glue42 COM library allows you to Glue42 enable your Delphi applications, integrate them with other Glue42 enabled applications in [Glue42 Enterprise](https://glue42.com/enterprise/) and use Glue42 functionality in them. To access Glue42 functionalities in your Delphi application, you have to reference and initialize the Glue42 COM library. All files necessary for Glue42 enabling your Delphi application are a part of the SDK bundle of [Glue42 Enterprise](https://glue42.com/enterprise/) located in the `%LocalAppData%\Tick42\GlueSDK\GlueCOM` folder. Currently, the Glue42 COM library supports Delphi 7 and Delphi 10.
+The Glue42 COM library allows you to Glue42 enable your Delphi applications, integrate them with other Glue42 enabled applications in [**Glue42 Enterprise**](https://glue42.com/enterprise/) and use Glue42 functionality in them. To access Glue42 functionalities in your Delphi application, you have to reference and initialize the Glue42 COM library. Currently, the Glue42 COM library supports Delphi 7 and Delphi 10.
 
 ## Using the Glue42 COM Library
 
 ### Referencing
 
-To use any [Glue42 Enterprise](https://glue42.com/enterprise/) functionality, you need to add the following units to your Delphi project:
+The [Glue42 COM](https://www.nuget.org/packages/GlueCOM/) library is available as a package in `NuGet` which you can include in your projects. The Glue42 COM library is also distributed with [**Glue42 Enterprise**](https://glue42.com/enterprise/) and is usually located in the `%LocalAppData%\Tick42\GlueSDK\GlueCOMv2` folder.
+
+To use any [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionality, you need to add the following units to your Delphi project:
 
 - `GlueCOM_TLB.pas` - declarations for the Glue42 COM type library;
 - `mscorlib_TLB.pas` - declarations for the Microsoft Common Object Runtime library (the Glue42 COM type library depends on it);
@@ -88,7 +90,7 @@ end;
 
 ## Application Configuration
 
-To add your Delphi application to the [Glue42 Enterprise](https://glue42.com/enterprise/) Application Manager, you need to define a `.json` configuration file and add it to the application configuration store (remote or local). You can add an application configuration file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder to publish your application locally. `<ENV-REG>` in the link should be replaced with the environment and region folder name used for the deployment of your [Glue42 Enterprise](https://glue42.com/enterprise/) - e.g., `T42-DEMO`. This way, your files won't be erased or overwritten, in case you decide to upgrade or change your [Glue42 Enterprise](https://glue42.com/enterprise/) version.
+To add your Delphi application to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) Application Manager, you need to define a `.json` configuration file and add it to the application configuration store (remote or local). You can add an application configuration file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder to publish your application locally. `<ENV-REG>` in the link should be replaced with the environment and region folder name used for the deployment of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) - e.g., `T42-DEMO`. This way, your files won't be erased or overwritten, in case you decide to upgrade or change your [**Glue42 Enterprise**](https://glue42.com/enterprise/) version.
 
 Application configuration example:
 
@@ -109,7 +111,7 @@ Application configuration example:
 | Property | Description |
 |----------|-------------|
 | `"type"` | Must be `"exe"`. |
-| `"path"` | The path to the application - relative or absolute. You can also use the **%GDDIR%** environment variable, which points to the [Glue42 Enterprise](https://glue42.com/enterprise/) installation folder. |
+| `"path"` | The path to the application - relative or absolute. You can also use the **%GDDIR%** environment variable, which points to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installation folder. |
 | `"command"` | The actual command to execute (the EXE file name). |
 | `"parameters"` | Specifies command line arguments. |
 
@@ -132,19 +134,19 @@ function DateTimeToGlueTime(dt: TDateTime): Int64;
 
 ## Glue42 Helper Unit
 
-The `GlueHelper` unit contains native [type definitions](#glue42_helper_unit-types) and additional helper classes and methods facilitating the use of the Glue42 COM library. 
+The `GlueHelper` unit contains native [type definitions](#glue42_helper_unit-types) and additional helper classes and methods facilitating the use of the Glue42 COM library.
 
 It is recommended to use the [conversion functions](#glue42_helper_unit-working_with_psafearray-conversion_functions) provided in the `GlueHelper` unit to transform the parameters or return values from a `PSafeArray` to native types and vice-versa:
 
-- The functions in the `Create[type]_SA` format can be used to transform various native types to a `PSafeArray`. The returned values need to be destroyed with `SafeArrayDestroy` when no longer needed.  
+- The functions in the `Create[type]_SA` format can be used to transform various native types to a `PSafeArray`. The returned values need to be destroyed with `SafeArrayDestroy` when no longer needed.
 
-- The functions in the `SA_As[type]` format can be used to transform a `PSafeArray` to various native types.  
+- The functions in the `SA_As[type]` format can be used to transform a `PSafeArray` to various native types.
 
-### Types  
+### Types
 
-#### Array Types  
+#### Array Types
 
-The following array types are defined in the `GlueHelper` unit:  
+The following array types are defined in the `GlueHelper` unit:
 
 | Array | Type |
 |-------|------|
@@ -167,7 +169,7 @@ The following array types are defined in the `GlueHelper` unit:
 
 #### Pointer Types
 
-The following pointer types are defined in the `GlueHelper` unit:  
+The following pointer types are defined in the `GlueHelper` unit:
 
 | Type | Points to |
 |------|-----------|
@@ -180,7 +182,7 @@ The following pointer types are defined in the `GlueHelper` unit:
 
 #### Native Record Types
 
-#### TGlueContextValue   
+#### TGlueContextValue
 
 This is a translated version (i.e. not using `PSafeArray` directly or indirectly) of [`GlueContextValue`](#types-gluecontextvalue) representing a name-value pair.
 
@@ -191,9 +193,9 @@ This is a translated version (i.e. not using `PSafeArray` directly or indirectly
 | `Name` | `WideString` | Name associated with the value. |
 | `Value` | `PTGlueValue` | Pointer to [`TGlueValue`](#glue42_helper_unit-types-tgluevalue). |
 
-#### TGlueValue  
+#### TGlueValue
 
-This is a translated version (i.e. not using `PSafeArray` directly or indirectly) of [`GlueValue`](#types-gluevalue) representing an elementary or composite value.  
+This is a translated version (i.e. not using `PSafeArray` directly or indirectly) of [`GlueValue`](#types-gluevalue) representing an elementary or composite value.
 
 **Properties**
 
@@ -202,7 +204,7 @@ This is a translated version (i.e. not using `PSafeArray` directly or indirectly
 | `GlueType` | [`GlueValueType`](#enums-gluevaluetype) | Type of the Glue42 value. |
 | `IsArray` | `WordBool` | Indicates whether the value is an array. |
 
-The following properties will be initialized according to `GlueType` and `IsArray`:  
+The following properties will be initialized according to `GlueType` and `IsArray`:
 
 | Name | Type | Description |
 |------|------|-------------|
@@ -218,13 +220,13 @@ The following properties will be initialized according to `GlueType` and `IsArra
 | `Tuple` | `TGlueValueArray` | Array of `TGlueValue` values. |
 | `CompositeValue` | `TGlueContextValueArray` | Array of [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue) values. |
 
-### Working with PSafeArray  
+### Working with PSafeArray
 
-The `GlueHelper` unit provides a set of functions for converting from/to `PSafeArray` which is widely used when sending or receiving data from Glue42.  
+The `GlueHelper` unit provides a set of functions for converting from/to `PSafeArray` which is widely used when sending or receiving data from Glue42.
 
 #### Summary
 
-The table below summarizes the available functions to convert from/to `PSafeArray` based on the content type.  
+The table below summarizes the available functions to convert from/to `PSafeArray` based on the content type.
 
 | Array Type | Array of | From | To |
 |------------|----------|------|----|
@@ -245,7 +247,7 @@ The table below summarizes the available functions to convert from/to `PSafeArra
 
 #### Conversion Functions
 
-All conversion functions take a single parameter of the respective type. The returned `PSafeArray` must be destroyed with `SafeArrayDestroy` when no longer needed.  
+All conversion functions take a single parameter of the respective type. The returned `PSafeArray` must be destroyed with `SafeArrayDestroy` when no longer needed.
 
 | Function | Parameter Type | Return Type | Array of Type |
 |----------|----------------|-------------|------------ ---|
@@ -272,53 +274,53 @@ All conversion functions take a single parameter of the respective type. The ret
 | `SA_AsWideStringArray` | `PSafeArray` | `TWideStringArray` | `WideString` |
 | `SA_AsWordBoolArray` | `PSafeArray` | `TWordBoolArray` | `WordBool` |
 
-#### Functions for Creating Glue42 and Context Values  
+#### Functions for Creating Glue42 and Context Values
 
 #### CreateContextValue
-  
+
 This function creates a [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue) representing a name-value pair. It can be put in a `TGlueContextValueArray` and eventually be converted to a `PSafeArray` in order to be sent to Glue42.
 
-*Parameters:*  
+*Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
 | `Name` | `string` | String representing the name in the name-value pair. |
 | `Value` | [`TGlueValue`](#glue42_helper_unit-types-tgluevalue)| The value of the name-value pair. |
 
-*Return value:* [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue)  
+*Return value:* [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue)
 
 #### CreateValue
 
 This is a set of overloaded functions for creating [`TGlueValue`](#glue42_helper_unit-types-tgluevalue) values from various types. The overloads accepting arrays will create composite values. Each function accepts the following types as a single parameter:
 
-- `Double`  
-- `Int64`  
-- `Integer`  
-- `String`  
-- `TDoubleArray`  
-- `TInt64Array`  
-- `TStrArray`  
+- `Double`
+- `Int64`
+- `Integer`
+- `String`
+- `TDoubleArray`
+- `TInt64Array`
+- `TStrArray`
 
-*Return value:* [`TGlueValue`](#glue42_helper_unit-types-tgluevalue)  
+*Return value:* [`TGlueValue`](#glue42_helper_unit-types-tgluevalue)
 
 #### CreateComposite
 
-This function creates a composite value from a `TGlueContextValueArray`.  
+This function creates a composite value from a `TGlueContextValueArray`.
 
-*Parameters:*  
+*Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
 | `Value` | `TGlueContextValueArray` | An array of [`TGlueContextValue`](#glue42_helper_unit-types-tgluecontextvalue) values representing the contents of the composite value. |
 | `IsArray` | `Bool` | Specifies whether the created composite value is an array. |
 
-*Return value:* [`TGlueValue`](#glue42_helper_unit-types-tgluevalue) 
+*Return value:* [`TGlueValue`](#glue42_helper_unit-types-tgluevalue)
 
 #### CreateTuple
 
-This function creates a composite value representing a tuple, i.e. an array of (possibly) heterogeneous elements.  
+This function creates a composite value representing a tuple, i.e. an array of (possibly) heterogeneous elements.
 
-*Parameters:*  
+*Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
@@ -334,7 +336,7 @@ A set of classes that implement callback interfaces in order to simplify the imp
 
 This class implements the `IGlueRequestHandler` interface which invokes a callback whenever an already registered [Interop method is invoked](../../../../glue42-concepts/data-sharing-between-apps/interop/delphi/index.html#method_invocation).
 
-*Class constructor parameters:*  
+*Class constructor parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
@@ -355,7 +357,7 @@ TRequestHandlerLambda = procedure(Sender: TGlueRequestHandler;
 
 #### TGlueResultHandler
 
-This class implements the `IGlueInvocationResultHandler` interface which invokes a callback when the result from an Interop method invocation becomes available.  
+This class implements the `IGlueInvocationResultHandler` interface which invokes a callback when the result from an Interop method invocation becomes available.
 
 *Class constructor parameters:*
 
@@ -377,7 +379,7 @@ TResultHandlerLambda = procedure(Sender: TGlueResultHandler;
 
 This class implements the `IGlueStreamHandler` interface which invokes callbacks for events related to [Interop streaming](../../../../glue42-concepts/data-sharing-between-apps/interop/delphi/index.html#streaming) methods.
 
-*Class constructor parameters:*  
+*Class constructor parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
@@ -433,7 +435,7 @@ This reference describes the components in the Glue42 COM library relevant to De
 | Name | Value |
 |------|-------|
 | `GlueMethodInvocationStatus_Succeeded` | 0 |
-| `GlueMethodInvocationStatus_Failed` | 1 | 
+| `GlueMethodInvocationStatus_Failed` | 1 |
 | `GlueMethodInvocationStatus_TimedOut` | 2 |
 | `GlueMethodInvocationStatus_NotAvailable` | 3 |
 | `GlueMethodInvocationStatus_Started` | 4 |
@@ -472,11 +474,47 @@ This reference describes the components in the Glue42 COM library relevant to De
 | `GlueValueType_Tuple` | 6 |
 | `GlueValueType_Composite` | 7 |
 
+### GlueWindowEventType
+
+*Note that some event types aren't applicable to Delphi applications.*
+
+| Name | Value | Hex |
+|------|-------|-----|
+| `GlueWindowEventType_Unknown` | 0 | 00 |
+| `GlueWindowEventType_Snapshot` | 1 | 01 |
+| `GlueWindowEventType_WindowFrameAdded` | 2 | 02 |
+| `GlueWindowEventType_WindowFrameRemoved` | 3 | 03 |
+| `GlueWindowEventType_WindowFrameChanged` | 4 | 04 |
+| `GlueWindowEventType_ButtonClicked` | 5 | 05 |
+| `GlueWindowEventType_ButtonRemoved` | 6 | 06 |
+| `GlueWindowEventType_ButtonAdded` | 7 | 07 |
+| `GlueWindowEventType_GroupHeaderVisibilityChanged` | 8 | 08 |
+| `GlueWindowEventType_CompositionChanged` | 9 | 09 |
+| `GlueWindowEventType_FrameColorChanged` | 10 | 0A |
+| `GlueWindowEventType_Created` | 11 | 0B |
+| `GlueWindowEventType_Closed` | 12 | 0C |
+| `GlueWindowEventType_UrlChanged` | 13 | 0D |
+| `GlueWindowEventType_ContextChanged` | 14 | 0E |
+| `GlueWindowEventType_VisibilityChanged` | 15 | 0F |
+| `GlueWindowEventType_BoundsChanged` | 16 | 10 |
+| `GlueWindowEventType_StateChanged` | 17 | 11 |
+| `GlueWindowEventType_FocusChanged` | 18 | 12 |
+| `GlueWindowEventType_TitleChanged` | 19 | 13 |
+| `GlueWindowEventType_WindowCanvasWindowChanged` | 20 | 14 |
+| `GlueWindowEventType_TabHeaderVisibilityChanged` | 21 | 15 |
+| `GlueWindowEventType_FrameSelectionChanged` | 22 | 16 |
+| `GlueWindowEventType_ShowFlydownBoundsRequested` | 23 | 17 |
+| `GlueWindowEventType_WindowZoomFactorChanged` | 24 | 18 |
+| `GlueWindowEventType_FrameIsLockedChanged` | 25 | 19 |
+| `GlueWindowEventType_DOMReady` | 26 | 1A |
+| `GlueWindowEventType_Hibernated` | 27 | 1B |
+| `GlueWindowEventType_Resumed` | 28 | 1C |
+
 ## Types
 
 ### GlueAppDefinition
 
-Definition of a child application to be registered in Glue42.  
+Definition of a child application to be registered in Glue42.
 
 **Properties**
 
@@ -488,11 +526,11 @@ Definition of a child application to be registered in Glue42.
 
 ### GlueConfiguration
 
-Used for overriding the default Glue42 configuration.  
+Used for overriding the default Glue42 configuration.
 
 *See also:*
 
-- [`IGlue42`](#interfaces-iglue42) - the [`OverrideConfiguration`](#interfaces-iglue42-overrideconfiguration) method;
+- [`IGlue42`](#interfaces-iglue42) - the [`OverrideConfiguration`](#interfaces-iglue42-overrideconfiguration) method.
 
 **Properties**
 
@@ -517,7 +555,7 @@ Stores information about a Glue42 shared context.
 
 ### GlueContextValue
 
-This type represents a name-value pair.  
+This type represents a name-value pair.
 
 **Properties**
 
@@ -528,7 +566,7 @@ This type represents a name-value pair.
 
 ### GlueInstance
 
-Describes the identity of a Glue42 instance, i.e. how the instance is seen by other Glue42 peers.  
+Describes the identity of a Glue42 instance, i.e. how the instance is seen by other Glue42 peers.
 
 **Properties**
 
@@ -551,18 +589,18 @@ Describes the identity of a Glue42 instance, i.e. how the instance is seen by ot
 
 Holds information about the invoked Interop method and the result it has returned.
 
-**Properties**  
+**Properties**
 
 | Name | Type | Description |
 |------|------|-------------|
 | `Method` | [`GlueMethod`](#types-gluemethod) | Information about the Interop method returning the result. |
-| `Result` | [`GlueResult`](#types-glueresult) | The result returned by the Interop method. | 
+| `Result` | [`GlueResult`](#types-glueresult) | The result returned by the Interop method. |
 
 ### GlueMethod
 
 Describes an Interop method.
 
-**Properties**  
+**Properties**
 
 | Name | Type | Description |
 |------|------|-------------|
@@ -578,7 +616,7 @@ Describes an Interop method.
 
 Holds information about the result from invoking an Interop method.
 
-**Properties**  
+**Properties**
 
 | Name | Type | Description |
 |------|------|-------------|
@@ -591,7 +629,7 @@ Holds information about the result from invoking an Interop method.
 
 Represents an elementary or composite value.
 
-**Properties**  
+**Properties**
 
 | Name | Type | Description |
 |------|------|-------------|
@@ -617,13 +655,13 @@ The following properties will be initialized according to `GlueType` and `IsArra
 
 ### IAppAnnouncer
 
-An instance of this is passed to the implementation of the [`CreateApp`](#interfaces-iappfactory-createapp) method of the [`IAppFactory`](#interfaces-iappfactory) interface.  
+An instance of this is passed to the implementation of the [`CreateApp`](#interfaces-iappfactory-createapp) method of the [`IAppFactory`](#interfaces-iappfactory) interface.
 
 **Methods**
 
 #### AnnounceAppCreationFailure
 
-Informs Glue42 that a new child application instance couldn't be created.  
+Informs Glue42 that a new child application instance couldn't be created.
 
 *Parameters:*
 
@@ -631,7 +669,7 @@ Informs Glue42 that a new child application instance couldn't be created.
 |------|------|-------------|
 | `error` | `WideString` | Text passed back to Glue42 as an error message. |
 
-*Return value:* None  
+*Return value:* None
 
 #### RegisterAppInstance
 
@@ -644,7 +682,7 @@ Registers a new child application instance in Glue42.
 | `hwnd` | `Integer` | Handle to the window representing the Glue42 application instance. |
 | `glueApp` | [`IGlueApp`](#interfaces-iglueapp) | An object of a class implementing the `IGlueApp` interface. |
 
-*Return value:* [`IGlueWindow`](#interfaces-igluewindow)  
+*Return value:* [`IGlueWindow`](#interfaces-igluewindow)
 
 ### IAppFactory
 
@@ -670,7 +708,7 @@ Creates a new instance of a child application.
 
 *Return value:* `HResult`
 
-*Note that the implementation must return `S_OK`.*  
+*Note that the implementation must return `S_OK`.*
 
 ### IAppFactoryRegistry
 
@@ -680,7 +718,7 @@ This interface is used for registering application factories and application ins
 
 #### RegisterAppFactory
 
-Registers an app factory as a creator of a child application with the provided definition.  
+Registers an app factory as a creator of a child application with the provided definition.
 
 *Parameters:*
 
@@ -689,11 +727,11 @@ Registers an app factory as a creator of a child application with the provided d
 | `appDefinition` | [`GlueAppDefinition`](#types-glueappdefinition) | Definition of the app to register. |
 | `factory` | [IAppFactory](#interfaces-iappfactory) | An object of a class implementing the `IAppFactory` interface. |
 
-*Return value:* None  
+*Return value:* None
 
 #### RegisterAppInstance
 
-Register an application instance in Glue42.  
+Register an application instance in Glue42.
 
 *Parameters:*
 
@@ -753,7 +791,7 @@ An array of [`GlueContextValue`](#types-gluecontextvalue) values. The returned v
 
 #### GetAllInstances
 
-Gets an array of all available Glue42 instances.  
+Gets an array of all available Glue42 instances.
 
 *Parameters:* None
 
@@ -763,7 +801,7 @@ An array of [`GlueInstance`](#types-glueinstance) objects. The returned value mu
 
 #### GetAllMethods
 
-Gets an array of the available Interop methods from all Glue42 instances, including Interop streaming methods.  
+Gets an array of the available Interop methods from all Glue42 instances, including Interop streaming methods.
 
 *Parameters:* None
 
@@ -771,9 +809,9 @@ Gets an array of the available Interop methods from all Glue42 instances, includ
 
 An array of [`GlueMethod`](#types-gluemethod) objects. The returned value must be destroyed with `SafeArrayDestroy` when no longer needed.
 
-#### GetChannels  
+#### GetChannels
 
-Gets an array of the names of all available Glue42 Channels.  
+Gets an array of the names of all available Glue42 Channels.
 
 *Parameters:* None
 
@@ -783,7 +821,7 @@ An array of `WideString` values with the Channel names. The returned value must 
 
 #### GetInstance
 
-Gets the current Glue42 instance.  
+Gets the current Glue42 instance.
 
 *Parameters:* None
 
@@ -817,7 +855,7 @@ An array of `WideString` values with the method names. The returned value must b
 
 #### GetMethodsForInstance
 
-Gets the Interop methods exposed by matching one or more application instances.  
+Gets the Interop methods exposed by matching one or more application instances.
 
 *Parameters:*
 
@@ -830,6 +868,26 @@ Gets the Interop methods exposed by matching one or more application instances.
 
 An array of [`GlueMethod`](#types-gluemethod) objects. The returned value must be destroyed with `SafeArrayDestroy` when no longer needed.
 
+#### GetStartingContext
+
+Gets the starting context for the application.
+
+*Parameters:* None
+
+*Return value:* [`GlueValue`](#types-gluevalue)
+
+A [`GlueValue`](#types-gluevalue) containing the starting context for the application.
+
+#### GetStartupWindowSettings
+
+Gets the default settings for the startup window.
+
+*Parameters:* None
+
+*Return value:* [`IGlueWindowSettings`](#interfaces-igluewindowsettings)
+
+An object of [`IGlueWindowSettings`](#interfaces-igluewindowsettings) containing the default settings for the startup window.
+
 #### GetTargets
 
 Gets the names of all active applications (targets) currently offering Interop methods.
@@ -838,7 +896,7 @@ Gets the names of all active applications (targets) currently offering Interop m
 
 *Return value:* `PSafeArray`
 
-An array of `WideString` values with the application names. The returned value must be destroyed with `SafeArrayDestroy` when no longer needed.  
+An array of `WideString` values with the application names. The returned value must be destroyed with `SafeArrayDestroy` when no longer needed.
 
 #### InvokeMethod
 
@@ -892,6 +950,16 @@ Invokes an Interop method synchronously.
 
 The string represents the return values from the method invocation in JSON format.
 
+#### IsLaunchedByGD
+
+Determines whether the application was started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) or as a standalone executable.
+
+*Parameters:* None
+
+*Return value:* `WordBool`
+
+The string represents the return values from the method invocation in JSON format.
+
 #### JsonToVariant
 
 Converts a JSON string to a variant array.
@@ -908,7 +976,7 @@ An array of variants. The returned value must be destroyed with `SafeArrayDestro
 
 #### Log
 
-Outputs a message to the Glue42 log.  
+Outputs a message to the Glue42 log.
 
 *Parameters:*
 
@@ -950,7 +1018,7 @@ An object representing the registered Glue42 Window.
 
 #### RegisterGlueWindowWithSettings
 
-Initiates the registration of a window as a Glue42 Window with specific settings and sets the related event handler.  
+Initiates the registration of a window as a Glue42 Window with specific settings and sets the related event handler.
 
 *Parameters:*
 
@@ -984,7 +1052,7 @@ An object describing the registered Interop method. The return value can be used
 
 #### RegisterStartupGlueWindow
 
-Initiates the registration of a window as a Glue42 Window and sets the related event handler. Uses the default startup options, if any.  
+Initiates the registration of a window as a Glue42 Window and sets the related event handler. Uses the default startup options, if any.
 
 *Parameters:*
 
@@ -1032,7 +1100,7 @@ Registers an Interop stream (streaming method) and sets the related subscription
 
 *Return value:* [`GlueMethod`](#types-gluemethod)
 
-An object describing the registered Interop streaming method. The return value can be used to unregister the streaming method by using its [UnregisterMethod](#interfaces-iglue42-unregistermethod) method.  
+An object describing the registered Interop streaming method. The return value can be used to unregister the streaming method by using its [UnregisterMethod](#interfaces-iglue42-unregistermethod) method.
 
 #### SetChannelData
 
@@ -1192,7 +1260,7 @@ Unregisters an Interop method.
 
 #### Unsubscribe
 
-Cancels a subscription created with the [`Subscribe`](#interfaces-iglue42-subscribe) method.  
+Cancels a subscription created with the [`Subscribe`](#interfaces-iglue42-subscribe) method.
 
 *Parameters:*
 
@@ -1264,7 +1332,7 @@ Saves the application state.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `out pRetVal` | [`GlueValue`](#types-gluevalue) | Output parameter. The implementation may initialize `pRetVal` with the application state to be saved. |
+| `receiver` | [`IGlueValueReceiver`](#interfaces-igluevaluereceiver) | An instance of [`IGlueValueReceiver`](#interfaces-igluevaluereceiver) which can be used to set the the application state to be saved. |
 
 *Return value:* `HResult`
 
@@ -1322,7 +1390,7 @@ Unsubscribes from the associated Glue42 shared context.
 
 Gets information about the shared context.
 
-*Parameters:* None  
+*Parameters:* None
 
 *Return value:* [`GlueContext`](#types-gluecontext)
 
@@ -1336,6 +1404,32 @@ Gets the shared context data.
 
 An array of [`GlueContextValue`](#types-gluecontextvalue) values. The returned value must be destroyed with `SafeArrayDestroy` when no longer needed.
 
+#### GetDataAsJson
+
+Retrieves data from the shared context by field path and returns it as JSON encoded data.
+
+*Parameters:*
+
+| Name | Type | Description |
+|------|------|-------------|
+| `fieldPath` | `WideString` | Dot-separated string that represents a path in the shared context tree from where the JSON encoded data is to be read - e.g., `"data.contact"`. |
+
+*Return value:* `WideString`
+
+JSON encoded data that represents the shared context data - e.g., `"{parent: {child: {age: 5, name:\"Jay\"}}}"`.
+
+#### Remove
+
+Removes an elementary or composite value from the shared context.
+
+*Parameters:*
+
+| Name | Type | Description |
+|------|------|-------------|
+| `fieldPath` | `WideString` | Dot-separated string that represents a path in the shared context to the value to be removed, e.g. `"data.contact"`. |
+
+*Return value:* None
+
 #### SetContextData
 
 Sets new (replaces) shared context data.
@@ -1344,6 +1438,19 @@ Sets new (replaces) shared context data.
 
 | Name | Type | Description |
 |------|------|-------------|
+| `data` | `PSafeArray` | An array of [`GlueContextValue`](#types-gluecontextvalue) values representing the new context data. |
+
+*Return value:* None
+
+#### SetContextDataOnFieldPath
+
+Sets an array of context values under a context field specified by its path. If parts of the values in the path are missing, empty values will be created for them.
+
+*Parameters:*
+
+| Name | Type | Description |
+|------|------|-------------|
+| `fieldPath` | `WideString` | Dot-separated string that represents a path in the shared context tree where the JSON encoded data is to be placed - e.g., `"data.contact"`. |
 | `data` | `PSafeArray` | An array of [`GlueContextValue`](#types-gluecontextvalue) values representing the new context data. |
 
 *Return value:* None
@@ -1357,6 +1464,19 @@ Updates the shared context data.
 | Name | Type | Description |
 |------|------|-------------|
 | `data` | `PSafeArray` | An array of [`GlueContextValue`](#types-gluecontextvalue) values representing the new context data. |
+
+*Return value:* None
+
+#### UpdateContextDataJson
+
+Updates the shared context data by field path with JSON encoded data.
+
+*Parameters:*
+
+| Name | Type | Description |
+|------|------|-------------|
+| `fieldPath` | `WideString` | Dot-separated string that represents a path in the shared context tree where the JSON encoded data is to be placed - e.g., `"data.contact"`. |
+| `jsonEncodedData` | `WideString` | Valid JSON encoded data - e.g., `"{parent: {child: {age: 5, name:\"Jay\"}}}"` |
 
 *Return value:* None
 
@@ -1376,7 +1496,7 @@ An instance of this is passed as a parameter to the implementation of the [`Buil
 
 #### AddBool
 
-Adds a boolean value to the shared context data.
+Adds a Boolean value to the shared context data.
 
 *Parameters:*
 
@@ -1389,7 +1509,7 @@ Adds a boolean value to the shared context data.
 
 #### AddBoolArray
 
-Adds an array of boolean values to the shared context data.
+Adds an array of Boolean values to the shared context data.
 
 *Parameters:*
 
@@ -1441,7 +1561,7 @@ Adds a datetime value to the shared context data.
 
 #### AddDatetimeArray
 
-Adds an array of datetime values to the shared context data.  
+Adds an array of datetime values to the shared context data.
 
 *Parameters:*
 
@@ -1467,7 +1587,7 @@ Adds a double-precision floating-point value to the shared context data.
 
 #### AddDoubleArray
 
-Adds an array of double-precision floating-point values to the shared context data.  
+Adds an array of double-precision floating-point values to the shared context data.
 
 *Parameters:*
 
@@ -1744,7 +1864,7 @@ Implementing this interface allows an object to receive notifications about vari
 
 #### HandleConnectionStatus
 
-Handles the event when the Glue42 connection status changes.  
+Handles the event when the Glue42 connection status changes.
 
 *Parameters:*
 
@@ -1811,7 +1931,8 @@ Handles the event when an exception is thrown during the operation of Glue42.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `ex` | `_Exception` | An `_Exception` object as defined in the `mscorlib` type library. |
+| `Message` | `WideString` | Message associated with the exception. |
+| `ex` | [`GlueValue`](#types-gluevalue) | A [`GlueValue`](#types-gluevalue) containing additional information about the exception. |
 
 *Return value:* `HResult`
 
@@ -1956,7 +2077,7 @@ Gets an existing stream branch.
 |------|------|-------------|
 | `branchKey` | `WideString` | The name of the branch to get. |
 
-*Return value:* [`IGlueStreamBranch`](#interfaces-igluestreambranch)  
+*Return value:* [`IGlueStreamBranch`](#interfaces-igluestreambranch)
 
 Can be used to perform stream actions specific to the branch.
 
@@ -2092,7 +2213,7 @@ Handles the event when the Interop stream associated with the subscription has b
 |------|------|-------------|
 |`stream`|[GlueMethod](#types-gluemethod)|Information about the Glue streaming method related to the subscription.|
 
-*Return value:* `HResult`  
+*Return value:* `HResult`
 *Note that the implementation must return `S_OK`.*
 
 #### SubscriptionActivated
@@ -2129,7 +2250,7 @@ Disconnects the subscriber from the Interop stream.
 
 #### GetSubscriberInstance
 
-Gets the Glue42 application instance subscribed to the stream.  
+Gets the Glue42 application instance subscribed to the stream.
 
 *Parameters:* None
 
@@ -2191,7 +2312,7 @@ Handles the event when a new subscriber to the stream has been accepted.
 
 #### HandleSubscriberLost
 
-Handles the event when a subscriber has unsubscribed from the stream. This also includes the cases where subscribers have been forcefully unsubscribed when the `Close` method has been called for a subscriber, stream or stream branch.  
+Handles the event when a subscriber has unsubscribed from the stream. This also includes the cases where subscribers have been forcefully unsubscribed when the `Close` method has been called for a subscriber, stream or stream branch.
 
 *Parameters:*
 
@@ -2221,11 +2342,47 @@ Handles the event when a Glue42 application instance requests to subscribe to th
 
 *Note that the implementation must return `S_OK`.*
 
+### IGlueValueReceiver
+
+An instance of this is passed to the implementation of the [`SaveState`](#interfaces-iglueapp-savestate) method of the [`IGlueApp`](#interfaces-iglueapp) interface.
+
+**Methods**
+
+#### SendGlueValue
+
+Sends a [`GlueValue`](#types-gluevalue) to be set as an application state.
+
+*Parameters:*
+
+| Name | Type | Description |
+|------|------|-------------|
+| `glueValue` | [`GlueValue`](#types-gluevalue) | Value to set as an application state. |
+
+*Return value:* None
+
 ### IGlueWindow
 
 Describes a Glue42 Window.
 
 **Methods**
+
+#### Activate
+
+Activates the window.
+
+*Parameters:* None
+
+*Return value:* None
+
+#### GetChannelContext
+
+Gets the current Channel context for the window.
+
+*Parameters:* None
+
+*Return value:* [`IGlueContext`](#interfaces-igluecontext)
+
+If the window is not currently bound to a Channel, returns `Null`.
 
 #### GetChannelSupport
 
@@ -2250,7 +2407,7 @@ Gets the Glue42 Window title.
 *Parameters:* None
 
 *Return value:* `WideString`
-    
+
 #### IsVisible
 
 Determine whether the Glue42 Window is visible.
@@ -2356,6 +2513,22 @@ Handles the event when the data in the currently selected Channel has changed or
 |------|------|-------------|
 | `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the application. |
 | `channelUpdate` | [`IGlueContextUpdate`](#interfaces-igluecontextupdate) | This object can be used to obtain information about the update of the Channel context. |
+
+*Return value:* `HResult`
+
+*Note that the implementation must return `S_OK`.*
+
+#### HandleWindowEvent
+
+Handles additional window events.
+
+*Parameters:*
+
+| Name | Type | Description |
+|------|------|-------------|
+| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the application. |
+| `eventType` | [`GlueWindowEventType`](#enums-gluewindoweventtype) | The type of the window event. |
+| `eventData` | [`GlueValue`](#types-gluevalue) | Additional information about the window event. |
 
 *Return value:* `HResult`
 

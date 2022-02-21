@@ -58,7 +58,7 @@ The Pub/Sub API delivers messages with a routing key to all subscribers with the
 
 ### Messages from Any Application
 
-To subscribe for messages from all applications on a specific topic, use the `Subscribe()` method. Upon successful subscription, it returns a subscription object of type `IDisposable`. Use its `Dispose()` method to stop receiving messages on that topic. 
+To subscribe for messages from all applications on a specific topic, use the `Subscribe()` method. Upon successful subscription, it returns a subscription object of type `IDisposable`. Use its `Dispose()` method to stop receiving messages on that topic.
 
 Provide the topic on which you want to receive messages and a handler function for the messages:
 
@@ -165,12 +165,12 @@ await glue.Bus.Subscribe<int>(topic, (message) =>
 
 ### Untyped Data
 
-The data which which fails to deserialize to the required type is accessible through the `UntypedData` property of the received message. Use the `HasDeserializationError` boolean flag to determine whether a deserialization error has occurred. Use the `WithIgnoreDeserializationErrors()` method of the message options builder to specify whether the message handler should be invoked with the untyped data:
+The data which which fails to deserialize to the required type is accessible through the `UntypedData` property of the received message. Use the `HasDeserializationError` Boolean flag to determine whether a deserialization error has occurred. Use the `WithIgnoreDeserializationErrors()` method of the message options builder to specify whether the message handler should be invoked with the untyped data:
 
 ```csharp
 await intBus.Subscribe(topic, (message) =>
 {
-    if (message.HasDeserializationError) 
+    if (message.HasDeserializationError)
     {
         Console.WriteLine($"Received wrong data type: {message.UntypedData}");
     }
