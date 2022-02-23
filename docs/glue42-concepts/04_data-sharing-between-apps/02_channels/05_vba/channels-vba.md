@@ -13,13 +13,13 @@ GlueWin.SetChannelSupport False
 
 ## Handling Channel Change
 
-The [`HandleChannelChanged`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlechannelchanged) event is raised when the user changes the Channel using the Channel selection box in the window title bar. Use its handler to enable your application to react to Channel changes:  
+The [`HandleChannelChanged`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlechannelchanged) event is raised when the user changes the Channel using the Channel selection box in the window title bar. Use its handler to enable your application to react to Channel changes:
 
 ```vbnet
-Private Sub GlueWin_HandleChannelChanged(ByVal GlueWindow As IGlueWindow, ByVal channel As IGlueContext, ByVal prevChannelName As String)
+Private Sub GlueWin_HandleChannelChanged(ByVal GlueWindow As IGlueWindow, ByVal ChannelContext As IGlueContext, ByVal PrevChannelName As String)
     On Error GoTo HandleErrors
 
-    Dim ChannelContext
+    Dim ChannelDataDynValue
     Dim NewData
     Dim NewChannelName As String
 
@@ -27,9 +27,9 @@ Private Sub GlueWin_HandleChannelChanged(ByVal GlueWindow As IGlueWindow, ByVal 
         ' Do something when the user deselects a Channel.
         ...
     Else
-        ChannelContext = channel.GetReflectData("")    
-        NewChannelName = ChannelContext("name")
-        NewData = ChannelContext("data")
+        ChannelDataDynValue = ChannelContext.GetReflectData("")
+        NewChannelName = ChannelDataDynValue("name")
+        NewData = ChannelDataDynValue("data")
         ' Do something when the user selects a new Channel.
         ...
     End If
@@ -40,30 +40,36 @@ Private Sub GlueWin_HandleChannelChanged(ByVal GlueWindow As IGlueWindow, ByVal 
 
 End Sub
 ```
-  
+
 ## Subscribing for Channel Updates
 
 To subscribe for Channel data updates, use the [`HandleChannelData`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlechanneldata) event which is raised in two cases:
 - when the data in the currently selected Channel is updated;
-- after the [`HandleChannelChanged`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlechannelchanged) event, when the user switches to another Channel;  
+- after the [`HandleChannelChanged`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlechannelchanged) event, when the user switches to another Channel;
 
 ```vbnet
-Private Sub GlueWin_HandleChannelData(ByVal GlueWindow As IGlueWindow, ByVal channelUpdate As IGlueContextUpdate)
+Private Sub GlueWin_HandleChannelData(ByVal GlueWindow As IGlueWindow, ByVal ChannelUpdate As IGlueContextUpdate)
     On Error GoTo HandleErrors
-    
-    Dim ChannelContext
+
+    Dim ChannelDataDynValue
     Dim Data
     Dim ChannelName As String
 
-    ChannelContext = channelUpdate.GetContext.GetReflectData("")
-    ChannelName = ChannelContext("name")
-    Data = ChannelContext("data")
+    ChannelDataDynValue = ChannelUpdate.GetContext.GetReflectData("")
+    ChannelName = ChannelDataDynValue("name")
+    Data = ChannelDataDynValue("data")
     ' Do something with the new data.
     ...
     Exit Sub
 
     HandleErrors:
     ' Handle exceptions.
-   
+
 End Sub
-``` 
+```
+
+## Publishing Data
+
+To publish data to a Channel, you must update the shared context object dedicated the respective Channel. For details on how to update a shared context object, see the [`Shared Contexts > Updating a Context`](../../shared-contexts/vba/index.html#updating_a_context) section.
+
+*Note that you must only update the value of the `"data"` property of the context object. The `"name"` and `"meta"` properties must not be modified, because they are specifically set for each Channel.*

@@ -8,16 +8,16 @@ The Window Management API is accessible through `glue.windows()`.
 
 Currently, Glue42 Windows requires the underlying native handle (`hwnd` in the case of Windows) to be initialized and attached to the `JFrame` before the window can be registered. This is achieved internally through Glue42 Windows:
 
-``` java
-WindowHandle<JFrame> handle = windows.getWindowHandle(frame); 
-glue.windows().register(handle) 
+```java
+WindowHandle<JFrame> handle = windows.getWindowHandle(frame);
+glue.windows().register(handle)
         .thenAccept(window ->
                 frame.addWindowListener(new WindowAdapter()
                 {
                     @Override
                     public void windowClosing(WindowEvent e)
                     {
-                        window.closeAsync(); 
+                        window.closeAsync();
                     }
                 }));
 ```
@@ -32,7 +32,7 @@ The Java Window Management API allows you to control the following window proper
 
 The window type is controlled by the `mode` window option which can be specified in the application definition or during window registration:
 
-``` java
+```java
 glue.windows().register(handle, options -> options.mode(WindowMode.FLAT));
 ```
 
@@ -54,7 +54,7 @@ window.changeTitle("New Title");
 
 To change the window bounds, use the `changeBounds()` method:
 
-``` java
+```java
 window.changeBounds(new Bounds(10, 10, 200, 200));
 ```
 
@@ -62,7 +62,7 @@ window.changeBounds(new Bounds(10, 10, 200, 200));
 
 To hide or show the window, use the `changeVisibility()` method. Note that changing the window visibility also affects its associated icon:
 
-``` java
+```java
 window.changeVisibility(false);
 ```
 
@@ -74,7 +74,7 @@ You can put extra buttons in the frame area of the window and handle clicks for 
 
 Use the `addFrameButton()` method to add a new button:
 
-``` java
+```java
 window.addFrameButton("search-button",
                       ButtonOptions.builder()
                               .toolTip("Search")
@@ -88,7 +88,7 @@ window.addFrameButton("search-button",
 
 Use the `removeFrameButton()` method to remove a button from the frame:
 
-``` java
+```java
 window.removeFrameButton("search-button")
         .thenRun(() -> System.out.println("removed button"));
 ```
@@ -97,11 +97,11 @@ window.removeFrameButton("search-button")
 
 Use the `onFrameButtonClicked()` method to subscribe for button clicks:
 
-``` java
+```java
 window.onFrameButtonClicked(e -> {
     if ("search-button".equals(e.getButtonId()))
     {
         System.out.println("Search button clicked");
     }
 });
-``` 
+```

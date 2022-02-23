@@ -1,4 +1,4 @@
-## Overview 
+## Overview
 
 The Glue42 Channels are enabled by default when registering a VBA window as a Glue42 Window. You have to provide handler implementations for the Channel related events that will be raised due to interaction with the Glue42 Window instance - [changing Channels](#handling_channel_change) and [handling Channel data updates](#subscribing_for_channel_updates). When the Glue42 Channels are enabled, a Channel Selector box is available in the window title bar.
 
@@ -12,10 +12,10 @@ if  glueWin.GetChannelSupport() then
   glueWin.SetChannelSupport(False)
 else
   glueWin.SetChannelSupport(True);
-``` 
+```
 
 ## Handling Channel Change
- 
+
 To handle the event when the user changes the Channel via the Channel Selector, use the [`HandleChannelChanged`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluewindoweventhandler-handlechannelchanged) method of the [`IGlueWindowEventHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluewindoweventhandler) interface:
 
 ```delphi
@@ -25,7 +25,7 @@ begin
   begin
     // Previous Channel deselected, no new Channel selected.
     ...
-  end  
+  end
   else
   begin
     // New Channel selected.
@@ -54,3 +54,9 @@ begin
   Result := S_OK;
 end;
 ```
+
+## Publishing Data
+
+To publish data to a Channel, you must update the shared context object dedicated the respective Channel. For details on how to update a shared context object, see the [`Shared Contexts > Updating a Context`](../../shared-contexts/delphi/index.html#updating_a_context) section.
+
+*Note that you must only update the value of the `"data"` property of the context object. The `"name"` and `"meta"` properties must not be modified, because they are specifically set for each Channel.*

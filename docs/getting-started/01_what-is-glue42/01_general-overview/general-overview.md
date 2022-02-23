@@ -145,14 +145,14 @@ Access a general overview of all running hidden or visible applications from the
 
 | Column | Description |
 |--------|-------------|
-|`APPLICATION`| The application name. |
-|`PID`| The process ID. |
-|`MEMORY`| The process memory consumption. The memory consumption value displayed for apps with the same `PID` will be the same and will be an aggregate of the consumed memory by all apps within that process. |
-|`AFFINITY`| Configurable application process grouping within Glue42 Enterprise. |
-|`TYPE`| The type of the application - `window`, `exe` or `node`|
-|`WINDOW ID`| The window ID within Glue42 Enterprise. |
-|`VISIBLE`| Whether the application is visible or hidden. |
-|`ACTIONS`| From this column you can bring the application window on focus, open the Dev Tools for the window or close the application. |
+| `APPLICATION` | The application name. |
+| `PID` | The process ID. |
+| `MEMORY` | The process memory consumption. The memory consumption value displayed for apps with the same `PID` will be the same and will be an aggregate of the consumed memory by all apps within that process. |
+| `AFFINITY` | Configurable application process grouping within Glue42 Enterprise. |
+| `TYPE` | The type of the application - `window`, `exe` or `node`|
+| `WINDOW  ID`| The window ID within Glue42 Enterprise. |
+| `VISIBLE` | Whether the application is visible or hidden. |
+| `ACTIONS` | From this column you can bring the application window on focus, open the Dev Tools for the window or close the application. |
 
 ### Keep Learning
 

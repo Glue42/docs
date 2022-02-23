@@ -14,9 +14,7 @@ The default shortcut for the Global Search is `SUPER + /` (Windows key + forward
 
 ```json
 {
-    ...
     "shortcut": "ctrl+alt+space",
-    ...
 }
 ```
 

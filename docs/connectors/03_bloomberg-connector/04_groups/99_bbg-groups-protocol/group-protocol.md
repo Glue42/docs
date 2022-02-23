@@ -99,12 +99,14 @@ Currently, [**Glue42 Enterprise**](https://glue42.com/enterprise/) has Channel d
 The binding configuration for the Bloomberg Groups to the Glue42 Channels can be found in the `meta` property of the Glue42 Channel definition:
 
 ```json
-"blpGroup": {
-    "name" : "Group-G",
-    "readDataFieldPath" : "data.partyPortfolio.ric",
-    "writeDataFieldPath" : "data.partyPortfolio.ric",
-    "read" : "ric",
-    "write": "ric"
+{
+    "blpGroup": {
+        "name" : "Group-G",
+        "readDataFieldPath" : "data.partyPortfolio.ric",
+        "writeDataFieldPath" : "data.partyPortfolio.ric",
+        "read" : "ric",
+        "write": "ric"
+    }
 }
 ```
 
@@ -114,4 +116,4 @@ The binding configuration for the Bloomberg Groups to the Glue42 Channels can be
 
 - `writeDataFieldPath` - specifies the field path to the Glue42 Channel data, where the Bloomberg Connector writes the updated Bloomberg Group context.
 
-- `read` and `write` - specify whether the type of the context to read/write is `RIC` or `BLP`; 
+- `read` and `write` - specify whether the type of the context to read/write is `RIC` or `BLP`;

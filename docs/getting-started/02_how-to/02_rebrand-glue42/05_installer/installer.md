@@ -2,7 +2,7 @@
 
 Most tasks for customizing [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be accomplished by using the extensibility features of the Glue42 installer application. Whether it's changing the interface and behavior of the installer, modifying Glue42 components, substituting default with custom configurations, creating shortcuts, or adding custom resources like icons, splash screen, loaders and more, the installer application offers ways for automating almost all customization processes.
 
-The basic premise of the installer extensibility mode is to repackage the stock Glue42 installer application into a new executable file together with your custom configurations and resources. To accomplish this, you must use the provided [basic setup for creating a repackaged installer](../../../../assets/sfx-installer-example.zip). Some customizations can be achieved by modifying the [extensibility configuration file](#extensible_installer-extensibility_configuration_file) for the repackaged installer, while others require you to directly modify or replace resources in the provided basic setup.
+The basic premise of the installer extensibility mode is to repackage the stock Glue42 installer application into a new executable file together with your custom configurations and resources. To accomplish this, you must use the provided [basic setup for creating a repackaged installer](https://enterprise.glue42.com/upload/docs/sfx-installer-example.zip). Some customizations can be achieved by modifying the [extensibility configuration file](#extensible_installer-extensibility_configuration_file) for the repackaged installer, while others require you to directly modify or replace resources in the provided basic setup.
 
 *For descriptions of the files contained in the basic setup and details on how to use it, see the [Extensibility Installer Example](#extensible_installer_example) section.*
 
@@ -360,7 +360,7 @@ Both types of installer can be used interchangeably to create online and offline
 
 ## Installer UI
 
-The following sections describe how to customize various elements of the installer UI. As explained in previous sections, some customizations can be achieved by modifying the [extensibility configuration file](#extensible_installer-extensibility_configuration_file) for the repackaged installer, while others require you to directly modify or replace resources in the provided [basic setup for creating a repackaged installer](../../../../assets/sfx-installer-example.zip).
+The following sections describe how to customize various elements of the installer UI. As explained in previous sections, some customizations can be achieved by modifying the [extensibility configuration file](#extensible_installer-extensibility_configuration_file) for the repackaged installer, while others require you to directly modify or replace resources in the provided [basic setup for creating a repackaged installer](https://enterprise.glue42.com/upload/docs/sfx-installer-example.zip).
 
 *For descriptions of the files contained in the basic setup for creating a repackaged Glue42 installer and details on how to use it, see the [Extensible Installer Example](#extensibile_installer_example) section.*
 
@@ -389,6 +389,26 @@ To change the product name displayed in the installer, use the `"context"` exten
             "args": {
                 "name": "ProductName",
                 "value": "Custom Product"
+            }
+        }
+    ]
+}
+```
+
+*See also [Extensibility Point: "context"](#extensible_installer-extensibility_points__items-extensibility_point_context).*
+
+### Version
+
+To add a custom suffix to the product version, use the `"context"` extensibility point:
+
+```json
+{
+    "context": [
+        {
+            "type": "setValue",
+            "args": {
+                "name": "VersionSuffix",
+                "value": "custom-suffix"
             }
         }
     ]
@@ -1117,7 +1137,7 @@ As a final step of preparing your custom installer, you have to sign the resulti
 
 This section will provide you with a basic setup for creating a custom repackaged installer and will give you a step-by-step example of how to use an extensibility configuration file to package custom resources and control the installation process.
 
-Download the [basic setup for a custom installer](../../../../assets/sfx-installer-example.zip). Use it to test how the custom installer works, to tweak the setting, add your own files and, ultimately, create your own custom installer.
+Download the [basic setup for a custom installer](https://enterprise.glue42.com/upload/docs/sfx-installer-example.zip). Use it to test how the custom installer works, to tweak the setting, add your own files and, ultimately, create your own custom installer.
 
 ### Basic Setup Files
 

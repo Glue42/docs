@@ -8,7 +8,7 @@ To be able to use the [Workspaces API](../../../../reference/glue/latest/workspa
 npm install @glue42/workspaces-api
 ```
 
-Initialize the Glue42 JavaScript library by passing the globally available `GlueWorkspaces()` factory function to the `libraries` array property of the configuration object. The `GlueWorkspaces()` factory function, like the `Glue()` factory function, is attached to the global `window` object. When the `Glue()` factory function resolves, the Workspaces API will be accessible through the `workspaces` property of the returned object - e.g., [`glue.workspaces`](../../../../reference/glue/latest/workspaces/index.html). 
+Initialize the Glue42 JavaScript library by passing the globally available `GlueWorkspaces()` factory function to the `libraries` array property of the configuration object. The `GlueWorkspaces()` factory function, like the `Glue()` factory function, is attached to the global `window` object. When the `Glue()` factory function resolves, the Workspaces API will be accessible through the `workspaces` property of the returned object - e.g., [`glue.workspaces`](../../../../reference/glue/latest/workspaces/index.html).
 
 ```javascript
 const config = {
@@ -22,7 +22,7 @@ window.glue = await Glue(config);
 
 ## Frame
 
-The [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) is the topmost level window which contains all Workspaces. 
+The [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) is the topmost level window which contains all Workspaces.
 
 ### Frame Reference
 
@@ -58,7 +58,7 @@ const specificFrame = await glue.workspaces.getFrame(frame => frame.id === "fram
 
 ### Frame Bounds
 
-Once you get a [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) instance, you can manipulate its bounds using the [`move()`](../../../../reference/glue/latest/workspaces/index.html#Frame-move) and [`resize()`](../../../../reference/glue/latest/workspaces/index.html#Frame-resize) methods: 
+Once you get a [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) instance, you can manipulate its bounds using the [`move()`](../../../../reference/glue/latest/workspaces/index.html#Frame-move) and [`resize()`](../../../../reference/glue/latest/workspaces/index.html#Frame-resize) methods:
 
 ```javascript
 const myFrame = await glue.workspaces.getMyFrame();
@@ -103,13 +103,53 @@ const myFrame = await glue.workspaces.getMyFrame();
 const frameWorkspaces = await myFrame.workspaces();
 ```
 
+### Empty Frame
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.14">
+
+To create an empty [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) with no Workspaces in it, use the [`createEmptyFrame()`](../../../../reference/glue/latest/workspaces/index.html#API-createEmptyFrame) method. It accepts an [`EmptyFrameDefinition`](../../../../reference/glue/latest/workspaces/index.html#EmptyFrameDefinition) object as an argument which you can use to specify the [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) bounds and context:
+
+```javascript
+const definition = {
+    frameConfig: {
+        bounds: { left: 200, top: 200, height: 700, width: 500 }
+    },
+    context: { glue: 42 }
+};
+
+const emptyFrame = await glue.workspaces.createEmptyFrame(definition);
+```
+
+*Note that you can get the context passed to the empty Frame through the [`onInitializationRequested()`](../../../../reference/glue/latest/workspaces/index.html#API-onInitializationRequested) method.*
+
+The empty [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) will be opened with no Workspaces in it and will show a constant loading animation until it is initialized. To initialize an empty [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame), use the [`init()`](../../../../reference/glue/latest/workspaces/index.html#Frame-init) method. It accepts a [`FrameInitializationConfig`](../../../../reference/glue/latest/workspaces/index.html#FrameInitializationConfig) object as an argument that you can use the specify a list of [`WorkspaceDefinition`](../../../../reference/glue/latest/workspaces/index.html#WorkspaceDefinition) or [`RestoreWorkspaceDefinition`](../../../../reference/glue/latest/workspaces/index.html#RestoreWorkspaceDefinition) objects with which to initialize the empty [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame):
+
+```javascript
+const configuration = {
+    workspaces: [
+        { name: "my-workspace", restoreOptions: { context: { glue: 42 }, title: "My Workspace"} },
+        { name: "my-other-workspace", restoreOptions: { context: { glue: "forty-two" }, title: "My Other Workspace"} }
+    ]
+};
+
+await emptyFrame.init(configuration);
+```
+
+*Note that the [`init()`](../../../../reference/glue/latest/workspaces/index.html#Frame-init) method can be invoked only once and only on an empty [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame).*
+
+To check whether a [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) is empty, use the `isInitialized` flag. It will return `false` for an empty [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame):
+
+```javascript
+const isFrameInitialized = myFrame.isInitialized;
+```
+
 ## Workspace
 
-A [`Workspace`](../../../../reference/glue/latest/workspaces/index.html#Workspace) contains one or more application windows arranged in columns, rows or groups. 
+A [`Workspace`](../../../../reference/glue/latest/workspaces/index.html#Workspace) contains one or more application windows arranged in columns, rows or groups.
 
-*A [`Group`](../../../../reference/glue/latest/workspaces/index.html#Group) is a Workspace element that holds tabbed windows. If a window is placed directly in a [`Column`](../../../../reference/glue/latest/workspaces/index.html#Column) or a [`Row`](../../../../reference/glue/latest/workspaces/index.html#Row), it will be static and without a tab - the user won't be able to move it or close it and manipulating it will be possible only through the API.*  
+*A [`Group`](../../../../reference/glue/latest/workspaces/index.html#Group) is a Workspace element that holds tabbed windows. If a window is placed directly in a [`Column`](../../../../reference/glue/latest/workspaces/index.html#Column) or a [`Row`](../../../../reference/glue/latest/workspaces/index.html#Row), it will be static and without a tab - the user won't be able to move it or close it and manipulating it will be possible only through the API.*
 
-You can use the [`frame`](../../../../reference/glue/latest/workspaces/index.html#Workspace-frame) property of a Workspace to get a reference to the [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) containing it. 
+You can use the [`frame`](../../../../reference/glue/latest/workspaces/index.html#Workspace-frame) property of a Workspace to get a reference to the [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) containing it.
 
 To get a collection of the immediate children of a Workspace, use its [`children`](../../../../reference/glue/latest/workspaces/index.html#Workspace-children) property.
 
@@ -158,7 +198,7 @@ await myWorkspace.refreshReference();
 
 ### Restoring Workspaces
 
-You can restore a Workspace by using the [`restoreWorkspace()`](../../../../reference/glue/latest/workspaces/index.html#API-restoreWorkspace) method which is available at top level of the API. It accepts an optional [`RestoreWorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#RestoreWorkspaceConfig) object in which you can specify a title and a context for the restored Workspace, and also whether to restore it in a specific existing frame or in a new frame: 
+You can restore a Workspace by using the [`restoreWorkspace()`](../../../../reference/glue/latest/workspaces/index.html#API-restoreWorkspace) method which is available at top level of the API. It accepts an optional [`RestoreWorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#RestoreWorkspaceConfig) object in which you can specify a title and a context for the restored Workspace, and also whether to restore it in a specific existing frame or in a new frame:
 
 ```javascript
 // Specify the Frame in which to restore the Workspace.
@@ -217,9 +257,9 @@ const workspace = await glue.workspaces.createWorkspace(definition);
 
 An easier solution is to use the Workspaces Builder API. The builder allows you to compose entire Workspaces as well as different Workspace elements (rows, columns or groups) depending on the builder type you set.
 
-You can define a builder with the [`getBuilder()`](../../../../reference/glue/latest/workspaces/index.html#API-getBuilder) method. It accepts a [`BuilderConfig`](../../../../reference/glue/latest/workspaces/index.html#BuilderConfig) object as a parameter in which you should specify the type of the builder (`"workspace"`, `"row"`, `"colum"` or `"group"`) and provide either a Workspace definition or a definition for the element (row, column or group) you want to build. You can then use the methods of the builder instance to add rows, columns, groups or windows. 
+You can define a builder with the [`getBuilder()`](../../../../reference/glue/latest/workspaces/index.html#API-getBuilder) method. It accepts a [`BuilderConfig`](../../../../reference/glue/latest/workspaces/index.html#BuilderConfig) object as a parameter in which you should specify the type of the builder (`"workspace"`, `"row"`, `"colum"` or `"group"`) and provide either a Workspace definition or a definition for the element (row, column or group) you want to build. You can then use the methods of the builder instance to add rows, columns, groups or windows.
 
-Here is how you can create the same Workspace as above using a builder: 
+Here is how you can create the same Workspace as above using a builder:
 
 ```javascript
 // Configuration for the builder.
@@ -246,13 +286,119 @@ builder.addColumn()
 const workspace = await builder.create();
 ```
 
+### Focusing a Workspace
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.14">
+
+To specify whether a [`Workspace`](../../../../reference/glue/latest/workspaces/index.html#Workspace) should be on focus when creating or restoring it, use the `isSelected` property of the [`WorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#WorkspaceConfig) or [`RestoreWorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#RestoreWorkspaceConfig) objects respectively:
+
+```javascript
+const definition = {
+    children: [
+        {
+            type: "column",
+            children: [
+                {
+                    type: "window",
+                    appName: "app-one"
+                },
+                {
+                    type: "window",
+                    appName: "app-two"
+                }
+            ]
+        }
+    ],
+    config: {
+        title: "My Workspace",
+        isSelected: false
+    }
+};
+
+await glue.workspaces.createWorkspace(definition);
+```
+
+### Positioning a Workspace
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.14">
+
+To specify a position for the [`Workspace`](../../../../reference/glue/latest/workspaces/index.html#Workspace) when creating or restoring it, use the `positionIndex` property of the [`WorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#WorkspaceConfig) or [`RestoreWorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#RestoreWorkspaceConfig) objects respectively:
+
+```javascript
+const restoreOptions = { positionIndex: 1 };
+
+await glue.worksapces.restoreWorkspace("myWorkspace", restoreOptions);
+```
+
+*Note that the groups of [pinned and unpinned](#workspace-pinning__unpinning_workspaces) Workspaces are arranged independently of each other, so using the `positionIndex` property of a pinned Workspace will define its position within the pinned Workspaces group.*
+
+### Pinning & Unpinning Workspaces
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.14">
+
+Workspaces can be pinned or unpinned programmatically in the [Workspaces App](../overview/index.html#workspaces_concepts-frame). Pinned Workspace tabs are placed before the regular Workspace tabs and are represented only by their icon - they don't have a title, nor Close and Save Workspace buttons, therefore they can't be closed and their initial Layout can't be overwritten by the end user.
+
+The following image shows a pinned Workspace with a custom icon followed by two regular unpinned Workspaces:
+
+![Pinned Workspace](../../../../images/workspaces/pinned-workspace.png)
+
+You must specify an icon for the Workspace in order to be able to pin it. To set an icon for a Workspace, use the `icon` property of the [`WorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#WorkspaceConfig) or [`RestoreWorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#RestoreWorkspaceConfig) objects when creating or restoring a Workspace respectively, or use the [`setIcon()`](../../../../reference/glue/latest/workspaces/index.html#Workspace-setIcon) method of a [`Workspace`](../../../../reference/glue/latest/workspaces/index.html#Workspace) instance. The icon must be in string format and you can pass either a path to a web resource or a string representation of an image, such as Base64.
+
+*Note that the styles of the default Workspaces App distributed with [**Glue42 Enterprise**](https://glue42.com/enterprise/) are configured to work with 12x12 pixel icons in SVG format for pinned Workspaces. Your [custom Workspaces App](../overview/index.html#extending_workspaces), however, can be [styled](../overview/index.html#extending_workspaces-styles) to use formats and sizes of your choice.*
+
+The following example demonstrates how to set an icon for a Workspace when restoring a Workspace Layout:
+
+```javascript
+const restoreOptions = { icon: "https://example.com/icon.svg" };
+
+await glue.worksapces.restoreWorkspace("myWorkspace", restoreOptions);
+```
+
+The following example demonstrates how to set an icon for a Workspace using the [`setIcon()`](../../../../reference/glue/latest/workspaces/index.html#Workspace-setIcon) method:
+
+```javascript
+const icon = "https://example.com/icon.svg";
+
+await myWorkspace.setIcon(icon);
+```
+
+To get the icon of a Workspace, use the [`getIcon()`](../../../../reference/glue/latest/workspaces/index.html#Workspace-getIcon) method:
+
+```javascript
+const icon = await myWorkspace.getIcon();
+```
+
+To pin a Workspace, use the [`pin()`](../../../../reference/glue/latest/workspaces/index.html#Workspace-pin) method and optionally pass an icon. The title and the Close and Save Workspace buttons of the Workspace tab will be removed and the icon of the Workspace will be shown as the last item in the pinned Workspaces group:
+
+```javascript
+const options = {
+    icon: "https://example.com/icon.svg"
+};
+
+await myWorkspace.pin(options);
+```
+
+To unpin a Workspace, use the [`unpin()`](../../../../reference/glue/latest/workspaces/index.html#Workspace-unpin) method. The title and the Close and Save Workspace buttons will be returned, the Workspace icon will be hidden and the Workspace will be added as the first tab in the unpinned Workspaces group:
+
+```javascript
+await myWorkspace.unpin();
+```
+
+To specify whether a Workspace should be pinned when creating or restoring it, use the `isPinned` property of the [`WorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#WorkspaceConfig) or [`RestoreWorkspaceConfig`](../../../../reference/glue/latest/workspaces/index.html#RestoreWorkspaceConfig) objects respectively:
+
+```javascript
+const restoreOptions = { isPinned: true };
+
+await glue.worksapces.restoreWorkspace("myWorkspace", restoreOptions);
+```
+
 ### Finding Workspace Elements
 
 The Workspaces API offers various methods for finding elements in a Workspace - [`Row`](../../../../reference/glue/latest/workspaces/index.html#Row), [`Column`](../../../../reference/glue/latest/workspaces/index.html#Column), [`Group`](../../../../reference/glue/latest/workspaces/index.html#Group) and [`WorkspaceWindow`](../../../../reference/glue/latest/workspaces/index.html#WorkspaceWindow). All methods for querying Workspaces accept a predicate function as a parameter which you can use to find the desired Workspace elements.
 
 #### Box Elements
 
-[`Box`](../../../../reference/glue/latest/workspaces/index.html#Box) elements are Workspace elements that can contain other Workspace elements - [`Row`](../../../../reference/glue/latest/workspaces/index.html#Row), [`Column`](../../../../reference/glue/latest/workspaces/index.html#Column) and [`Group`](../../../../reference/glue/latest/workspaces/index.html#Group). These elements are the building blocks of a Workspace Layout, while the actual windows (applications) can be viewed as their content. 
+[`Box`](../../../../reference/glue/latest/workspaces/index.html#Box) elements are Workspace elements that can contain other Workspace elements - [`Row`](../../../../reference/glue/latest/workspaces/index.html#Row), [`Column`](../../../../reference/glue/latest/workspaces/index.html#Column) and [`Group`](../../../../reference/glue/latest/workspaces/index.html#Group). These elements are the building blocks of a Workspace Layout, while the actual windows (applications) can be viewed as their content.
 
 To get all box elements in a Workspace, use the [`getAllBoxes()`](../../../../reference/glue/latest/workspaces/index.html#Workspace-getAllBoxes) method of a Workspace instance:
 
@@ -305,7 +451,7 @@ const specificWindow = await glue.workspaces.getWindow(window => window.id === "
 
 ### Editing Workspaces
 
-Workspace instances and [`Box`](../../../../reference/glue/latest/workspaces/index.html#Box) element instances offer methods for adding and removing Workspace elements. This, combined with the powerful querying methods, gives you full programmatic control over a Workspace. 
+Workspace instances and [`Box`](../../../../reference/glue/latest/workspaces/index.html#Box) element instances offer methods for adding and removing Workspace elements. This, combined with the powerful querying methods, gives you full programmatic control over a Workspace.
 
 Below is an example of adding a new window as a sibling to another window in a Workspace using the [`addWindow()`](../../../../reference/glue/latest/workspaces/index.html#Box-addWindow) method of a box element:
 
@@ -373,7 +519,7 @@ The following table lists the available size constraint properties and the Works
 | `minHeight` | `number` | Sets the minimum height in pixels of the element. | `Row`, `Group`, `Window` |
 | `isPinned` | `boolean` | Specifies whether the size of the element (width for columns, height for rows) will be preserved when the user maximizes, restores or resizes the Workspace. | `Row`, `Column` |
 
-Mind that if you set the same max or min property of more than one of several nested elements to different values (e.g., you've set `maxWidth: 400` for a column and `maxWidth: 500` for a window inside that column), then in the case of maximum values, the lower one will be used, and in the case of minimum values, the higher one will be used. This way, all defined constraints will be respected when the user resizes the Workspace or its elements. 
+Mind that if you set the same max or min property of more than one of several nested elements to different values (e.g., you've set `maxWidth: 400` for a column and `maxWidth: 500` for a window inside that column), then in the case of maximum values, the lower one will be used, and in the case of minimum values, the higher one will be used. This way, all defined constraints will be respected when the user resizes the Workspace or its elements.
 
 To set size constraints for Workspace elements when creating a Workspace, use the `config` property of the [`WorkspaceDefinition`](../../../../reference/glue/latest/workspaces/index.html#WorkspaceDefinition) object:
 
@@ -505,7 +651,7 @@ await myWorkspace.lock(lockConfig);
 
 const setLocking = (lockConfig) => {
     lockConfig.allowDrop = false;
-    
+
     return lockConfig;
 };
 
@@ -643,7 +789,7 @@ await myWorkspace.addRow(rowDefinition);
 
 ### Workspace Layouts
 
-Workspace Layouts are JSON objects that describe the content and arrangement of a Workspace. Workspace Layouts can be saved ([locally or remotely](../../layouts/overview/index.html#layout_stores), depending on how your [**Glue42 Enterprise**](https://glue42.com/enterprise/) has been setup), deleted, exported and imported. 
+Workspace Layouts are JSON objects that describe the content and arrangement of a Workspace. Workspace Layouts can be saved ([locally or remotely](../../layouts/overview/index.html#layout_stores), depending on how your [**Glue42 Enterprise**](https://glue42.com/enterprise/) has been setup), deleted, exported and imported.
 
 #### Workspace Layout Summaries
 
@@ -761,7 +907,7 @@ unsubscribe();
 
 ### Frame Events
 
-The Frame events provide notifications when a certain action has occurred within the Frame. Below is an example for an event which will fire every time a window has been added to the specified Frame instance: 
+The Frame events provide notifications when a certain action has occurred within the Frame. Below is an example for an event which will fire every time a window has been added to the specified Frame instance:
 
 ```javascript
 const myFrame = await glue.workspaces.getMyFrame();

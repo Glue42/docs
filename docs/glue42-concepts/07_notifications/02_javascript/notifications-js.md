@@ -1,5 +1,7 @@
 ## Raising Notifications from a Web App
 
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.10">
+
 *Note that the Glue42 Notifications API uses interfaces extending the interfaces of the [DOM Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API). The documentation below describes the specifics of the Glue42 Notifications API. For full details on the DOM Notification API interfaces, see the respective DOM documentation for [`Notification`](https://developer.mozilla.org/en-US/docs/Web/API/Notification), [`NotificationAction`](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.notificationaction.html), [`NotificationOptions`](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.notificationoptions.html) and [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event).*
 
 The Notifications API is accessible through the [`glue.notifications`](../../../reference/glue/latest/notifications/index.html) object.

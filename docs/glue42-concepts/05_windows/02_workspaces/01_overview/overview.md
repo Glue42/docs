@@ -22,7 +22,9 @@ A Workspaces contains one or more applications (windows) arranged in columns, ro
 
 ### Workspace Layout
 
-A Workspace Layout is a JSON object which describes the model of a Workspace. It contains the name of the Workspace, the structure of its children and how they are arranged, the names of each application present in the Workspace, context and other settings. This Layout is the blueprint used by the API to build the Workspace and its components. Workspace Layouts can be defined both programmatically - when creating or restoring Workspaces at runtime, and through configuration - when defining default Workspaces to be loaded by the Workspaces App.
+A Workspace Layout is a JSON object which describes the model of a Workspace. It contains the name of the Workspace, the structure of its children and how they are arranged, the names of each application present in the Workspace, context and other settings. This Layout is the blueprint used by the API to build the Workspace and its components. Workspace Layouts can be defined both programmatically - when creating or restoring Workspaces at runtime, and through configuration - when defining default Workspaces to be loaded by the Workspaces App (see [Workspaces App Configuration](#extending_workspaces-workspaces_app_configuration)).
+
+The Workspace Layouts are defined using
 
 The following example demonstrates a basic Layout definition of a Workspace containing two apps:
 
@@ -56,6 +58,8 @@ The following example demonstrates a basic Layout definition of a Workspace cont
 }
 ```
 
+Setting the `"children"` property to an empty array will open an empty Workspace.
+
 If an already existing Workspace Layout has been saved under a specific name, you can use a simpler Layout object to restore it:
 
 ```json
@@ -69,9 +73,7 @@ Use the `"config"` property of the standard Workspace Layout object or the `"res
 ```json
 // Standard Workspace Layout definition.
 {
-    "children": [
-        ...
-    ],
+    "children": [],
     "config": {
         "noTabHeader": true,
         "context": { "glue" : 42 }
@@ -88,7 +90,7 @@ Use the `"config"` property of the standard Workspace Layout object or the `"res
 }
 ```
 
-Hiding the Workspace tab header with the `"noTabHeader"` property prevents the user from manipulating the Workspace through the UI and allows for the Workspace to be controlled entirely through API calls. For instance, a Workspace may be tied programmatically to certain logic, a button, etc., designed to manage its state without any user interaction. For a demonstration of this functionality, see the [Pinned Workspace Tabs](https://github.com/Glue42/templates/tree/master/workspaces-react-pinned-tabs) example on GitHub. It shows how to load default Workspaces with hidden tab headers and control them with custom buttons in the Workspaces App header area.
+Hiding the Workspace tab header with the `"noTabHeader"` property prevents the user from manipulating the Workspace through the UI and allows for the Workspace to be controlled entirely through API calls. For instance, a Workspace may be tied programmatically to certain logic, a button, etc., designed to manage its state without any user interaction.
 
 ## Using Workspaces
 
@@ -144,7 +146,7 @@ To restore a Workspace Layout, use the "+" button on the Workspace tab and selec
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.11">
 
-The [`@glue42/workspaces-ui-react`](https://www.npmjs.com/package/@glue42/workspaces-ui-react) library provides all functionalities necessary for building a Workspaces App as a single React component - `<Workspaces />`. The `<Workspaces />` component provides extensibility points for passing custom components to it and can also be wrapped in other components (see [Workspaces Component](#extending_workspaces-workspaces_component)). The library enables you to use custom system popups, create your own popups from HTML elements (see [Custom Popups](#extending_workspaces-custom_popups)) and compose the content of a Workspace (see [Composing Workspace Content](#extending_workspaces-composing_workspace_content)).
+The [`@glue42/workspaces-ui-react`](https://www.npmjs.com/package/@glue42/workspaces-ui-react) library provides all functionalities necessary for building a Workspaces App as a single React component - `<Workspaces />`. The `<Workspaces />` component provides extensibility points for passing custom components to it and can also be wrapped in other components (see [Workspaces Component](#extending_workspaces-workspaces_component)). The library enables you to use custom system popups, create your own popups from HTML elements (see [Custom Popups](#extending_workspaces-custom_popups)) and compose the content of a Workspace (see [Composing Workspace Content](#extending_workspaces-composing_workspace_content)). The [`@glue42/workspaces-ui-react`](https://www.npmjs.com/package/@glue42/workspaces-ui-react) library also provides mechanisms ensuring the correct usage of the [Workspaces API](../../../../reference/glue/latest/workspaces/index.html) in a Workspaces App (see [Using Glue42 APIs in the Frame](#extending_workspaces-using_glue42_apis_in_the_frame)).
 
 Hot module reloading is supported, but keep in mind that each refresh closes all apps and Workspaces in the Frame.
 
@@ -167,16 +169,21 @@ The `"type"` property must be set to `"workspaces"`:
     "details": {
         "layouts": [],
         "url": "http://localhost:3000",
-        "updateFrameConstraints": false
+        "updateFrameConstraints": false,
+        "framePool": 4
     },
     "allowMultiple": true,
     "customProperties": {}
 }
 ```
 
-The `"url"` and `"layouts"` properties are optional. Use `"url"` to specify where the application is hosted, otherwise it will default to the Workspaces App template distributed with [**Glue42 Enterprise**](https://glue42.com/enterprise/). Use the `"layouts"` property to define Workspace Layouts that will be loaded on startup of the Workspaces App (for more details, see the [Workspace Layout](#workspaces_concepts-workspace-layout) section).
+The `"url"` and `"layouts"` properties are optional. Use `"url"` to specify where the application is hosted, otherwise it will default to the Workspaces App template distributed with [**Glue42 Enterprise**](https://glue42.com/enterprise/).
+
+Use the `"layouts"` property to define Workspace Layouts that will be loaded on startup of the Workspaces App (for more details on defining a Workspace Layout, see the [Workspace Layout](#workspaces_concepts-workspace-layout) section). Setting the `"layouts"` property to an empty array will open an empty [Frame](#workspaces_concepts-frame) with a constant loading animation and no Workspaces in it.
 
 The `"updateFrameConstraints"` property by default is set to `true`, which means that the [Frame](#workspaces_concepts-frame) is restricted to the constraints of the Workspace and its elements inside it. Set to `false` if you don't want to prevent the user from resizing your custom Workspaces App beyond the constraints of its content.
+
+The `"framePool"` property can be used to specify how many semi-initialized Frames (3 by default) will be cached in order to provide a smoother experience when dragging out a Workspace from an existing Frame. The higher the number, the higher the memory consumption; the lower the number, the higher the risk of rejection due to an empty pool when dragging out a Workspace.
 
 #### Hibernation
 
@@ -187,30 +194,32 @@ Workspaces can be configured to use hibernation in order to free up system resou
 By default, hibernation is disabled. To enable and configure hibernating Workspaces, add a `"hibernation"` property to the `"details"` key in the Workspaces App configuration file. There are three rules available which you can set in order to define when a Workspace should be hibernated. The rules set limits in regard to available system memory, Workspace idle time and maximum number of active Workspaces:
 
 ```json
-"details": {
-    "hibernation": {
-        "enabled": true,
-        "interval": 10,
-        "workspacesToClose": 2,
-        "rules": [
-            {
-                "enabled": true,
-                "type": "InsufficientSystemMemory",
-                // In MBs.
-                "threshold": 1024
-            },
-            {
-                "enabled": true,
-                "type": "WorkspaceIdleTime",
-                // In minutes.
-                "threshold": 10
-            },
-            {
-                "enabled": true,
-                "type": "MaximumActiveWorkspaces",
-                "threshold": 3
-            }
-        ]
+{
+    "details": {
+        "hibernation": {
+            "enabled": true,
+            "interval": 10,
+            "workspacesToClose": 2,
+            "rules": [
+                {
+                    "enabled": true,
+                    "type": "InsufficientSystemMemory",
+                    // In MBs.
+                    "threshold": 1024
+                },
+                {
+                    "enabled": true,
+                    "type": "WorkspaceIdleTime",
+                    // In minutes.
+                    "threshold": 10
+                },
+                {
+                    "enabled": true,
+                    "type": "MaximumActiveWorkspaces",
+                    "threshold": 3
+                }
+            ]
+        }
     }
 }
 ```
@@ -253,14 +262,16 @@ Advantages and disadvantages of the different loading strategies:
 To configure the loading strategies for Workspaces, add a `"loading"` property to the `"details"` key in the Workspaces App configuration file:
 
 ```json
-"details": {
-    "loading": {
-        "loadingStrategy": "delayed",
-        "initialOffsetInterval": 2000,
-        "interval": 3000,
-        "batch": 2,
-        // This indicator should only be used in development.
-        "showDelayedIndicator": true
+{
+    "details": {
+        "loading": {
+            "loadingStrategy": "delayed",
+            "initialOffsetInterval": 2000,
+            "interval": 3000,
+            "batch": 2,
+            // This indicator should only be used in development.
+            "showDelayedIndicator": true
+        }
     }
 }
 ```
@@ -282,12 +293,54 @@ The `"loading"` key has the following properties:
 To control whether an app will be available in the Workspace "Add Application" menu (the dropdown that appears when you click the "+" button to add an application), use the `"includeInWorkspaces"` property of the `"customProperties"` top-level key in your [application configuration](../../../../developers/configuration/application/index.html):
 
 ```json
-"customProperties": {
-    "includeInWorkspaces": true
+{
+    "customProperties": {
+        "includeInWorkspaces": true
+    }
 }
 ```
 
 By default, this property is set to `false`.
+
+### Using Glue42 APIs in the Frame
+
+The [Workspaces App](#workspaces_concepts-frame) is a fully-featured Glue42 client, so you can use all Glue42 APIs in it.
+
+However, there are some peculiarities regarding the [Workspaces API](../../../../reference/glue/latest/workspaces/index.html). The [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) object is initially part of a pool of Frames that aren't fully initialized - a strategy that ensures dragging out a Workspace will be carried out as smooth as possible. Therefore it is possible for your code to be executed before the [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) has been loaded as a member of the API. To avoid this situation, you must use the methods provided by the [`@glue42/workspaces-ui-react`](https://www.npmjs.com/package/@glue42/workspaces-ui-react) library for handling this case.
+
+*For details on how to specify the number of Frames in the pool, see the [Workspace App Configuration](#extending_workspaces-workspaces_app_configuration) section.*
+
+#### Getting the Frame Object
+
+The [`getMyFrame()`](../../../../reference/glue/latest/workspaces/index.html#API-getMyFrame) and [`glue.windows.my()`](../../../../reference/glue/latest/windows/index.html#API-my) methods by design don't work when used in a Frame. To get the [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) object, you must first use the `getFrameId()` function provided by the [`@glue42/workspaces-ui-react`](https://www.npmjs.com/package/@glue42/workspaces-ui-react) library which will return the ID of the current Frame. After that, to ensure that the window has been loaded as a Frame, you must use the Workspaces API [`waitForFrame()`](../../../../reference/glue/latest/workspaces/index.html#API-waitForFrame) method which will resolve only after the window is out of the pool. This may never happen if the user never drags a Workspace out, so you shouldn't use timeouts.
+
+The following example demonstrates how to correctly get the [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) object:
+
+```javascript
+import React from "react";
+import Workspaces, { getFrameId } from "@glue42/workspaces-ui-react";
+import { useGlue } from "@glue42/react-hooks";
+import { Glue42 } from "@glue42/desktop";
+
+const App = () => {
+	useGlue((glue) => {
+        // Getting the ID of the current Frame.
+        const frameID = getFrameId();
+        // Waiting for the Frame to be loaded.
+		const myFrame = await glue.workspaces.waitForFrame(frameID);
+
+        // The Frame is now initialized and part of the API.
+	}, []);
+
+	return (
+		<Workspaces />
+	);
+}
+
+export default App;
+```
+
+It is recommended that all Glue42 and app logic be executed after the Frame has been loaded in order to avoid unexpected behaviors and memory leaks.
 
 ### Header Area Zones
 
@@ -327,12 +380,12 @@ There are several prerequisites when creating a custom Workspaces App:
 
 The `<Workspaces />` component has two props - `glue` and `components`. The `glue` prop expects the `glue` object returned by the initialized Glue42 library. The `components` prop is used to define the header area components (see [Header Area Components](#extending_workspaces-header_area_components)), the system popup components or apps (see [Replacing the System Popups](#extending_workspaces-custom_popups-replacing_the_system_popups)) and the Workspace content to be rendered (see [Composing Workspace Content](#extending_workspaces-composing_workspace_content)).
 
-*It is important to note that the `<Workspaces>` component isn't meant to be used as a typical React component. Besides its rendering responsibilities, it also contains heavy logic. This component is meant to allow you to create a dedicated Workspaces App which must function as a standalone window - you must never use it as a part of another application, as this will lead to malfunctioning. The Workspaces App should be customized only using the available extensibility points.*
+*It is important to note that the `<Workspaces>` component isn't meant to be used as a typical React component. Besides its rendering responsibilities, it also contains heavy logic. This component is meant to allow you to create a dedicated Workspaces App which must function as a standalone window - you must never use it as part of another application, as this will lead to malfunctioning. The Workspaces App should be customized only using the available extensibility points.*
 
 The following example shows the `<Workspaces />` component props, their properties and default values:
 
 ```javascript
-<Workspaces 
+<Workspaces
     components={{
         header: {
             LogoComponent: GlueLogo,
@@ -340,7 +393,7 @@ The following example shows the `<Workspaces />` component props, their properti
             SystemButtonsComponent: () => {
                 return (
                     <>
-                        <MinimizeFrameButton /> 
+                        <MinimizeFrameButton />
                         <MaximizeFrameButton />
                         <CloseFrameButton />
                     </>
@@ -384,7 +437,7 @@ Adding a custom toolbar with buttons to the Workspaces App:
 
 ### Header Area Components
 
-Use the default header components or replace them with your custom ones. Compose more than one component in a [header area zone](#extending_workspaces-header_area_zones) by passing a function that returns a `<Fragment />` component. 
+Use the default header components or replace them with your custom ones. Compose more than one component in a [header area zone](#extending_workspaces-header_area_zones) by passing a function that returns a `<Fragment />` component.
 
 #### Logo
 
@@ -452,7 +505,7 @@ The following example demonstrates adding a custom button to the System Buttons 
 
 ```javascript
 import React from "react";
-import Workspaces, { 
+import Workspaces, {
     MinimizeFrameButton,
     MaximizeFrameButton,
     CloseFrameButton
@@ -469,7 +522,7 @@ const App = () => {
                             return (
                                 <>
                                     <CustomButton />
-                                    <MinimizeFrameButton /> 
+                                    <MinimizeFrameButton />
                                     <MaximizeFrameButton />
                                     <CloseFrameButton />
                                 </>
@@ -545,7 +598,7 @@ Using a custom button and a custom popup for the Add Workspace component:
 
 #### Replacing the System Popups
 
-The `components` prop of the `<Workspaces />` component has a `popups` property that enables you to pass custom components or Glue42 apps that will act as system popups. To specify a custom Glue42 app as a system popup, pass its name as a string. 
+The `components` prop of the `<Workspaces />` component has a `popups` property that enables you to pass custom components or Glue42 apps that will act as system popups. To specify a custom Glue42 app as a system popup, pass its name as a string.
 
 *Note that if you decide to use the default system popups, you must ensure that they receive their required props. This includes a `glue` object with initialized [Workspaces](../javascript/index.html) library and [Application Management](../../../application-management/overview/index.html) library initialized in `"full"` or `"skipIcons"` mode.*
 
@@ -553,7 +606,7 @@ The following example demonstrates how to pass default popup components and thei
 
 ```javascript
 import React from "react";
-import Workspaces, { 
+import Workspaces, {
     SaveWorkspacePopup,
     AddApplicationPopup
 } from "@glue42/workspaces-ui-react";
@@ -561,7 +614,7 @@ import Workspaces, {
 const App = () => {
     return (
         <div className="App">
-            <Workspaces 
+            <Workspaces
                 components={{
                     popups: {
                         // Props are passed automatically.
@@ -617,24 +670,24 @@ The following example demonstrates a reference implementation of a custom system
 import React, { useEffect } from "react";
 
 const SaveWorkspacePopup = ({ resizePopup, hidePopup }) => {
-    const containerRef = React.createRef(); 
+    const containerRef = React.createRef();
     const refreshHeight = () => {
         if (!containerRef?.current) {
             return;
         }
- 
+
         const bounds = containerRef.current.getBoundingClientRect();
- 
+
         resizePopup({
             height: bounds.height,
             width: bounds.width
         });
     };
- 
+
     useEffect(() => {
         refreshHeight();
     }, []);
- 
+
     return (
         <div onClick={(e) =>e.stopPropagation()} ref={containerRef}>
             Custom Popup
@@ -643,7 +696,7 @@ const SaveWorkspacePopup = ({ resizePopup, hidePopup }) => {
     );
 };
 
-export default SaveWorkspacePopup; 
+export default SaveWorkspacePopup;
 ```
 
 The following example demonstrates how to use the default `<AddApplicationPopup />` system popup and filter the applications that will be available in the "Add Application" menu by a custom user-defined property:
@@ -679,7 +732,7 @@ export default App;
 
 #### User Defined Popups
 
-There are two ways for you to create custom popups from HTML elements - by using the `<WorkspacePopup />` component, or by using the `useWorkspacePopup()` and `useWorkspaceWindowClicked()` hooks. 
+There are two ways for you to create custom popups from HTML elements - by using the `<WorkspacePopup />` component, or by using the `useWorkspacePopup()` and `useWorkspaceWindowClicked()` hooks.
 
 *Note that the purpose of the `<WorkspacePopup />` component and the `useWorkspacePopup()` hook is to ensure compatibility of the popups with Windows 7. If you don't need to support Windows 7, use only the `useWorkspaceWindowClicked()` hook to handle window clicks.*
 
@@ -695,20 +748,20 @@ The following example demonstrates how to create a custom popup using the `<Wors
 ```javascript
 import React from "react";
 import { WorkspacePopup } from "@glue42/workspaces-ui-react";
- 
+
 const CustomPopup = ({ trigger }) => {
     const popupRef = React.createRef();
 
     return (
-        <WorkspacePopup innerContentStyle={{ height:300 }} popupRef={popupRef} trigger={trigger}> 
+        <WorkspacePopup innerContentStyle={{ height:300 }} popupRef={popupRef} trigger={trigger}>
             <div style={{ backgroundColor:"blue", height:"100%" }}>
-                Custom Popup 
+                Custom Popup
                 <button onClick={() => popupRef.current?.close()}>Close</button>
             </div>
         </WorkspacePopup>
     );
 };
- 
+
 export default CustomPopup;
 ```
 
@@ -727,17 +780,17 @@ The following example demonstrates how to create a custom popup using the `useWo
 
 ```javascript
 import React from "react";
-import { 
-    useWorkspacePopup, 
+import {
+    useWorkspacePopup,
     useWorkspaceWindowClicked
 } from "@glue42/workspaces-ui-react";
- 
+
 const CustomPopup = ({ closePopup }) => {
     const popupRef = React.createRef();
-    
+
     useWorkspacePopup(popupRef);
     useWorkspaceWindowClicked(closePopup);
-    
+
     return (
         <div ref={popupRef} style={popupStyle}>
             Custom Popup
@@ -745,7 +798,7 @@ const CustomPopup = ({ closePopup }) => {
         </div>
     );
 };
- 
+
 const popupStyle = {
     backgroundColor:"blue",
     height:100,
@@ -755,7 +808,7 @@ const popupStyle = {
     left:100,
     width:100
 };
- 
+
 export default CustomPopup;
 ```
 
@@ -772,16 +825,16 @@ import CustomWorkspaceContent from "./CustomWorkspaceContent";
 
 const App = () => {
     const [showContent, setShowContent] = useState(true);
-    ...
+
     return (
         <Workspaces components={{
-                ...
+
                 WorkspaceContents: (props) => showContent ?
                     // Show the default Workspace content with the `<WorkspaceContents />` library component.
                     <WorkspaceContents {...props} /> :
                     // Or show custom Workspace content with your custom component.
                     <CustomWorkspaceContent workspaceId={props.workspaceId} />
-            }} 
+            }}
         />
     )
 };
@@ -808,7 +861,7 @@ const App = () => {
             components={{
                 WorkspaceContents: props => <> <Toolbar /> <WorkspaceContents {...props}/> </>
             }}
-        />       
+        />
     );
 };
 
@@ -848,5 +901,5 @@ You should consider the following technical limitations when using the `@glue42/
 - Due to the mechanism used for rendering Glue42 Windows, when running under Windows 10 a single color must always be transparent. The color is specified in the [`stickywindows.json`](../../../../assets/configuration/stickywindows.json) system configuration file (see also [Glue42 Windows](../../../../developers/configuration/glue42-windows/index.html)) and shouldn't be used individually or in a gradient as it will always be rendered as fully transparent.
 - For the previous reason the popups must not have shadows or any transparency if they are positioned over any of the apps in the Workspace.
 - To ensure full compatibility with Windows 7 and Windows 10, you must use the `<WorkspacePopup />` component or the `useWorkspacePopup()` and `useWorkspaceWindowClicked()` hooks for your custom popups (except for any custom system popups where this is already handled internally).
-- The Frame doesn't have a Glue42 Window object (`glue.windows.my()` returns `undefined`).
-- Refs to the custom components passed to the `<Workspaces />` component shouldn't be used in any parent component of `<Workspaces />` because the children of `<Workspaces />` aren't immediately rendered and therefore these refs won't work as expected. 
+- The Frame doesn't have a Glue42 Window object ([`glue.windows.my()`](../../../../reference/glue/latest/windows/index.html#API-my) returns `undefined`) and the [`getMyFrame()`](../../../../reference/glue/latest/workspaces/index.html#API-getMyFrame) method can't be used in the Frame (see [Using Glue42 APIs in the Frame](#extending_workspaces-using_glue42_apis_in_the_frame)).
+- Refs to the custom components passed to the `<Workspaces />` component shouldn't be used in any parent component of `<Workspaces />` because the children of `<Workspaces />` aren't immediately rendered and therefore these refs won't work as expected.

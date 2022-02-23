@@ -140,15 +140,15 @@ IServerMethod interopMethod = Glue.Interop.RegisterEndpoint(mdb => mdb.SetMethod
 ### Method Invocation
 
 ```csharp
-    Glue.Interop.Invoke("DoWork", mib => mib.SetContext(cb => cb.AddValue("id", Guid.NewGuid().ToString("N")))
-    .SkipInvocationMetrics().SetInvocationLoggingLevel(LogLevel.Info),
-    new TargetSettings().WithTargetInvokeTimeout(TimeSpan.FromSeconds(8)).WithTargetType(MethodTargetType.Any))
-    .ContinueWith(r =>
-        {
-            IClientMethodResult result = r.Result;
-            // result.Status
-            Console.WriteLine("Result arrived for: " + result.ResultContext.First(cv => cv.Name == "id").Value);
-        });
+Glue.Interop.Invoke("DoWork", mib => mib.SetContext(cb => cb.AddValue("id", Guid.NewGuid().ToString("N")))
+.SkipInvocationMetrics().SetInvocationLoggingLevel(LogLevel.Info),
+new TargetSettings().WithTargetInvokeTimeout(TimeSpan.FromSeconds(8)).WithTargetType(MethodTargetType.Any))
+.ContinueWith(r =>
+    {
+        IClientMethodResult result = r.Result;
+        // result.Status
+        Console.WriteLine("Result arrived for: " + result.ResultContext.First(cv => cv.Name == "id").Value);
+    });
 ```
 
 ## Unregister a Method
@@ -156,7 +156,7 @@ IServerMethod interopMethod = Glue.Interop.RegisterEndpoint(mdb => mdb.SetMethod
 ```csharp
 IServerMethod serverMethod = ...
 
-glue.Interop.UnregisterEndpoint(method)
+glue.Interop.UnregisterEndpoint(serverMethod)
 ```
 
 ## Discovery

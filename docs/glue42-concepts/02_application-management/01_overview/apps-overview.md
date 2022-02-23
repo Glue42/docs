@@ -25,26 +25,28 @@ In the standard [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployme
 To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load application configuration files from a local path, use the `"appStores"` top-level key of the `system.json` file. Set the `"type"` property of the app store configuration object to `"path"` and specify a relative or an absolute path to the application definitions. The environment variables set by [**Glue42 Enterprise**](https://glue42.com/enterprise/) can also be used as values:
 
 ```json
-"appStores": [
-    {
-        "type": "path",
-        "details": {
-            "path": "../config/apps"
+{
+    "appStores": [
+        {
+            "type": "path",
+            "details": {
+                "path": "../config/apps"
+            }
+        },
+        {
+            "type": "path",
+            "details": {
+                "path": "%GD3-APP-STORE%"
+            }
+        },
+        {
+            "type": "path",
+            "details": {
+                "path": "%GLUE-USER-DATA%/apps"
+            }
         }
-    },
-    {
-        "type": "path",
-        "details": {
-            "path": "%GD3-APP-STORE%"
-        }
-    },
-    {
-        "type": "path",
-        "details": {
-            "path": "%GLUE-USER-DATA%/apps"
-        }
-    }
-]
+    ]
+}
 ```
 
 ### Remote App Stores
@@ -58,18 +60,20 @@ For a .NET implementation of a remote application configurations store, see the 
 To configure a connection to the REST service providing the application store, add a new entry to the `"appStores"` top-level key of the `system.json` file:
 
 ```json
-"appStores": [
-    {
-        "type": "rest",
-        "details": {
-            "url": "http://localhost:3000/appd/v1/apps/search",
-            "auth": "no-auth",
-            "pollInterval": 30000,
-            "enablePersistentCache": true,
-            "cacheFolder": "%LocalAppData%/Tick42/UserData/%GLUE-ENV%-%GLUE-REGION%/gcsCache/"
+{
+    "appStores": [
+        {
+            "type": "rest",
+            "details": {
+                "url": "http://localhost:3000/appd/v1/apps/search",
+                "auth": "no-auth",
+                "pollInterval": 30000,
+                "enablePersistentCache": true,
+                "cacheFolder": "%LocalAppData%/Tick42/UserData/%GLUE-ENV%-%GLUE-REGION%/gcsCache/"
+            }
         }
-    }
-]
+    ]
+}
 ```
 
 The only required properties for each app store configuration object are `"type"`, which should be set to `"rest"`, and `"url"`, which is the address of the remote application store. You can also set the authentication, polling interval, cache persistence and cache folder.
@@ -87,7 +91,7 @@ The remote store must return application definitions in the following response s
 {
     "applications": [
         // List of application definition objects.
-        {...}, {...}
+        {}, {}
     ]
 }
 ```
@@ -95,9 +99,11 @@ The remote store must return application definitions in the following response s
 You can also use the [Glue42 Server](../../glue42-server/index.html) for hosting and retrieving application stores. The [Glue42 Server](../../glue42-server/index.html) is a complete server-side solution for providing data to Glue42. To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch application configurations from a [Glue42 Server](../../glue42-server/index.html), set the `"type"` property of the app store configuration object to `"server"`:
 
 ```json
-"appStores": [
-    {
-        "type": "server"
-    }
-]
+{
+    "appStores": [
+        {
+            "type": "server"
+        }
+    ]
+}
 ```

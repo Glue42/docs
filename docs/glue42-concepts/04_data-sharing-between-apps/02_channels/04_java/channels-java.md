@@ -2,7 +2,7 @@
 
 To add the Channel Selector to your window, you need to enable the `channel` window option:
 
-``` java
+```java
 glue.windows().register(handle, options -> options.channel())
 ```
 
@@ -10,7 +10,7 @@ glue.windows().register(handle, options -> options.channel())
 
 A context data object can contain different types of data, e.g. `RIC` symbol, `ClientID`, `AccountID`:
 
-``` java
+```java
 Map<String, Object> data = new LinkedHashMap<>();
 data.put("RIC", "BMW.GR");
 data.put("ClientID", 235399);
@@ -19,7 +19,7 @@ data.put("AccountID", "X2343");
 
 You can create a Channel context object:
 
-``` java
+```java
 ChannelContext<Map<String, Object>> channelContext = glue.channels().create(window);
 ```
 
@@ -27,7 +27,7 @@ ChannelContext<Map<String, Object>> channelContext = glue.channels().create(wind
 
 When you want your application to track the current Channel data, you can use the `subscribe()` method of the Channel context object:
 
-``` java
+```java
 channelContext.subscribe((ChannelContextDataSubscriber<Map<String, Object>>) (channel, data) -> {
     // Each time the Channel context data is updated, this method will be invoked.
 });
@@ -37,6 +37,6 @@ channelContext.subscribe((ChannelContextDataSubscriber<Map<String, Object>>) (ch
 
 To update the current Channel context data, use the `publish()` method:
 
-``` java
+```java
 channelContext.publish(Collections.singletonMap("RIC", "VOD.L"));
-``` 
+```

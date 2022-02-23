@@ -5,7 +5,7 @@
 To offer a method to other applications, call `glue.interop().register()`, passing the method **definition** and a
 callback to handle client invocations.
 
-``` java
+```java
 glue.interop().<Map<String, Object>, Map<String, Object>>register(
         MethodDefinition.builder("Sum").withSignature("int a, int b", "int answer").build(),
         (arg, caller) -> {
@@ -60,7 +60,7 @@ Using `Composite` you can define almost any non-recursive, non-self-referential 
 
 You can obtain asynchronous results by using the `registerAsync()` method to register methods, which return a `Future` object:
 
-``` java
+```java
 glue.interop().registerAsync("getQuote", (arg, caller) -> {
     CompletableFuture<Map<String, Object>> future = doSomethingAsync(arg);
     return future;
@@ -75,7 +75,7 @@ The `doSomethingAsync()` method above returns a `Future` object.
 
 To invoke a method offered by other applications, call `glue.interop().invoke()`, passing the method **name** and **arguments**. Then use the returned `Future` to receive result or an error.
 
-``` java
+```java
 Map<String, Object> arg = new HashMap<>();
 arg.put("a", 37);
 arg.put("b", 5);
@@ -93,7 +93,7 @@ responses.
 
 This is how you can iterate over all responses:
 
-``` java
+```java
 result.forEach(r -> {
     if (r.getStatus().isSuccess())
     {
@@ -114,7 +114,7 @@ When the invocation result has multiple responses, calling `hasMultipleResponses
 
 To list all available methods from all servers:
 
-``` java
+```java
 System.out.println(glue.interop().getMethods());
 ```
 
@@ -145,7 +145,7 @@ Instead of `name()`, you can also use the `nameMatches()` method to pass a regex
 
 #### Local and Remote Methods
 
-You can look for methods offered both by local and remote servers by using the `localOnly()` method. Pass a boolean value to it to specify whether you need methods offered only by local servers or by both local and remote servers. The method `localOnly()` defaults to `true`, so if you omit it in the search, only methods offered by local servers will be returned.
+You can look for methods offered both by local and remote servers by using the `localOnly()` method. Pass a Boolean value to it to specify whether you need methods offered only by local servers or by both local and remote servers. The method `localOnly()` defaults to `true`, so if you omit it in the search, only methods offered by local servers will be returned.
 
 Here is an example search for local methods:
 
@@ -171,7 +171,7 @@ Search
 
 To list all servers offering methods:
 
-``` java
+```java
 System.out.println(glue.interop().getServers());
 ```
 
@@ -195,7 +195,7 @@ Interop Streams are used extensively in [**Glue42 Enterprise**](https://glue42.c
 
 Subscribing to a stream is achieved by invoking `glue.interop().stream()`:
 
-``` java
+```java
 glue.interop()
         .stream("MarketData.LastTrades",
                 Collections.singletonMap("symbol", "ORCL"))
@@ -211,7 +211,7 @@ glue.interop()
 
 To close a stream subscription, invoke the `close()` or `closeAsync()` method on the subscription reference returned by the `subscribe()` method:
 
-``` java
+```java
 AsynchronousCloseable subscription =
         stream.subscribe(new StreamSubscriber<Map<String, Object>>() {});
 subscription.closeAsync();
@@ -221,7 +221,7 @@ subscription.closeAsync();
 
 At any time, a stream subscription can be closed either because the publisher has shut down or due to an error.
 
-``` java
+```java
 stream.subscribe(new StreamSubscriber<Map<String, Object>>()
 {
     @Override
@@ -246,7 +246,7 @@ To start publishing data, you need to register an Interop stream by
 calling `glue.interop().register()` and providing a method definition and
 stream subscription request handler.
 
-``` java
+```java
 glue.interop()
         .register(MethodDefinition.forName("Clock"),
                   StreamSubscriptionRequestHandler.accept())
@@ -265,7 +265,7 @@ glue.interop()
 
 To control how your application accepts or rejects stream subscription requests, specify a custom handler. The handler receives a `StreamSubscriptionRequest` as a second argument and must return a `StreamConsumer` instance by invoking the `accept()`, `acceptOn()` or `reject()` methods of the `request`.
 
-``` java
+```java
 glue.interop()
         .<Map<String, Object>>register(
                 MethodDefinition.builder("MarketData.LastTrades")
@@ -293,7 +293,7 @@ glue.interop()
 
 To track when a consumer is added and/or removed, `StreamSubscriptionRequestHandler` provides the `onAdded()` and `onRemoved()` methods in which you can compose callbacks.
 
-``` java
+```java
 glue.interop()
         .register(
                 MethodDefinition.builder("MarketData.LastTrades")
@@ -314,7 +314,7 @@ In order to use these methods, you need an instance of type `StreamSubscriptionR
 
 The following fragment creates a handler that is equivalent (if you ignore logging) with the one provided in the previous section:
 
-``` java
+```java
 StreamSubscriptionRequestHandler
         .<Map<String, Object>>accept((arg, caller) -> (String) arg.get("Symbol"))
 ```
@@ -330,7 +330,7 @@ The `StreamConsumer` reference can be used to:
 
 A single stream supports one or multiple named sub-streams that are called **branches**. In cases where it isn't necessary for a stream to be split into multiple sub-streams, a **default** branch is used.
 
-``` java
+```java
 glue.interop()
         .register(MethodDefinition.forName("Clock"),
                   StreamSubscriptionRequestHandler.accept())

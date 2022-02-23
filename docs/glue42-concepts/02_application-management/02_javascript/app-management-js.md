@@ -16,11 +16,13 @@ To shut down [**Glue42 Enterprise**](https://glue42.com/enterprise/), use the [`
 await glue.appManager.exit();
 ```
 
+*For details on how to execute custom code before restart or shutdown and also how to prevent restart or shutdown, see the [Events > Shutdown Event](#events-shutdown_event) section.*
+
 ## Managing Application Definitions at Runtime
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.12">
 
-Application definitions can be imported, exported and removed at runtime using the [`InMemoryStore`](../../../reference/glue/latest/appmanager/index.html#InMemoryStore) object of the Application Management API. 
+Application definitions can be imported, exported and removed at runtime using the [`InMemoryStore`](../../../reference/glue/latest/appmanager/index.html#InMemoryStore) object of the Application Management API.
 
 *Note that all application [`Definition`](../../../reference/glue/latest/appmanager/index.html#Definition) objects provided at runtime are stored in-memory and the methods of the `InMemoryStore` object operate only on them - i.e., the application definitions provided to [**Glue42 Enterprise**](https://glue42.com/enterprise/) through local or remote configuration files aren't affected.*
 
@@ -152,20 +154,28 @@ await appInstance.stop();
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.11">
 
-The shutdown event provided by the Application Management API allows you to execute custom code before [**Glue42 Enterprise**](https://glue42.com/enterprise/) shuts down. The available time for the execution of your code is 60 seconds. The callback you provide for handling the event will receive an object with only one property (`restarting`) as an argument. Use it to determine whether [**Glue42 Enterprise**](https://glue42.com/enterprise/) is restarting or is shutting down.
+The shutdown event provided by the Application Management API allows you to execute custom code before [**Glue42 Enterprise**](https://glue42.com/enterprise/) shuts down. The available time for the execution of your code is 60 seconds. The callback you provide for handling the event will receive a [`ShuttingDownEventArgs`](../../../reference/glue/latest/appmanager/index.html#ShuttingDownEventArgs) object as an argument. Use its `restarting` property to determine whether [**Glue42 Enterprise**](https://glue42.com/enterprise/) is restarting or is shutting down:
 
 ```javascript
 // The async code in the handler will be awaited up to 60 seconds
 // before Glue42 Enterprise shuts down.
 const handler = async (args) => {
     const isRestarting = args.restarting;
-    
+
     if (isRestarting) {
         console.log("Restarting...");
     } else {
         await handleShutdown();
     };
 };
+
+glue.appManager.onShuttingDown(handler);
+```
+
+To prevent shutdown or restart of [**Glue42 Enterprise**](https://glue42.com/enterprise/), the async handler must resolve with an object with a `prevent` property set to `true`:
+
+```javascript
+const handler = async () => { return { prevent: true } };
 
 glue.appManager.onShuttingDown(handler);
 ```

@@ -1,6 +1,6 @@
 ## Introduction
 
-The Glue42 Outlook Connector allows applications to use Outlook for creating emails, tasks, meetings and appointments, so that the user may view and edit these in a familiar environment. Once the items are sent or saved by the user, they can then be transmitted back to the application for processing, auditing and/or long-term storage. 
+The Glue42 Outlook Connector allows applications to use Outlook for creating emails, tasks, meetings and appointments, so that the user may view and edit these in a familiar environment. Once the items are sent or saved by the user, they can then be transmitted back to the application for processing, auditing and/or long-term storage.
 
 The Glue42 Outlook Connector API lets your application interact with Outlook, and enables it to:
 
@@ -135,7 +135,7 @@ outlook.newEmail({
     .catch(console.error)
 ```
 
-The [`onSent`](../../../../reference/glue4office/latest/outlook/index.html#NewEmailOptions-onSent) callback will pass you the email object which is of type [`T42Email`](../../../../reference/glue4office/latest/outlook/index.html#T42Email). This object has a property [`ids`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-ids) which contains a set of IDs uniquely identifying the email in multiple systems (e.g., CRMs), including Outlook. 
+The [`onSent`](../../../../reference/glue4office/latest/outlook/index.html#NewEmailOptions-onSent) callback will pass you the email object which is of type [`T42Email`](../../../../reference/glue4office/latest/outlook/index.html#T42Email). This object has a property [`ids`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-ids) which contains a set of IDs uniquely identifying the email in multiple systems (e.g., CRMs), including Outlook.
 
 If you save the email IDs in your app, you can later use them to display the email in Outlook. Take a look at [Showing Emails](#working_with_emails-showing_emails) to see how.
 
@@ -158,7 +158,7 @@ outlook.newEmail({
         attachments: [
             {
                 // the "data" property expects base64 encoded data
-                data: window.btoa(document.getElementById("customerList").innerHTML), 
+                data: window.btoa(document.getElementById("customerList").innerHTML),
                 fileName: "customers.html"
             }
         ]
@@ -189,13 +189,13 @@ Whenever an email arrives in a monitored folder, (e.g., from an Outlook rule whi
 outlook.onEmailReceived(email => console.log("An email arrived", email));
 ```
 
-The [`email`](../../../../reference/glue4office/latest/outlook/index.html#Email) parameter is of type [`T42Email`](../../../../reference/glue4office/latest/outlook/index.html#T42Email) and contains the standard [`sender`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-sender), [`to`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-to), [`subject`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-subject), etc. properties. This object has a property [`ids`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-ids) which contains a set of IDs uniquely identifying the email in multiple systems (e.g., CRMs), including Outlook. 
+The [`email`](../../../../reference/glue4office/latest/outlook/index.html#Email) parameter is of type [`T42Email`](../../../../reference/glue4office/latest/outlook/index.html#T42Email) and contains the standard [`sender`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-sender), [`to`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-to), [`subject`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-subject), etc. properties. This object has a property [`ids`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-ids) which contains a set of IDs uniquely identifying the email in multiple systems (e.g., CRMs), including Outlook.
 
 If you save the email IDs in your app, you can later use them to display the email in Outlook. Take a look at [Showing Emails](#working_with_emails-showing_emails) to see how.
 
 When an email arrives in the monitored folder, the Glue42 Outlook Connector will try to map the email addresses to Outlook contacts, so [`sender`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-sender), [`to`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-to), [`cc`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-cc) and [`bcc`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-bcc) will contain instances of [`T42Contact`](../../../../reference/glue4office/latest/outlook/index.html#T42Contact).
 
-In addition, any attachments in the [`attachments`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-attachments) property will be instances of [`T42Attachment`](../../../../reference/glue4office/latest/outlook/index.html#T42Attachment). Note that the data in the attachments can be quite large and is delivered to your application on demand. If you need to get hold of the attachment data (encoded in `base64`), you can call the [`getData()`](../../../../reference/glue4office/latest/outlook/index.html#Attachment-getData) method:
+In addition, any attachments in the [`attachments`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-attachments) property will be instances of [`T42Attachment`](../../../../reference/glue4office/latest/outlook/index.html#T42Attachment). Note that the data in the attachments can be quite large and is delivered to your application on demand. If you need to get hold of the attachment data (encoded in Base64), you can call the [`getData()`](../../../../reference/glue4office/latest/outlook/index.html#Attachment-getData) method:
 
 ```javascript
 outlook.onEmailReceived(email => {
@@ -221,7 +221,7 @@ attachment.getData(percent => {
 
 ### Saving Emails
 
-If you have created a new email, the user has sent it and you want to save it in your app backend database, you can call the [`getAsMsg()`](../../../../reference/glue4office/latest/outlook/index.html#Email-getAsMsg) method of the [`Email`](../../../../reference/glue4office/latest/outlook/index.html#Email) object and retrieve the message, including its attachments, as an Outlook MSG file, encoded in `base64`:
+If you have created a new email, the user has sent it and you want to save it in your app backend database, you can call the [`getAsMsg()`](../../../../reference/glue4office/latest/outlook/index.html#Email-getAsMsg) method of the [`Email`](../../../../reference/glue4office/latest/outlook/index.html#Email) object and retrieve the message, including its attachments, as an Outlook MSG file, encoded in Base64:
 
 ```javascript
 outlook.newEmail({
@@ -230,7 +230,7 @@ outlook.newEmail({
         // ...
     },
     {
-        onSent: email => 
+        onSent: email =>
             email.getAsMsg()
                 .then(msgData => saveEmail(msgData))
                 .catch(console.error)
@@ -295,7 +295,7 @@ outlook.newTask({
     .catch(console.error)
 ```
 
-The [`onSaved`](../../../../reference/glue4office/latest/outlook/index.html#NewTaskOptions-onSaved) callback will pass you the task object which is of type [`T42Task`](../../../../reference/glue4office/latest/outlook/index.html#NewTaskOptions). This object has a property [`ids`](../../../../reference/glue4office/latest/outlook/index.html#T42Task-ids) which contains a set of IDs uniquely identifying the task in multiple systems (e.g., CRMs), including Outlook. 
+The [`onSaved`](../../../../reference/glue4office/latest/outlook/index.html#NewTaskOptions-onSaved) callback will pass you the task object which is of type [`T42Task`](../../../../reference/glue4office/latest/outlook/index.html#NewTaskOptions). This object has a property [`ids`](../../../../reference/glue4office/latest/outlook/index.html#T42Task-ids) which contains a set of IDs uniquely identifying the task in multiple systems (e.g., CRMs), including Outlook.
 
 If you save the task IDs in your app, you can later use them to display the task in Outlook. Take a look at [Showing Tasks](#working_with_tasks-showing_tasks) to see how.
 
@@ -334,7 +334,7 @@ outlook.onEmailReceived(email => {
 
 ### Saving Tasks
 
-If you have created a new task, the user has saved it and you want to save it in your app backend database, you can call the [`saveToFile()`](../../../../reference/glue4office/latest/outlook/index.html#Task-saveToFile) method of the [`Task`](../../../../reference/glue4office/latest/outlook/index.html#Task) object and retrieve the task, including its attachments, as an Outlook MSG file, encoded in `base64`:
+If you have created a new task, the user has saved it and you want to save it in your app backend database, you can call the [`saveToFile()`](../../../../reference/glue4office/latest/outlook/index.html#Task-saveToFile) method of the [`Task`](../../../../reference/glue4office/latest/outlook/index.html#Task) object and retrieve the task, including its attachments, as an Outlook MSG file, encoded in Base64:
 
 ```javascript
 outlook.newTask({
@@ -347,7 +347,7 @@ outlook.newTask({
                 task.saveToFile()
                 .then(uri => console.log(uri))
                 .catch(console.error);
-        }       
+        }
     })
     .then(console.log)
     .catch(console.error)

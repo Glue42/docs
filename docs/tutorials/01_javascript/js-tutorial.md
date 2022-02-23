@@ -41,8 +41,7 @@ The tutorial directory is organized as follows:
 - **support** - all of the support applications you will need to complete the tutorial, bundled with the corresponding configuration files;
 - **util** - a simple image to base64 converter;
 
-
-Glue42 for JavaScript is also available as versioned `npm` packages (and also runs in `Node.js`), but to keep things simple, in this tutorial we are going to use the latest development version, browserified and ready to be included in your HTML pages. The tutorial is broken into several parts, each demonstrating different Glue42 capabilities, and each part will depend on the completion of the previous ones. We will try to minimize the amount of boilerplate code not related to Glue42, so we will have all HTML, CSS and some JavaScript files already coded and ready to use. Plain HTML and JavaScript are used throughout the tutorial to avoid confusion with other technologies. The coding you are required to do is marked with `TUTOR_TODO` comments, so make sure you search for all of these in all parts of the tutorial. Even though each chapter depends on the previous one, we have provided all the necessary support files, applications and code from the beginning, so you can start and complete the tutorial with your own additions to the starter skeleton, without losing progress.
+Glue42 for JavaScript is also available as versioned NPM packages (and also runs in Node.js), but to keep things simple, in this tutorial we are going to use the latest development version, browserified and ready to be included in your HTML pages. The tutorial is broken into several parts, each demonstrating different Glue42 capabilities, and each part will depend on the completion of the previous ones. We will try to minimize the amount of boilerplate code not related to Glue42, so we will have all HTML, CSS and some JavaScript files already coded and ready to use. Plain HTML and JavaScript are used throughout the tutorial to avoid confusion with other technologies. The coding you are required to do is marked with `TUTOR_TODO` comments, so make sure you search for all of these in all parts of the tutorial. Even though each chapter depends on the previous one, we have provided all the necessary support files, applications and code from the beginning, so you can start and complete the tutorial with your own additions to the starter skeleton, without losing progress.
 
 Each part will try to introduce you to just one Glue42 concept, in as little detail as necessary to complete it. You can get a lot more detailed information about the Glue42 APIs in the [API guides](../../../glue42-concepts/glue42-toolbar/index.html) and [references](../../../reference/glue/latest/glue/index.html).
 
@@ -247,15 +246,19 @@ Your task is to remove the **Portfolio** application from the App Manager and us
 Begin by modifying the **Portfolio** JSON file in the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configuration folder:
 
 ```json
-"hidden": true  // this hides the Portfolio application from the App Manager
+{
+    "hidden": true  // this hides the Portfolio application from the App Manager
+}
 ```
 
 Next, in `clients.html` find `TUTOR_TODO Chapter 4.1 Task 1` and uncomment the button tag. In `clients.js`, find `TUTOR_TODO Chapter 4.1 Task 2` in the `setUpUi()` function. Invoke the `openWindow()`, pass as arguments a name for the window ("Portfolio", for example), reference to the current window ([`glue.windows.my()`](../../../reference/glue/latest/windows/index.html#API-my)) and a direction (`"bottom"`). It is best to use this function, because we will be calling it from multiple places throughout this tutorial. Then, in `openWindow()`, find `TUTOR_TODO Chapter 4.1 Task 3` and create an `options` object, which you will use to set three important settings:
 
-```json
-"mode": "flat"
-"relativeTo": myWin.id
-"relativeDirection": direction
+```javascript
+{
+    mode: "flat"
+    relativeTo: myWin.id
+    relativeDirection: direction
+}
 ```
 
 The combination of [`relativeTo`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeTo) and [`relativeDirection`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeDirection) allows us to stick the newly created **Portfolio** window to the bottom of the current window.
@@ -266,8 +269,8 @@ Finally, use the [**Window Management**](../../../reference/glue/latest/windows/
 
 ```javascript
 glue.windows.open(
-    windowName, 
-    window.location.href.replace("clients.html", "portfolio.html"), 
+    windowName,
+    window.location.href.replace("clients.html", "portfolio.html"),
     options);
 ```
 ![Glue42 JavaScript Tutorial Chapter 4.1](../../../images/tutorials/enterprise-js/4.1.gif "Glue42 JavaScript Tutorial Chapter 4.1")
@@ -285,24 +288,28 @@ Finally, we will use loader animations to show the default loading animation (fe
 The first thing you need to do, is to go to the **Clients** application JSON file (in the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configuration folder) and add or modify:
 
 ```json
-"details": {
-    "minHeight": 400,
-    "minWidth": 600,
-    "mode": "html",
+{
+    "details": {
+        "minHeight": 400,
+        "minWidth": 600,
+        "mode": "html",
+    }
 }
 ```
 
 Then open the **Portfolio** application JSON file and add or modify the following:
 
 ```json
-"details": {
-    "allowClose": false,
-    "allowCollapse": false,
-    "allowMaximize": false,
-    "allowMinimize": false,
-    "minHeight": 400,
-    "minWidth": 600,
-    "mode": "html",
+{
+    "details": {
+        "allowClose": false,
+        "allowCollapse": false,
+        "allowMaximize": false,
+        "allowMinimize": false,
+        "minHeight": 400,
+        "minWidth": 600,
+        "mode": "html",
+    }
 }
 ```
 
@@ -315,7 +322,7 @@ These settings will make our application feel more like a single app, instead of
 
 The [window settings documentation](../../../glue42-concepts/windows/window-management/javascript/index.html#window_settings) may come in handy here.
 
-**Important note!**   
+**Important note!**
 *You may have noticed that we are configuring the **Portfolio** window twice (once in the config file and once from the `options` object in our code). The reason is that for the time being we are using the **Window Management** API to open a new window/application. When we do this, the application config file isn't taken into account. The proper way to open an application is by using the **Application Management** API, which we will take a look at in **Chapter 5**. When we start using the **Application Management** API, our settings in the config file will be taken into account, but we could still override them with our `options` object.*
 
 Finally, in order to detect when the **Clients** window is closed, you will use a **Window Management** API event ([`windowRemoved()`](../../../reference/glue/latest/windows/index.html#API-windowRemoved)), so that when **Clients** is closed, you will close the **Portfolio** window as well.
@@ -336,9 +343,11 @@ Now, find the `TUTOR_TODO Chapter 4.3 Task 1` in `clients.js`, inside the `openT
 
 Opening a tab window means that you will have to use a different window mode in the window style attributes - `tab`. In order to put all tabs in a single tab frame, you will also need to set the [`tabGroupId`](../../../reference/glue/latest/windows/index.html#WindowSettings-tabGroupId) to the same value for all tab windows - it could be any string, e.g. `PortfolioTabs`.
 
-```json
-"mode": "tab",
-"tabGroupId": "PortfolioTabs"
+```javascript
+{
+    mode: "tab",
+    tabGroupId: "PortfolioTabs"
+}
 ```
 
 To put the **Portfolio** windows on the right of the **Clients** window, make sure you pass the **Clients** window [`id`](../../../reference/glue/latest/windows/index.html#GDWindow-id) in the [`relativeTo`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeTo) attribute, and set [`relativeDirection`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeDirection) to `"right"`. Note that only the first **Portfolio** tab needs the [`relativeTo`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeTo) and [`relativeDirection`](../../../reference/glue/latest/windows/index.html#WindowSettings-relativeDirection) attributes. Provided that consequent tabs specify the same [`tabGroupId`](../../../reference/glue/latest/windows/index.html#GDWindow-tabGroupId), they will be grouped together. The documentation for [finding windows](../../../glue42-concepts/windows/window-management/javascript/index.html#finding_windows) may help you here.
@@ -595,4 +604,4 @@ You should now have the foundation to start working on Glue42 enabling your real
 
 Next step?
 
-Build awesome Glue42 enabled apps!! 
+Build awesome Glue42 enabled apps!!

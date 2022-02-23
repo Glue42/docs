@@ -9,7 +9,7 @@ Dim WithEvents MyContext As GlueContextManager
 
 Private Sub OpenContext()
     On Error GoTo HandleErrors
-    
+
     Set MyContext = Glue.GetGlueContext("MyContext")
     MyContext.Open
     Exit Sub
@@ -39,15 +39,19 @@ Private Sub MyContext_HandleContextUpdate(ByVal contextUpdate As IGlueContextUpd
 
     Dim Data
     Set Data = context.GetReflectData("")
+    ' or
+    Dim JsonData As String
+    JsonData = context.GetDataAsJson("")
+
     ' Examine the updated data.
     ...
-    
+
     On Error GoTo HandleErrors
     Exit Sub
 
     HandleErrors:
     ' Handle exceptions.
-    
+
 End Sub
 ```
 
@@ -69,6 +73,18 @@ Data("myTuple") = variantArray
 MyContext.SetValue "data", Data
 ```
 
+Alternatively, use the [`UpdateContextDataJson`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager-updatecontextdatajson) method to update the context data using a JSON-formatted string:
+
+```vbnet
+MyContext.UpdateContextDataJson "data", "{""myTuple"":[1,""textValue""]}"
+```
+
+To remove an existing composite or elementary value from the context, use the [`Remove`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluecontextmanager-remove) method:
+
+```vbnet
+MyContext.Remove "data.myTuple"
+```
+
 ## Listing All Available Contexts
 
 To get a list of all available contexts, use the [`GetKnownContexts`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-glue42-getknowncontexts) method:
@@ -77,4 +93,4 @@ To get a list of all available contexts, use the [`GetKnownContexts`](../../../.
 Dim AllContexts() as GlueContext
 
 AllContexts = Glue.GetKnownContexts()
-``` 
+```

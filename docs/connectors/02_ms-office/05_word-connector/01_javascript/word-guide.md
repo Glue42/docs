@@ -74,14 +74,14 @@ To create a document with your application contents, call the [`openDocument()`]
 ```javascript
 const htmlContents = document.getElementById("contents").innerHTML;
 
-word.openDocument({ 
-    data: htmlContents 
+word.openDocument({
+    data: htmlContents
     })
     .then(wordDoc => console.log("Document created"))
     .catch(console.error)
 ```
 
-The `Promise` returned by the [`openDocument()`](../../../../reference/glue4office/latest/word/index.html#API-openDocument) method resolves with a reference to a [`Document`](../../../../reference/glue4office/latest/word/index.html#OpenDocumentConfig) object. If you are planning on tracking any updates performed by the user, you will need to keep a reference to the opened document. 
+The `Promise` returned by the [`openDocument()`](../../../../reference/glue4office/latest/word/index.html#API-openDocument) method resolves with a reference to a [`Document`](../../../../reference/glue4office/latest/word/index.html#OpenDocumentConfig) object. If you are planning on tracking any updates performed by the user, you will need to keep a reference to the opened document.
 
 ### Preventing Save of Temporary Documents
 
@@ -93,8 +93,8 @@ If you already have a document in your application which you want to let the use
 
 ```javascript
 fetchDocument()
-.then(docxData => word.openDocument({ 
-    data: docxData 
+.then(docxData => word.openDocument({
+    data: docxData
     })
 )
 .then(wordDoc => console.log("Document loaded"))
@@ -106,12 +106,12 @@ fetchDocument()
 Once you have obtained a reference to the opened document, you can subscribe for and start tracking updates by the user using the [`onChanged()`](../../../../reference/glue4office/latest/word/index.html#DocumentApi-onChanged) method of the [`Document`](../../../../reference/glue4office/latest/word/index.html#OpenDocumentConfig) object:
 
 ```javascript
-word.openDocument({ 
-        data: document.getElementById("contents").innerHTML 
+word.openDocument({
+        data: document.getElementById("contents").innerHTML
     })
     .then(wordDoc => {
         console.log("Document created");
-        
+
         wordDoc.onChanged((html, docx) => {
             document.getElementById("contents").innerHTML = html;
             postSave(docx)   // save document to backend
@@ -120,7 +120,7 @@ word.openDocument({
     .catch(console.error)
 ```
 
-You can see from the example above that the [`onChanged()`](../../../../](../../../../reference/glue4office/latest/word/index.html#DocumentApi-onChanged)) callback will be called with both an HMTL representation of the document, which you can render in your application, as well as the `DOCX` version of the document (represented as `base64` string) which you can send to your backend for audit/storage purposes.
+You can see from the example above that the [`onChanged()`](../../../../](../../../../reference/glue4office/latest/word/index.html#DocumentApi-onChanged)) callback will be called with both an HMTL representation of the document, which you can render in your application, as well as the `DOCX` version of the document (represented as Base64 string) which you can send to your backend for audit/storage purposes.
 
 ## Tracking Closing a Document
 

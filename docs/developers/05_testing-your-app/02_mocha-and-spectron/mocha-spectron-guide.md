@@ -3,7 +3,7 @@
 In this quick tutorial you will learn how to:
 
 - Install and use **Spectron**.
-- Use **Mocha** and **Spectron** to write end-to-end tests to test your app in [**Glue42 Enterprise**](https://glue42.com/enterprise/). 
+- Use **Mocha** and **Spectron** to write end-to-end tests to test your app in [**Glue42 Enterprise**](https://glue42.com/enterprise/).
 
 *You can get the example app and test configuration used in this guide from [GitHub](https://github.com/Glue42/glue42-spectron-example).*
 
@@ -13,7 +13,7 @@ In this quick tutorial you will learn how to:
 
 To install the Mocha testing framework:
 
-```cmd 
+```cmd
 npm install mocha
 ```
 
@@ -35,11 +35,11 @@ Open the `test.js` file with your favorite editor to start writing your test:
 
 1. First, you need to import the `Application` module from **Spectron**:
 
-```javascript 
+```javascript
 const Application = require("spectron").Application;
 ```
 
-2. Then, import the `assert()` function from `Node.js`:
+2. Then, import the `assert()` function from Node.js:
 
 ```javascript
 const assert = require("assert");
@@ -50,8 +50,7 @@ const assert = require("assert");
 ```javascript
 describe("My Test App", function() {
     // test block 1
-    // test block 2 
-    ...      
+    // test block 2
 });
 ```
 
@@ -64,15 +63,14 @@ describe("My Test App", function() {
     this.timeout(20000)
 
     // test block 1
-    // test block 2 
-    ...      
+    // test block 2
 });
 ```
 
-4. Use a `before()` and an `after()` blocks to instruct Mocha what to do before and after executing all tests: 
+4. Use a `before()` and an `after()` blocks to instruct Mocha what to do before and after executing all tests:
 
-- In the `before()` block, use the imported `Application` module to create a new `Application` instance object and assign it to the `app` variable. You have to pass some necessary options to the newly created `Application` object:  
-    - `path` - the path to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) EXE file on your machine; 
+- In the `before()` block, use the imported `Application` module to create a new `Application` instance object and assign it to the `app` variable. You have to pass some necessary options to the newly created `Application` object:
+    - `path` - the path to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) EXE file on your machine;
     - `cwd` - the current working directory to be used for the launched application;
     - `args` - in this property you must pass all the overrides required for [**Glue42 Enterprise**](https://glue42.com/enterprise/) to start only one app (besides the splash screen window);
 
@@ -124,16 +122,16 @@ describe("My Test App", function() {
 
     it("Should have the correct title", function() {
         // actual test
-    });     
+    });
 });
 ```
 
-The `app` object has a `client` property which is exposed from the WebdriverIO v4 API. Use `app.client.getTitle()` to get the title of your app and assert whether it is the correct one:  
+The `app` object has a `client` property which is exposed from the WebdriverIO v4 API. Use `app.client.getTitle()` to get the title of your app and assert whether it is the correct one:
 
 ```js
 it("Should have the correct title", async function() {
     const title = await app.client.getTitle();
-    
+
     assert.equal(title, "My Test App");
 });
 ```
@@ -144,9 +142,9 @@ it("Should have the correct title", async function() {
 npm test
 ```
 
-### Test Example 
+### Test Example
 
-```js 
+```js
 const Application = require("spectron").Application
 const assert = require("assert");
 
@@ -206,8 +204,8 @@ describe("My Test App", function () {
 
 it("Should get the correct URL and element", async () => {
     const title = await app.client.url("https://docs.glue42.com/")
-    
+
     app.client.click(".grid-item a");
 
     assert.equal(title, "Glue42 Documentation");
-}) --> 
+}) -->

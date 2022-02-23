@@ -2,19 +2,23 @@
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) has a built-in splash screen, but also supports showing a custom splash screen. The splash screen can be loaded from a local file or from a remote location.
 
-To replace the splash screen HTML file, go to `%LocalAppData%\Tick42\GlueDesktop\assets\splash` and add your own custom file.
+To replace the splash screen HTML file, go to `%LocalAppData%\Tick42\GlueDesktop\assets\splash` and add your own custom file. You can also use the existing splash files and modify the directly.
 
-Use the `"splash"` top-level key in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) to specify the splash screen location, bounds and other options. The path to a local splash screen file can be either absolute or relative to the `%LocalAppData%\Tick42\GlueDesktop\assets\splash` folder:
+Use the `"splash"` top-level key in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) to specify the splash screen location, bounds and other options. Provide a full path to a local or a remote file:
 
 ```json
-"splash": {
-    "disabled": false,
-    "url": "../custom/splash.html",
-    "width": 350,
-    "height": 233,
-    "blockStartup": true
+{
+    "splash": {
+        "disabled": false,
+        "url": "file://%GDDIR%/assets/custom/splash.html",
+        "width": 350,
+        "height": 233,
+        "blockStartup": true
+    }
 }
 ```
+
+You can also use the `%GDDIR%` environment variable, which points to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installation folder.
 
 The `"disabled"` property is set to `false` by default. Use the `"blockStartup"` property (set to `false` by default) to specify whether [**Glue42 Enterprise**](https://glue42.com/enterprise/) should wait for the splash screen to load before proceeding with the startup.
 
@@ -55,7 +59,7 @@ ipcRenderer.on("setEnvRegion", (event, arg) => {
 
 The loader for Glue42 Windows can be set in the `themes.json` configuration file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in `%LocalAppData%\Tick42\GlueDesktop\config`.
 
-The loader for [`Layouts`](../../../../glue42-concepts/windows/layouts/overview/index.html) and [`Workspaces`](../../../../glue42-concepts/windows/workspaces/overview/index.html) is an HTML file located in `%LocalAppData%\Tick42\GlueDesktop\assets\loader` which you can replace with your own custom loader.
+The loader for [`Layouts`](../../../../glue42-concepts/windows/layouts/overview/index.html) and [`Workspaces`](../../../../glue42-concepts/windows/workspaces/overview/index.html) is an HTML file located in `%LocalAppData%\Tick42\GlueDesktop\assets\loader` which you can replace with your own custom one or edit it directly.
 
 ### Windows
 
@@ -125,6 +129,17 @@ The product name displayed in the installer can be changed only through the exte
 - Splash Screen and Toolbars
 
 To change the product name in the splash screen or the toolbar applications, you must modify the respective applications. For more details on how to customize the splash screen and the Glue42 Toolbars, see the [Splash Screen](#splash_screen) and [Toolbar](../toolbar/index.html) sections.
+
+## Version
+
+To change the product version, modify the `version.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in `%LocalAppData%\Tick42\GlueInstaller`. This file contains the names and the respective versions of all [Glue42 Artefacts](../installer/index.html#artifacts):
+
+```json
+{
+    "product": "GlueDesktop",
+    "version": "3.14.0.27-custom-version"
+}
+```
 
 ## Icons
 
@@ -210,6 +225,8 @@ The taskbar icon for the [Workspaces App](../../../../glue42-concepts/windows/wo
     "details": {}
 }
 ```
+
+*The Glue42 icon in the Workspaces App can be changed from the app itself. For more details on how to customize the Workspaces UI or build an entirely new custom Workspaces App, see the [Extending Workspaces](../../../../glue42-concepts/windows/workspaces/overview/index.html#extending_workspaces) section.*
 
 ### Executable File
 

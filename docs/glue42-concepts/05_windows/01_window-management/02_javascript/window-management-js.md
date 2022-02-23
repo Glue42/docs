@@ -27,9 +27,10 @@ The `name` and `url` parameters are required. The window `name` must be unique. 
 A system configuration option is available for handling popup windows created with the native browser [`window.open()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) call. Use the `"nativeWindowOpen"` property of the `"windows"` top-level key in the `system.json` file to control popup window behavior:
 
 ```json
-"windows": {
-    ...
-    "nativeWindowOpen": "browser"
+{
+    "windows": {
+        "nativeWindowOpen": "browser"
+    }
 }
 ```
 
@@ -313,7 +314,7 @@ And the result:
 
 ### Taskbar Icon
 
-To specify an icon for the Glue42 Window, provide an image as a `base64` encoded string in the [`WindowCreateOptions`](../../../../reference/glue/latest/windows/index.html#WindowCreateOptions) object:
+To specify an icon for the Glue42 Window, provide an image as a Base64 encoded string in the [`WindowCreateOptions`](../../../../reference/glue/latest/windows/index.html#WindowCreateOptions) object:
 
 ```javascript
 const name = "Glue42 Docs";
@@ -337,7 +338,7 @@ To change the taskbar icon of the current window:
 
 ```javascript
 const myWindow = glue.windows.my();
-// Image encoded as a `base64` string.
+// Image encoded as a Base64 string.
 const newIcon = "R0lGODlhPQBEAPeoAJosM//AwO/AwH...";
 
 await myWindow.setIcon(newIcon);
@@ -409,7 +410,7 @@ await myWindow.setSticky(false);
 To check whether the window is sticky, use the [`isSticky`](../../../../reference/glue/latest/windows/index.html#GDWindow-isSticky) property of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance:
 
 ```javascript
-// Returns a boolean value.
+// Returns a Boolean value.
 const isSticky = myWindow.isSticky;
 ```
 
@@ -519,10 +520,6 @@ To check whether a Glue42 Window is visible, use the [`isVisible()`](../../../..
 
 ```javascript
 const isWindowVisible = myWindow.isVisible;
-
-if (isWindowVisible) {
-    // ...
-};
 ```
 
 To change the window visibility, use the [`show()`](../../../../reference/glue/latest/windows/index.html#GDWindow-show), [`hide()`](../../../../reference/glue/latest/windows/index.html#GDWindow-hide) or [`setVisible()`](../../../../reference/glue/latest/windows/index.html#GDWindow-setVisible) methods of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance.
@@ -593,10 +590,6 @@ To check whether the window is in a collapsed state, use the [`isCollapsed`](../
 
 ```javascript
 const isWindowCollapsed = myWindow.isCollapsed;
-
-if (isWindowCollapsed) {
-    // ...
-};
 ```
 
 Use the [`collapse()`](../../../../reference/glue/latest/windows/index.html#GDWindow-collapse) and [`expand()`](../../../../reference/glue/latest/windows/index.html#GDWindow-expand) methods to collapse and expand a window:
@@ -615,10 +608,6 @@ To check whether a Glue42 Window is on focus, use the [`isFocused`](../../../../
 
 ```javascript
 const isWindowFocused = myWindow.isFocused;
-
-if (isWindowFocused) {
-    // ...
-};
 ```
 
 To bring a window on focus, use the  [`focus()`](../../../../reference/glue/latest/windows/index.html#GDWindow-focus) method:
@@ -768,7 +757,7 @@ To replace the current window context, use the [`setContext()`](../../../../refe
 
 ```javascript
 const newContext = { tick: 42 };
-const winContext = await myWindow.setContext();
+const winContext = await myWindow.setContext(newContext);
 ```
 
 This method will completely overwrite the existing context object, replacing its current value with the specified one.
@@ -846,17 +835,19 @@ The close and refresh handlers can be enabled/disabled globally through the syst
 
 #### Handlers Configuration
 
-To configure the close and refresh handlers globally for all windows, go to the `system.json` file located in `%LocalAppData\Tick42\GlueDesktop\config` and edit the `refresheHandlers` and `closeHandlers` properties under the `windows` top-level key:
+To configure the close and refresh handlers globally for all windows, go to the `system.json` file located in `%LocalAppData%\Tick42\GlueDesktop\config` and edit the `refresheHandlers` and `closeHandlers` properties under the `windows` top-level key:
 
 ```json
-"windows": {
-    "refreshHandlers": {
-        "enabled": true,
-        "timeout": 2000
-    },
-    "closeHandlers": {
-        "enabled": true,
-        "timeout": 2000
+{
+    "windows": {
+        "refreshHandlers": {
+            "enabled": true,
+            "timeout": 2000
+        },
+        "closeHandlers": {
+            "enabled": true,
+            "timeout": 2000
+        }
     }
 }
 ```
@@ -864,14 +855,16 @@ To configure the close and refresh handlers globally for all windows, go to the 
 To configure close and refresh handlers only for specific windows, modify the `details` property in each respective application configuration file:
 
 ```json
-"details": {
-    "refreshHandlers": {
-        "enabled": false,
-        "timeout": 2000
-    },
-    "closeHandlers": {
-        "enabled": true,
-        "timeout": 2000
+{
+    "details": {
+        "refreshHandlers": {
+            "enabled": false,
+            "timeout": 2000
+        },
+        "closeHandlers": {
+            "enabled": true,
+            "timeout": 2000
+        }
     }
 }
 ```
@@ -993,10 +986,6 @@ To check whether the header of a Glue42 Window group is visible, use the [`isHea
 
 ```javascript
 const isGroupHeaderVisible = myGroup.isHeaderVisible;
-
-if (isGroupHeaderVisible) {
-    // ...
-};
 ```
 
 To hide the header of a window group, use the [`hideHeader()`](../../../../reference/glue/latest/windows/index.html#Group-hideHeader) method of a [`Group`](../../../../reference/glue/latest/windows/index.html#Group) instance:
@@ -1191,7 +1180,7 @@ Frame button in an HTML window:
 
 ### Adding Buttons
 
-To add or replace an existing frame button, use the [`addFrameButton()`](../../../../reference/glue/latest/windows/index.html#GDWindow-addFrameButton) method of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance. It accepts a [`ButtonInfo`](../../../../reference/glue/latest/windows/index.html#ButtonInfo) object as a required first parameter. The `buttonId` (must be unique) and the `imageBase64` (button image encoded as a `base64` string) properties of the `ButtonInfo` object are required:
+To add or replace an existing frame button, use the [`addFrameButton()`](../../../../reference/glue/latest/windows/index.html#GDWindow-addFrameButton) method of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance. It accepts a [`ButtonInfo`](../../../../reference/glue/latest/windows/index.html#ButtonInfo) object as a required first parameter. The `buttonId` (must be unique) and the `imageBase64` (button image encoded as a Base64 string) properties of the `ButtonInfo` object are required:
 
 ```javascript
 const buttonInfo = {
