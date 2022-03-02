@@ -8,7 +8,7 @@ When initialized in your Electron app, the [`@glue42/electron`](https://www.npmj
 
 ## Referencing and Initialization
 
-The [`@glue42/electron`](https://www.npmjs.com/package/@glue42/electron) library is available as an `npm` package. To install it, run the following command in the root directory of your project:
+The [`@glue42/electron`](https://www.npmjs.com/package/@glue42/electron) library is available as an NPM package. To install it, run the following command in the root directory of your project:
 
 ```cmd
 npm install @glue42/electron
