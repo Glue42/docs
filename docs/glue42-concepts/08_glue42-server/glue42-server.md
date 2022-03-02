@@ -37,70 +37,78 @@ Glue42 Server Administrative UI helps managing the data stored in the Glue42 Ser
 #### Dashboard
 
 Dashboard page is the entry page that allows quick access to different other pages
-<glue42 name="diagram" image="../../images/server/admin-ui-dashboard.png">
+
+<glue42 name="diagram" image="../../images/server/admin-ui-dashboard.png"/>
 
 #### Applications
+
 In the Applications section you can see a list of all apps
-<glue42 name="diagram" image="../../images/server/admin-ui-apps.png">
 
-See apps that are available to a specific group
-<glue42 name="diagram" image="../../images/server/admin-ui-apps-by-group.png">
+<glue42 name="diagram" image="../../images/server/admin-ui-apps.png" />
 
-See apps that are available to a specific user
-<glue42 name="diagram" image="../../images/server/admin-ui-apps-by-user.png">
+... see apps that are available to a specific group
+<glue42 name="diagram" image="../../images/server/admin-ui-apps-by-group.png" />
 
-Import new apps
+... see apps that are available to a specific user
+<glue42 name="diagram" image="../../images/server/admin-ui-apps-by-user.png" />
 
-<glue42 name="diagram" image="../../images/server/admin-ui-apps-import.png">
+... and import new apps
+
+<glue42 name="diagram" image="../../images/server/admin-ui-apps-import.png" />
 
 #### Layouts
 
 In the Layouts section you can see a list of all layouts
-<glue42 name="diagram" image="../../images/server/admin-ui-layouts.png">
 
-See layouts that are available to a specific group
-<glue42 name="diagram" image="../../images/server/admin-ui-layouts-by-group.png">
+<glue42 name="diagram" image="../../images/server/admin-ui-layouts.png" />
 
-Import new layouts
-<glue42 name="diagram" image="../../images/server/admin-ui-layouts-import.png">
+... see layouts that are available to a specific group
+<glue42 name="diagram" image="../../images/server/admin-ui-layouts-by-group.png" />
+
+... and import new layouts
+<glue42 name="diagram" image="../../images/server/admin-ui-layouts-import.png" />
 
 #### Users
 
 In the users section you can see all users that have connected to this server
-<glue42 name="diagram" image="../../images/server/admin-ui-users.png">
+
+<glue42 name="diagram" image="../../images/server/admin-ui-users.png" />
 
 #### Sessions
-Sessions allows you to monitor all users sessions
+Sessions section allows you to monitor all users sessions
 
-<glue42 name="diagram" image="../../images/server/admin-ui-sessions.png">
+<glue42 name="diagram" image="../../images/server/admin-ui-sessions.png" />
 
 #### Commands
 
 Using the commands screen you can send commands to a specific user session
 
-<glue42 name="diagram" image="../../images/server/admin-ui-commands.png">
+<glue42 name="diagram" image="../../images/server/admin-ui-commands.png" />
 
 #### Feedbacks
 
 See a list of all feedbacks submitted from users
 
-<glue42 name="diagram" image="../../images/server/admin-ui-feedbacks.png">
+<glue42 name="diagram" image="../../images/server/admin-ui-feedbacks.png" />
 
 ## Deployment
 
-Glue42 Server is deployed on premise and runs inside client's network to prevent data leaving the organization.
+Glue42 Server is deployed on premise and runs inside your organization's network to prevent data it.
 
-There are two separate components that need to be deployed:
+There are three things that needs to be deployed
 * Glue42 Server - a NodeJS application, the actual server
 * Glue42 Server Administrative UI - a React application that allows managing data stored in Glue42 Server
+* MongoDB database 
 
-You also need to have a MongoDB database up and running.
+We provide Docker images for the stock implementation. Using the docker images you can deploy a version of the Server and configure it using a set of 
 
-We provide Docker images for the stock implementation. If any customization is needed, we provide NPM packages that allow plugging custom components (e.g. custom authenticator) and building custom versions of the components.
+If any customization is needed, e.g. plugging a custom authenticator, we provide NPM packages that expose Glue42 Server and Glue42 Server Admin UI as modules. Those modules provide extension points for different things like authentication and storage. This allows you to setup new projects that use those modules passing them your custom extensions.
 
 ## How to
 
-### Configure Glue42 Enterprise to use Server
+### Configure Glue42 Enterprise 
+
+To configure Glue42 Enterprise to connect to a Glue42 Server you need to do the following:
 
 1. In system.json file add the following section
 ````json
@@ -129,13 +137,40 @@ We provide Docker images for the stock implementation. If any customization is n
      }
  }
 ````
-### Have Custom Authenticator
 
-To use customization you need to have the glue42 server npm modules - @glue42/server and @glue42/server-admin-ui
+Check [this guide](../../getting-started/how-to/rebrand-glue42/functionality/index.html#environments__regions) if you want to support different env & regions that connect to different servers.
 
-**Configure the server to use custom authenticator**
+### Add Custom Authenticator
 
-Glue42 Sever comes with different auth modules (auth0, okta, sspi) - you can also implement a custom authenticator that will take care for authentication user requests.
+If your organization have an auth mechanism that is not supported by Glue42 Server, you can implement plugins and build a custom version of Glue42 Server and Glue42 Server Admin UI that work with it.
+
+In general the flow is:
+1. Add a custom login screen to glue42 - when user logs in, this new page will add a token that will be used by the Server to authenticate the suer
+1. Implement a custom authenticator in the server
+1. Implement a custom authenticator in the admin ui
+
+**Add a login page to Glue42 Enterprise**
+
+You might want to include a login screen, that will appear on Glue42 Enterprise startup to authenticate the user.
+
+```json
+  "ssoAuth": {
+        "authController": "sso",
+        "options": {
+            "url": "<LOGIN_URL_PAGE>",
+            "window": {
+                "width": 500,
+                "height": 730,
+                "mode": "flat"
+            }
+        }
+    }
+```
+Check [Custom Login Screen](https://docs.glue42.com/getting-started/how-to/rebrand-glue42/functionality/index.html#login_screen-authentication) section for more info.
+
+**Implement a custom authenticator in the server**
+
+On the server the custom authenticator should take care for authenticating requests (based on a token passed from Glue42 Enterprise)
 
 ```typescript
 
@@ -179,7 +214,7 @@ startServer();
 
 Checkout this GitHub repository for a full example - https://github.com/kirilpopov/server-example
 
-**Configure the Admin UI to use the custom authenticator**
+**Implement a custom authenticator in the admin ui**
 
 Following is a dummy implementation of a custom authenticator:
 
@@ -239,23 +274,6 @@ ReactDOM.render(
 
 Checkout this GitHub repository for a full example - https://github.com/kirilpopov/server-admin-ui-example
 
-**Add a login page to Glue42 Enterprise**
 
-You might want to include a login screen, that will appear on Glue42 Enterprise startup to authenticate the user 
-
-```json
-  "ssoAuth": {
-        "authController": "sso",
-        "options": {
-            "url": "<LOGIN_URL_PAGE>",
-            "window": {
-                "width": 500,
-                "height": 730,
-                "mode": "flat"
-            }
-        }
-    }
-```
-Check [Custom Login Screen](https://docs.glue42.com/getting-started/how-to/rebrand-glue42/functionality/index.html#login_screen-authentication) section for more info.
 
 
