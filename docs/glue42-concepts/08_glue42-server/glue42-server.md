@@ -2,7 +2,9 @@
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.12">
 
-Glue42 Server is a server-side application that provides data to Glue42 (applications, Layouts, preferences) and allows monitoring and interacting with users running Glue42. It also includes an Admin UI that helps managing the data stored in the Glue42 Server easier.
+Glue42 Server is a server-side application that provides data to Glue42 (applications, Layouts, preferences) and allows monitoring and interacting with users running Glue42. 
+
+It also includes an Admin UI that helps managing the data stored in the Glue42 Server easier.
 
 <glue42 name="diagram" image="../../images/server/server-architecture.png">
 
@@ -32,13 +34,19 @@ The Glue42 Server comes with an Admin UI which offers the following functionalit
 
 Glue42 Server Administrative UI helps managing the data stored in the Glue42 Server easier.
 
+#### Dashboard
+
 <glue42 name="diagram" image="../../images/server/admin-ui-dashboard.png">
+
+#### Applications
 
 <glue42 name="diagram" image="../../images/server/admin-ui-apps.png">
 
 <glue42 name="diagram" image="../../images/server/admin-ui-apps-by-group.png">
 
-<glue42 name="diagram" image="../../images/server/admin-ui-sessions.png">
+#### Sessions
+
+<img src="../../images/server/admin-ui-sessions.png" alt="drawing" width="200"/>
 
 ## Deployment
 
