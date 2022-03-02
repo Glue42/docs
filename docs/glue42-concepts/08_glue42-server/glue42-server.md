@@ -46,13 +46,16 @@ In the Applications section you can see a list of all apps
 
 <glue42 name="diagram" image="../../images/server/admin-ui-apps.png" />
 
+
 ... see apps that are available to a specific group
 
 <glue42 name="diagram" image="../../images/server/admin-ui-apps-by-group.png" />
 
+
 ... see apps that are available to a specific user
 
 <glue42 name="diagram" image="../../images/server/admin-ui-apps-by-user.png" />
+
 
 ... and import new apps
 
@@ -64,9 +67,11 @@ In the Layouts section you can see a list of all layouts
 
 <glue42 name="diagram" image="../../images/server/admin-ui-layouts.png" />
 
+
 ... see layouts that are available to a specific group
 
 <glue42 name="diagram" image="../../images/server/admin-ui-layouts-by-group.png" />
+
 
 ... and import new layouts
 
@@ -104,7 +109,7 @@ There are three things that needs to be deployed
 * Glue42 Server Administrative UI - a React application that allows managing data stored in Glue42 Server
 * MongoDB database 
 
-We provide Docker images for the stock implementation. Using the docker images you can deploy a version of the Server and configure it using a set of 
+We provide Docker images for the stock implementation. Using the docker images you can deploy a stock version of the Server.
 
 If any customization is needed, e.g. plugging a custom authenticator, we provide NPM packages that expose Glue42 Server and Glue42 Server Admin UI as modules. Those modules provide extension points for different things like authentication and storage. This allows you to setup new projects that use those modules passing them your custom extensions.
 
@@ -149,13 +154,13 @@ Check [this guide](../../getting-started/how-to/rebrand-glue42/functionality/ind
 If your organization have an auth mechanism that is not supported by Glue42 Server, you can implement plugins and build a custom version of Glue42 Server and Glue42 Server Admin UI that work with it.
 
 In general the flow is:
-1. Add a custom login screen to glue42 - when user logs in, this new page will add a token that will be used by the Server to authenticate the suer
-1. Implement a custom authenticator in the server
-1. Implement a custom authenticator in the admin ui
+1. Add a custom login page to Glue42 Enterprise - when user logs in, this new page will add a token that will be used by the Server to authenticate the suer
+1. Implement a custom authenticator in the Server
+1. Implement a custom authenticator in the Admin UI
 
-**Add a login page to Glue42 Enterprise**
+**Add a custom login page to Glue42 Enterprise**
 
-You might want to include a login screen, that will appear on Glue42 Enterprise startup to authenticate the user.
+To include a login screen, that will appear on Glue42 Enterprise startup to authenticate the user, do the following change in *system.json*
 
 ```json
   "ssoAuth": {
