@@ -30,23 +30,61 @@ The Glue42 Server comes with an Admin UI which offers the following functionalit
 - Feedback and Native Crashes - monitor, review and comment user Feedback and Native Crashes reports;
 - User Monitoring - monitor users and their sessions (current and closed), inspect their hardware setup;
 
-## Administrative UI
+## Admin UI
 
 Glue42 Server Administrative UI helps managing the data stored in the Glue42 Server easier.
 
 #### Dashboard
 
+Dashboard page is the entry page that allows quick access to different other pages
 <glue42 name="diagram" image="../../images/server/admin-ui-dashboard.png">
 
 #### Applications
-
+In the Applications section you can see a list of all apps
 <glue42 name="diagram" image="../../images/server/admin-ui-apps.png">
 
+See apps that are available to a specific group
 <glue42 name="diagram" image="../../images/server/admin-ui-apps-by-group.png">
 
-#### Sessions
+See apps that are available to a specific user
+<glue42 name="diagram" image="../../images/server/admin-ui-apps-by-user.png">
 
-<img src="../../images/server/admin-ui-sessions.png" alt="drawing" width="200"/>
+Import new apps
+
+<glue42 name="diagram" image="../../images/server/admin-ui-apps-import.png">
+
+#### Layouts
+
+In the Layouts section you can see a list of all layouts
+<glue42 name="diagram" image="../../images/server/admin-ui-layouts.png">
+
+See layouts that are available to a specific group
+<glue42 name="diagram" image="../../images/server/admin-ui-layouts-by-group.png">
+
+Import new layouts
+<glue42 name="diagram" image="../../images/server/admin-ui-layouts-import.png">
+
+#### Users
+
+In the users section you can see all users that have connected to this server
+<glue42 name="diagram" image="../../images/server/admin-ui-users.png">
+
+#### Sessions
+Sessions allows you to monitor all users sessions
+
+<glue42 name="diagram" image="../../images/server/admin-ui-sessions.png">
+
+#### Commands
+
+Using the commands screen you can send commands to a specific user session
+
+<glue42 name="diagram" image="../../images/server/admin-ui-commands.png">
+
+#### Feedbacks
+
+See a list of all feedbacks submitted from users
+
+<glue42 name="diagram" image="../../images/server/admin-ui-feedbacks.png">
 
 ## Deployment
 
