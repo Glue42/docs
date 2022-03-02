@@ -47,9 +47,11 @@ In the Applications section you can see a list of all apps
 <glue42 name="diagram" image="../../images/server/admin-ui-apps.png" />
 
 ... see apps that are available to a specific group
+
 <glue42 name="diagram" image="../../images/server/admin-ui-apps-by-group.png" />
 
 ... see apps that are available to a specific user
+
 <glue42 name="diagram" image="../../images/server/admin-ui-apps-by-user.png" />
 
 ... and import new apps
@@ -63,9 +65,11 @@ In the Layouts section you can see a list of all layouts
 <glue42 name="diagram" image="../../images/server/admin-ui-layouts.png" />
 
 ... see layouts that are available to a specific group
+
 <glue42 name="diagram" image="../../images/server/admin-ui-layouts-by-group.png" />
 
 ... and import new layouts
+
 <glue42 name="diagram" image="../../images/server/admin-ui-layouts-import.png" />
 
 #### Users
