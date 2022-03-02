@@ -12,15 +12,15 @@ It also includes an Admin UI that helps managing the data stored in the Glue42 S
 
 #### Application Store
 
-The Glue42 Server provides an application definition store that can be used by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve the list of applications for the current user.
+The Glue42 Server provides an [application definition store](../application-management/overview/index.html#application_stores) that can be used by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve the list of applications for the current user.
 
 #### Layout Store
 
-The Glue42 Server is a Layout store from where common or private user Layouts can be fetched.
+The Glue42 Server is a [Layout store](../windows/layouts/overview/index.html#layout_stores) from where common or private user Layouts can be fetched.
 
 #### Application Preferences Store
 
-The Glue42 Server is an application preferences store where any application running in [**Glue42 Enterprise**](https://glue42.com/enterprise/) can store custom data per user and retrieve it later.
+The Glue42 Server is an [application preferences](../application-preferences/overview/index.html) store where any application running in [**Glue42 Enterprise**](https://glue42.com/enterprise/) can store custom data per user and retrieve it later.
 
 #### Diagnostics
 
@@ -46,7 +46,7 @@ The Applications section allows you to:
 
 - see a list of all apps:
 
-[All Apps](../../images/server/admin-ui-apps.png)
+![All Apps](../../images/server/admin-ui-apps.png)
 
 - see apps that are available to a specific user group:
 
@@ -136,10 +136,12 @@ This will also instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) 
 If you want to send client crashes to the server, edit the `"output"` property of the `"crashReporter"` top-level key:
 
 ```json
-"crashReporter": {
-    "output": {
-        "type": "server",
-        "serverUrl": "http://localhost:4356/api/crashes"
+{
+    "crashReporter": {
+        "output": {
+            "type": "server",
+            "serverUrl": "http://localhost:4356/api/crashes"
+        }
     }
 }
 ```
