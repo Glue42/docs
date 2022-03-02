@@ -8,19 +8,19 @@ Glue42 Server is a server-side application that provides data to Glue42 (applica
 
 ## Features
 
-### Application Store
+#### Application Store
 
 The Glue42 Server provides an application definition store that can be used by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve the list of applications for the current user.
 
-### Layout Store
+#### Layout Store
 
 The Glue42 Server is a Layout store from where common or private user Layouts can be fetched.
 
-### Application Preferences Store
+#### Application Preferences Store
 
 The Glue42 Server is an application preferences store where any application running in [**Glue42 Enterprise**](https://glue42.com/enterprise/) can store custom data per user and retrieve it later.
 
-### Diagnostics
+#### Diagnostics
 
 The Glue42 Server comes with an Admin UI which offers the following functionalities:
 
@@ -36,7 +36,9 @@ Glue42 Server Administrative UI helps managing the data stored in the Glue42 Ser
 
 <glue42 name="diagram" image="../../images/server/admin-ui-apps.png">
 
-<glue42 name="diagram" image="../../images/server/admin-ui-dashboard-apps-by-group.png">
+<glue42 name="diagram" image="../../images/server/admin-ui-apps-by-group.png">
+
+<glue42 name="diagram" image="../../images/server/admin-ui-sessions.png">
 
 ## Deployment
 
