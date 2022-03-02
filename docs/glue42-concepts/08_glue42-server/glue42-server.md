@@ -158,7 +158,7 @@ In general the flow is:
 1. Implement a custom authenticator in the Server
 1. Implement a custom authenticator in the Admin UI
 
-**Add a custom login page to Glue42 Enterprise**
+#### Add a custom login page to Glue42 Enterprise
 
 To include a login screen, that will appear on Glue42 Enterprise startup to authenticate the user, do the following change in *system.json*
 
@@ -177,7 +177,7 @@ To include a login screen, that will appear on Glue42 Enterprise startup to auth
 ```
 Check [Custom Login Screen](https://docs.glue42.com/getting-started/how-to/rebrand-glue42/functionality/index.html#login_screen-authentication) section for more info.
 
-**Implement a custom authenticator in the server**
+#### Implement a custom authenticator in the server
 
 On the server the custom authenticator should take care for authenticating requests (based on a token passed from Glue42 Enterprise)
 
@@ -223,7 +223,7 @@ startServer();
 
 Checkout this GitHub repository for a full example - https://github.com/kirilpopov/server-example
 
-**Implement a custom authenticator in the admin ui**
+#### Implement a custom authenticator in the admin ui
 
 Following is a dummy implementation of a custom authenticator:
 
