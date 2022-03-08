@@ -75,5 +75,3 @@ The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.co
 - [Node.js REST Config Example](https://github.com/Glue42/rest-config-example-node-js) - A simple Node.js REST server, which acts as a remote application, Layout, application preferences and system configuration store. You can use this example to test fetching applications, Layouts, application preferences and system configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
 
 - [.NET REST Config Example](https://github.com/Tick42/rest-config-example-net) - A simple .NET REST server, which acts as a remote application and Layout store. You can use this example to test fetching applications and Layouts configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
-
-- [Testing Example](https://github.com/Glue42/glue42-spectron-example) - Here you can get an example web app and tests, which you can use to learn how to test your app within the Glue42 framework. 
