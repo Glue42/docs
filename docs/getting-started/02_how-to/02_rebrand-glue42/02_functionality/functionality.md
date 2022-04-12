@@ -136,7 +136,7 @@ The only required properties for each app store configuration object are `"type"
 | Property | Description |
 |----------|-------------|
 | `"auth"` | Authentication configuration. Can be one of `"no-auth"`, `"negotiate"` or `"kerberos"`. |
-| `"pollInterval"` | Interval at which to poll the REST service for updates. |
+| `"pollInterval"` | Interval in milliseconds at which to poll the REST service for updates. |
 | `"enablePersistentCache"` | Whether to cache and persist the configuration files locally (e.g., in case of connection interruptions). |
 | `"cacheFolder"` | Where to keep the persisted configuration files. |
 
@@ -172,7 +172,7 @@ To configure a connection to the REST service providing the Layout store, edit t
 |----------|-------------|
 | `"type"` | Can be `"file"`, `"rest"` or `"server"`, depending on the type of Layout store. |
 | `"restURL"` | The URL address of the Layouts REST service. |
-| `"restFetchInterval"` | Interval (in seconds) for fetching Layouts from the REST service. |
+| `"restFetchInterval"` | Interval in seconds at which to fetch Layouts from the REST service. |
 | `"restClientAuth"` | Authentication configuration. Can be one of `"no-auth"`, `"negotiate"` or `"kerberos"`. |
 
 *The `"restURL"`, `"restFetchInterval"` and `"restClientAuth"` properties are valid only when `"type"` is set to `"rest"`. Otherwise, they are ignored.*
@@ -420,7 +420,6 @@ The `"allowMultipleInstances"` property accepts the following values:
 | Value | Description |
 |-------|-------------|
 | `"inDifferentEnvRegion"` | Default. Allows running multiple instances only in different [environments/regions](#environments__regions). |
-| `"always"` | Allows running multiple instances under all conditions. |
 | `"never"` | Disables running multiple instances. |
 
 ### Multiple Versions

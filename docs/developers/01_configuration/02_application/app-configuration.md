@@ -291,9 +291,20 @@ For more details, see the [application configuration schema](../../../assets/con
 
 ### Service Window
 
-Service windows aren't an actual type, but rather a specific usage of a window application. They play a big a role in the development of Glue42 enabled applications, because they can provide data and enhance other applications throughout the [**Glue42 Enterprise**](https://glue42.com/enterprise/) life cycle. The window is defined as an application that is hidden and is auto started along with [**Glue42 Enterprise**](https://glue42.com/enterprise/).
+Service windows are a specific usage of a window application. They can provide data and enhance other applications throughout the [**Glue42 Enterprise**](https://glue42.com/enterprise/) life cycle. The service window is defined as an application that is hidden and may be auto started when [**Glue42 Enterprise**](https://glue42.com/enterprise/) is initiated.
 
-The following example demonstrates how to configure a web application as a service window:
+There are different ways to configure a service window, depending on whether you want the window to be automatically started when [**Glue42 Enterprise**](https://glue42.com/enterprise/) is initiated. Use a combination of the following application configuration properties to specify whether the window should be automatically started, invisible, or hidden from the [Glue42 Toolbar](../../../glue42-concepts/glue42-toolbar/index.html):
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"service"` | `boolean` | If `true`, both the `"autoStart"` top-level key and the `"hidden"` property of the `"details"` object will be overridden and set to `true`. The window will be invisible and will start automatically on [**Glue42 Enterprise**](https://glue42.com/enterprise/) startup. |
+| `"hidden"` | `boolean` | If `true`, the application won't be available in the [Glue42 Toolbar](../../../glue42-concepts/glue42-toolbar/index.html). |
+| `"autoStart"` | `boolean` | If `true`, the window will be started automatically on [**Glue42 Enterprise**](https://glue42.com/enterprise/) startup. |
+| `"details"` | `object` | Use the `"hidden"` Boolean property of the `"details"` object to set the window visibility. If `true`, the window will be invisible. |
+
+*Note that when using the `"service"` property, it's pointless to use the `"autoStart"` top-level key and the `"hidden"` property of the `"details"` object, because the `"service"` key will override any values you may set for them.*
+
+The following example demonstrates how to use the `"service"` and `"hidden"` top-level keys to configure a service window that will start automatically, will be invisible and hidden from the [Glue42 Toolbar](../../../glue42-concepts/glue42-toolbar/index.html):
 
 ```json
 {
@@ -301,7 +312,22 @@ The following example demonstrates how to configure a web application as a servi
     "type": "window",
     "service": true,
     "hidden": true,
-    "autoStart": true,
+    "details": {
+        "url": "https://example.com/my-service-window",
+    }
+}
+```
+
+The `"name"`, `"type"` and `"url"` properties are required and `"type"` must be set to `"window"`. The `"url"` property points to the location of the web application.
+
+The following example demonstrates how to use the `"hidden"` and `"autoStart"` top-level keys and the `"hidden"` property of the `"details"` top-level key to configure a service window that will be hidden from the [Glue42 Toolbar](../../../glue42-concepts/glue42-toolbar/index.html), won't start automatically and will be invisible:
+
+```json
+{
+    "name": "service-window",
+    "type": "window",
+    "hidden": true,
+    "autoStart": false,
     "details": {
         "url": "https://example.com/my-service-window",
         "hidden": true
@@ -309,11 +335,9 @@ The following example demonstrates how to configure a web application as a servi
 }
 ```
 
-The `"name"`, `"type"` and `"url"` properties are required and `"type"` must be set to `"window"`. The `"url"` property points to the location of the web application.
-
-Use the `"autoStart"` property to start the service application when [**Glue42 Enterprise**](https://glue42.com/enterprise/) starts.
-
 The `"hidden"` property in the `"details"` object will make the window invisible, while the `"hidden"` top-level key will hide the application from the [Glue42 Toolbar](../../../glue42-concepts/glue42-toolbar/index.html) so that it won't be accessible to the user.
+
+*Note that service windows aren't closed when restoring a [Layout](../../../glue42-concepts/windows/layouts/overview/index.html).*
 
 For more details, see the [application configuration schema](../../../assets/configuration/application.json).
 

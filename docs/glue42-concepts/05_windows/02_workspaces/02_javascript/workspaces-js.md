@@ -122,6 +122,8 @@ const emptyFrame = await glue.workspaces.createEmptyFrame(definition);
 
 *Note that you can get the context passed to the empty Frame through the [`onInitializationRequested()`](../../../../reference/glue/latest/workspaces/index.html#API-onInitializationRequested) method.*
 
+*Note that you can also [configure the Workspaces App](../overview/index.html#extending_workspaces-workspaces_app_configuration) to open an empty Frame on startup by setting the `"layouts"` property in the `workspaces.json` file to an empty array.*
+
 The empty [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame) will be opened with no Workspaces in it and will show a constant loading animation until it is initialized. To initialize an empty [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame), use the [`init()`](../../../../reference/glue/latest/workspaces/index.html#Frame-init) method. It accepts a [`FrameInitializationConfig`](../../../../reference/glue/latest/workspaces/index.html#FrameInitializationConfig) object as an argument that you can use the specify a list of [`WorkspaceDefinition`](../../../../reference/glue/latest/workspaces/index.html#WorkspaceDefinition) or [`RestoreWorkspaceDefinition`](../../../../reference/glue/latest/workspaces/index.html#RestoreWorkspaceDefinition) objects with which to initialize the empty [`Frame`](../../../../reference/glue/latest/workspaces/index.html#Frame):
 
 ```javascript

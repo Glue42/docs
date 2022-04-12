@@ -97,7 +97,7 @@ To configure a connection to the REST service providing the Layout store, edit t
 |----------|-------------|
 | `"type"` | Can be `"file"`, `"rest"` or `"server"`, depending on the type of Layout store. |
 | `"restURL"` | The URL address of the Layouts REST service. |
-| `"restFetchInterval"` | Interval (in seconds) for fetching Layouts from the REST service. |
+| `"restFetchInterval"` | Interval in seconds for fetching Layouts from the REST service. |
 | `"restClientAuth"` | Authentication configuration. Can be one of `"no-auth"`, `"negotiate"` or `"kerberos"`. |
 
 *The `"restURL"`, `"restFetchInterval"` and `"restClientAuth"` properties are valid only when `"type"` is set to `"rest"`. Otherwise, they are ignored.*

@@ -1066,7 +1066,7 @@
                     "additionalProperties": false
                 },
                 "allowOSInfo": {
-                    "description": "If `true`, the user can retrieve OS information.",
+                    "description": "If `true`, the app can retrieve OS information.",
                     "type": "boolean",
                     "default": false
                 },
@@ -1076,6 +1076,11 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "allowCookiesManipulation": {
+                    "description": "If `true`, the app can query and modify the session cookies.",
+                    "type": "boolean",
+                    "default": false
                 }
             },
             "required": [
@@ -1443,6 +1448,10 @@
                         "snapped"
                     ],
                     "additionalProperties": false
+                },
+                "timeout": {
+                    "description": "Starting timeout in seconds.",
+                    "type": "number"
                 }
             }
         },
@@ -1627,7 +1636,7 @@
                     "type": "string"
                 },
                 "timeout": {
-                    "description": "Starting timeout.",
+                    "description": "Starting timeout in seconds.",
                     "type": "number"
                 },
                 "trackingType": {
@@ -1800,7 +1809,7 @@
                     "default": false
                 },
                 "readOnlyChannelSelector": {
-                    "description": "If `true` аnd the Channel Selector is visible (Channels are enabled), the users won't be able to click on it and change the current Channel.",
+                    "description": "If `true` and the Channel Selector is visible (Channels are enabled), the users won't be able to click on it and change the current Channel.",
                     "type": "boolean"
                 },
                 "channelId": {
@@ -1849,7 +1858,7 @@
                     "type": "string"
                 },
                 "timeout": {
-                    "description": "Starting timeout.",
+                    "description": "Starting timeout in seconds.",
                     "type": "number"
                 },
                 "trackingType": {
@@ -1906,6 +1915,40 @@
                     "description": "This is the path to the JavaScript file to be executed in `Node.js`.",
                     "type": "string"
                 },
+                "remote": {
+                    "properties": {
+                        "url": {
+                            "description": "This is the URL to the JavaScript file to be executed in `Node.js`.",
+                            "type": "string"
+                        },
+                        "headers": {
+                            "description": "Set of headers that will be added to the request for downloading the script file.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "value"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "noCache": {
+                            "description": "If `true`, the `Cache-control: no-cache` header will be added.",
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
                 "passGlueToken": {
                     "description": "If `true`, when the app is started, a valid GW3 token will be set as an environment variable - `gwToken`.",
                     "type": "boolean",
@@ -1961,6 +2004,14 @@
                 },
                 "parameters": {
                     "description": "Optional parameters that will be used when starting the application/script.",
+                    "type": "string"
+                },
+                "timeout": {
+                    "description": "Starting timeout in seconds.",
+                    "type": "number"
+                },
+                "nodeVersion": {
+                    "description": "The Node.JS version",
                     "type": "string"
                 }
             }
@@ -2144,6 +2195,10 @@
                     "description": "Whether to terminate the application when Glue42 Enterprise shuts down.",
                     "type": "boolean",
                     "default": true
+                },
+                "timeout": {
+                    "description": "Starting timeout in seconds.",
+                    "type": "number"
                 }
             },
             "required": [
@@ -2683,15 +2738,15 @@
         },
         "applicationProcessAffinity": {
             "type": "object",
-            "description": "Defines configuration for application process affinity config",
+            "description": "Deprecated. Defines configuration for application process affinity config",
             "additionalProperties": false,
             "properties": {
                 "affinity": {
-                    "description": "Set this to override the default grouping logic configured in system.json. If set will group the app only with apps with the same affinity.",
+                    "description": "Deprecated. Set this to override the default grouping logic configured in system.json. If set will group the app only with apps with the same affinity.",
                     "type": "string"
                 },
                 "dedicatedProcess": {
-                    "description": "If true will keep the app in separate process.",
+                    "description": "Deprecated. If true will keep the app in separate process.",
                     "type": "boolean",
                     "default": false
                 }

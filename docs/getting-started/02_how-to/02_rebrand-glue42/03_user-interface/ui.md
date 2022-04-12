@@ -300,11 +300,11 @@ The HTML files of the default notification apps are located in `%LocalAppData%\T
 
 As a base style, the default notification apps use the Glue42 web themes bundle - `t42bootstrap.bundle.css`, located in `%LocalAppData%\Tick42\GlueDesktop\assets\styles`. As a style override is used the `panel.css` file located in `%LocalAppData%\Tick42\GlueDesktop\assets\tick42-gns-js-ui\dialog_panel`. Either use the `panel.css` file to override the existing styles, or create your own CSS override file and reference it in the HTML files of the default apps.
 
-To change the icon displayed in the top left corner of a notification toast, modify the [application configuration](../../../../developers/configuration/application/index.html) of the notification toast app. Either provide a path to your custom icon using the `"icon"` top-level configuration property, or replace the `icon.ico` file in the `%LocalAppData%\Tick42\GlueDesktop\assets\tick42-gns-js-ui\resources` folder:
+To change the taskbar icon of the Notification Panel, modify the [application configuration](../../../../developers/configuration/application/index.html) of the Notification Panel app. Either provide a path to your custom icon using the `"icon"` top-level configuration property, or replace the `icon.ico` file in the `%LocalAppData%\Tick42\GlueDesktop\assets\tick42-gns-js-ui\resources` folder:
 
 ```json
 {
-    "name": "js-gns-dialog-toast",
+    "name": "js-gns-dialog-panel",
     "icon": "file:///%GDDIR%/assets/custom/icon.ico"
 }
 ```

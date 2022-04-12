@@ -225,7 +225,7 @@ const startServer = async () => {
 startServer();
 ```
 
-*For a full example, see the [Glue42 Server example](https://github.com/kirilpopov/server-example) on GitHub.*
+*For a full example, see the [Glue42 Server example](https://github.com/glue42/server-example) on GitHub.*
 
 #### Custom Authenticator in the Admin UI
 
@@ -285,5 +285,3 @@ ReactDOM.render(
     document.getElementById("root")
 );
 ```
-
-*For a full example, see the [Glue42 Server Admin UI example](https://github.com/kirilpopov/server-admin-ui-example) on GitHub.*

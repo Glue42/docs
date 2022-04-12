@@ -106,7 +106,7 @@ Summary Metrics allow you to track how long an application has been on focus. Th
 | Property | Type | Description |
 |----------|------|-------------|
 | `"enabled"` | `boolean` | Set to `true` to enable Summary Metrics. |
-| `"collectInterval"` | `number` | The interval (in minutes) at which to publish the gathered metrics. Can't be less than 30 minutes. |
+| `"collectInterval"` | `number` | Interval in minutes at which to publish the gathered metrics. Can't be less than 30 minutes. |
 | `"minimalFocusInterval"` | `number` | The minimal focus time in milliseconds for which to record metric data (e.g., if you want to filter out accidental focus of apps). |
 | `"flushOnShutdown"` | `boolean` | Whether to publish the gathered metrics on shutdown. |
 
@@ -376,7 +376,7 @@ The `"publishers"` key specifies a list of metrics publishers. Each publisher in
 | `"append"`| `boolean` | Whether to append the new metrics to the file on restart of [**Glue42 Enterprise**](https://glue42.com/enterprise/) or to overwrite it. |
 | `"conflation"` | `object` | Object with two properties: `"max-size"` - the number of metrics to collect before sending them to the publisher, and `"interval"` - at what interval in milliseconds to send them. |
 | `"buffer-size"` | `number` | The number of metrics to store before starting to drop them (e.g., when publishing is slow). |
-| `"heartbeats"` | `number` | The interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
+| `"heartbeats"` | `number` | Interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
 
 - The `"rest"` metrics publisher posts the data to a REST service. The following configuration properties are available:
 
@@ -386,7 +386,7 @@ The `"publishers"` key specifies a list of metrics publishers. Each publisher in
 | `"authentication"` | `object` | Optional object with `"user"` and `"password"` properties for basic authentication. |
 | `"conflation"` | `object` | Object with two properties: `"max-size"` - the number of metrics to collect before sending them to the publisher, and `"interval"` - at what interval in milliseconds to send them. |
 | `"buffer-size"` | `number` | The number of metrics to store before starting to drop them (e.g., when publishing is slow). |
-| `"heartbeats"` | `number` | The interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
+| `"heartbeats"` | `number` | Interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
 
 - The `"kafka"` metrics publisher sends the data via Kafka. The following configuration properties are available:
 
@@ -396,7 +396,7 @@ The `"publishers"` key specifies a list of metrics publishers. Each publisher in
 | `"publisher-config"` | `object` | Kafka producer settings. For more details, see [Publishing with Kafka](#publishing_with_kafka). |
 | `"conflation"` | `object` | Object with two properties: `"max-size"` - the number of metrics to collect before sending them to the publisher, and `"interval"` - at what interval in milliseconds to send them. |
 | `"buffer-size"` | `number` | The number of metrics to store before starting to drop them (e.g., when publishing is slow). |
-| `"heartbeats"` | `number` | The interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
+| `"heartbeats"` | `number` | Interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
 
 *See also [Publishing with Kafka](#publishing_with_kafka).*
 
@@ -417,7 +417,7 @@ The `"metricsConfiguration"` object has the following properties:
 | `"split-size"` | `number` | The number of pieces the metrics batch is split into when it is pushed to the publisher. |
 | `"conflation"` | `object` | Object with two properties: `"max-size"` - the number of metrics to collect before sending them to the publisher, and `"interval"` - at what interval in milliseconds to send them. |
 | `"buffer-size"` | `number` | The number of metrics to store before starting to drop them (e.g., when publishing is slow). |
-| `"heartbeats"` | `number` | The interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
+| `"heartbeats"` | `number` | Interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
 
 *See also [Publishing with Solace](#publishing_with_solace) and [JavaScript Metrics Publishers](#javascript_metrics_publishers).*
 

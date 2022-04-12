@@ -1,12 +1,23 @@
 ## Service Windows
 
-Service windows are hidden windows which perform a specific supporting role for your applications. They can be configured as any normal window (name, URL, etc.), the difference being that a UI configuration isn't necessary as it is assumed that the purpose of these windows is to provide some "behind-the-scenes" (hidden) service to your applications. Therefore, the user doesn't need to see them or interact with them.
+Service windows are hidden windows which perform a specific supporting role for your applications. They can be configured as any normal window (name, URL, etc.), the difference being that UI configuration isn't necessary, as it is assumed that the purpose of these windows is to provide some background service to your applications. Therefore, the user doesn't need to see them or interact with them.
 
-Service windows may be useful in many scenarios. For instance, you may have a number of applications that need to receive and process data from several different providers. Instead of setting up each application to receive and then process the data from every provider, you can create a hidden service window which will communicate with the providers, collect the data, pre-process it and route it to the respective applications. This way, your applications have to handle communication with only one end point, all the necessary data is consolidated, processed, filtered, etc., at one central data hub from where it can be sent to any window needing it. Depending on your needs or goals, you can configure your service windows to auto start on system startup, or to start when an application requests that service. The service windows approach offers you additional flexibility and versatility in designing solutions for the application services you need.
+Service windows may be useful in many scenarios. For instance, you may have a number of applications that will receive and process data from several different providers. Instead of setting up each application to receive and then process the data from every provider, you can create a hidden service window which will communicate with the providers, collect the data, pre-process it and route it to the respective applications. This way, your applications will handle communication with only one end point, all the necessary data is consolidated, processed and filtered at one central data hub from where it can be sent to any window. Depending on your needs and goals, you can configure your service windows to auto start on system startup, or to start when an application requests that service. The service windows approach offers you additional flexibility and versatility in designing solutions for the application services you need.
 
 <glue42 name="diagram" image="../../images/platform-features/service-windows.png">
 
-The following example demonstrates how to configure an app as a service window, so that it will be auto started, its window will be invisible and the application won't appear in the [Glue42 Toolbar](../glue42-toolbar/index.html):
+There are different ways to configure a service window, depending on whether you want the window to be automatically started when [**Glue42 Enterprise**](https://glue42.com/enterprise/) is initiated. Use a combination of the following [application configuration](../../developers/configuration/application/index.html) properties to specify whether the window should be automatically started, invisible, or hidden from the [Glue42 Toolbar](../glue42-toolbar/index.html):
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"service"` | `boolean` | If `true`, both the `"autoStart"` top-level key and the `"hidden"` property of the `"details"` object will be overridden and set to `true`. The window will be invisible and will start automatically on [**Glue42 Enterprise**](https://glue42.com/enterprise/) startup. |
+| `"hidden"` | `boolean` | If `true`, the application won't be available in the [Glue42 Toolbar](../glue42-toolbar/index.html). |
+| `"autoStart"` | `boolean` | If `true`, the window will be started automatically on [**Glue42 Enterprise**](https://glue42.com/enterprise/) startup. |
+| `"details"` | `object` | Use the `"hidden"` Boolean property of the `"details"` object to set the window visibility. If `true`, the window will be invisible. |
+
+*Note that when using the `"service"` property, it's pointless to use the `"autoStart"` top-level key and the `"hidden"` property of the `"details"` object, because the `"service"` key will override any values you may set for them.*
+
+The following example demonstrates how to use the `"service"` and `"hidden"` top-level keys to configure a service window that will start automatically, will be invisible and hidden from the [Glue42 Toolbar](../glue42-toolbar/index.html):
 
 ```json
 {
@@ -14,7 +25,20 @@ The following example demonstrates how to configure an app as a service window, 
     "type": "window",
     "service": true,
     "hidden": true,
-    "autoStart": true,
+    "details": {
+        "url": "https://example.com/my-service-window",
+    }
+}
+```
+
+The following example demonstrates how to use the `"hidden"` and `"autoStart"` top-level keys and the `"hidden"` property of the `"details"` top-level key to configure a service window that will be hidden from the [Glue42 Toolbar](../glue42-toolbar/index.html), won't start automatically and will be invisible:
+
+```json
+{
+    "name": "service-window",
+    "type": "window",
+    "hidden": true,
+    "autoStart": false,
     "details": {
         "url": "https://example.com/my-service-window",
         "hidden": true
@@ -22,7 +46,9 @@ The following example demonstrates how to configure an app as a service window, 
 }
 ```
 
-*For more details, see the [Application Configuration](../../developers/configuration/application/index.html#application_configuration-service_window) section.*
+*Note that service windows aren't closed when restoring a [Layout](../windows/layouts/overview/index.html).*
+
+*For more details, see the [Developers > Configuration > Application](../../developers/configuration/application/index.html#application_configuration-service_window) section and the [application configuration schema](../../assets/configuration/application.json).*
 
 ## Citrix Applications
 

@@ -158,6 +158,10 @@
                     "description": "The application that has occupied the port will be killed.",
                     "type": "boolean",
                     "default": false
+                },
+                "discoveryTimeout": {
+                    "description": "A timeout in seconds to wait for the Gateway to provide an endpoint.",
+                    "type": "number"
                 }
             },
             "additionalProperties": false
@@ -170,9 +174,16 @@
         "appStores": {
             "description": "Defines one or more sources of application configurations.",
             "type": "array",
+            "default": [],
             "items": {
                 "$ref": "#/definitions/appStoreConfig"
             },
+            "additionalProperties": false
+        },
+        "appStoresTimeout": {
+            "description": "A timeout in milliseconds to wait for all required stores to be initialized.",
+            "type": "number",
+            "default": 120000,
             "additionalProperties": false
         },
         "metrics": {
@@ -331,9 +342,6 @@
                 "$ref": "#/definitions/appStoreConfig"
             },
             "additionalProperties": false
-        },
-        "processReuse": {
-            "$ref": "#/definitions/processReuseSystemConfig"
         },
         "nodePath": {
             "description": "The path to the Node.js environment that Glue42 Desktop will use to run Node.js applications.",
@@ -521,21 +529,19 @@
                 },
                 "appVersion": {
                     "type": "string",
-                    "description": "Defines the version of application."
+                    "description": "Deprecated. Set automatically from the `version` top-level property."
                 },
                 "buildVersion": {
                     "type": "string",
-                    "description": "Defines the build version."
+                    "description": "Deprecated. Set automatically from the `build` top-level property."
                 },
                 "environment": {
                     "type": "string",
-                    "description": "Glue42 Desktop environment.",
-                    "default": "T42"
+                    "description": "Deprecated. Set automatically from the `env` top-level property."
                 },
                 "region": {
                     "type": "string",
-                    "description": "Glue42 Desktop region.",
-                    "default": "DEMO"
+                    "description": "Deprecated. Set automatically from the `region` top-level property."
                 }
             },
             "required": [
@@ -770,7 +776,8 @@
         },
         "build": {
             "description": "Allows replacing the default product version with a custom version (e.g., GD 3.4). Visible in different UI components, e.g., splash screen, \"About\" box, etc.",
-            "type": "string"
+            "type": "string",
+            "default": "Glue42 Enterprise"
         },
         "legacy": {
             "default": {},
@@ -829,7 +836,8 @@
             "default": "inDifferentEnvRegion",
             "enum": [
                 "never",
-                "inDifferentEnvRegion"
+                "inDifferentEnvRegion",
+                "always"
             ]
         },
         "perfCollector": {
@@ -877,6 +885,11 @@
                     "default": true,
                     "description": "If `true`, will enable the Glue42 global protocol handler."
                 },
+                "protocol": {
+                    "type": "string",
+                    "default": "glue42",
+                    "description": "The protocol for Glue42 global protocol handler."
+                },
                 "startNewInstance": {
                     "properties": {
                         "enabled": {
@@ -892,7 +905,6 @@
                                 },
                                 "args": {
                                     "type": "array",
-                                    "default": [],
                                     "description": "List of arguments.",
                                     "items": {
                                         "type": "string",
@@ -966,6 +978,52 @@
         "allowNTLMCredentialsForDomains": {
             "description": "Dynamically sets whether to always send credentials for HTTP NTLM or Negotiate authentication. A comma-separated list of servers for which integrated authentication is enabled.",
             "type": "string"
+        },
+        "reloadIFrames": {
+            "description": "Reload an IFrame if glue42gd is not registered.",
+            "additionalProperties": false,
+            "properties": {
+                "mode": {
+                    "description": "for which application(s) iframes should be reloaded automatically.",
+                    "enum": [
+                        "none",
+                        "shell",
+                        "all"
+                    ],
+                    "default": "none"
+                }
+            }
+        },
+        "switches": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "key"
+                ],
+                "properties": {
+                    "key": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "additionalProperties": false
+        },
+        "spellchecker": {
+            "description": "Settings for the Glue42 spellchecker.",
+            "default": {},
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If `true`, will enable the Glue42 spellchecker."
+                }
+            },
+            "additionalProperties": false
         }
     },
     "required": [
@@ -1151,13 +1209,28 @@
                             ],
                             "default": "no-auth"
                         },
+                        "startRetries": {
+                            "description": "Number of times Glue42 Enterprise will try to connect to the REST server.",
+                            "type": "number",
+                            "default": 5
+                        },
+                        "startRetryInterval": {
+                            "description": "An interval in milliseconds at which Glue42 Enterprise will try to connect to the REST Server.",
+                            "type": "number",
+                            "default": 10000
+                        },
+                        "requestTimeout": {
+                            "description": "A timeout in milliseconds to wait for a response from the REST server.",
+                            "type": "number",
+                            "default": 20000
+                        },
                         "pollInterval": {
-                            "description": "How often (milliseconds) should Glue42 Desktop make REST calls to the GCS server.",
+                            "description": "An interval in milliseconds at which Glue42 Enterprise will make REST calls to the REST server.",
                             "type": "number",
                             "default": 60000
                         },
                         "enablePersistentCache": {
-                            "description": "Whether to store the most recent data response on disk. This allows starting Glue42 Desktop later (with cached app configs) even if the GCS REST server is temporarily down.",
+                            "description": "Whether to store the most recent data response on disk. This allows starting Glue42 Enterprise later with cached app configurations even if the REST service is temporarily unavailable.",
                             "type": "boolean",
                             "default": true
                         },
@@ -1537,23 +1610,6 @@
             },
             "additionalProperties": false
         },
-        "processReuseConfig": {
-            "description": "Process reuse configuration.",
-            "type": "object",
-            "properties": {
-                "maxAppsInProcess": {
-                    "description": "Maximum number of slots for application windows (instances) in a single process.",
-                    "type": "number",
-                    "default": 9
-                },
-                "appSlotSize": {
-                    "description": "When an app is started in a process, the specified number of slots in this process will be reserved only for instances of the same app. This is helpful for keeping the same applications in the same process. The maximum number of slots in a process is defined by the `maxAppsInProcess` property.",
-                    "type": "number",
-                    "default": 3
-                }
-            },
-            "additionalProperties": false
-        },
         "hotkeys": {
             "description": "Hotkeys settings.",
             "type": "object",
@@ -1716,6 +1772,27 @@
                         "categories": {}
                     },
                     "additionalProperties": true
+                },
+                "metrics": {
+                    "$ref": "gwMetrics.json"
+                },
+                "customMetricsPublishers": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "file"
+                        ],
+                        "properties": {
+                            "file": {
+                                "type": "string"
+                            },
+                            "publisherConfiguration": {},
+                            "metricsConfiguration": {
+                                "$ref": "gwMetrics.json#/definitions/JsMetricsPublisherConfig"
+                            }
+                        }
+                    }
                 },
                 "cluster": {
                     "type": "object",
@@ -2126,7 +2203,7 @@
                         "restFetchInterval": {
                             "description": "Valid only in `rest` mode - the interval (in seconds) at which the REST service will be polled for new data.",
                             "type": "number",
-                            "default": 10
+                            "default": 60
                         },
                         "restClientAuth": {
                             "description": "Valid only in `rest` mode - the client auth mechanism for the REST service.",
@@ -2152,29 +2229,6 @@
                     "type": "number"
                 }
             }
-        },
-        "processReuseSystemConfig": {
-            "description": "Process reuse configuration.",
-            "type": "object",
-            "properties": {
-                "enabled": {
-                    "description": "If `true`, process reuse will be enabled.",
-                    "type": "boolean",
-                    "default": "true"
-                },
-                "visibleApps": {
-                    "$ref": "#/definitions/processReuseConfig"
-                },
-                "hiddenApps": {
-                    "$ref": "#/definitions/processReuseConfig"
-                },
-                "groupAutoStartedByPriorityBatchNumber": {
-                    "description": "If `true`, will group auto started apps by their priority group. Only works if the `autoStart` priority is enabled.",
-                    "type": "boolean",
-                    "default": true
-                }
-            },
-            "additionalProperties": false
         },
         "applicationsConfig": {
             "description": "Application configuration.",
@@ -2849,6 +2903,11 @@
                         "server"
                     ],
                     "default": "file"
+                },
+                "newDataCheckInterval": {
+                    "description": "How often (in seconds) to check for new data from the rest/server store. These checks are executed only if there are subscribers.",
+                    "type": "number",
+                    "default": 1800
                 },
                 "restURL": {
                     "description": "Valid only in `rest` mode - the URL of the REST service providing the layouts.",

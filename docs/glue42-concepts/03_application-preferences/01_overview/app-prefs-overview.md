@@ -13,18 +13,31 @@ Application preferences can be stored locally in a file, or remotely - using a R
     "applicationPreferences": {
         "store": {
             "type": "rest",
-            "restURL": "https://my-rest-service.com"
+            "restURL": "https://my-rest-service.com",
+            "restClientAuth": "no-auth",
+            "newDataCheckInterval": 2000
         }
     }
 }
 ```
+
+The `"store"` key has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"type"` | `"file"` \| `"rest"` \| `"server"` | The type of the app preferences store. |
+| `"restURL"` | `string` | The URL of the REST service providing the app preferences. Valid only in `"rest"` mode. |
+| `"restClientAuth"` | `"no-auth"` \| `"negotiate"` \| `"kerberos"` |  The client authentication mechanism for the REST service. Valid only in `"rest"` mode. |
+| `"newDataCheckInterval"` | `number` | Interval in seconds at which to check for new data from the REST or server store. Executed only if subscribers are avaialble. |
 
 The `"type"` property accepts the following values:
 
 | Value | Description |
 |-------|-------------|
 | `"file"` | Default. Application preferences will be saved locally in a file. |
-| `"rest"` | Application preferences will be saved using the REST service at the URL provided to the `"restURL"` property of the `"store"` key. |
+| `"rest"` | Application preferences will be saved using the REST service at the URL provided to the `"restURL"` property. |
 | `"server"` | Application preferences will be saved using the Glue42 Server (the Glue42 Server must be configured first). |
+
+*For more details, see the [Developers > Configuration](../../../developers/configuration/overview/index.html) section and the [system configuration schema](../../../assets/configuration/system.jsons).*
 
 For a reference implementation of a remote application preferences store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example. This basic implementation doesn't take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the README file in the repository.

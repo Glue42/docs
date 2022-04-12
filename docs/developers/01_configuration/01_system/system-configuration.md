@@ -77,7 +77,7 @@ The only required properties for each app store configuration object are `"type"
 | Property | Description |
 |----------|-------------|
 | `"auth"` | Authentication configuration. Can be one of `"no-auth"`, `"negotiate"` or `"kerberos"`. |
-| `"pollInterval"` | Interval at which to poll the REST service for updates. |
+| `"pollInterval"` | Interval in milliseconds at which to poll the REST service for updates. |
 | `"enablePersistentCache"` | Whether to cache and persist the configuration files locally (e.g., in case of connection interruptions). |
 | `"cacheFolder"` | Where to keep the persisted configuration files. |
 
@@ -94,6 +94,40 @@ You can also use the [Glue42 Server](../../../glue42-concepts/glue42-server/inde
     ]
 }
 ```
+
+## Application Preferences Store
+
+Application preferences can be stored locally in a file, or remotely - using a REST service or the [Glue42 Server](../../../glue42-concepts/glue42-server/index.html). By default, application preferences are stored locally in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\prefs` folder where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) where to store application preferences, use the `"store"` property of the `"applicationPreferences"` top-level key:
+
+```json
+{
+    "applicationPreferences": {
+        "store": {
+            "type": "rest",
+            "restURL": "https://my-rest-service.com",
+            "restClientAuth": "no-auth",
+            "newDataCheckInterval": 2000
+        }
+    }
+}
+```
+
+The `"store"` key has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"type"` | `"file"` \| `"rest"` \| `"server"` | The type of the app preferences store. |
+| `"restURL"` | `string` | The URL of the REST service providing the app preferences. Valid only in `"rest"` mode. |
+| `"restClientAuth"` | `"no-auth"` \| `"negotiate"` \| `"kerberos"` |  The client authentication mechanism for the REST service. Valid only in `"rest"` mode. |
+| `"newDataCheckInterval"` | `number` | Interval in seconds at which to check for new data from the REST or server store. Executed only if subscribers are avaialble. |
+
+The `"type"` property accepts the following values:
+
+| Value | Description |
+|-------|-------------|
+| `"file"` | Default. Application preferences will be saved locally in a file. |
+| `"rest"` | Application preferences will be saved using the REST service at the URL provided to the `"restURL"` property. |
+| `"server"` | Application preferences will be saved using the Glue42 Server (the Glue42 Server must be configured first). |
 
 ## Application Settings
 
@@ -261,4 +295,4 @@ The `"citrix"` key has the following properties:
 | `"launcherPath"` | Location of the Citrix module used to launch published Citrix Virtual Apps. |
 | `"launcherModule"` | The file name of the Citrix module used to launch published Citrix Virtual Apps. |
 | `"launcherArguments"` | The command line arguments used to launch published Citrix Virtual Apps. |
-| `"launcherSpawnInterval"` | Interval (in milliseconds) at which multiple launcher modules will be spawned. |
+| `"launcherSpawnInterval"` | Interval in milliseconds at which multiple launcher modules will be spawned. |
