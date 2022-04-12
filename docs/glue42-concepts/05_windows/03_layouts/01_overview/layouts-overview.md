@@ -12,8 +12,6 @@ This type of Layout can contain floating [Glue42 Windows](../../window-managemen
 
 The default Layout of an application instance describes the last saved window bounds, the window state (maximized, minimized, normal), whether the window is collapsed and the default window context.
 
-*Note that the `"ignoreSavedLayout"` property in the [application configuration](../../../../developers/configuration/application/index.html) can be used to ignore the last saved application Layout. In this case, when you restart the application, it will use its default bounds, state and context set in the application configuration file.*
-
 - **Workspace**
 
 The Layout of a [Workspace](../../workspaces/overview/index.html) instance describes the arrangement of the Workspace elements, its bounds and the context of the applications participating in it.
@@ -28,6 +26,28 @@ In the example below, you can see how the user first creates and then saves and 
 
 ![Layouts](../../../../images/layouts/layouts.gif)
 
+## Bypassing Application Default Layouts
+
+The Application Default Layout contains information about:
+
+- the last saved window bounds - size and location;
+- the window state - maximized, minimized or normal and whether it's collapsed;
+- the default window context;
+
+When an application is started for the first time by [**Glue42 Enterprise**](https://glue42.com/enterprise/), the size and the location of the application window are determined by the bounds set in the [application configuration](../../../../developers/configuration/application/index.html) file (or by the default bounds, if none are specified in the application configuration). When the user moves or resizes the application window and closes it, the new bounds are automatically saved as an Application Default Layout and the next time the application is started, its window will be loaded using these bounds.
+
+Sometimes, it may be necessary to bypass the Application Default Layout - e.g., if somehow the application window has been saved outside the visible monitor area, or you simply want your app to always start with certain bounds, state or context despite the user interactions.
+
+To bypass the Application Default Layout only once, press and hold the `SHIFT` key and click on the application in the Glue42 Toolbar to start it.
+
+To instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to always ignore the Application Default Layout for your app, use the `"ignoreSavedLayout"` top-level key in the [application configuration](../../../../developers/configuration/application/index.html) file:
+
+```json
+{
+    "ignoreSavedLayout": true
+}
+```
+
 ## Layout Stores
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) can obtain Layouts from a local store and from a remote REST service. The settings for the Layout stores are defined in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in `%LocalAppData%\Tick42\GlueDesktop\config`.
@@ -36,21 +56,23 @@ In the standard [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployme
 
 ### Local Layout Stores
 
-By default, the Layouts are saved to and loaded from a local Layout store located in the `%LocalAppData%\Tick42\UserData\T42-DEMO\layouts` folder, where you can store, customize and delete your Layout files locally. 
+By default, the Layouts are saved to and loaded from a local Layout store located in the `%LocalAppData%\Tick42\UserData\T42-DEMO\layouts` folder, where you can store, customize and delete your Layout files locally.
 
 The configuration for the Layout stores is found under the `"layouts"` top-level key of the `system.json` file and by default it is set to manage Layouts as local files:
 
 ```json
-"layouts" : {
-    "store": {
-        "type": "file"
+{
+    "layouts" : {
+        "store": {
+            "type": "file"
+        }
     }
 }
 ```
 
 ### Remote Layout Stores
 
-Layout definitions can also be hosted on a server and obtained from a REST service. 
+Layout definitions can also be hosted on a server and obtained from a REST service.
 
 For a reference implementation of a remote Layout definitions store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example. The user Layouts are stored in files with the same structure as local Layout files. This basic implementation doesn't take the user into account and returns the same set of data for all users. New Layouts are stored in files using the name of the Layout and there isn't validation for the name. The operation for removing a Layout isn't implemented and just logs to the console. For instructions on running the sample server on your machine, see the README file in the repository.
 
@@ -59,14 +81,16 @@ For a .NET implementation of a remote Layout definitions store, see the [.NET RE
 To configure a connection to the REST service providing the Layout store, edit the `"layouts"` top-level key of the `system.json` file:
 
 ```json
-"layouts": {
-    "store": {
-        "type": "rest",
-        "restURL": "http://localhost:8004/",
-        "restFetchInterval": 20,
-        "restClientAuth": "no-auth"
+{
+    "layouts": {
+        "store": {
+            "type": "rest",
+            "restURL": "http://localhost:8004/",
+            "restFetchInterval": 20,
+            "restClientAuth": "no-auth"
+        }
     }
-} 
+}
 ```
 
 | Property | Description |
@@ -84,7 +108,7 @@ The remote store must return Layout definitions in the following response shape:
 {
     "layouts": [
         // List of Layout definition objects.
-        {...}, {...}
+        {}, {}
     ]
 }
 ```
@@ -92,9 +116,11 @@ The remote store must return Layout definitions in the following response shape:
 You can also use the [Glue42 Server](../../../glue42-server/index.html) for hosting and retrieving Layout stores. The [Glue42 Server](../../../glue42-server/index.html) is a complete server-side solution for providing data to Glue42. To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch application configurations from a [Glue42 Server](../../../glue42-server/index.html), set the `"type"` property to `"server"`:
 
 ```json
-"layouts" : {
-    "store": {
-        "type": "server"
+{
+    "layouts" : {
+        "store": {
+            "type": "server"
+        }
     }
 }
 ```

@@ -26,7 +26,7 @@ Glue.GlueWindows.RegisterWindow(window, glueWindowOptions)
             {
                 T42Contact contact = updatedContact;
                 HandleContact(contact);
-            }, (context, newChannel, prevChannel) => 
+            }, (context, newChannel, prevChannel) =>
             {
                 // Handle Channel changes for this window.
                 T42Contact contact = context.GetValue<T42Contact>("contact");
@@ -39,7 +39,7 @@ The callback is invoked when:
 - The data from the Channel you are currently on is updated.
 
 The second callback (Channel change handle) is invoked when:
-- You switch the Channel and the application (window) is assigned to a new Channel. 
+- You switch the Channel and the application (window) is assigned to a new Channel.
 - Your app (window) isn't joined to a Channel anymore (e.g. you have deselected the current Channel). In this case, it will be **undefined/null**.
 
 ### Channel Discovery
@@ -56,7 +56,7 @@ IGlueChannel[] channels = Glue.Channels.GetChannels();
 - Through a subscription:
 
 ```csharp
-// The subscription lambda will be invoked for all current Channels 
+// The subscription lambda will be invoked for all current Channels
 // and for any newly created Channel.
 Glue.Channels.Subscribe(channel => HandleChannel(channel));
 ```
@@ -150,7 +150,7 @@ public class T42Contact
     public string DisplayName { get; set; }
 
     public T42Name Name { get; set; }
-    ...
+
     // The rest of the properties are removed for conciseness.
 }
 
@@ -188,9 +188,10 @@ You can use the `SetValue()` method to update the field of a context object:
 ```csharp
 glueChannelContext.SetValue("Jordan", "contact.name.firstName");
 ```
+
 Or to update the entire object:
 
 ```csharp
     T42Contact contact = ...;
     glueChannelContext.SetValue(contact, "contact");
-``` 
+```

@@ -37,11 +37,11 @@ Application configuration settings:
 
 ### Flat Windows
 
-Flat windows are available for web and native apps. 
+Flat windows are available for web and native apps.
 
 ![Image of a flat window](../../../../images/window-management/window-mode-flat.png)
 
-### Tab windows
+### Tab Windows
 
 Tab windows are available for web and native apps.
 
@@ -51,4 +51,4 @@ Tab windows are available for web and native apps.
 
 HTML windows are available for web apps only.
 
-![Image of an HTML window](../../../../images/window-management/window-mode-html.png) 
+![Image of an HTML window](../../../../images/window-management/window-mode-html.png)

@@ -1,5 +1,7 @@
 ## Method Registration
 
+*See the [Delphi 10](https://github.com/Glue42/native-examples/tree/main/glue-com/GlueDelphi) and [Delphi 7](https://github.com/Glue42/native-examples/tree/main/glue-com/GlueDelphi7) examples on GitHub.*
+
 To expose a Glue42 method that can be invoked by other Glue42 enabled applications, you must register the method in Glue42 and provide its implementation. The application must also implement the [`IGlueRequestHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluerequesthandler) interface to dispatch and handle the method invocation requests.
 
 This can be simplified by using the [`TGlueRequestHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit-classes_for_handling_events-tgluerequesthandler) class of the [Glue42 Helper Unit](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#glue42_helper_unit) which takes care of implementing [`IGlueRequestHandler`](../../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-igluerequesthandler) and dispatching the request to a specific Delphi procedure.
@@ -278,7 +280,7 @@ Interop Streams are used extensively in [**Glue42 Enterprise**](https://glue42.c
 - in Glue42 Windows - to publish notifications about window status change (events);
 - in application configuration settings - to publish application configuration changes, and notifications about application instance state change (events);
 - in the Glue42 Notification Service (GNS) Desktop Manager and GNS Interop Servers - to publish Notifications (real-time data);
-- in the Window Management, Application Management, and Activities APIs (events);
+- in the Window Management and Application Management APIs (events);
 
 ## Publishing Stream Data
 

@@ -1,5 +1,7 @@
 ## Overview
 
+*See the [Delphi 10](https://github.com/Glue42/native-examples/tree/main/glue-com/GlueDelphi) and [Delphi 7](https://github.com/Glue42/native-examples/tree/main/glue-com/GlueDelphi7) examples on GitHub.*
+
 Individual forms in a multi-form application can be registered as separate Glue42 applications. The forms to be registered as Glue42 apps must implement the [`IGlueApp`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglueapp) interface and the main form must be registered as a Glue42 application factory in order to create and register the forms.
 
 ## App Factories
@@ -51,7 +53,7 @@ After the main form has been registered as an [app factory](#app_factories), it 
 TApp01Form = class(TForm, IGlueApp)
   ...
 protected
-  function SaveState(out pRetVal: GlueValue): HResult; stdcall;
+  function SaveState(const receiver: IGlueValueReceiver): HResult; stdcall;
   function Initialize(state: GlueValue; const glueWindow: IGlueWindow): HResult; stdcall;
   function Shutdown: HResult; stdcall;
   ...
@@ -66,7 +68,7 @@ begin
   Result := S_OK;
 end;
 
-function TApp01Form.SaveState(out pRetVal: GlueValue): HResult;
+function TApp01Form.SaveState(const receiver: IGlueValueReceiver): HResult;
 begin
   Result := S_OK;
 end;

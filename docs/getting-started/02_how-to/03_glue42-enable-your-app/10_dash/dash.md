@@ -80,11 +80,11 @@ The table below describes the properties of the optional settings object:
 
 ## Application Configuration
 
-To add your Dash application to the list of Glue42 applications in the Glue42 Application Manager, create a JSON application configuration file and place it in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` should be replaced by the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
+To add your Dash app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 
 *Note that this step isn't necessary if your application is running in a [**Glue42 Core**](https://glue42.com/core/) project. For more details, see the [Application Definitions](https://core-docs.glue42.com/capabilities/application-management/index.html#application_definitions) section in the [**Glue42 Core**](https://glue42.com/core/) documentation.*
 
-The example below shows a simple application configuration:
+The following is an example configuration for a Dash app:
 
 ```json
 {
@@ -101,7 +101,7 @@ The example below shows a simple application configuration:
 }
 ```
 
-For more information on configuring your applications, see the [Application Configuration](../../../../developers/configuration/application/index.html) section.
+*For more details, see the [Application Configuration](../../../../developers/configuration/application/index.html) section.*
 
 *See also the [Glue42 Dash examples](https://github.com/Glue42/glue-dash-example) on GitHub, demonstrating the various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
 

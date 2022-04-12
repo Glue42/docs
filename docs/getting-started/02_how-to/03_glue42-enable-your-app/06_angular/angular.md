@@ -1,4 +1,4 @@
-## Overview 
+## Overview
 
 The Glue42 Angular wrapper, [`@glue42/ng`](https://www.npmjs.com/package/@glue42/ng), provides you with an easy way to initialize the Glue42 JavaScript libraries and use Glue42 functionalities in your projects. It works with the [@glue42/web](https://www.npmjs.com/package/@glue42/web) and [@glue42/web-platform](https://www.npmjs.com/package/@glue42/web-platform) libraries, if you are working on a [**Glue42 Core**](https://glue42.com/core/) project, and with the [@glue42/desktop](https://www.npmjs.com/package/@glue42/desktop) library, if you are working on a [**Glue42 Enterprise**](https://glue42.com/enterprise/) project. The examples below use the [**Glue42 Enterprise**](https://glue42.com/enterprise/) [JavaScript library](../../../../reference/glue/latest/glue/index.html).
 
@@ -11,11 +11,13 @@ If you are using the legacy Glue42 Angular wrapper, [`@glue42/ng-glue`](https://
 This package should be used only in Angular applications. If your app was created with the Angular CLI, then you don't need to take any additional steps. Otherwise, make sure to install the peer dependencies of `@glue42/ng`:
 
 ```json
-"dependencies": {
-    "@angular/common": "^9.1.3",
-    "@angular/core": "^9.1.3",
-    "rxjs": "^6.5.5",
-    "tslib": "^1.10.0"
+{
+    "dependencies": {
+        "@angular/common": "^9.1.3",
+        "@angular/core": "^9.1.3",
+        "rxjs": "^6.5.5",
+        "tslib": "^1.10.0"
+    }
 }
 ```
 
@@ -68,9 +70,9 @@ The table below describes the properties of the `Glue42NgSettings` object.
 
 All properties are optional, but it is recommended that you provide the factory functions explicitly. If no factory functions are provided, the library will try to select an appropriate function attached to the global `window` object.
 
-The initialization of the [**Glue42 Enterprise**](https://glue42.com/enterprise/) JavaScript library is asynchronous and therefore can take anywhere between a few milliseconds and a couple of seconds. There are two main situations in which setting `holdInit` to `true` (default) or `false` will benefit your project: 
+The initialization of the [**Glue42 Enterprise**](https://glue42.com/enterprise/) JavaScript library is asynchronous and therefore can take anywhere between a few milliseconds and a couple of seconds. There are two main situations in which setting `holdInit` to `true` (default) or `false` will benefit your project:
 
-- `holdInit: false` - If the Glue42 functionalities play only a supporting role in your project, rather than being an essential part of it, it is recommended that you set `holdInit` to `false`. This way, your app won't have to wait for the Glue42 library to initialize in order to be able to function properly. You can use the `Glue42Store` service to get notified when the [**Glue42 Enterprise**](https://glue42.com/enterprise/) JavaScript library is ready. 
+- `holdInit: false` - If the Glue42 functionalities play only a supporting role in your project, rather than being an essential part of it, it is recommended that you set `holdInit` to `false`. This way, your app won't have to wait for the Glue42 library to initialize in order to be able to function properly. You can use the `Glue42Store` service to get notified when the [**Glue42 Enterprise**](https://glue42.com/enterprise/) JavaScript library is ready.
 
 - `holdInit: true` - If the Glue42 functionalities, however, are a critical part your project, then it is recommended to leave `holdInit` set to `true`. This way, Angular will wait for the Glue42 factory function to resolve before bootstrapping your first component. This will spare you the need to check whether the [**Glue42 Enterprise**](https://glue42.com/enterprise/) JavaScript library is available or not every time you want to use it in your app. As a negative result to this approach, when your users load the app, they will keep seeing a blank screen up until the first component has been bootstrapped. Of course, you can solve this by providing a loader animation as soon as your app is accessed.
 
@@ -208,7 +210,7 @@ export class AppComponent implements OnInit {
         this.glueService.registerMethod("MyMethod", () => console.log("Doing work!"));
     }
 }
-``` 
+```
 
 If you set `holdInit` to `true` (default), you can be sure that everywhere you inject the `Glue42Store` service, the respective properties will be initialized and set. This is very convenient, because you don't have to subscribe and wait for an event in order to use the [**Glue42 Enterprise**](https://glue42.com/enterprise/) JavaScript library. However, you do need to always check if there is an initialization error by using `this.glueStore.getInitError()`. If the Glue42 factory functions rejects or throws an error, your app won't crash, but the Glue42 library won't be available and the value returned by `getInitError()` will be set to the respective error object during initialization.
 
@@ -294,4 +296,4 @@ Once the Glue42 Angular library has been initialized, your application has acces
 
 ## Reference
 
-[Glue42 JavaScript Reference](../../../../reference/glue/latest/glue/index.html) 
+For a complete list of the available JavaScript APIs, see the [Glue42 JavaScript Reference Documentation](../../../../reference/glue/latest/glue/index.html).

@@ -8,31 +8,33 @@ To improve the efficiency of your business processes, you often find the need to
 
 ## Generation
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) starts to generate metrics automatically when initialized. To control what data you want to receive, add configuration for the metrics in the `"configuration"` property of the `"gw"` top-level key of the `system.json` file, located in `%LocalAppData%\Tick42\GlueDesktop\config`.
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) starts to generate metrics automatically when initialized. To control the data you want to receive, add configuration for the metrics in the `"configuration"` property of the `"gw"` top-level key of the `system.json` file, located in `%LocalAppData%\Tick42\GlueDesktop\config`.
 
 The example configuration below shows how to allow only the [User Journey](#generation-user_journey_metrics) metrics from all publishers and publish them to a local file:
 
 ```json
-"gw": {
-    "configuration": {
-        "metrics": {
-            "publishers": ["file"],
-            "file": {
-                "location": "metrics.json",
-                "append": false
-            },
-            "filters": {
-                "publishers": [
-                    {
-                        "publisher": {},
-                        "metrics": {
-                            "whitelist": [
-                                "/ACS/UserJourney"
-                            ]
+{
+    "gw": {
+        "configuration": {
+            "metrics": {
+                "publishers": ["file"],
+                "file": {
+                    "location": "metrics.json",
+                    "append": false
+                },
+                "filters": {
+                    "publishers": [
+                        {
+                            "publisher": {},
+                            "metrics": {
+                                "whitelist": [
+                                    "/ACS/UserJourney"
+                                ]
+                            }
                         }
-                    }
-                ],
-                "non-matched": "blacklist"
+                    ],
+                    "non-matched": "blacklist"
+                }
             }
         }
     }
@@ -72,8 +74,10 @@ Below is an example of a Performance Metric:
 
 ```json
 {
-    "timestamp": 1600347688676,     // The time the metric was created.
-    "value": {                      // Information about the JS Heap memory size.
+    // The time the metric was created.
+    "timestamp": 1600347688676,
+    "value": {
+        // Information about the JS Heap memory size.
         "value": "{\"totalJSHeapSize\":10317445,\"usedJSHeapSize\":8357333}"
     }
 }
@@ -83,16 +87,18 @@ Below is an example of a Performance Metric:
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.9">
 
-Summary Metrics allow you to track how long an application has been on focus. This can be useful when determining which apps are most used/needed. The configuration for the Summary Metrics is under the `"metrics"` top-level key of the `system.json` file of your [**Glue42 Enterprise**](https://glue42.com/enterprise/):
+Summary Metrics allow you to track how long an application has been on focus. This can be useful when determining which apps are most used/needed. The configuration for the Summary Metrics is under the `"metrics"` top-level key of the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/):
 
 ```json
-"metrics": {
-    "summaryMetric": {
-        "enabled": true,
-        "collectInterval": 30,
-        "minimalFocusInterval": 1000,
-        "flushOnShutdown": true,
-        "debugLoggingEnabled": true
+{
+    "metrics": {
+        "summaryMetric": {
+            "enabled": true,
+            "collectInterval": 30,
+            "minimalFocusInterval": 1000,
+            "flushOnShutdown": true,
+            "debugLoggingEnabled": true
+        }
     }
 }
 ```
@@ -101,24 +107,28 @@ Summary Metrics allow you to track how long an application has been on focus. Th
 |----------|------|-------------|
 | `"enabled"` | `boolean` | Set to `true` to enable Summary Metrics. |
 | `"collectInterval"` | `number` | The interval (in minutes) at which to publish the gathered metrics. Can't be less than 30 minutes. |
-| `"minimalFocusInterval"` | `number` | The minimal focus time (in ms) for which to record metric data (e.g., if you want to filter out accidental focus of apps). |
-| `"flushOnShutdown"` | `boolean` | specifies whether or not to publish the gathered metrics on shutdown. |
+| `"minimalFocusInterval"` | `number` | The minimal focus time in milliseconds for which to record metric data (e.g., if you want to filter out accidental focus of apps). |
+| `"flushOnShutdown"` | `boolean` | Whether to publish the gathered metrics on shutdown. |
 
 Summary Metrics are recorded in the form of [FAV Metrics](#generation-fav_metrics). Below is an example of a Summary Metric:
 
 ```json
 {
-    "timestamp": 1581341578526, // The time the metric was created.
-    "value": {                  // The set of specific information the metric contains.
+    // The time the metric was created.
+    "timestamp": 1581341578526,
+    // The set of specific information the metric contains.
+    "value": {
         "value": {
-            "name": {           // Name of the application on focus.
+            "name": {
+                // Name of the application on focus.
                 "value": "channelsclientlist"
             },
             "action": {
                 "value": "Focused Duration"
             },
-            "payload": {        // Information about start and end times, application name and focus duration.
-                                // This example shows that the "Client List" application has been on focus for 3582 ms.
+            "payload": {
+                // Information about start and end times, application name and focus duration.
+                // This example shows that the "Client List" application has been on focus for 3582 ms.
                 "value": "{\"start\":1581334200000,\"end\":1581336000000,\"application\":\"channelsclientlist\",\"focusedDuration\":3582}"
             }
         }
@@ -138,34 +148,44 @@ And here is how the metric describing the transition from the "Client Portfolio"
 
 ```json
 {
-    "timestamp": 1568894332012, // The time the metric was created.
-    "value": {                  // The set of specific information the metric contains.
+    // The time the metric was created.
+    "timestamp": 1568894332012,
+    // The set of specific information the metric contains.
+    "value": {
         "value": {
-            "AppType": {        // Application type - Glue42 container or external app.
+            // Application type - Glue42 container or external app.
+            "AppType": {
                 "value": "HC"
             },
-            "AppName": {        // Name of the application.
+            // Name of the application.
+            "AppName": {
                 "value": "channelsclientlist"
             },
-            "PrevAppLostFocus": { // The time when the previous application has lost focus.
+            // The time when the previous application has lost focus.
+            "PrevAppLostFocus": {
                 "value": 1568894332011
             },
             "Info": {
                 "value": ""
             },
-            "PrevAppGotFocus": { // The time when the previous application has gotten focus.
+            // The time when the previous application has gotten focus.
+            "PrevAppGotFocus": {
                 "value": 1568894328788
             },
-            "PrevAppName": {     // The name of the previous application.
+            // The name of the previous application.
+            "PrevAppName": {
                 "value": "channelsclientportfolio"
             },
-            "Instance": {        // App instance ID within Glue42 Enterprise.
+            // App instance ID within Glue42 Enterprise.
+            "Instance": {
                 "value": "9816_10"
             },
-            "Action": {          // The action described by the metric - e.g., getting/losing focus, starting/stopping an application.
+            // The action described by the metric - e.g., getting/losing focus, starting/stopping an application.
+            "Action": {
                 "value": "GotFocus"
             },
-            "Time": {            // The time the action occured.
+            // The time the action occured.
+            "Time": {
                 "value": 1568894332012
             }
         }
@@ -181,27 +201,35 @@ Here is how a Click Stream metric may look like when a user clicks on a DOM elem
 
 ```json
 {
-    "timestamp": 1569935517070,     // The time the metric was created.
-    "value": {                      // The set of specific information the metric contains.
+    // The time the metric was created.
+    "timestamp": 1569935517070,
+    // The set of specific information the metric contains.
+    "value": {
         "value": {
-            "type": {               // The type of the event.
+            // The type of the event.
+            "type": {
                 "value": "click"
             },
             "timestamp": {
                 "value": 1569935517070
             },
-            "target": {             // The targeted app element.
+            // The targeted app element.
+            "target": {
                 "value": {
-                    "className": {  // The class of the DOM element, if any.
+                    // The class of the DOM element, if any.
+                    "className": {
                         "value": "expand"
                     },
-                    "id": {         // The ID of the DOM element, if any.
+                    // The ID of the DOM element, if any.
+                    "id": {
                         "value": "imageWrapper"
                     },
-                    "type": {       // The type of the DOM element, if any.
+                    // The type of the DOM element, if any.
+                    "type": {
                         "value": "<div>"
                     },
-                    "href": {       // The URL the DOM element points to, if any.
+                    // The URL the DOM element points to, if any.
+                    "href": {
                         "value": ""
                     }
                 }
@@ -213,12 +241,11 @@ Here is how a Click Stream metric may look like when a user clicks on a DOM elem
 
 ### Interop Metrics
 
-The Glue42 Gateway can be configured to publish [Interop](../../data-sharing-between-apps/interop/overview/index.html) related metrics that are subject to black/white listing (methods and arguments). This can be useful when you want to track which application has invoked which method and with what arguments.
+The Glue42 Gateway can be configured to publish [Interop](../../data-sharing-between-apps/interop/overview/index.html) metrics that are subject to filtering (methods and arguments). This can be useful when you want to track which application has invoked which method and with what arguments.
 
-Below is an example configuration for publishing Interop Metrics to a local file. Data will be collected about all methods whose names start with `"T42.Wnd"` (these are actual methods for handling windows in [**Glue42 Enterprise**](https://glue42.com/enterprise/)). Further filtering of the matched methods will be applied in order to exclude metrics about methods which have an argument called `"email"` - to avoid leaking personal information.
+Below is an example configuration for publishing Interop Metrics to a local file. Data will be collected about all methods whose names start with `"T42.Wnd"` (these are actual methods for handling windows in [**Glue42 Enterprise**](https://glue42.com/enterprise/)). Further filtering of the matched methods will be applied to exclude metrics about methods which have an argument called `"email"` in order to avoid leaking personal information.
 
-- `"identity"` must be present;
-- the `"enabled"` property of the `"interop"` key must be set to `true`;
+The `"identity"` property must be present and the `"enabled"` property of the `"interop"` key must be set to `true`:
 
 ```json
 {
@@ -227,8 +254,11 @@ Below is an example configuration for publishing Interop Metrics to a local file
             "system": "Glue",
             "service": "Gateway"
         },
-        "publishers": ["raw"],
-        ...
+        "publishers": ["file"],
+        "file": {
+            "location": "metrics.json",
+            "append": false
+        },
         "interop": {
             "enabled": true,
             "invoke": {
@@ -242,10 +272,6 @@ Below is an example configuration for publishing Interop Metrics to a local file
                     "non-matched": "blacklist"
                 }
             }
-        },
-        "raw": {
-            "location": "metrics.json",
-            "append": false
         }
     }
 }
@@ -255,18 +281,23 @@ See below how an actual Interop Metric (structured as a FAV Metric) may look lik
 
 ```json
 {
-    "timestamp": 1570012440145,     // The time the metric was created.
-    "value": {                      // The set of specific information the metric contains.
+    // The time the metric was created.
+    "timestamp": 1570012440145,
+    // The set of specific information the metric contains.
+    "value": {
         "value": {
-            "name": {               // The name of the feature you want to gather information about. In this case - Interop methods.
+            // The name of the feature for which you want to gather information. In this case - Interop methods.
+            "name": {
                 "value": "interop"
             },
-            "action": {             // A more specific action you want to track. In this case - Interop events.
+            // A more specific action you want to track. In this case - Interop events.
+            "action": {
                 "value": "event"
             },
-            "value": {              // The recorded information about the specified action. In this case -
-                                    // information about the invoked method (method name, result from the invocation),
-                                    // the instance that has invoked it and contextual system information.
+            // The recorded information about the specified action. In this case -
+            // information about the invoked method (method name, result from the invocation),
+            // the instance that has invoked it and contextual system information.
+            "value": {
                 "value": "{\"subscription_id\":\"r-91647ca3d11f49c5a41cc8ba466fc1df-45\",
                 \"subscriber\":{\"machine\":\"::1\",\"application\":\"js-gns-dialog-panel\",
                 \"windowId\":\"848_5\",\"process\":21560,\"user\":\"testUser\",\"instance\":\"i-91647ca3d11f49c5a41cc8ba466fc1df-42\"},
@@ -297,11 +328,11 @@ The generated metrics are also injected automatically with meta-data like timest
 
 ### Custom Metrics
 
-There is constant communication between the Glue42 team and clients in order to improve [**Glue42 Enterprise**](https://glue42.com/enterprise/) with new features and functionalities. It is, therefore, possible to create custom metrics and add them to [**Glue42 Enterprise**](https://glue42.com/enterprise/), if the ideas discussed prove to be useful and of value.
+There is constant communication between the Glue42 team and clients in order to improve [**Glue42 Enterprise**](https://glue42.com/enterprise/) with new features and functionalities. It is therefore possible to create custom metrics and add them to [**Glue42 Enterprise**](https://glue42.com/enterprise/), if the ideas discussed prove to be useful and of value.
 
 ## Publishing
 
-The Glue42 Gateway publishes the generated metrics to a server. The means of transporting the generated metrics (REST or a high-speed message queue) depends chiefly on the metrics volume and the available/preferred client infrastructure. The Glue42 Gateway can publish metrics to:
+The Glue42 Gateway publishes the generated metrics to a server. The means of transporting the generated metrics (REST or a high-speed message queue) depends chiefly on the metrics volume and the available or preferred client infrastructure. The Glue42 Gateway can publish metrics to:
 
 - Local file (e.g., for development purposes)
 - REST service
@@ -311,161 +342,125 @@ The Glue42 Gateway publishes the generated metrics to a server. The means of tra
 
 ### Publishers
 
-The Glue42 Gateway can be configured to route metrics to one or multiple publishers specified in the configuration. For example, this is how a file-based publisher is configured:
+The Glue42 Gateway can be configured to route metrics to one or multiple publishers specified in the configuration. For example, this is how a file-based publisher may be configured:
 
 ```json
 {
-    "port": 8080,
-    "metrics": {
-        "publishers": ["file"],
-        "file": {
-            "location": "metrics.json",
-            "append": false
+    "gw": {
+        "configuration": {
+            "metrics": {
+                "publishers": ["file"],
+                "file": {
+                    "location": "metrics.json",
+                    "append": false
+                }
+            }
         }
     }
 }
 ```
 
-The `"publishers"` key specifies a list of metrics publishers, or a JavaScript function accepting the metric to publish, or an instance of `RepositoryFactory`. Each publisher in the `"publishers"` key has its own configuration under a key that matches the publisher name. The currently available publishers are:
+The `"publishers"` key specifies a list of metrics publishers. Each publisher in the `"publishers"` key has its own configuration under a key that matches the publisher name. The currently available publishers are `"raw"`, `"file"`, `"rest"` and `"kafka"`. It is also possible to [publish metrics with Solace](#publishing_with_solace) or [using a JavaScript function](#javascript_metrics_publishers).
 
-- `"file"` - saves the metrics in a local file. The following configuration properties are available:
-
-| Property | Type | Description |
-|----------|------|-------------|
-| `"location"` | `string`  | The location of the file to write in. |
-| `"append"`| `boolean` | Whether to append or overwrite the file. |
-
-- `"rest"` - posts the data to a REST service.
+- The `"raw"` metrics publisher saves the data to a file and doesn't have any specific configuration for publishing metrics other than the location of the file in which to write:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `"endpoint"` | `string` | The REST URL. |                                                                |
-| `"timeout"` | `number` | The timeout (in milliseconds) for http requests. |
-| `"heartbeats"` | `number` | The period (in milliseconds) on which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
-| `"conflation"` | `object` | The number of metrics to collect before sending them to the publisher and at what interval (in ms) to send them. |
-| `"authentication"` | `object` | Optional object with keys `"user"` and `"password"` used for basic authentication. |
+| `"location"` | `string`  | **Required.** The location of the file in which to write. |
 
-### JavaScript Metrics Publishers
-
-Metrics can be passed to a JavaScript function which handles the publishing. It is possible to define your custom JavaScript publisher function and configure the Glue42 Gateway to pass the metrics to it.
-
-#### Configuration
-
-Below is an example configuration for enabling a custom JavaScript publisher. The example uses the template file for creating a JavaScript publisher function provided with the [**Glue42 Enterprise**](https://glue42.com/enterprise/) distribution. To add your custom metrics publisher, add a `"customMetricsPublishers"` property to the Glue42 Gateway configuration under the `"configuration"` property of the `"gw"` key in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/):
-
-```json
-"gw": {
-    ...
-    "configuration": {
-            ...
-        "customMetricsPublishers": [
-            {
-                "file": "%GDDIR%/assets/metrics-publishers/template/index.js",
-                "metricsConfiguration": {
-                    "conflation": {
-                        "max-size": 0,
-                        "interval": 1000
-                    },
-                    "buffer-size": 10000,
-                    "split-size": 1
-                },
-                "publisherConfiguration": {
-                    "prop": 1
-                }
-            }
-        ]
-    }
-    ...
-}
-```
+- The `"file"` metrics publisher saves the data in a local file. The following configuration properties are available:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `"file"` | `string` | The path (absolute or relative) to the Node.js module that is to be loaded. |
-| `"metricsConfiguration"` | `object` | Configurations regarding the exact way the publisher will receive the metrics. |
-| `"conflation"` | `object` | The number of metrics to collect before sending them to the publisher and at what interval (in ms) to send them. |
-| `"buffer-size"` | `number` | The number of metrics to keep before starting to drop them (e.g., when publishing is slow). |
-| `"split-size"` | `number` | The number of pieces the metrics batch is split into when it is pushed to the publisher. |
+| `"location"` | `string`  | **Required.** The location of the file in which to write. |
+| `"append"`| `boolean` | Whether to append the new metrics to the file on restart of [**Glue42 Enterprise**](https://glue42.com/enterprise/) or to overwrite it. |
+| `"conflation"` | `object` | Object with two properties: `"max-size"` - the number of metrics to collect before sending them to the publisher, and `"interval"` - at what interval in milliseconds to send them. |
+| `"buffer-size"` | `number` | The number of metrics to store before starting to drop them (e.g., when publishing is slow). |
+| `"heartbeats"` | `number` | The interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
+
+- The `"rest"` metrics publisher posts the data to a REST service. The following configuration properties are available:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"endpoint"` | `string` | **Required.** The URL to the REST service where the metrics will be sent. |
+| `"authentication"` | `object` | Optional object with `"user"` and `"password"` properties for basic authentication. |
+| `"conflation"` | `object` | Object with two properties: `"max-size"` - the number of metrics to collect before sending them to the publisher, and `"interval"` - at what interval in milliseconds to send them. |
+| `"buffer-size"` | `number` | The number of metrics to store before starting to drop them (e.g., when publishing is slow). |
+| `"heartbeats"` | `number` | The interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
+
+- The `"kafka"` metrics publisher sends the data via Kafka. The following configuration properties are available:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"topic"` | `string` | **Required.** Kafka topic to which the metrics will be published. |
+| `"publisher-config"` | `object` | Kafka producer settings. For more details, see [Publishing with Kafka](#publishing_with_kafka). |
+| `"conflation"` | `object` | Object with two properties: `"max-size"` - the number of metrics to collect before sending them to the publisher, and `"interval"` - at what interval in milliseconds to send them. |
+| `"buffer-size"` | `number` | The number of metrics to store before starting to drop them (e.g., when publishing is slow). |
+| `"heartbeats"` | `number` | The interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
+
+*See also [Publishing with Kafka](#publishing_with_kafka).*
+
+- Solace and JavaScript publisher configuration:
+
+The configurations for publishing with Solace or with a JavaScript function are similar and use the `"customMetricsPublishers"` key which has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"file"` | `string` | **Required.** The path (absolute or relative) to the Node.js module that is to be loaded. |
 | `"publisherConfiguration"` | `object` | Custom configuration options that will be passed as an object argument to the function exported from the Node.js module defined in the `"file"` property. |
+| `"metricsConfiguration"` | `object` | Configuration regarding the way the publisher will receive the metrics. |
 
-#### JavaScript Publishing Function
+The `"metricsConfiguration"` object has the following properties:
 
-Below is an example skeleton you can use to create your custom JavaScript publisher:
+| Property | Type | Description |
+|----------|------|-------------|
+| `"split-size"` | `number` | The number of pieces the metrics batch is split into when it is pushed to the publisher. |
+| `"conflation"` | `object` | Object with two properties: `"max-size"` - the number of metrics to collect before sending them to the publisher, and `"interval"` - at what interval in milliseconds to send them. |
+| `"buffer-size"` | `number` | The number of metrics to store before starting to drop them (e.g., when publishing is slow). |
+| `"heartbeats"` | `number` | The interval in milliseconds at which status messages will be generated. Defaults to `1000`. Set to `-1` to disable heartbeats. |
 
-```javascript
-// The function should return an object with three methods.
-
-// The `publisherConfiguration` is specified in the `system.json` file.
-module.exports = function (publisherConfiguration) {
-    function startupFunction() {
-        // Write your initialization logic here.
-        // Return a `Promise` indicating when to start receiving metrics.
-        return Promise.resolve();
-    }
-
-    function cleanupFunction() {
-        // Write your cleanup logic here.
-    }
-
-    function handleMetric(metric) {
-        // Write the code for publishing metrics here.
-    }
-
-    return {
-        startup: startupFunction,
-        cleanup: cleanupFunction,
-        function: handleMetric
-    }
-}
-```
-
-| Function | Description |
-|----------|-------------|
-| `startup()` | This function should notify you when everything needed to publish the metrics is set up and metrics can be received. |
-| `cleanup()` | This function should handle the cleanup process after publishing metrics. |
-| `handleMetric()` | This is the function that publishes the metrics. |
+*See also [Publishing with Solace](#publishing_with_solace) and [JavaScript Metrics Publishers](#javascript_metrics_publishers).*
 
 ### Publishing with Kafka
 
-You can configure the Glue42 Gateway to publish metrics using Kafka.
-Data is serialized in [Avro](https://avro.apache.org/) using our own schema.
+You can configure the Glue42 Gateway to publish metrics using Kafka. The data is serialized in [Avro](https://avro.apache.org/) using a custom schema.
 
 #### Configuration
 
-Below is an example of configuring the Glue42 Gateway to use Kafka to publish metrics:
+The following is an example configuration for publishing metrics with Kafka:
 
 ```json
-"gw": {
-        ...
-    "configuration": {
-        "metrics": {
-            "publishers": ["kafka"],
-            "kafka": {
-                "topic": "metrics",
-                "publisher-config": {
-                    "client.id": "gateway",
-                    "metadata.broker.list": "127.0.0.1:9092",
-                    "debug": "all",
-                    "dr_cb": true,
-                    "event_cb": true
-                },
-                "heartbeats": 1000
+{
+    "gw": {
+        "configuration": {
+            "metrics": {
+                "publishers": ["kafka"],
+                "kafka": {
+                    "topic": "metrics",
+                    "publisher-config": {
+                        "client.id": "gateway",
+                        "metadata.broker.list": "127.0.0.1:9092",
+                        "debug": "all",
+                        "dr_cb": true,
+                        "event_cb": true
+                    },
+                    "heartbeats": 1000
+                }
             }
         }
     }
 }
 ```
 
-Glue42 Gateway uses librdkafka under the hood. To configure the Kafka client for example for ssl or authentication add relevant configuration under `"publisher-config"` section.
-For details refer to https://github.com/edenhill/librdkafka/blob/v1.4.2/CONFIGURATION.md
+The Glue42 Gateway uses [`librdkafka`](https://github.com/edenhill/librdkafka) under the hood. To configure the Kafka client (e.g., for SSL or authentication), add the relevant configuration under the `"publisher-config"` key. For more details, see the available [configuration properties](https://github.com/edenhill/librdkafka/blob/v1.4.2/CONFIGURATION.md).
 
-When creating the Kafka topic to publish metrics on (named `"metrics"` in the above example) you need to consider:
+When creating the Kafka topic to which to publish metrics, you must consider:
 
-* replication factor you need. For metrics replication factor 1 is usually good enough, but depending on your requirements you may considure increasing it.
-* number of partitions. The more partitions you have the more parallel subscribers you can run in a single consumer group.
-* data retention. It is good idea to set both size and time.
+- The needed replication factor. For metrics replication a factor of 1 is usually sufficient, but depending on your requirements, you may consider increasing it.
+- The number of partitions. The more partitions you have, the more parallel subscribers you can run in a single consumer group.
+- Data retention. It is a good practice to set both size and time.
 
-Here is an example command to create a topic with 8 partitions, replication factor 1 and data retention capped to 20GB in size and a week in time:
+The following is an example command to create a topic with 8 partitions, replication factor of 1 and data retention capped to 20 GB in size and up to a week in time:
 
 ```sh
 kafka-topics.sh --zookeeper 127.0.0.1:2181 --create --topic metrics \
@@ -477,41 +472,110 @@ kafka-topics.sh --zookeeper 127.0.0.1:2181 --create --topic metrics \
 
 ### Publishing with Solace
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) supports publishing metrics via Solace. You can configure the Glue42 Gateway to publish the generated metrics using Solace as a transport.
+You can configure the Glue42 Gateway to publish metrics using Solace as a transport.
 
 #### Configuration
 
-Configuring the Glue42 Gateway to use Solace for publishing metrics is similar to configuring a custom JavaScript publisher.
+Use the `"customMetricsPublishers"` property in the Glue42 Gateway configuration to specify configuration for publishing metrics with Solace.
 
-Below is an example of configuring the Glue42 Gateway to use Solace to publish metrics:
+The following is an example configuration for publishing metrics with Solace:
 
 ```json
-"gw": {
-        ...
-    "configuration": {
-            ...
-        "customMetricsPublishers": [
-            {
-                "file": "%GDDIR%/assets/metrics-publishers/solace/index.js",
-                "publisherConfiguration": {
-                    "url": "tcp://localhost:55555",
-                    "host": "localhost",
-                    "vpn": "default",
-                    "password": "",
-                    "user": "default",
-                    "queue-name": "metrics-queue"
+{
+    "gw": {
+        "configuration": {
+            "customMetricsPublishers": [
+                {
+                    "file": "%GDDIR%/assets/metrics-publishers/solace/index.js",
+                    "publisherConfiguration": {
+                        "url": "tcp://localhost:55555",
+                        "host": "localhost",
+                        "vpn": "default",
+                        "password": "",
+                        "user": "default",
+                        "queue-name": "metrics-queue"
+                    }
                 }
-            }
-        ]
-    ...
+            ]
+    }
 }
 ```
 
-You need to provide the user credentials (`"user"` and `"password"`), provide a name for the created message queue (`"queue-name"`) and specify the `"url"` address to connect to.
+You must provide the user credentials (`"user"` and `"password"`), provide a name for the created message queue (`"queue-name"`) and specify the URL address (`"url"`) to which to connect.
+
+### JavaScript Metrics Publishers
+
+Metrics can be passed to a JavaScript function which handles the publishing. It is possible to define your custom JavaScript publisher function and configure the Glue42 Gateway to pass the metrics to it.
+
+#### Configuration
+
+The following is an example configuration for enabling a custom JavaScript publisher. The example uses the template file for creating a JavaScript publisher function provided with the [**Glue42 Enterprise**](https://glue42.com/enterprise/) distribution. To add your custom metrics publisher, use the `"customMetricsPublishers"` property of the Glue42 Gateway configuration:
+
+```json
+{
+    "gw": {
+        "configuration": {
+            "customMetricsPublishers": [
+                {
+                    "file": "%GDDIR%/assets/metrics-publishers/template/index.js",
+                    "metricsConfiguration": {
+                        "conflation": {
+                            "max-size": 0,
+                            "interval": 1000
+                        },
+                        "buffer-size": 10000,
+                        "split-size": 1
+                    },
+                    "publisherConfiguration": {
+                        "prop": 1
+                    }
+                }
+            ]
+        }
+    }
+}
+```
+
+#### JavaScript Publishing Function
+
+The following is an example skeleton you can use to create your custom JavaScript publisher:
+
+```javascript
+// The function must return an object with three methods.
+
+// The `publisherConfiguration` is specified in the `system.json` file.
+module.exports = function (publisherConfiguration) {
+    function startupFunction() {
+        // Write your initialization logic here.
+        // Return a `Promise` indicating when to start receiving metrics.
+        return Promise.resolve();
+    };
+
+    function cleanupFunction() {
+        // Write your cleanup logic here.
+    };
+
+    function handleMetric(metric) {
+        // Write the code for publishing metrics here.
+    };
+
+    return {
+        startup: startupFunction,
+        cleanup: cleanupFunction,
+        function: handleMetric
+    };
+};
+```
+
+| Function | Description |
+|----------|-------------|
+| `startupFunction()` | This function should notify you when everything needed to publish the metrics is set up and metrics can be received. |
+| `cleanupFunction()` | This function should handle the cleanup process after publishing metrics. |
+| `handleMetric()` | This is the function that publishes the metrics. |
 
 ### Filtering
 
-The Glue42 Gateway allows the metrics and their publishers to be filtered based on white/blacklisting matching on the publisher and metric names. Filtering is useful for targeting only the metrics you would actually consume and to avoid leaking sensitive information.
+The Glue42 Gateway allows the metrics and their publishers to be filtered based on matching of the publisher and metric names. Filtering is useful for targeting only the metrics you would actually consume and to avoid leaking sensitive information.
 
 The filtering configuration has the following syntax:
 
@@ -565,7 +629,7 @@ A sample configuration that allows only the User Journey and Feature metrics com
 }
 ```
 
-Below is a configuration that allows all metrics from a publisher whose service starts with "Glue" (note that regex values start with `#`):
+The following is a configuration that allows all metrics from a publisher whose service starts with "Glue" (note that regex values start with `#`):
 
 ```json
 {

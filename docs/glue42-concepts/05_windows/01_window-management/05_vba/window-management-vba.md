@@ -1,6 +1,6 @@
 ## Glue42 Windows
 
-In order for windows of VBA applications to become **Glue42 Windows**, they must be registered as Glue42 Windows after the Glue42 COM library has been initialized. 
+In order for windows of VBA applications to become **Glue42 Windows**, they must be registered as Glue42 Windows after the Glue42 COM library has been initialized.
 
 ## Registering VBA UserForms
 
@@ -43,7 +43,7 @@ Set WinSettings = Glue.CreateDefaultVBGlueWindowSettings
 
 ' Must always be set to `True` in VBA.
 WinSettings.SynchronousDestroy = True
-' Disable Glue42 Channels. 
+' Disable Glue42 Channels.
 WinSettings.ChannelSupport = False
 ' Set custom title.
 WinSettings.Title = "Custom Title"
@@ -82,6 +82,19 @@ Private Sub GlueWin_HandleWindowDestroyed(ByVal window As IGlueWindow)
 End Sub
 ```
 
+### Additional Window Events
+
+You may optionally implement a handler for [`HandleWindowEvent`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlewindowevent) which will be executed for various events related to the Glue42 Window, e.g. when the window is activated, moved, etc.
+
+```vbnet
+Private Sub GlueWin_HandleWindowEvent(ByVal window As IGlueWindow, ByVal eventType As GlueWindowEventType, ByVal eventData As GlueDynamicValue)
+    If eventType = GlueWindowEventType_BoundsChanged Then
+        ' Window was moved or resized, examine `eventData` for details.
+        ...
+    End If
+End Sub
+```
+
 ## Window Operations
 
 Once the VBA window has been registered as a Glue42 Window, you can perform different operations on it.
@@ -114,6 +127,14 @@ Else
 End If
 ```
 
+### Activation
+
+To activate the window, use the [`Activate`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-activate) subroutine:
+
+```vbnet
+GlueWin.Activate
+```
+
 ## VBA UserForm Restrictions
 
 The following restrictions apply to a VBA `UserForm` when it has been registered as a Glue42 Window:
@@ -121,4 +142,4 @@ The following restrictions apply to a VBA `UserForm` when it has been registered
 - The application must provide a mandatory implementation of the [`HandleWindowDestroyed`](../../../../getting-started/how-to/glue42-enable-your-app/vba/index.html#classes-gluewindow-handlewindowdestroyed) event in order to properly unload the VBA `UserForm`. Failing to unload the VBA `UserForm` will lead to deadlocks in the VBA execution thread.
 - If implementing a handler for the `UserForm_QueryClose`, the application must not make any blocking calls (e.g., use I/O operations, display close confirmation popups to the user) or prevent the `UserForm` from unloading by setting a non-zero value to the `Cancel` parameter.
 - The application shouldn't change directly the VBA `UserForm` visibility or position (e.g., with `Show`, `Hide`, `Move`).
-- After a `UserForm` has been closed/unloaded, it can be displayed again by using `Show`. In this case you will need to repeat the Glue42 initialization and Glue42 Window registration for the `UserForm`. 
+- After a `UserForm` has been closed/unloaded, it can be displayed again by using `Show`. In this case you will need to repeat the Glue42 initialization and Glue42 Window registration for the `UserForm`.

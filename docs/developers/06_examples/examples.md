@@ -48,13 +48,6 @@ The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.co
 - Notifications Example
 - Window Management Example
 
-### COM
-
-[COM Examples Repository](https://github.com/Tick42/com-examples)
-
-- Delphi 10 Example
-- Delphi 7 Example
-
 ### Dash
 
 [Dash Examples Repository](https://github.com/Glue42/glue-dash-example)
@@ -68,6 +61,19 @@ The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.co
 - "Oil and Gas" Example
 - Window Management Example
 
+### Native Examples
+
+[COM Examples](https://github.com/Glue42/native-examples/tree/main/glue-com)
+
+- Delphi 10 Example
+- Delphi 7 Example
+- MFC Example
+
+[C Exports Examples](https://github.com/Glue42/native-examples/tree/main/glue-c-exports)
+
+- C++ Console Example
+- MFC Example
+
 ### Other Examples
 
 - [Search Provider Example](https://github.com/Glue42/search-provider) - a basic search provider that can be used to return results for custom entities to the Global Search app.
@@ -76,4 +82,6 @@ The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.co
 
 - [.NET REST Config Example](https://github.com/Tick42/rest-config-example-net) - A simple .NET REST server, which acts as a remote application and Layout store. You can use this example to test fetching applications and Layouts configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
 
-- [Testing Example](https://github.com/Glue42/glue42-spectron-example) - Here you can get an example web app and tests, which you can use to learn how to test your app within the Glue42 framework. 
+- [Playwright Example](https://github.com/Glue42/playwright-example) - a Glue42 end-to-end test example using Playwright.
+
+- [Templates](https://github.com/Glue42/templates) - templates for creating custom toolbars, launchpads and Workspaces apps based on the Glue42 Floating Toolbar, the Glue42 Launchpad and the [**Glue42 Enterprise**](https://glue42.com/enterprise/) Workspaces UI App.

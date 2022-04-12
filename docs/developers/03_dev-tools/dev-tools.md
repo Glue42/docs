@@ -34,10 +34,12 @@ The Application Monitor is disabled by default. To be able to use the Applicatio
 Configure the `"performanceTracker"` top-level key in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) to enable performance tracking:
 
 ```json
-"performanceTracker": {
-    "enable": true,
-    "trackAutoStarted": false,
-    "isTrackingEnabled": true
+{
+    "performanceTracker": {
+        "enable": true,
+        "trackAutoStarted": false,
+        "isTrackingEnabled": true
+    }
 }
 ```
 

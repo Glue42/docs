@@ -4,7 +4,7 @@ The source code for the Glue42 [Floating Toolbar](../../../../glue42-concepts/gl
 
 ## Launchpad
 
-The Glue42 [Launchpad](../../../../glue42-concepts/glue42-toolbar/index.html#launchpad) is available as a React Component on `npm` - [`@glue42/launchpad-ui-react`](https://www.npmjs.com/package/@glue42/launchpad-ui-react). You can use the component in your own apps and also modify it by passing different options. For more details, see the README file of the [`@glue42/launchpad-ui-react`](https://www.npmjs.com/package/@glue42/launchpad-ui-react) package.
+The Glue42 [Launchpad](../../../../glue42-concepts/glue42-toolbar/index.html#launchpad) is available as a React Component on NPM - [`@glue42/launchpad-ui-react`](https://www.npmjs.com/package/@glue42/launchpad-ui-react). You can use the component in your own apps and also modify it by passing different options. For more details, see the README file of the [`@glue42/launchpad-ui-react`](https://www.npmjs.com/package/@glue42/launchpad-ui-react) package.
 
 ## Custom Toolbar
 

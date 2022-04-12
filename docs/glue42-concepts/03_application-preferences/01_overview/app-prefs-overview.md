@@ -1,12 +1,12 @@
 ## Overview
 
-The Application Preferences API enables applications to store custom user-specific data and retrieve it when necessary. This allows you to enhance the UX of your apps by instrumenting them to preserve specific user settings and apply them when the app is relaunched. 
+The Application Preferences API enables applications to store custom user-specific data and retrieve it when necessary. This allows you to enhance the UX of your apps by instrumenting them to preserve specific user settings and apply them when the app is relaunched.
 
 The Application Preferences API provides methods for updating, replacing and clearing user settings stored for the current or a specific application, as well as for all applications of the current user.
 
 ## Storage
 
-Application preferences can be stored locally in a file, or remotely - using a REST service or the [Glue42 Server](../../glue42-server/index.html). By default, application preferences are stored locally in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\prefs` folder where `<ENV-REG>` should be replaced by the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) where to store application preferences, use the `"store"` property of the `"applicationPreferences"` top-level key in the `system.json` file located in the `%LocalAppData%\Tick42\GlueDesktop\config` folder:
+Application preferences can be stored locally in a file, or remotely - using a REST service or the [Glue42 Server](../../glue42-server/index.html). By default, application preferences are stored locally in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\prefs` folder where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) where to store application preferences, use the `"store"` property of the `"applicationPreferences"` top-level key in the `system.json` file located in the `%LocalAppData%\Tick42\GlueDesktop\config` folder:
 
 ```json
 {

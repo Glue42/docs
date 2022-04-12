@@ -10,16 +10,16 @@ The purpose of this tutorial is to introduce [**Glue42 Enterprise**](https://glu
 
 ## Resources
 
-Before you start the tutorial, see the [.NET examples](https://github.com/Glue42/net-examples) on GitHub - a repository with sample projects that use the Glue42 .NET API. 
+Before you start the tutorial, see the [.NET examples](https://github.com/Glue42/net-examples) on GitHub - a repository with sample projects that use the Glue42 .NET API.
 
 ## Setup
 
 First, clone the [tutorial repository](https://github.com/Glue42/net-tutorial)  and start [**Glue42 Enterprise**](https://glue42.com/enterprise/).
 
-After that, reference the `Glue42.dll`, located in `%LocalAppData%/Tick42/GlueSDK/Glue42NET/lib/net45`, in each of the projects.  
+After that, reference the `Glue42.dll`, located in `%LocalAppData%/Tick42/GlueSDK/Glue42NET/lib/net45`, in each of the projects.
 
 Repository structure:
-- `data` - contains an `exe` which hosts all client related data on port 8083;
+- `data` - contains an EXE which hosts all client related data on port 8083;
 - `config` - contains the configuration files for all applications;
 - `skeleton` - contains the skeleton of the solution in which you will start;
 - `solution` - contains a full solution to the tutorial, which you can use for reference how everything should work when completed;
@@ -35,8 +35,8 @@ So, now you have four applications that must be integrated with [**Glue42 Enterp
 
 Here are some common issues that you may encounter:
 - Application is missing from the App Manager - check its configuration file: it must be a valid `JSON`.
-- Application doesn't start after being clicked - make sure that the `path` property of the configuration file of the application points to the folder which contains the `exe`.
-- The `Clients` application doesn't visualize any data - the data provider `exe` must be running, so make sure that the `path` in its configuration file is valid and that port 8083 is free (this is where the data is hosted).
+- Application doesn't start after being clicked - make sure that the `path` property of the configuration file of the application points to the folder which contains the EXE.
+- The `Clients` application doesn't visualize any data - the data provider EXE must be running, so make sure that the `path` in its configuration file is valid and that port 8083 is free (this is where the data is hosted).
 - Some/All of my projects won't build - make sure that all projects reference the `Glue42.dll` located in `%LocalAppData%/Tick42/GlueSDK/Glue42NET/lib/net45`.
 
 ## Initializing the Glue42 Library
@@ -54,7 +54,7 @@ It is best that this happens at the first possible moment so that Glue42 is alwa
 
 ## 1. Window Management
 
-Users of desktop applications start to face issues with window management when they have to work with many apps and their desktop gets cluttered with random windows. Glue42 has a solution for this - the StickyWindows API. With this API you can make your application sticky which gives your users the opportunity to organize their desktops. To make the app windows sticky, find all `RegisterToStickyWindows()` methods in your applications and implemented them so that all applications are flat windows and their titles are the same as their names. You can use the given bounds objects in the configuration. For more details on how to do this, see the .NET [Window Management](../../../glue42-concepts/windows/window-management/net/index.html) documentation. 
+Users of desktop applications start to face issues with window management when they have to work with many apps and their desktop gets cluttered with random windows. Glue42 has a solution for this - the StickyWindows API. With this API you can make your application sticky which gives your users the opportunity to organize their desktops. To make the app windows sticky, find all `RegisterToStickyWindows()` methods in your applications and implemented them so that all applications are flat windows and their titles are the same as their names. You can use the given bounds objects in the configuration. For more details on how to do this, see the .NET [Window Management](../../../glue42-concepts/windows/window-management/net/index.html) documentation.
 
 *For each task you will find hints and guidelines as comments in the code.*
 
@@ -96,7 +96,7 @@ If you click on a notification, a default screen will be opened with further inf
 
 Glue42 has an Application Management API through which you can execute all kinds of application management commands. For the current scenario you will only need to start a new instance of the `Contacts` application in the `ShowContacts()` method. To see how to use the Application Management API, click [here](../../../glue42-concepts/application-management/net/index.html). Keep in mind that the `Clients` app must be open when you click on a notification, if you want the `ShowContacts()` method to be invoked.
 
-So, now the `Contacts` app is opened, but you still need to have data in it. You can get your data from the `Clients` app. Go to the `ContactsService` class in `Clients`, implement the `FindWhoToCall()` method, invoke it from `Contacts` and use the result to update the UI. Don't forget to check if the service exists. 
+So, now the `Contacts` app is opened, but you still need to have data in it. You can get your data from the `Clients` app. Go to the `ContactsService` class in `Clients`, implement the `FindWhoToCall()` method, invoke it from `Contacts` and use the result to update the UI. Don't forget to check if the service exists.
 
 ![Glue .Net Tutorial Chapter 5](../../../images/tutorials/enterprise-net/5-net.gif)
 
@@ -108,4 +108,4 @@ Your task will be to add metrics in the `DataReceiver` class in the `Clients` pr
 
 ## Congratulations!
 
-You have completed the .NET tutorial. You are now ready to integrate all your .NET applications with Glue42 Enterprise! 
+You have completed the .NET tutorial. You are now ready to integrate all your .NET applications with Glue42 Enterprise!

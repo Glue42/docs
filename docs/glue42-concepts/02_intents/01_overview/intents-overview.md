@@ -1,6 +1,6 @@
 ## Overview
 
-In certain workflow scenarios, your application may need to start (or activate) a specific application. For instance, you may have an application showing client portfolios with financial instruments. When the user clicks on an instrument, you want to start an application which shows a chart for that instrument. In other cases, you may want to present the user with several options for executing an action or handling data from the current application. 
+In certain workflow scenarios, your application may need to start (or activate) a specific application. For instance, you may have an application showing client portfolios with financial instruments. When the user clicks on an instrument, you want to start an application which shows a chart for that instrument. In other cases, you may want to present the user with several options for executing an action or handling data from the current application.
 
 The Intents API makes all that possible by enabling applications to register, find and raise Intents.
 
@@ -16,26 +16,28 @@ Another case where the Intents API can be useful is if you want to find (and pos
 
 1. All applications that can visualize data in charts register an Intent called "ShowChart", specifying the data structure they work with. Some of them work with "Instrument" data type, others work with different data types.
 
-2. When the user clicks on an instrument in the "Portfolio" app, the "Portfolio" app searches for all registered Intents with a name "ShowChart" and filters them by the data type they work with. 
+2. When the user clicks on an instrument in the "Portfolio" app, the "Portfolio" app searches for all registered Intents with a name "ShowChart" and filters them by the data type they work with.
 
 3. The user sees a menu built on the fly which shows all currently available apps for visualizing charts that work with "Instrument" data type.
 
 ## Defining Intents
 
-Intents are either defined through the application configuration file, or registered dynamically at runtime. User defined application files are usually located in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` should be replaced by the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). Intents are configured under the `intents` top-level key of the application configuration file.
+Intents are either defined through the application configuration file, or registered dynamically at runtime. User defined application files are usually located in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). Intents are configured under the `intents` top-level key of the application configuration file.
 
-It is possible for different applications to register an Intent with the same name, which is useful when several applications perform the same action or work with the same data structure. This allows for easy replacement of applications. You may have an old app that has registered an Intent called `"ShowChart"` which you want to replace with a new app. Your new app only needs to register the same Intent (you can either remove the old app or leave it as an additional option for the users who prefer it). No changes to the calling application are necessary - when it raises the `"ShowChart"` Intent, the new app will be called. 
+It is possible for different applications to register an Intent with the same name, which is useful when several applications perform the same action or work with the same data structure. This allows for easy replacement of applications. You may have an old app that has registered an Intent called `"ShowChart"` which you want to replace with a new app. Your new app only needs to register the same Intent (you can either remove the old app or leave it as an additional option for the users who prefer it). No changes to the calling application are necessary - when it raises the `"ShowChart"` Intent, the new app will be called.
 
 Use the `intents` top-level key in the application configuration file to define an Intent:
 
 ```json
-"intents": [
-    {
-        "name": "ShowChart",
-        "displayName": "BBG Instrument Chart",
-        "contexts": ["Instrument"]
-    }
-]
+{
+    "intents": [
+        {
+            "name": "ShowChart",
+            "displayName": "BBG Instrument Chart",
+            "contexts": ["Instrument"]
+        }
+    ]
+}
 ```
 
 | Property | Description |

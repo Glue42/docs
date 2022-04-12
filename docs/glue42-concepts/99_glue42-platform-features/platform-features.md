@@ -6,6 +6,24 @@ Service windows may be useful in many scenarios. For instance, you may have a nu
 
 <glue42 name="diagram" image="../../images/platform-features/service-windows.png">
 
+The following example demonstrates how to configure an app as a service window, so that it will be auto started, its window will be invisible and the application won't appear in the [Glue42 Toolbar](../glue42-toolbar/index.html):
+
+```json
+{
+    "name": "service-window",
+    "type": "window",
+    "service": true,
+    "hidden": true,
+    "autoStart": true,
+    "details": {
+        "url": "https://example.com/my-service-window",
+        "hidden": true
+    }
+}
+```
+
+*For more details, see the [Application Configuration](../../developers/configuration/application/index.html#application_configuration-service_window) section.*
+
 ## Citrix Applications
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.12">
@@ -75,12 +93,13 @@ The [application configuration](../../developers/configuration/application/index
 The following example demonstrates defining two preload scripts by providing their respective URLs:
 
 ```json
-"details": {
-    ...
-    "preloadScripts": [
-        "https://my-domain.com/my-script.js",
-        "https://my-domain.com/my-other-script.js"
-    ]
+{
+    "details": {
+        "preloadScripts": [
+            "https://my-domain.com/my-script.js",
+            "https://my-domain.com/my-other-script.js"
+        ]
+    }
 }
 ```
 
@@ -107,11 +126,13 @@ When the link is clicked, [**Glue42 Enterprise**](https://glue42.com/enterprise/
 The Glue42 global protocol can be configured from the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) using the `"potocolHandler"` top-level key:
 
 ```json
-"protocolHandler": {
-    "enabled": true,
-    "allowOpeningURLs": {
-        "allowed": ["https://glue42.com"],
-        "forbidden": ["https://youtube.com/.*", "https://facebook.com/.*"]
+{
+    "protocolHandler": {
+        "enabled": true,
+        "allowOpeningURLs": {
+            "allowed": ["https://glue42.com"],
+            "forbidden": ["https://youtube.com/.*", "https://facebook.com/.*"]
+        }
     }
 }
 ```
@@ -120,9 +141,18 @@ The `"protocolHandler"` key has the following properties:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `"enabled"` | `bolean` | If `true` (default), will enable the Glue42 global protocol handler. |
-| `"defaultExecutable"` | `string` | Path to an executable file that will be started if no other Glue42 instance is running. Defaults to the Glue42 executable file. |
-| `"allowOpeningURLs"` | `boolean` \| `object` | Specify allowed and forbidden URLs for the Glue42 global protocol handler. Can be set to a `boolean` value or to an `object` containing a list of allowed or forbidden URLs. If `true`, will allow handling of all URLs. |
+| `"enabled"` | `boolean` | If `true` (default), will enable the Glue42 global protocol handler. |
+| `"protocol"` | `string` | Custom name for the protocol prefix. Defaults to `"glue42"`. |
+| `"startNewInstance"` | `object` | If enabled, a new instance of Glue42 will be started when opening links with the Glue42 protocol handler. |
+| `"allowOpeningURLs"` | `boolean` \| `object` | If `true`, will allow handling all URLs. Can also be set to an object containing a list of allowed or forbidden URLs for the Glue42 global protocol handler. |
+
+The `"startNewInstance"` object has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"enabled"` | `boolean` | If `true` (default), will allow starting a new instance of Glue42 when opening links with the Glue42 protocol handler. |
+| `"defaultExecutable"` | `object` | An object with two properties - `"path"` and `"args"`. The `"path"` property accepts a string path to an executable file that will be started if no other Glue42 instance is running. Defaults to the Glue42 executable file. The `"args"` property accepts a string array with items, each item representing a command line argument. Defaults to an empty array. Note that if you point the `"path"` property to a script file that in turn will launch [**Glue42 Enterprise**](https://glue42.com/enterprise/), then you must pass the startup arguments from the script to [**Glue42 Enterprise**](https://glue42.com/enterprise/). |
+| `"errorMessage"` | `string` | Message that will override the default error message displayed when starting a new Glue42 instance is disabled. |
 
 The `"allowOpeningURLs"` property can be set to an object with the following properties:
 
@@ -220,14 +250,16 @@ The file download behavior is controlled by the system configuration. It can be 
 System configuration example:
 
 ```json
-"windows" {
-    "downloadSettings": {
-        "autoSave": true,
-        "autoOpenPath": false,
-        "autoOpenDownload": false,
-        "enable": true,
-        "enableDownloadBar": true,
-        "path": "%DownloadsFolder%"
+{
+    "windows" {
+        "downloadSettings": {
+            "autoSave": true,
+            "autoOpenPath": false,
+            "autoOpenDownload": false,
+            "enable": true,
+            "enableDownloadBar": true,
+            "path": "%DownloadsFolder%"
+        }
     }
 }
 ```
@@ -332,8 +364,7 @@ Enable the context menu:
 ```json
 {
     "windows": {
-        ...
-        "contextMenu": true
+        "contextMenuEnabled": true
     }
 }
 ```
@@ -343,9 +374,7 @@ Enable the context menu:
 ```json
 [
     {
-       ...
         "details": {
-            ...
             "contextMenuEnabled": true
         }
     }
@@ -451,12 +480,14 @@ You can zoom in and out of windows in several ways:
 You can configure window zooming system-wide from the `system.json` file in the `%LocalAppData%\Tick42\GlueDesktop\config` folder. Use the `"zoom"` property under the `"windows"` top-level key:
 
 ```json
-"windows": {
-    "zoom": {
-        "enabled": true,
-        "mouseWheelZoom": true,
-        "factors": [25, 33, 50, 67, 75, 80, 90, 100, 110, 125, 150, 175, 200, 250, 300, 400, 500],
-        "defaultFactor": 100
+{
+    "windows": {
+        "zoom": {
+            "enabled": true,
+            "mouseWheelZoom": true,
+            "factors": [25, 33, 50, 67, 75, 80, 90, 100, 110, 125, 150, 175, 200, 250, 300, 400, 500],
+            "defaultFactor": 100
+        }
     }
 }
 ```
@@ -548,11 +579,9 @@ To enable display capturing you must add the `"allowCapture"` property to your a
 {
     "name": "MyApp",
     "type": "window",
-    ...
     "allowCapture": true,
     "details": {
         "url": "http://localhost:3000"
-        ...
     }
 }
 ```
@@ -575,7 +604,7 @@ You can get the primary display with the [`getPrimary()`](../../reference/glue/l
 
 ```javascript
 // Returns the primary display.
-const primaryDisplay =  await glue.displays.getPrimary(); 
+const primaryDisplay =  await glue.displays.getPrimary();
 ```
 
 Example of finding and capturing the primary display:
@@ -614,7 +643,7 @@ The [`Display`](../../reference/glue/latest/displays/index.html#Display) object 
 
 #### Capturing All Displays
 
-To capture all displays, use the [`captureAll()`](../../reference/glue/latest/displays/index.html#API-captureAll) method. It accepts a [`CaptureAllOptions`](../../reference/glue/latest/displays/index.html#CaptureAllOptions) object and returns a `base64` encoded string or an array of `base64` encoded strings depending on the specified [`combined`](../../reference/glue/latest/displays/index.html#CaptureAllOptions-combined) option.
+To capture all displays, use the [`captureAll()`](../../reference/glue/latest/displays/index.html#API-captureAll) method. It accepts a [`CaptureAllOptions`](../../reference/glue/latest/displays/index.html#CaptureAllOptions) object and returns a Base64 encoded string or an array of Base64 encoded strings depending on the specified [`combined`](../../reference/glue/latest/displays/index.html#CaptureAllOptions-combined) option.
 
 The following example demonstrates how to capture all available displays and combine the screenshots into a single image with `width` set to 2000 pixels. The aspect ratio of the combined images will be preserved (the omitted [`keepAspectRatio`](../../reference/glue/latest/displays/index.html#AbsoluteSizeOptions-keepAspectRatio) property in the `size` object defaults to `true`) and the images will be arranged the way you have arranged your displays from your operating system settings:
 
@@ -633,7 +662,7 @@ The [`CaptureAllOptions`](../../reference/glue/latest/displays/index.html#Captur
 
 To capture a single display, use the `capture()` method at top level of the API or on a [`Display`](../../reference/glue/latest/displays/index.html#Display) instance.
 
-When you use the [`capture()`](../../reference/glue/latest/displays/index.html#API-capture) method at top level of the API, pass a [`CaptureOptions`](../../reference/glue/latest/displays/index.html#CaptureOptions) object. The following example demonstrates how to use the display ID to find and capture the desired display and also how to specify capturing options. The `width` and `height` of the output image will be half the width and height of the captured monitor. The captured image is returned as a `base64` encoded string:
+When you use the [`capture()`](../../reference/glue/latest/displays/index.html#API-capture) method at top level of the API, pass a [`CaptureOptions`](../../reference/glue/latest/displays/index.html#CaptureOptions) object. The following example demonstrates how to use the display ID to find and capture the desired display and also how to specify capturing options. The `width` and `height` of the output image will be half the width and height of the captured monitor. The captured image is returned as a Base64 encoded string:
 
 ```javascript
 const displayID = 2528732444;
@@ -721,11 +750,8 @@ Logging for applications in [**Glue42 Enterprise**](https://glue42.com/enterpris
 ```json
 {
     "name": "my-app",
-    ...
     "allowLogging": true,
-    "details": {
-        ...
-    }
+    "details": {}
 }
 ```
 
@@ -763,7 +789,7 @@ logger.error("Could not load component!");
 
 ### Location and Output
 
-User application log files are located in the `%LocalAppData%\Tick42\UserData\<ENV>-<REG>\logs\applications` folder, where `<ENV-REG>` should be replaced by the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). A separate log file is created for each application that has logging enabled. The file is named after the application and is created after the app starts to output log entries. All instances of an application log to the same file.
+User application log files are located in the `%LocalAppData%\Tick42\UserData\<ENV>-<REG>\logs\applications` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). A separate log file is created for each application that has logging enabled. The file is named after the application and is created after the app starts to output log entries. All instances of an application log to the same file.
 
 The log file entries are in the following format:
 
@@ -781,6 +807,59 @@ Here is how an actual entry in a log file looks like:
 
 For a complete list of the available Logger API methods and properties, see the [Logger API Reference Documentation](../../reference/glue/latest/logger/index.html).
 
+## Cookies
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.14">
+
+By default, Glue42 enabled web apps aren't allowed to manipulate cookies. To allow an application to manipulate cookies for the default web session, use the `"allowCookiesManipulation"` property of the `"details"` top-level key in the [application configuration]() file:
+
+```json
+{
+    "details": {
+        "allowCookiesManipulation": true
+    }
+}
+```
+
+When an app is allowed to manipulate cookies, the globally available `glue42gd` object is injected with a `cookies` object which offers methods for manipulating cookies.
+
+*Note that the available Glue42 methods for manipulating cookies mirror the methods of a `Cookies` instance as described in the Electron documentation. For more details on the method signatures, see the Electron documentation for the [Instance Methods](https://www.electronjs.org/docs/latest/api/cookies#instance-methods) of the `Cookies` class.*
+
+To get a collection of all cookies for the default web session, use the `get()` method and pass an empty object as a filter:
+
+```javascript
+const allCookies = await glue42gd.cookies.get({});
+```
+
+To filter the cookies, pass a cookie name, URL, or other identifiers in the filter object:
+
+```javascript
+const filter = { name: "MyCookie" };
+
+const myCookie = (await glue42gd.cookies.get(filter))[0];
+```
+
+To create a cookie for the default web session, use the `set()` method. It is required to pass an object with a valid `url` property:
+
+```javascript
+const cookie = {
+    url: "https://example.com",
+    name: "MyCookie",
+    value: "42"
+};
+
+await glue42gd.cookies.set();
+```
+
+To remove a cookie for the default web session, use the `remove()` method and pass the cookie URL and name:
+
+```javascript
+const url = "https://example.com";
+const name = "MyCookie";
+
+await glue42gd.cookies.remove(url, name);
+```
+
 ## Accessing OS Info
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
@@ -792,9 +871,10 @@ You can allow applications to access OS information (list of running processes, 
 Set the `"allowOSInfo"` property to `true` in the `"details"` top-level key to allow an app to access OS information:
 
 ```json
-"details": {
-    ...
-    "allowOSInfo": true
+{
+    "details": {
+        "allowOSInfo": true
+    }
 }
 ```
 
@@ -829,18 +909,20 @@ You can extend the Chrome DevTools in [**Glue42 Enterprise**](https://glue42.com
 ```json
 {
     "devToolsExtensions": [
-        "C:\\Users\\<username>\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\fmkadmapgofadopljbjfkapdkoienihi"
+        "C:\\Users\\<username>\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\fmkadmapgofadopljbjfkapdkoienihi\\4.23.0_0"
     ]
 }
 ```
 
-*Replace `<username>` with your local username. Remember to escape the backslash characters.*
+*Replace `<username>` with your local username. The path must point to the version folder of the extension containing the `manifest.json` file. Remember to escape the backslash characters.*
 
 4. Open the JSON configuration file of your application and add the following configuration under the `"details"` top-level key:
 
 ```json
-"security": {
-    "sandbox": false
+{
+    "security": {
+        "sandbox": false
+    }
 }
 ```
 
@@ -849,10 +931,8 @@ For instance:
 ```json
 {
     "name": "My App",
-    ...
     "details": {
         "url": "http://localhost:3000",
-        ...
         "security": {
             "sandbox": false
         }

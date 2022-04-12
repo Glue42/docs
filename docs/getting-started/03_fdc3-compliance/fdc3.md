@@ -69,13 +69,15 @@ Intents can be defined both in the `"intents"` top-level array of an [FDC3 appli
 Below is an example configuration for an Intent:
 
 ```json
-"intents": [
-    {
-        "name": "ShowChart",
-        "displayName": "BBG Instrument Chart",
-        "contexts": ["Instrument"]
-    }
-]
+{
+    "intents": [
+        {
+            "name": "ShowChart",
+            "displayName": "BBG Instrument Chart",
+            "contexts": ["Instrument"]
+        }
+    ]
+}
 ```
 
 | Property | Description |
@@ -130,18 +132,20 @@ The goal of the [FDC3 App Directory](https://fdc3.finos.org/docs/app-directory/o
 To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve [application definitions from remote application stores](../../developers/configuration/system/index.html#application_stores), add a new entry to the `"appStores"` top-level key of the `system.json` file located in the `%LOCALAPPDATA%\Tick42\GlueDesktop\config` folder:
 
 ```json
-"appStores": [
-    {
-        "type": "rest",
-        "details": {
-            "url": "http://localhost:3000/appd/v1/apps/search",
-            "auth": "no-auth",
-            "pollInterval": 30000,
-            "enablePersistentCache": true,
-            "cacheFolder": "%LocalAppData%/Tick42/UserData/%GLUE-ENV%-%GLUE-REGION%/gcsCache/"
+{
+    "appStores": [
+        {
+            "type": "rest",
+            "details": {
+                "url": "http://localhost:3000/appd/v1/apps/search",
+                "auth": "no-auth",
+                "pollInterval": 30000,
+                "enablePersistentCache": true,
+                "cacheFolder": "%LocalAppData%/Tick42/UserData/%GLUE-ENV%-%GLUE-REGION%/gcsCache/"
+            }
         }
-    }
-]
+    ]
+}
 ```
 
 | Property | Description |
@@ -164,4 +168,4 @@ According to the [FDC3 App Directory specifications](https://fdc3.finos.org/sche
 
 *For a reference implementation of the FDC3 App Directory, see the [Node.js REST Config Example](https://github.com/Glue42/rest-config-example-node-js) on GitHub.*
 
-*For more information on using App Directory, see the [FDC3 App Directory documentation](https://fdc3.finos.org/docs/app-directory/overview).* 
+*For more information on using App Directory, see the [FDC3 App Directory documentation](https://fdc3.finos.org/docs/app-directory/overview).*

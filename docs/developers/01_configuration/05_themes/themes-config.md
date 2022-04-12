@@ -10,16 +10,18 @@ Set various theme properties - global theme properties, properties for individua
 
 ### Global
 
-The frame of a Glue42 Window (or a group of windows) is its outermost container - changing its thickness will change the visual width and height of the window (window group) without affecting the window content. The border of a window is the border of the actual application loaded inside the Glue42 Window and can be thought of as padding - if you increase the border size, the window content will shrink correspondingly. 
+The frame of a Glue42 Window (or a group of windows) is its outermost container - changing its thickness will change the visual width and height of the window (window group) without affecting the window content. The border of a window is the border of the actual application loaded inside the Glue42 Window and can be thought of as padding - if you increase the border size, the window content will shrink correspondingly.
 
 *Note that [Glue42 Windows](../../../glue42-concepts/windows/window-management/overview/index.html) with `"mode": "tab"` and `"mode": "flat"` have borders and a frame, while windows with `"mode": "html"` only have a frame.*
 
 Setting the frame thickness and color of single Glue42 Windows:
 
 ```json
-"properties": {
-    "singleFrameThickness": 3,
-    "frameColor":"#9c0000"
+{
+    "properties": {
+        "singleFrameThickness": 3,
+        "frameColor":"#9c0000"
+    }
 }
 ```
 
@@ -28,11 +30,13 @@ Setting the frame thickness and color of single Glue42 Windows:
 The example below shows setting the window border size and color. For the purpose of conveying the difference between the window frame and the window border, the frame is also set:
 
 ```json
-"properties": {
-    "singleFrameThickness": 3,
-    "frameColor": "#1e1e1e",
-    "borderSize": 2,
-    "borderColor": "#9c0000"
+{
+    "properties": {
+        "singleFrameThickness": 3,
+        "frameColor": "#1e1e1e",
+        "borderSize": 2,
+        "borderColor": "#9c0000"
+    }
 }
 ```
 
@@ -41,10 +45,12 @@ The example below shows setting the window border size and color. For the purpos
 It is possible to indicate visually that a Glue42 Window is on focus by setting thickness and color for a focus frame. For the focus frame to be visible in flat and tab windows, the border must not be set to `0`. For the focus frame to be visible in HTML windows, both the border and the frame must not be set to `0`. Below is an example of setting the size and the color of the window focus frame:
 
 ```json
-"properties": {
-    "borderSize": 2,
-    "focusFrameSize": 2,
-    "focusFrameColor": "#9c0000"
+{
+    "properties": {
+        "borderSize": 2,
+        "focusFrameSize": 2,
+        "focusFrameColor": "#9c0000"
+    }
 }
 ```
 
@@ -53,8 +59,10 @@ It is possible to indicate visually that a Glue42 Window is on focus by setting 
 Setting the color of text in the Glue42 Window frame:
 
 ```json
-"properties": {
-    "textColor": "#9c0000"
+{
+    "properties": {
+        "textColor": "#9c0000"
+    }
 }
 ```
 
@@ -63,10 +71,12 @@ Setting the color of text in the Glue42 Window frame:
 Setting the tooltip background and text color:
 
 ```json
-"properties": {
-    "tooltips": {
-        "foregroundColor": "#ffffff",
-        "backgroundColor": "#9c0000"
+{
+    "properties": {
+        "tooltips": {
+            "foregroundColor": "#ffffff",
+            "backgroundColor": "#9c0000"
+        }
     }
 }
 ```
@@ -76,8 +86,10 @@ Setting the tooltip background and text color:
 Setting the color of the sticky window edges:
 
 ```json
-"properties": {
-    "approachingEdgeColor": "#9c0000"
+{
+    "properties": {
+        "approachingEdgeColor": "#9c0000"
+    }
 }
 ```
 
@@ -86,8 +98,10 @@ Setting the color of the sticky window edges:
 Setting the background color of windows when loading:
 
 ```json
-"properties": {
-    "backgroundColor": "#9c0000"
+{
+    "properties": {
+        "backgroundColor": "#9c0000"
+    }
 }
 ```
 
@@ -96,20 +110,24 @@ Setting the background color of windows when loading:
 To set a custom loading animation for Glue42 Windows, specify a path to a XAML file - either absolute or relative to the `%LocalAppData%\Tick42\GlueDesktop\config` folder:
 
 ```json
-"properties": {
-    "loadingAnimation": "../custom/spinner.xaml",
+{
+    "properties": {
+        "loadingAnimation": "../custom/spinner.xaml",
+    }
 }
 ```
 
 Setting custom text, font, font size and text color for the Glue42 Window loader:
 
 ```json
-"properties": {
-    "loadingAnimation": "../custom/spinner.xaml",
-    "loadingText": "My custom loader text.",
-    "loadingTextFont": "Calibri",
-    "loadingTextFontSize": 20,
-    "loadingTextColor": "#eeeeee"
+{
+    "properties": {
+        "loadingAnimation": "../custom/spinner.xaml",
+        "loadingText": "My custom loader text.",
+        "loadingTextFont": "Calibri",
+        "loadingTextFontSize": 20,
+        "loadingTextColor": "#eeeeee"
+    }
 }
 ```
 
@@ -122,8 +140,10 @@ The theme properties for individual tab windows are located under the `"tabs"` k
 Setting the color of the active tab:
 
 ```json
-"tabs": {
-    "activeTabColor": "#9c0000"
+{
+    "tabs": {
+        "activeTabColor": "#9c0000"
+    }
 }
 ```
 
@@ -132,8 +152,10 @@ Setting the color of the active tab:
 Setting the color of inactive tabs:
 
 ```json
-"tabs": {
-    "tabColor": "#9c0000"
+{
+    "tabs": {
+        "tabColor": "#9c0000"
+    }
 }
 ```
 
@@ -142,8 +164,10 @@ Setting the color of inactive tabs:
 Setting the color of tabs on hover:
 
 ```json
-"tabs": {
-    "hoverTabColor": "#9c0000"
+{
+    "tabs": {
+        "hoverTabColor": "#9c0000"
+    }
 }
 ```
 
@@ -152,8 +176,10 @@ Setting the color of tabs on hover:
 Setting the color of the tab header:
 
 ```json
-"tabs": {
-    "headerColor": "#9c0000"
+{
+    "tabs": {
+        "headerColor": "#9c0000"
+    }
 }
 ```
 
@@ -162,9 +188,11 @@ Setting the color of the tab header:
 Setting the frame size and color of the active tab:
 
 ```json
-"tabs": {
-    "activeTabFrameThickness": "0, 0, 1, 3",
-    "activeTabFrameColors": "#343434, #343434, #343434, #2080d3"
+{
+    "tabs": {
+        "activeTabFrameThickness": "0, 0, 1, 3",
+        "activeTabFrameColors": "#343434, #343434, #343434, #2080d3"
+    }
 }
 ```
 
@@ -173,13 +201,14 @@ Setting the frame size and color of the active tab:
 Setting the size, color, hover color and tooltip of the tab "Close" button:
 
 ```json
-"tabs": {
-    "tabCloseButtonSize": 10
-    ...
-    "closeButton": {
-        "color": "#2080d3",
-        "hoverColor": "#9c0000",
-        "tooltip": "Close the tab"
+{
+    "tabs": {
+        "tabCloseButtonSize": 10,
+        "closeButton": {
+            "color": "#2080d3",
+            "hoverColor": "#9c0000",
+            "tooltip": "Close the tab"
+        }
     }
 }
 ```
@@ -189,13 +218,13 @@ Setting the size, color, hover color and tooltip of the tab "Close" button:
 Setting the hover foreground color of tab header buttons and the hover background color of the "Close" button:
 
 ```json
-"tabs": {
-    "headerButtons": {
-        ...
-        "hoverForegroundColor": "#9c0000"
-        ...
-        "close": {
-            "hoverBackgroundColor": "#2080d3"
+{
+    "tabs": {
+        "headerButtons": {
+            "hoverForegroundColor": "#9c0000",
+            "close": {
+                "hoverBackgroundColor": "#2080d3"
+            }
         }
     }
 }
@@ -206,13 +235,15 @@ Setting the hover foreground color of tab header buttons and the hover backgroun
 Setting the tooltips of the Sticky button and its foreground color when pressed and when hovered over in a pressed state:
 
 ```json
-"tabs": {
-    "headerButtons": {
-        "sticky": {
-            "pressedForegroundColor": "#9c0000",
-            "pressedHoverForegroundColor": "#9c0000",
-            "tooltip": "Turn on stickiness",
-            "pressedTooltip": "Turn off stickiness"
+{
+    "tabs": {
+        "headerButtons": {
+            "sticky": {
+                "pressedForegroundColor": "#9c0000",
+                "pressedHoverForegroundColor": "#9c0000",
+                "tooltip": "Turn on stickiness",
+                "pressedTooltip": "Turn off stickiness"
+            }
         }
     }
 }
@@ -227,10 +258,12 @@ The theme properties for Glue42 Window groups are located under the `"group"` ke
 Setting the height of the group header and the font weight and size of the group title:
 
 ```json
-"group": {
-    "titleFontWeight": "Bold",
-    "titleSize": 14,
-    "headerHeight": 20
+{
+    "group": {
+        "titleFontWeight": "Bold",
+        "titleSize": 14,
+        "headerHeight": 20
+    }
 }
 ```
 
@@ -239,14 +272,15 @@ Setting the height of the group header and the font weight and size of the group
 Setting the size, hover foreground and background color of the buttons in the group header:
 
 ```json
-"group": {
-    "buttons": {
-        "iconSize": 12.0,
-        "hoverForegroundColor": "#9c0000",
-        ...
-         "close": {
-            "hoverBackgroundColor": "#2080d3"
-         }
+{
+    "group": {
+        "buttons": {
+            "iconSize": 12.0,
+            "hoverForegroundColor": "#9c0000",
+             "close": {
+                "hoverBackgroundColor": "#2080d3"
+             }
+        }
     }
 }
 ```
@@ -256,9 +290,11 @@ Setting the size, hover foreground and background color of the buttons in the gr
 Setting a taskbar icon and a title for the window group:
 
 ```json
-"group": {
-    "icon": "custom-group-icon.ico",
-    "title": "Glue42 Window Group"
+{
+    "group": {
+        "icon": "custom-group-icon.ico",
+        "title": "Glue42 Window Group"
+    }
 }
 ```
 
@@ -267,9 +303,11 @@ Setting a taskbar icon and a title for the window group:
 Setting a taskbar icon and a title for a tab group:
 
 ```json
-"group": {
-    "tabGroupIcon": "tab-groups.ico",
-    "tabGroupTitle": "Glue42 Tab Group"
+{
+    "group": {
+        "tabGroupIcon": "tab-groups.ico",
+        "tabGroupTitle": "Glue42 Tab Group"
+    }
 }
 ```
 

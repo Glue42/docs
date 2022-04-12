@@ -165,7 +165,7 @@ await glue.Bus.Subscribe<int>(topic, (message) =>
 
 ### Untyped Data
 
-The data which which fails to deserialize to the required type is accessible through the `UntypedData` property of the received message. Use the `HasDeserializationError` boolean flag to determine whether a deserialization error has occurred. Use the `WithIgnoreDeserializationErrors()` method of the message options builder to specify whether the message handler should be invoked with the untyped data:
+The data which which fails to deserialize to the required type is accessible through the `UntypedData` property of the received message. Use the `HasDeserializationError` Boolean flag to determine whether a deserialization error has occurred. Use the `WithIgnoreDeserializationErrors()` method of the message options builder to specify whether the message handler should be invoked with the untyped data:
 
 ```csharp
 await intBus.Subscribe(topic, (message) =>

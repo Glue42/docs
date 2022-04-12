@@ -9,7 +9,6 @@ Below is an example configuration of a Glue42 Channel which shows that the "Red"
     "name": "Red",
     "meta": {
         "color": "red",
-        ...
         "fidessaGroup": {
             "index": 5,
             "readDataFieldPath": "",
@@ -31,7 +30,7 @@ The context passed from the Fidessa Connector to the Glue42 enabled apps and vic
 
 ```typescript
 {
-    instrument: { 
+    instrument: {
         // "VOD.L" or { fim: "VOD.L", bloomberg: "VOD:LN", ... }
         id: string | object;
         [prop: string] : any
@@ -43,7 +42,7 @@ The context passed from the Fidessa Connector to the Glue42 enabled apps and vic
 }
 ```
 
-## Handling Channel Context 
+## Handling Channel Context
 
 On how to update and subscribe for changes to a Channel context, see the [Glue42 Channels API](../../../glue42-concepts/data-sharing-between-apps/channels/javascript/index.html)
 
@@ -57,13 +56,11 @@ When an update from a Fidessa application arrives, the mapping service handles t
 {
     instrument: {
         id: {
-            bloomberg: "VOD:LN", 
-            fim: "VOD.L", 
-            ric: "VOD.L", 
-            ... 
+            bloomberg: "VOD:LN",
+            fim: "VOD.L",
+            ric: "VOD.L"
         }
-    },
-    ...
+    }
 }
 ```
 
@@ -73,9 +70,8 @@ If there is no active mapping service, the value for the `instrument.id` propert
 {
     instrument: {
         id: "VOD.L"
-    },
-    ...
+    }
 }
 ```
 
-When a Glue42 enabled application updates the Channel context, the Fidessa Connector first tries to retrieve the instrument ID from the configured `fimPath` (see [Connection Settings](../connection/index.html#settings)) and if no instrument ID is available there, the value of the `instrument.id` property is sent to the mapping service. If no mapping service is available, or if the mapping service returns an object which doesn't contain an `instrument.id.fim` property, the update is ignored. 
+When a Glue42 enabled application updates the Channel context, the Fidessa Connector first tries to retrieve the instrument ID from the configured `fimPath` (see [Connection Settings](../connection/index.html#settings)) and if no instrument ID is available there, the value of the `instrument.id` property is sent to the mapping service. If no mapping service is available, or if the mapping service returns an object which doesn't contain an `instrument.id.fim` property, the update is ignored.

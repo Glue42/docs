@@ -46,7 +46,7 @@ The `"window"` object has the following properties:
 
 ### Authentication
 
-To allow the user access after authenticating, you must signal [**Glue42 Enterprise**](https://glue42.com/enterprise/) that the authentication process is complete. Use the `doneAuth()` method of the `glue42gd` object which is injected in the global `window` object. It accepts an *optional* object as a parameter in which you can specify the name of the authenticated user, а token and headers:
+To allow the user access after authenticating, you must signal [**Glue42 Enterprise**](https://glue42.com/enterprise/) that the authentication process is complete. Use the `authDone()` method of the `glue42gd` object which is injected in the global `window` object. It accepts an *optional* object as a parameter in which you can specify the name of the authenticated user, а token and headers:
 
 ```javascript
 const options = {
@@ -57,10 +57,10 @@ const options = {
     }
 };
 
-glue42gd.doneAuth(options);
+glue42gd.authDone(options);
 ```
 
-The optional object passed as an argument to `doneAuth()` has the following properties:
+The optional object passed as an argument to `authDone()` has the following properties:
 
 | Property | Type | Description |
 |----------|------|-------------|
@@ -310,7 +310,7 @@ To configure the Feedback Form, use the `"issueReporting"` top-level key of the 
         "zipAttachments": true,
         "bugSubjectPrefix": "Error:",
         "reportSubjectPrefix": "Feedback:",
-        "recipients": [],
+        "recipients": ["support@example.com", "dev-support@example.com"],
         "allowEditRecipients": true,
         "maxAttachmentMB": "10"
     },
@@ -383,7 +383,7 @@ The configuration for automatically sending an email when submitting a Feedback 
 | `"zipAttachments"` | `boolean` | If `true`, the attachments will be archived. |
 | `"bugSubjectPrefix"` | `string` | Prefix for the email subject when the issue is a bug. |
 | `"reportSubjectPrefix"` | `string` | Prefix for the email subject when sending feedback. |
-| `"recipients"` | `string[]` | A list of email addressess to which the issue report will be sent. |
+| `"recipients"` | `string[]` | A list of email addresses to which the issue report will be sent. |
 | `"allowEditRecipients"` | `boolean` | If `true`, the user will be allowed to manually add more recipients. |
 | `"maxAttachmentMB"` | `string` | The maximum size of the attachments in MB. |
 
@@ -428,3 +428,21 @@ The `"allowMultipleInstances"` property accepts the following values:
 It's possible to install multiple versions of [**Glue42 Enterprise**](https://glue42.com/enterprise/) on the same machine. If you plan on supporting multiple installations, ensure that the different versions are installed in separate folders, and use relative paths in the `system.json` configuration file in order to avoid data overwriting.
 
 *Note that the [MS Office Connectors](../../../../connectors/ms-office/overview/index.html) are integrated with the registered MS Office application at installation time. This means that only their last-installed version will be available.*
+
+### Global Protocol Handler
+
+The default name of the Glue42 [global protocol](../../../../glue42-concepts/glue42-platform-features/index.html#global_protocol_handler) is `glue42`, but you can change this prefix using the `"protocol"` property of the `"protocolHandler"` top-level key in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/):
+
+```json
+{
+    "protocolHandler": {
+        "protocol": "mycustomprotocol"
+    }
+}
+```
+
+The following example demonstrates how to start a Glue42 enabled application using the `app` protocol option after you have changed the default protocol name:
+
+```cmd
+mycustomprotocol://app/clientlist
+```

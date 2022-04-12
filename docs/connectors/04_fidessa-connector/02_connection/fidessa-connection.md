@@ -15,10 +15,10 @@ Default configuration settings:
     "serviceMethod": "Glue42.ContextMapper.Enhance",
     "fimPath": "id.fim",
     "instrumentIdPath": "id",
-    "fidClientPath": "fidId", 
+    "fidClientPath": "fidId",
     "clientIdPath": "",
-    // By default, there is no limit to the reconnect attempts. 
-    // Set a number value to this property to define a limit. 
+    // By default, there is no limit to the reconnect attempts.
+    // Set a number value to this property to define a limit.
     // "maxReconnectAttempts": <infinity>
     "reconnectPeriod": "2000(5), 30000"
 }
@@ -36,11 +36,11 @@ Default configuration settings:
 
 ### Custom
 
-To change the default connection settings, use the `"customProperties"` top-level key of your [application configuration](../../../developers/configuration/application/index.html) file (usually located in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` should be replaced by the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy - e.g., `T42-DEMO`). Assign to it an object holding your custom connection properties:
+To change the default connection settings, use the `"customProperties"` top-level key of your [application configuration](../../../developers/configuration/application/index.html) file (usually located in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy - e.g., `T42-DEMO`). Assign to it an object holding your custom connection properties:
 
 ```json
 {
     "maxReconnectAttempts": 10,
     "reconnectPeriod": "1500(3), 15000"
 }
-``` 
+```

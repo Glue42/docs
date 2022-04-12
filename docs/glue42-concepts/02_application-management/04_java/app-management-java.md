@@ -2,7 +2,7 @@
 
 To list all applications available to the current user, use the `applications()` method:
 
-``` java
+```java
 glue.appManager().applications();
 ```
 
@@ -12,7 +12,7 @@ The `applications()` method returns a `Map<String, ApplicationInstance>` result 
 
 To start an application, use the `start()` method:
 
-``` java
+```java
 glue.appManager().start("clientlist")
         .whenComplete((instance, error) -> {
             if (error != null) {
@@ -23,7 +23,7 @@ glue.appManager().start("clientlist")
 
 You can also pass a context object (an application-specific object that will be available in the new app) or override any of the pre-configured window settings:
 
-``` java
+```java
 glue.appManager().start("clientcontact", Collections.singletonMap("selectedUser", 2));
 ```
 
@@ -31,7 +31,7 @@ glue.appManager().start("clientcontact", Collections.singletonMap("selectedUser"
 
 To list all running instances of an application, use the `instances()` method:
 
-``` java
+```java
 glue.appManager().instances();
 ```
 
@@ -41,7 +41,7 @@ The `instances()` method returns a `Collection<ApplicationInstance>` result cont
 
 To stop a running instance, use the `close()` or `closeAsync()` method:
 
-``` java
+```java
 instance.closeAsync();
 ```
 
