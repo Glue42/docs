@@ -18,23 +18,12 @@ You can download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) tri
 
 ## Referencing
 
-The [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) library is available both as an NPM module and as a standalone transpiled JavaScript file in `%LocalAppData%\Tick42\GlueSDK\Glue4OfficeJS\js\web`.
-
-Because the API evolves, we have chosen the following semantic version model:
-
-`BreakingChangesVersion.FeatureVersion.FixVersion`
-
+The [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) library is available both as an NPM module and as a standalone transpiled JavaScript file in `%LocalAppData%\Tick42\GlueSDK\Glue4OfficeJS\js\web-bundle`.
 
 You can reference the library in a `<script>` tag:
 
 ```html
-<script type="text/javascript" src="glue4office-1.1.0.js"></script>
-```
-
-When deploying your application in production, we recommend that you always reference a specific minified version:
-
-```html
-<script type="text/javascript" src="glue4office-1.1.0.min.js"></script>
+<script type="text/javascript" src="office.min.js"></script>
 ```
 
 The browserified JavaScript file is also a CommonJS module, which you can `require`/`import`.

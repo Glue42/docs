@@ -22,7 +22,7 @@ Another solution is to use workflow services. This allows a quick DIY approach t
 
 - Download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) trial version from [here](https://glue42.com/free-trial/).
 - Go to the [How To...](../../how-to/install/index.html) section for info on how to install [**Glue42 Enterprise**](https://glue42.com/enterprise/).
-- See how to [use Glue42 Enterprise](#using_glue42_enterprise) and how to [customize your Glue42 Enterprise copy](../../how-to/rebrand-glue42/index.html).
+- See how to [use **Glue42 Enterprise**](#using_glue42_enterprise) and how to [customize your **Glue42 Enterprise** copy](../../how-to/rebrand-glue42/index.html).
 - Get acquainted with the core [Glue42 Concepts](../../../glue42-concepts/glue42-toolbar/index.html) and see how to work programmatically with [**Glue42 Enterprise**](https://glue42.com/enterprise/).
 - Explore various Glue42 examples with different technologies in the [Examples](../../../developers/examples/index.html) section.
 
@@ -59,7 +59,7 @@ The Launchpad is a Windows style Toolbar that is hidden on startup and is activa
 - Move and resize windows or window groups.
 - Maximize, minimize and collapse windows or window groups.
 
-![Window Management](../../../images/use-glue/window-management.gif)
+![Window Management](../../../images/window-management/window-groups.gif)
 
 ### Workspaces
 
@@ -148,9 +148,10 @@ Access a general overview of all running hidden or visible applications from the
 | `APPLICATION` | The application name. |
 | `PID` | The process ID. |
 | `MEMORY` | The process memory consumption. The memory consumption value displayed for apps with the same `PID` will be the same and will be an aggregate of the consumed memory by all apps within that process. |
-| `AFFINITY` | Configurable application process grouping within Glue42 Enterprise. |
 | `TYPE` | The type of the application - `window`, `exe` or `node`|
-| `WINDOW  ID`| The window ID within Glue42 Enterprise. |
+| `WINDOW`| The window ID within [**Glue42 Enterprise**](https://glue42.com/enterprise/). |
+| `API VER` | Version of the Glue42 library used in the application. |
+| `STARTED` | The time the application was started. |
 | `VISIBLE` | Whether the application is visible or hidden. |
 | `ACTIONS` | From this column you can bring the application window on focus, open the Dev Tools for the window or close the application. |
 

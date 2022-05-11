@@ -376,17 +376,9 @@ Window stickiness is enabled by default, but can be controlled programmatically 
 
 ![Stickiness](../../../../images/window-management/stickiness.gif)
 
-When the window is in a tab group, the Sticky button controls the stickiness of all windows in the tab group and of the group itself:
+*For details on how to enable the Sticky button through system configuration, see the [Developers > Configuration > System](../../../../developers/configuration/system/index.html#window_settings-sticky-button) section.*
 
-![Stickiness group](../../../../images/window-management/stickiness-group.gif)
-
-If you drop a window in a tab group, it will assume the stickiness mode of the tab group and will remain in this mode after you tear it out of the tab group:
-
-![Stickiness tabs](../../../../images/window-management/stickiness-tabs.gif)
-
-*For details on how to enable the Sticky button through system configuration, see the [Developers: Glue42 Windows](../../../../developers/configuration/glue42-windows/index.html#glue42_window_properties-sticky-button) section.*
-
-To set the stickiness or the visibility of the Sticky button programmatically on a global level, use the [`configure()`](../../../../reference/glue/latest/windows/index.html#API-configure) method. Pass a [`WindowsConfiguration`](../../../../reference/glue/latest/windows/index.html#WindowsConfiguration) object with a `sticky` and `showStickyButton` properties set to boolean values:
+To set the stickiness or the visibility of the Sticky button programmatically on a global level, use the [`configure()`](../../../../reference/glue/latest/windows/index.html#API-configure) method. Pass a [`WindowsConfiguration`](../../../../reference/glue/latest/windows/index.html#WindowsConfiguration) object with a `sticky` and `showStickyButton` properties set to Boolean values:
 
 ```javascript
 // Turn off the stickiness and hide the Sticky button globally.
@@ -398,7 +390,7 @@ const windowsConfig = {
 await glue.windows.configure(windowsConfig);
 ```
 
-To set the stickiness of a Glue42 Window instance, use the [`setSticky()`](../../../../reference/glue/latest/windows/index.html#GDWindow-setSticky) method and pass a boolean value as an argument:
+To set the stickiness of a Glue42 Window instance, use the [`setSticky()`](../../../../reference/glue/latest/windows/index.html#GDWindow-setSticky) method and pass a Boolean value as an argument:
 
 ```javascript
 const myWindow = glue.windows.my();
@@ -1168,15 +1160,15 @@ The Window Management API allows placing custom buttons in the frame area of the
 
 Frame button in a flat window:
 
-![Button in a flat window](../../../../images/window-management/flat-frame-button.png)
+![Button in a flat window](../../../../images/window-management/frame-button-flat.png)
 
 Frame button in a tab window:
 
-![Button in a tab window](../../../../images/window-management/tab-frame-button.png)
+![Button in a tab window](../../../../images/window-management/frame-button-tab.png)
 
 Frame button in an HTML window:
 
-![Button in an HTML window](../../../../images/window-management/html-frame-button.png)
+![Button in an HTML window](../../../../images/window-management/frame-button-html.png)
 
 ### Adding Buttons
 

@@ -159,6 +159,8 @@ An executable application which can be executed from your OS. This is a basic ex
 }
 ```
 
+*Note that currently size constraints properties (e.g., `"width"`, `"height"`, `"maxWidth"`, `"minHeight"`, etc.) are only valid for EXE applications that are registered as Glue42 Windows.*
+
 The `"name"`, `"type"` and `"path"` properties are required and `"type"` must be set to `"exe"`. The `"path"` property points to the application working directory. The `"command"` property accepts the actual command to execute - the EXE file name. To specify command line parameters for starting the application, use the `"parameters"` property.
 
 For more details, see the [application configuration schema](../../../assets/configuration/application.json).

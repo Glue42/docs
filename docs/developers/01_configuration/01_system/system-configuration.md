@@ -153,6 +153,22 @@ The value for the `{title}` macro is the title specified in the application conf
 
 Global window settings will be overridden per application by the [application configuration](../application/index.html) settings.
 
+### Sticky Button
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.11">
+
+To show the Sticky button on all Glue42 Windows:
+
+```json
+{
+    "windows": {
+        "showStickyButton": true
+    }
+}
+```
+
+![Sticky button](../../../images/system-configuration/sticky-button.png)
+
 ### Downloading Files
 
 To configure the global behavior of the Glue42 Windows when downloading files, use the `"downloadSettings"` property of the `"windows"` top-level key:

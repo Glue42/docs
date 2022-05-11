@@ -473,7 +473,7 @@ await glue.hotkeys.unregisterAll();
 To check if your app has registered a specific hotkey, use the [`isRegistered()`](../../reference/glue/latest/hotkeys/index.html#API-isRegistered) method:
 
 ```javascript
-// Returns a boolean value.
+// Returns a Boolean value.
 const isRegistered = glue.hotkeys.isRegistered("shift+alt+c");
 ```
 

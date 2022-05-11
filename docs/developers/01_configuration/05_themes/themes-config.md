@@ -171,7 +171,7 @@ Setting the color of tabs on hover:
 }
 ```
 
-![Hover tab color](../../../images/themes/hover-tab-color.png)
+![Hover tab color](../../../images/themes/hover-tab-color.gif)
 
 Setting the color of the tab header:
 
@@ -191,7 +191,7 @@ Setting the frame size and color of the active tab:
 {
     "tabs": {
         "activeTabFrameThickness": "0, 0, 1, 3",
-        "activeTabFrameColors": "#343434, #343434, #343434, #2080d3"
+        "activeTabFrameColors": "#343434, #343434, #9c0000, #9c0000"
     }
 }
 ```
@@ -205,7 +205,7 @@ Setting the size, color, hover color and tooltip of the tab "Close" button:
     "tabs": {
         "tabCloseButtonSize": 10,
         "closeButton": {
-            "color": "#2080d3",
+            "color": "#696969",
             "hoverColor": "#9c0000",
             "tooltip": "Close the tab"
         }
@@ -223,7 +223,7 @@ Setting the hover foreground color of tab header buttons and the hover backgroun
         "headerButtons": {
             "hoverForegroundColor": "#9c0000",
             "close": {
-                "hoverBackgroundColor": "#2080d3"
+                "hoverBackgroundColor": "#ffffff"
             }
         }
     }
@@ -240,7 +240,7 @@ Setting the tooltips of the Sticky button and its foreground color when pressed 
         "headerButtons": {
             "sticky": {
                 "pressedForegroundColor": "#9c0000",
-                "pressedHoverForegroundColor": "#9c0000",
+                "pressedHoverForegroundColor": "#ffffff",
                 "tooltip": "Turn on stickiness",
                 "pressedTooltip": "Turn off stickiness"
             }
@@ -278,7 +278,7 @@ Setting the size, hover foreground and background color of the buttons in the gr
             "iconSize": 12.0,
             "hoverForegroundColor": "#9c0000",
              "close": {
-                "hoverBackgroundColor": "#2080d3"
+                "hoverBackgroundColor": "#ffffff"
              }
         }
     }

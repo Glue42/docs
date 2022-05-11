@@ -6,20 +6,6 @@ The global behavior of [Glue42 Windows](../../../glue42-concepts/windows/window-
 
 ## Glue42 Window Properties
 
-### Sticky Button
-
-<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.11">
-
-To show the Sticky button on all Glue42 Windows:
-
-```json
-{
-    "showStickyButton": true
-}
-```
-
-![Sticky button](../../../images/sw-configuration/sticky-button.png)
-
 ### Edge Distance
 
 Configure the distance between the edges of neighboring Glue42 Windows:
@@ -39,7 +25,7 @@ Hide or show the group caption:
 
 ```json
 {
-    "hideGroupCaption": false
+    "hideGroupCaption": true
 }
 ```
 
@@ -47,7 +33,7 @@ Hide or show the group caption:
 
 ### Resizing with Windows Gestures
 
-Configure the resize behavior of Glue42 Windows in a group when resizing the group with Windows gestures. Some Glue42 Windows may have size restrictions in their configuration - e.g., `"maxWidth": 200`. Specify whether the rest of the windows in the group should stay relative in size to the restricted windows or should fill the rest of the space. In the examples below, the "Client List" application has a width restriction of 400 px:
+Configure the resize behavior of Glue42 Windows in a group when resizing the group with Windows gestures. Some Glue42 Windows may have size restrictions in their configuration - e.g., `"maxWidth": 200`. Specify whether the rest of the windows in the group should stay relative in size to the restricted windows or should fill the rest of the space. In the examples below, the "Client List" application has a width restriction of 400 pixels:
 
 ```json
 {

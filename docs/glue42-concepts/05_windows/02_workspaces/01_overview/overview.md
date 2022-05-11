@@ -354,15 +354,15 @@ It is possible to add custom components in the Workspaces App header area in the
 
 The Logo zone is located at the leftmost part of the header area, to the left of the Workspace tabs, and hosts the `<GlueLogo />` component. By default, it renders the Glue42 logo:
 
-![Logo component](../../../../images/workspaces/logo-component.png)
+![Logo component](../../../../images/workspaces/component-logo.png)
 
 The Add Workspace zone is located between the Workspace tabs and the move area and hosts the `<AddWorkspaceButton />` component. By default, it renders the "+" button that opens the Add Workspace popup:
 
-![Add workspace component](../../../../images/workspaces/add-workspace-component.png)
+![Add workspace component](../../../../images/workspaces/component-add-workspace.png)
 
 The System Buttons zone is located at the rightmost part of the header area, after the move area, and hosts the `<MinimizeFrameButton />`, `<MaximizeFrameButton />` and `<CloseFrameButton />` components. By default, they render the Minimize, Maximize and Close buttons:
 
-![System buttons component](../../../../images/workspaces/system-buttons-component.png)
+![System buttons component](../../../../images/workspaces/component-system-buttons.png)
 
 ### Using the Components
 
