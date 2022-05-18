@@ -50,7 +50,7 @@ To change the window title at runtime, use the `changeTitle()` method of a Glue4
 window.changeTitle("New Title");
 ```
 
-### Size and Position
+### Size & Position
 
 To change the window bounds, use the `changeBounds()` method:
 
@@ -68,11 +68,11 @@ window.changeVisibility(false);
 
 ## Frame Buttons
 
-You can put extra buttons in the frame area of the window and handle clicks for those buttons.
+You can add extra buttons in the frame area of the window and [handle clicks](#window_events-frame_buttons) for them.
 
-### Adding a New Button
+### Adding Buttons
 
-Use the `addFrameButton()` method to add a new button:
+To add a new button to the window frame, use the `addFrameButton()` method:
 
 ```java
 window.addFrameButton("search-button",
@@ -84,18 +84,62 @@ window.addFrameButton("search-button",
         .thenRun(() -> System.out.println("created button"));
 ```
 
-### Removing Button
+### Removing Buttons
 
-Use the `removeFrameButton()` method to remove a button from the frame:
+To remove a button from the window frame, use the `removeFrameButton()` method:
 
 ```java
 window.removeFrameButton("search-button")
         .thenRun(() -> System.out.println("removed button"));
 ```
 
-### Handling Clicks
+## Window Events
 
-Use the `onFrameButtonClicked()` method to subscribe for button clicks:
+The Java Window Management API offers methods for handling Glue42 Window events related to changes of the window title, bounds, visibility, context and more.
+
+### Title
+
+To subscribe for changes of the window title, use the `onTitleChanged()` method:
+
+```java
+window.onTitleChanged(e -> System.out.println("Window title changed to: " + e.getTitle()));
+```
+
+### Size & Position
+
+To subscribe for changes of the window bounds, use the `onBoundsChanged()` method:
+
+```java
+window.onBoundsChanged(e -> System.out.println("Window bounds changed to: " + e.getBounds().toString()));
+```
+
+### Visibility
+
+To subscribe for changes of the window visibility, use the `onVisibilityChanged()` method:
+
+```java
+window.onVisibilityChanged(e -> System.out.println("Window is now " + e.isVisible() ? "visible." : "hidden."));
+```
+
+### Focus
+
+To subscribe for changes of the window focus, use the `onFocusChanged()` method:
+
+```java
+window.onFocusChanged(e -> System.out.println("Window " + e.isFocused() ? "is now on focus." : "has lost focus."));
+```
+
+### Context
+
+To subscribe for updates of the window context, use the `onContextUpdated()` method:
+
+```java
+window.onContextUpdated(e -> System.out.println("Window context udpated: " + e.getContext().toString()));
+```
+
+### Frame Buttons
+
+To subscribe for clicks on any [frame buttons](#frame_buttons) you may have added to the window, use the `onFrameButtonClicked()` method:
 
 ```java
 window.onFrameButtonClicked(e -> {
