@@ -99,6 +99,8 @@ The Java Window Management API offers methods for handling Glue42 Window events 
 
 ### Title
 
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.15">
+
 To subscribe for changes of the window title, use the `onTitleChanged()` method:
 
 ```java
@@ -106,6 +108,8 @@ window.onTitleChanged(e -> System.out.println("Window title changed to: " + e.ge
 ```
 
 ### Size & Position
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.15">
 
 To subscribe for changes of the window bounds, use the `onBoundsChanged()` method:
 
@@ -115,6 +119,8 @@ window.onBoundsChanged(e -> System.out.println("Window bounds changed to: " + e.
 
 ### Visibility
 
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.15">
+
 To subscribe for changes of the window visibility, use the `onVisibilityChanged()` method:
 
 ```java
@@ -122,6 +128,8 @@ window.onVisibilityChanged(e -> System.out.println("Window is now " + e.isVisibl
 ```
 
 ### Focus
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.15">
 
 To subscribe for changes of the window focus, use the `onFocusChanged()` method:
 
