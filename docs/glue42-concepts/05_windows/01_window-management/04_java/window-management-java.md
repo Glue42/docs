@@ -114,7 +114,7 @@ window.onTitleChanged(e -> System.out.println("Window title changed to: " + e.ge
 To subscribe for changes of the window bounds, use the `onBoundsChanged()` method:
 
 ```java
-window.onBoundsChanged(e -> System.out.println("Window bounds changed to: " + e.getBounds().toString()));
+window.onBoundsChanged(e -> System.out.println("Window bounds changed to: " + e.getBounds()));
 ```
 
 ### Visibility
@@ -124,7 +124,7 @@ window.onBoundsChanged(e -> System.out.println("Window bounds changed to: " + e.
 To subscribe for changes of the window visibility, use the `onVisibilityChanged()` method:
 
 ```java
-window.onVisibilityChanged(e -> System.out.println("Window is now " + e.isVisible() ? "visible." : "hidden."));
+window.onVisibilityChanged(e -> System.out.println("Window is now " + (e.isVisible() ? "visible." : "hidden.")));
 ```
 
 ### Focus
@@ -134,7 +134,7 @@ window.onVisibilityChanged(e -> System.out.println("Window is now " + e.isVisibl
 To subscribe for changes of the window focus, use the `onFocusChanged()` method:
 
 ```java
-window.onFocusChanged(e -> System.out.println("Window " + e.isFocused() ? "is now on focus." : "has lost focus."));
+window.onFocusChanged(e -> System.out.println("Window " + (e.isFocused() ? "is now on focus." : "has lost focus.")));
 ```
 
 ### Context
@@ -142,7 +142,7 @@ window.onFocusChanged(e -> System.out.println("Window " + e.isFocused() ? "is no
 To subscribe for updates of the window context, use the `onContextUpdated()` method:
 
 ```java
-window.onContextUpdated(e -> System.out.println("Window context udpated: " + e.getContext().toString()));
+window.onContextUpdated(e -> System.out.println("Window context udpated: " + e.getContext()));
 ```
 
 ### Frame Buttons
