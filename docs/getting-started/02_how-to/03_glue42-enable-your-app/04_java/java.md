@@ -36,7 +36,7 @@ For Glue42 Java to work with Java SE 17+, you must pass the following parameters
         <dependency>
             <groupId>com.glue42</groupId>
             <artifactId>java-glue42-shaded</artifactId>
-            <version>1.4.5</version>
+            <version>1.4.8</version>
         </dependency>
     </dependencies>
 </project>
@@ -51,7 +51,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile 'com.glue42:java-glue42-shaded:1.4.5'
+    compile 'com.glue42:java-glue42-shaded:1.4.8'
 }
 ```
 
