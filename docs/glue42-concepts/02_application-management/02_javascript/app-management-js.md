@@ -31,7 +31,7 @@ Application definitions can be imported, exported and removed at runtime using t
 To import a list of application definitions at runtime, use the [`import()`](../../../reference/glue/latest/appmanager/index.html#InMemoryStore-import) method:
 
 ```javascript
-const definitions = {
+const definitions = [
     {
         name: "my-app",
         type: "window",
@@ -48,8 +48,9 @@ const definitions = {
             url: "https://my-domain.com/my-other-app"
         }
     }
-};
+];
 const mode = "merge";
+
 const importResult = await glue.appManager.inMemory.import(definitions, mode);
 ```
 

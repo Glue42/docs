@@ -119,7 +119,7 @@ The `"store"` key has the following properties:
 | `"type"` | `"file"` \| `"rest"` \| `"server"` | The type of the app preferences store. |
 | `"restURL"` | `string` | The URL of the REST service providing the app preferences. Valid only in `"rest"` mode. |
 | `"restClientAuth"` | `"no-auth"` \| `"negotiate"` \| `"kerberos"` |  The client authentication mechanism for the REST service. Valid only in `"rest"` mode. |
-| `"newDataCheckInterval"` | `number` | Interval in seconds at which to check for new data from the REST or server store. Executed only if subscribers are avaialble. |
+| `"newDataCheckInterval"` | `number` | Interval in seconds at which to check for new data from the REST or server store. Executed only if subscribers are available. |
 
 The `"type"` property accepts the following values:
 
@@ -151,7 +151,7 @@ The value for the `{title}` macro is the title specified in the application conf
 
 ## Window Settings
 
-Global window settings will be overridden per application by the [application configuration](../application/index.html) settings.
+Global Glue42 Window settings are found under the `"windows"` top-level key of the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and can be overridden per application by the [application configuration](../application/index.html) settings.
 
 ### Sticky Button
 
@@ -168,6 +168,56 @@ To show the Sticky button on all Glue42 Windows:
 ```
 
 ![Sticky button](../../../images/system-configuration/sticky-button.png)
+
+### Jump List
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.15">
+
+To configure the jump list globally for all Glue42 Windows:
+
+```json
+{
+    "windows": {
+        "jumpList": {
+            "enabled": true,
+            "categories": [
+                {
+                    "title": "System",
+                    "actions": [
+                        {
+                            "type": "centerScreen",
+                            "singleInstanceTitle": "Center on Primary Screen",
+                            "multiInstanceTitle": "Center all on Primary Screen"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
+```
+
+The `"jumpList"` object has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"enabled"` | `boolean` | If `true` (default), will enable the jump list. |
+| `"categories"` | `object[]` | Categorized lists with actions to execute when the user clicks on them. |
+
+Each object in the `"categories"` array has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"title"` | `string` | Title of the category to be displayed in the context menu. |
+| `"actions"` | `object[]` | List of actions contained in the category. |
+
+Each object in the `"actions"` array has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"type"` | `string` | Type of the action to execute. |
+| `"singleInstanceTitle"` | `string` | Title of the action to be displayed in the context menu when there is a single instance with a single taskbar icon. |
+| `"multiInstanceTitle"` | `string` | Title of the action to be displayed in the context menu when there are multiple instances with grouped taskbar icons. |
 
 ### Downloading Files
 

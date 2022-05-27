@@ -263,6 +263,86 @@ To pass arguments and/or target when invoking an Interop method, use `args` and 
 glue42://invoke/ShowClient?args.clientId=1&target=best
 ```
 
+## Jump List
+
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.15">
+
+The jump list is a configurable categorized list of actions that can be shown in the context menu when the user right-clicks on a taskbar icon of a Glue42 enabled app or a group of such icons:
+
+![Jump List](../../images/platform-features/jump-list.png)
+
+Currently, only one predefined action is supported - centering an app or a group of app instances on the primary screen. This action is extremely useful when you have many windows open on multiple displays and can't find the app you need. Use this action to find an app that: you may have moved to another screen or outside the screen bounds altogether; may be hidden behind other windows; may have been resized and become too small to notice; or may have simply blended visually with other apps:
+
+![Center on Primary](../../images/platform-features/center-on-primary.gif)
+
+**Configuration**
+
+The jump list can be enabled, disabled and configured globally and per app. The [application configuration](../../developers/configuration/application/index.html) will override the global [system configuration](../../developers/configuration/system/index.html).
+
+To configure the jump list system-wide, use the `"jumpList"` property of the `"windows"` top-level key in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/). The following is the default system jump list configuration:
+
+```json
+{
+    "windows": {
+        "jumpList": {
+            "enabled": true,
+            "categories": [
+                {
+                    "title": "System",
+                    "actions": [
+                        {
+                            "type": "centerScreen",
+                            "singleInstanceTitle": "Center on Primary Screen",
+                            "multiInstanceTitle": "Center all on Primary Screen"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
+```
+
+The `"jumpList"` object has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"enabled"` | `boolean` | If `true` (default), will enable the jump list. |
+| `"categories"` | `object[]` | Categorized lists with actions to execute when the user clicks on them. |
+
+Each object in the `"categories"` array has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"title"` | `string` | Title of the category to be displayed in the context menu. |
+| `"actions"` | `object[]` | List of actions contained in the category. |
+
+Each object in the `"actions"` array has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"type"` | `string` | Type of the action to execute. |
+| `"singleInstanceTitle"` | `string` | Title of the action to be displayed in the context menu when there is a single instance with a single taskbar icon. |
+| `"multiInstanceTitle"` | `string` | Title of the action to be displayed in the context menu when there are multiple instances with grouped taskbar icons. |
+
+To override the system configuration per app, use the `"jumpList"` property of the `"details"` top-level key in the [application configuration](../../developers/configuration/application/index.html) file. The following example demonstrates how to disable the jump list for an app:
+
+```json
+{
+    "title": "My App",
+    "type": "window",
+    "name": "my-app",
+    "details": {
+        "url": "https://downloadtestfiles.com/",
+        "jumpList": {
+            "enabled": false
+        }
+    }
+}
+```
+
+*Note that currently the jump list isn't available for Java apps, [Workspaces](../windows/workspaces/overview/index.html) and apps in [web groups](../windows/window-management/overview/index.html#window_groups-web_groups).*
+
 ## Downloading Files
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) allows for files to be downloaded by clicking on a link in the web page or by invoking an [Interop](../data-sharing-between-apps/interop/javascript/index.html#method_invocation) method.
@@ -289,6 +369,8 @@ System configuration example:
     }
 }
 ```
+
+The `"downloadSettings"` object has the following properties:
 
 | Property | Type | Description |
 |----------|------|-------------|

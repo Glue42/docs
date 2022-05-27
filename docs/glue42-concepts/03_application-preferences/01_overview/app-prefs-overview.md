@@ -28,7 +28,7 @@ The `"store"` key has the following properties:
 | `"type"` | `"file"` \| `"rest"` \| `"server"` | The type of the app preferences store. |
 | `"restURL"` | `string` | The URL of the REST service providing the app preferences. Valid only in `"rest"` mode. |
 | `"restClientAuth"` | `"no-auth"` \| `"negotiate"` \| `"kerberos"` |  The client authentication mechanism for the REST service. Valid only in `"rest"` mode. |
-| `"newDataCheckInterval"` | `number` | Interval in seconds at which to check for new data from the REST or server store. Executed only if subscribers are avaialble. |
+| `"newDataCheckInterval"` | `number` | Interval in seconds at which to check for new data from the REST or server store. Executed only if subscribers are available. |
 
 The `"type"` property accepts the following values:
 

@@ -368,15 +368,15 @@ The Window Management API enables you to control a [`GDWindow`](../../../../refe
 
 ### Stickiness
 
+The Glue42 Window stickiness enables users to easily organize the windows on their desktop in visual groups. Window stickiness is enabled by default, but can be controlled programmatically and through [application configuration](../../../../developers/configuration/application/index.html).
+
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.11">
 
-The Glue42 Window stickiness enables users to easily organize the windows on their desktop in visual groups.
-
-Window stickiness is enabled by default, but can be controlled programmatically and through [application configuration](../../../../developers/configuration/application/index.html). The Sticky button (disabled by default) in the window header allows the users to toggle the stickiness of individual windows from the UI:
+The [Sticky button](../../../../developers/configuration/system/index.html#window_settings-sticky_button) (disabled by default) in the window header allows the users to toggle the stickiness of individual windows from the UI:
 
 ![Stickiness](../../../../images/window-management/stickiness.gif)
 
-*For details on how to enable the Sticky button through system configuration, see the [Developers > Configuration > System](../../../../developers/configuration/system/index.html#window_settings-sticky-button) section.*
+*For details on how to enable the Sticky button through system configuration, see the [Developers > Configuration > System](../../../../developers/configuration/system/index.html#window_settings-sticky_button) section.*
 
 To set the stickiness or the visibility of the Sticky button programmatically on a global level, use the [`configure()`](../../../../reference/glue/latest/windows/index.html#API-configure) method. Pass a [`WindowsConfiguration`](../../../../reference/glue/latest/windows/index.html#WindowsConfiguration) object with a `sticky` and `showStickyButton` properties set to Boolean values:
 

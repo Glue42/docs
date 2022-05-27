@@ -156,7 +156,7 @@ Hot module reloading is supported, but keep in mind that each refresh closes all
 
 ### Workspaces App Configuration
 
-Your custom Workspaces App, as every Glue42 enabled app, must have an [application configuration](../../../../developers/configuration/application/index.html) file. Note that [**Glue42 Enterprise**](https://glue42.com/enterprise/) expects only one application definition for a Workspaces App - i.e., one configuration file with `"type"` property set to `"workspaces"`. Having multiple Workspaces App definitions will cause unexpected behavior when handling Workspaces. [**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a Workspaces UI app and a configuration file for it named `workspaces.json` and located in `%LocalAppData%\Tick42\GlueDesktop\config\apps`. Modify or replace this file with your own configuration file, or delete it, if your application configurations are stored at another location.
+Your custom Workspaces App, as every Glue42 enabled app, must have an [application configuration](../../../../developers/configuration/application/index.html) file. Note that [**Glue42 Enterprise**](https://glue42.com/enterprise/) expects only one application definition for a Workspaces App - i.e., one configuration file with `"type"` property set to `"workspaces"`. If multiple Workspaces App definitions are present, the first available one will be used. [**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a Workspaces UI app and a configuration file for it named `workspaces.json` and located in `%LocalAppData%\Tick42\GlueDesktop\config\apps`. Modify or replace this file with your own configuration file, or delete it, if your application configurations are stored at another location.
 
 The `"type"` property must be set to `"workspaces"`:
 
@@ -172,7 +172,6 @@ The `"type"` property must be set to `"workspaces"`:
         "updateFrameConstraints": false,
         "framePool": 4
     },
-    "allowMultiple": true,
     "customProperties": {}
 }
 ```
@@ -354,15 +353,15 @@ It is possible to add custom components in the Workspaces App header area in the
 
 The Logo zone is located at the leftmost part of the header area, to the left of the Workspace tabs, and hosts the `<GlueLogo />` component. By default, it renders the Glue42 logo:
 
-![Logo component](../../../../images/workspaces/component-logo.png)
+![Logo Zone](../../../../images/workspaces/component-logo.png)
 
 The Add Workspace zone is located between the Workspace tabs and the move area and hosts the `<AddWorkspaceButton />` component. By default, it renders the "+" button that opens the Add Workspace popup:
 
-![Add workspace component](../../../../images/workspaces/component-add-workspace.png)
+![Add Workspace Zone](../../../../images/workspaces/component-add-workspace.png)
 
 The System Buttons zone is located at the rightmost part of the header area, after the move area, and hosts the `<MinimizeFrameButton />`, `<MaximizeFrameButton />` and `<CloseFrameButton />` components. By default, they render the Minimize, Maximize and Close buttons:
 
-![System buttons component](../../../../images/workspaces/component-system-buttons.png)
+![System Buttons Zone](../../../../images/workspaces/component-system-buttons.png)
 
 ### Using the Components
 
@@ -382,7 +381,7 @@ The `<Workspaces />` component has two props - `glue` and `components`. The `glu
 
 *It is important to note that the `<Workspaces>` component isn't meant to be used as a typical React component. Besides its rendering responsibilities, it also contains heavy logic. This component is meant to allow you to create a dedicated Workspaces App which must function as a standalone window - you must never use it as part of another application, as this will lead to malfunctioning. The Workspaces App should be customized only using the available extensibility points.*
 
-The following example shows the `<Workspaces />` component props, their properties and default values:
+The following example demonstrates the structure of the `<Workspaces />` component, its properties and default values:
 
 ```javascript
 <Workspaces
@@ -884,7 +883,7 @@ import "@glue42/workspaces-ui-react/dist/styles/goldenlayout-base.css";
 import "@glue42/workspaces-ui-react/dist/styles/glue42-theme.css";
 ```
 
-To use custom styles for the Workspaces App, simply import a your CSS file after the default CSS imports to override them. The `goldenlayout-base.css` file is mandatory, but you may skip the `popup.css` or `glue42-theme.css` imports if you don't want to use the default styles for the system popups or the default [Glue42 themes](../../themes/overview/index.html). Two default themes are available - **Day** and **Night** - and the trigger for switching between them is the class property of the `<html>` element - `"light"` for the **Day** theme and `"dark"` for the **Night** theme:
+To use custom styles for the Workspaces App, simply import your CSS file after the default CSS imports to override them. The `goldenlayout-base.css` file is mandatory, but you may skip the `popup.css` or `glue42-theme.css` imports if you don't want to use the default styles for the system popups or the default [Glue42 themes](../../themes/overview/index.html). Two default themes are available - **Day** and **Night** - and the trigger for switching between them is the class property of the `<html>` element - `"light"` for the **Day** theme and `"dark"` for the **Night** theme:
 
 ```html
 <!-- Day theme -->
@@ -898,8 +897,7 @@ To use custom styles for the Workspaces App, simply import a your CSS file after
 
 You should consider the following technical limitations when using the `@glue42/workspaces-ui-react` library:
 
-- Due to the mechanism used for rendering Glue42 Windows, when running under Windows 10 a single color must always be transparent. The color is specified in the [`stickywindows.json`](../../../../assets/configuration/stickywindows.json) system configuration file (see also [Glue42 Windows](../../../../developers/configuration/glue42-windows/index.html)) and shouldn't be used individually or in a gradient as it will always be rendered as fully transparent.
-- For the previous reason the popups must not have shadows or any transparency if they are positioned over any of the apps in the Workspace.
+- Unless you set the `"rendererTransparencyMode"` property in the [`stickywindows.json`](../../../../assets/configuration/stickywindows.json) configuration file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) to `"Transparent"` (usable on Windows 8+), any popups you may use must not have shadows or transparency. If `"rendererTransparencyMode"` is set to any other value, the shadow or the transparency will blend with the color specified in the `"rendererTransparencyKeyColor"` property which will result in an undesirable visual effect. Also, the color specified in `"rendererTransparencyKeyColor"` shouldn't be used individually or in a gradient, because it will always be rendered as transparent. For more details, see the [Developers > Configuration > Glue42 Windows](../../../../developers/configuration/glue42-windows/index.html#glue42_window_properties-renderer_transparency_mode) section.
 - To ensure full compatibility with Windows 7 and Windows 10, you must use the `<WorkspacePopup />` component or the `useWorkspacePopup()` and `useWorkspaceWindowClicked()` hooks for your custom popups (except for any custom system popups where this is already handled internally).
 - The Frame doesn't have a Glue42 Window object ([`glue.windows.my()`](../../../../reference/glue/latest/windows/index.html#API-my) returns `undefined`) and the [`getMyFrame()`](../../../../reference/glue/latest/workspaces/index.html#API-getMyFrame) method can't be used in the Frame (see [Using Glue42 APIs in the Frame](#extending_workspaces-using_glue42_apis_in_the_frame)).
 - Refs to the custom components passed to the `<Workspaces />` component shouldn't be used in any parent component of `<Workspaces />` because the children of `<Workspaces />` aren't immediately rendered and therefore these refs won't work as expected.

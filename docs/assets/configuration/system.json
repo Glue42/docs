@@ -1526,7 +1526,7 @@
                     "default": false
                 },
                 "readOnlyChannelSelector": {
-                    "description": "If `true` аnd the Channel Selector is visible (Channels are enabled), the users won't be able to click on it and change the current Channel.",
+                    "description": "If `true` and the Channel Selector is visible (Channels are enabled), the users won't be able to click on it and change the current Channel.",
                     "type": "boolean",
                     "default": false
                 },
@@ -1571,6 +1571,17 @@
                     "description": "If `true`, the user cannot refresh the window.",
                     "type": "boolean",
                     "default": false
+                },
+                "preloadScripts": {
+                    "description": "A list of preload scripts (URLs) that will be loaded and executed before the actual page is executed",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "jumpList": {
+                    "default": {},
+                    "$ref": "#/definitions/jumpListConfig"
                 }
             },
             "additionalProperties": false
@@ -1681,6 +1692,15 @@
                     "description": "The interval (in seconds) at which the GD3 will try to refresh the GLUE42 Server token.",
                     "type": "number",
                     "default": 3600
+                },
+                "clientAuth": {
+                    "description": "The client auth mechanism for the REST service.",
+                    "default": "no-auth",
+                    "enum": [
+                        "no-auth",
+                        "negotiate",
+                        "kerberos"
+                    ]
                 },
                 "features": {
                     "description": "Features which could be injected in GD3 automatically.",
@@ -1794,6 +1814,54 @@
                         }
                     }
                 },
+                "authentication": {
+                    "type": "object",
+                    "properties": {
+                        "available": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "default": [
+                                "basic"
+                            ]
+                        },
+                        "default": {
+                            "type": "string",
+                            "default": "basic"
+                        },
+                        "token-ttl": {
+                            "type": "integer",
+                            "default": 60000
+                        },
+                        "timeout": {
+                            "type": "integer",
+                            "default": 5000
+                        },
+                        "max-pending-requests": {
+                            "type": "integer",
+                            "default": 20000
+                        }
+                    }
+                },
+                "customAuthenticators": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "file": {
+                                "type": "string"
+                            },
+                            "configuration": {
+                                "type": "object"
+                            }
+                        },
+                        "required": [
+                            "file"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
                 "cluster": {
                     "type": "object",
                     "properties": {
@@ -1875,6 +1943,11 @@
         "securityConfig": {
             "description": "Global security settings.",
             "properties": {
+                "allowRunningInsecureContent": {
+                    "description": " Allow an https page to run JavaScript, CSS or plugins from http URLs.",
+                    "type": "boolean",
+                    "default": false
+                },
                 "webSecurity": {
                     "description": "When `false`, the same-origin policy will be disabled (usually used when testing web apps) and `allowRunningInsecureContent` will be set to `true`, if not already set to `true` by the user.",
                     "type": "boolean",
@@ -2919,6 +2992,68 @@
                         "no-auth",
                         "negotiate",
                         "kerberos"
+                    ]
+                }
+            }
+        },
+        "jumpListConfig": {
+            "description": "Configuration for application jump lists.",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "description": "If `true` (default), will enable jump lists. When the user right-clicks on the taskbar icon of a Glue42 app (or on grouped taskbar icons), the context menu will show predefined categorized lists with actions.",
+                    "type": "boolean",
+                    "default": true
+                },
+                "categories": {
+                    "description": "Categorized lists with actions to execute when the user clicks on them.",
+                    "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "title": {
+                                "description": "Title of the category to be displayed in the context menu.",
+                                "type": "string"
+                            },
+                            "actions": {
+                                "description": "List of actions contained in the category..",
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "type": {
+                                            "description": "Type of the action to execute.",
+                                            "enum": [
+                                                "centerScreen"
+                                            ]
+                                        },
+                                        "singleInstanceTitle": {
+                                            "type": "string",
+                                            "description": "Title of the action to be displayed in the context menu when there is a single instance with a single taskbar icon."
+                                        },
+                                        "multiInstanceTitle": {
+                                            "type": "string",
+                                            "description": "Title of the action to be displayed in the context menu when there are multiple instances with grouped taskbar icons."
+                                        }
+                                    },
+                                    "required": [
+                                        "type"
+                                    ]
+                                },
+                                "type": "array"
+                            }
+                        }
+                    },
+                    "type": "array",
+                    "default": [
+                        {
+                            "title": "System",
+                            "actions": [
+                                {
+                                    "type": "centerScreen",
+                                    "singleInstanceTitle": "Center on Primary Screen",
+                                    "multiInstanceTitle": "Center all on Primary Screen"
+                                }
+                            ]
+                        }
                     ]
                 }
             }

@@ -62,6 +62,16 @@
             "type": "boolean",
             "default": false
         },
+        "groupCaptionHeight": {
+            "description": "Initial height of the group caption in pixels. It should match the value defined in the CSS/HTML, but if not, it will be matched at runtime.",
+            "type": "integer",
+            "default": 30
+        },
+        "groupBorderSize": {
+            "description": "Initial size of the group border in pixels. It should match the value defined in the CSS/HTML, but if not, it will be matched at runtime.",
+            "type": "integer",
+            "default": 0
+        },
         "autoRemoveWindows": {
             "description": "Auto remove local windows when they are destroyed.",
             "type": "boolean",
@@ -81,16 +91,6 @@
             "description": "Specifies the minimum window size which will be used if no minimum width/height is set by the user. If the value is 0 (or less), this setting will not be used.",
             "type": "integer",
             "default": 0
-        },
-        "debugWindow": {
-            "description": "Specifies the debug window support behavior. The default is `Disabled`.",
-            "type": "string",
-            "enum": [
-                "Disabled",
-                "Hidden",
-                "Shown"
-            ],
-            "default": "Disabled"
         },
         "movingGroupsFromTopWindowOnly": {
             "description": "If `true`, moving a window group is allowed only from the top window (and from the group header as well).",
@@ -138,9 +138,11 @@
             "default": false
         },
         "rendererTransparencyMode": {
+            "description": "Specifies how to handle the transparency of the HTML elements that determine the bounds of app windows in Glue42 Window groups and Workspaces. These HTML elements are placed over the app windows and must be transparent in order for the app windows to be visible and for the mouse clicks to reach the app windows. For Windows 7 use `Regions`, for Windows 8+ use `KeyColor` (selects a color that will always be transparent) or `Transparent` (enables true transparency). `Auto` will select `KeyColor` or `Regions` depending on your OS.",
             "type": "string",
             "enum": [
                 "Auto",
+                "Transparent",
                 "KeyColor",
                 "Regions",
                 "Default"
@@ -148,8 +150,18 @@
             "default": "Auto"
         },
         "rendererTransparencyKeyColor": {
+            "description": "Specifies the color that will always be transparent when `rendererTransparencyMode` is set to `KeyColor`.",
             "type": "string",
             "default": "#FD12EF"
+        },
+        "groupType": {
+            "description": "Specifies the group implementation type. When `Classic`, group decorations (tabs, captions, etc.) are implemented with WPF components and the theme properties (colors, sizes, etc.) are set via the `themes.json` file. When `Web`, decorations are implemented with HTML elements and the theme properties are set via CSS.",
+            "type": "string",
+            "enum": [
+                "Classic",
+                "Web"
+            ],
+            "default": "Classic"
         },
         "flydownShowDelay": {
             "description": "The delay in ms before showing the flydown window after the user hovers over the flydown zone.",

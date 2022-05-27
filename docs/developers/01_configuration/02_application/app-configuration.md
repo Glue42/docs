@@ -35,111 +35,6 @@ The supported formats for the application icon are ICO, PNG, APNG and JPG.
 
 For more details, see the [application configuration schema](../../../assets/configuration/application.json).
 
-### Workspaces App
-
-A [Workspaces App](../../../glue42-concepts/windows/workspaces/overview/index.html#workspaces_concepts-frame) is a web application that can host Glue42 [Workspaces](../../../glue42-concepts/windows/workspaces/overview/index.html#workspaces_concepts-workspace).
-
-*Note that [**Glue42 Enterprise**](https://glue42.com/enterprise/) expects only one application definition for a Workspaces App - i.e., one configuration file with `"type"` property set to `"workspaces"`. Having multiple Workspaces App definitions will cause unexpected behavior when handling Workspaces.*
-
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a Workspaces UI app and a configuration file for it named `workspaces.json` and located in `%LocalAppData%\Tick42\GlueDesktop\config\apps`. If you are creating your [custom Workspaces App](../../../glue42-concepts/windows/workspaces/overview/index.html#extending_workspaces), make sure to modify or replace this file with your own configuration file, or delete it, if your application configurations are stored at another location.
-
-The `"type"` property must be set to `"workspaces"`:
-
-```json
-{
-    "title": "Workspaces UI",
-    "type": "workspaces",
-    "name": "workspaces-demo",
-    "icon": "http://localhost:22080/resources/icons/workspaces.ico",
-    "details": {
-        "layouts": [],
-        "url": "http://localhost:3000"
-    },
-    "allowMultiple": true,
-    "customProperties": {}
-}
-```
-
-The `"type"` and `"name"` top-level properties are required and `"type"` must be set to `"workspaces"`. The `"url"` and `"layouts"` properties in the `"details"` object are optional.
-
-Use `"url"` to specify where the application is hosted, otherwise it will default to the Workspaces App template distributed with [**Glue42 Enterprise**](https://glue42.com/enterprise/).
-
-#### Defining Workspace Layouts
-
-Use the `"layouts"` property to predefine [Workspace layouts](../../../glue42-concepts/windows/workspaces/overview/index.html#workspaces_concepts-workspace_layout) that will be loaded automatically when the Workspace App starts:
-
-```json
-{
-    "details": {
-        "layouts": [
-            // Standard Workspace layout definition.
-            {
-                "children": [
-                    {
-                        "type": "column",
-                        "children": [
-                            {
-                                "type": "group",
-                                "children": [
-                                    {
-                                        "type": "window",
-                                        "appName": "clientlist"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "group",
-                                "children": [
-                                    {
-                                        "type": "window",
-                                        "appName": "clientportfolio"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-
-            // Or a simpler Workspace layout definition for an already existing layout.
-            {
-                "layoutName": "My Workspace"
-            }
-        ]
-    }
-}
-```
-
-Use the `"config"` property of the standard Workspace layout object or the `"restoreConfig"` property of the simpler object to pass context to the Workspace or to hide/show its tab header:
-
-```json
-{
-    "details": {
-        "layouts": [
-            // Standard Workspace layout definition.
-            {
-                "children": [],
-                "config": {
-                    "noTabHeader": true,
-                    "context": { "glue" : 42 }
-                }
-            },
-
-            // Or a simpler Workspace layout definition for an already existing layout.
-            {
-                "layoutName": "My Workspace",
-                "restoreConfig": {
-                    "noTabHeader": true,
-                    "context": { "glue" : 42 }
-                }
-            }
-        ]
-    }
-}
-```
-
-Hiding the Workspace tab header with the `"noTabHeader"` property prevents the user from manipulating the Workspace through the UI and allows for the Workspace to be controlled entirely through API calls. For instance, a Workspace may be tied programmatically to certain logic, a button, etc., designed to manage its state without any user interaction.
-
 ### Exe
 
 An executable application which can be executed from your OS. This is a basic example for an EXE configuration:
@@ -291,6 +186,30 @@ For more details, see the [application configuration schema](../../../assets/con
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a default Node.js version, but also allows you to specify a Node.js version per application using the `"nodeVersion"` property of the application configuration. The default Node.js environment is named `node.exe` and is located in the `%LocalAppData%\Tick42\GlueDesktop\assets\node` folder. The default path to the Node.js environment is specified using the `"nodePath"` top-level key in the [`system.json`](../../../assets/configuration/system.json) configuration file of [**Glue42 Enterprise**](https://glue42.com/enterprise/). All additional Node.js executable files must be placed in the same specified folder and their names must be in the format `node-[version].exe` (e.g., `node-16.13.2.exe`), in order for [**Glue42 Enterprise**](https://glue42.com/enterprise/) to be able to find the correct version for each Node.js app.
 
+### Citrix App
+
+A Citrix Virtual Application can be configured just like any other Glue42 enabled application. It can participate in the Glue42 environment as a first-class citizen and use all Glue42 functionalities. A Citrix application must be configured as a `"citrix"` type and the `"name"` property in the `"details"` key must be set with the exact published name of the Citrix application. Use the `"parameters"` property under `"details"` to pass command line arguments for starting the app.
+
+The following demonstrates a basic Citrix app configuration:
+
+```json
+{
+    "title": "Client List - Citrix",
+    "type": "citrix",
+    "name": "clientlist-citrix",
+    "details": {
+        "name": "Client List",
+        "parameters": "--mode=3 --clients=http://localhost:22060/clients",
+        "left": 100,
+        "top": 100,
+        "width": 600,
+        "height": 700
+    }
+}
+```
+
+*For system-wide Citrix configuration, see the [System Configuration](../system/index.html#citrix_apps) section.*
+
 ### Service Window
 
 Service windows are a specific usage of a window application. They can provide data and enhance other applications throughout the [**Glue42 Enterprise**](https://glue42.com/enterprise/) life cycle. The service window is defined as an application that is hidden and may be auto started when [**Glue42 Enterprise**](https://glue42.com/enterprise/) is initiated.
@@ -343,29 +262,170 @@ The `"hidden"` property in the `"details"` object will make the window invisible
 
 For more details, see the [application configuration schema](../../../assets/configuration/application.json).
 
-### Citrix App
+### Frameless Window
 
-A Citrix Virtual Application can be configured just like any other Glue42 enabled application. It can participate in the Glue42 environment as a first-class citizen and use all Glue42 functionalities. A Citrix application must be configured as a `"citrix"` type and the `"name"` property in the `"details"` key must be set with the exact published name of the Citrix application. Use the `"parameters"` property under `"details"` to pass command line arguments for starting the app.
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.15">
 
-The following demonstrates a basic Citrix app configuration:
+Frameless windows are based on HTML windows, but allow for creating applications with freeform (non-rectangular) shapes and transparent areas. They don't have the usual [Glue42 Window](../../../glue42-concepts/windows/window-management/overview/index.html) decorations - title bars, standard system buttons ("Minimize", "Maximize", "Close"), resizing areas, and can't be dragged (unless you define a [custom draggable area](https://www.electronjs.org/docs/latest/tutorial/window-customization#set-custom-draggable-region) within the web app), can't be dropped in [Workspaces](../../../glue42-concepts/windows/workspaces/overview/index.html) or stuck to other Glue42 Windows. Frameless windows can be saved and restored in [Layouts](../../../glue42-concepts/windows/layouts/overview/index.html) and can use all Glue42 functionalities provided by the Glue42 libraries.
+
+The following demonstrates a basic frameless window configuration:
 
 ```json
 {
-    "title": "Client List - Citrix",
-    "type": "citrix",
-    "name": "clientlist-citrix",
-    "details": {
-        "name": "Client List",
-        "parameters": "--mode=3 --clients=http://localhost:22060/clients",
-        "left": 100,
-        "top": 100,
-        "width": 600,
-        "height": 700
+    "name":"frameless-app",
+    "icon": "https://example.com/icon.ico",
+    "type": "window",
+    "details":{
+        "url":"https://localhost:3000",
+        "mode": "frameless",
+        "width": 400,
+        "height": 400
     }
 }
 ```
 
-*For system-wide Citrix configuration, see the [System Configuration](../system/index.html#citrix_apps) section.*
+The `"name"`, `"type"` and `"url"` properties are required and `"type"` must be set to `"window"`. The `"mode"` property must be set to `"frameless"`. The `"url"` property points to the location of the web application.
+
+### Workspaces App
+
+A [Workspaces App](../../../glue42-concepts/windows/workspaces/overview/index.html#workspaces_concepts-frame) is a web app that can host Glue42 [Workspaces](../../../glue42-concepts/windows/workspaces/overview/index.html#workspaces_concepts-workspace).
+
+*Note that [**Glue42 Enterprise**](https://glue42.com/enterprise/) expects only one application definition for a Workspaces App - i.e., one configuration file with `"type"` property set to `"workspaces"`. If multiple Workspaces App definitions are present, the first available one will be used.*
+
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a Workspaces UI app and a configuration file for it named `workspaces.json` and located in `%LocalAppData%\Tick42\GlueDesktop\config\apps`. If you are creating your [custom Workspaces App](../../../glue42-concepts/windows/workspaces/overview/index.html#extending_workspaces), make sure to modify or replace this file with your own configuration file, or delete it, if your application configurations are stored at another location.
+
+The `"type"` property must be set to `"workspaces"`:
+
+```json
+{
+    "title": "Workspaces UI",
+    "type": "workspaces",
+    "name": "workspaces-demo",
+    "icon": "http://localhost:22080/resources/icons/workspaces.ico",
+    "details": {
+        "layouts": [],
+        "url": "http://localhost:3000"
+    },
+    "customProperties": {}
+}
+```
+
+The `"type"` and `"name"` top-level properties are required and `"type"` must be set to `"workspaces"`. The `"url"` and `"layouts"` properties in the `"details"` object are optional.
+
+Use `"url"` to specify where the application is hosted, otherwise it will default to the Workspaces App template distributed with [**Glue42 Enterprise**](https://glue42.com/enterprise/).
+
+#### Defining Workspace Layouts
+
+Use the `"layouts"` property to predefine [Workspace layouts](../../../glue42-concepts/windows/workspaces/overview/index.html#workspaces_concepts-workspace_layout) that will be loaded automatically when the Workspace App starts:
+
+```json
+{
+    "details": {
+        "layouts": [
+            // Standard Workspace layout definition.
+            {
+                "children": [
+                    {
+                        "type": "column",
+                        "children": [
+                            {
+                                "type": "group",
+                                "children": [
+                                    {
+                                        "type": "window",
+                                        "appName": "clientlist"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "children": [
+                                    {
+                                        "type": "window",
+                                        "appName": "clientportfolio"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+
+            // Or a simpler Workspace layout definition for an already existing layout.
+            {
+                "layoutName": "My Workspace"
+            }
+        ]
+    }
+}
+```
+
+Use the `"config"` property of the standard Workspace layout object or the `"restoreConfig"` property of the simpler object to pass context to the Workspace or to hide/show its tab header:
+
+```json
+{
+    "details": {
+        "layouts": [
+            // Standard Workspace layout definition.
+            {
+                "children": [],
+                "config": {
+                    "noTabHeader": true,
+                    "context": { "glue" : 42 }
+                }
+            },
+
+            // Or a simpler Workspace layout definition for an already existing layout.
+            {
+                "layoutName": "My Workspace",
+                "restoreConfig": {
+                    "noTabHeader": true,
+                    "context": { "glue" : 42 }
+                }
+            }
+        ]
+    }
+}
+```
+
+Hiding the Workspace tab header with the `"noTabHeader"` property prevents the user from manipulating the Workspace through the UI and allows for the Workspace to be controlled entirely through API calls. For instance, a Workspace may be tied programmatically to certain logic, a button, etc., designed to manage its state without any user interaction.
+
+### Web Group App
+
+A Web Group App is a web app used in [**Glue42 Enterprise**](https://glue42.com/enterprise/) for handling Glue42 [web groups](../../../glue42-concepts/windows/window-management/overview/index.html#window_groups-web_groups).
+
+*By default, [**Glue42 Enterprise**](https://glue42.com/enterprise/) will search for а registered app with the name `"glue42-web-group-application"` and if one is available, will use it as the Web Group App. If no such app is found, the first available app definition of type `"webGroup"` will be used. Note that [**Glue42 Enterprise**](https://glue42.com/enterprise/) expects only one app definition for a Web Group App - i.e., one configuration file with `"type"` property set to `"webGroup"`. If multiple Web Group App definitions are present, the first one will be used.*
+
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a Web Group App and a configuration file for it named `webGroup.json` and located in `%LocalAppData%\Tick42\GlueDesktop\config\apps`. If you are creating your [custom Web Group App](../../../glue42-concepts/windows/window-management/overview/index.html#extending_web_groups), make sure to modify or replace this file with your own configuration file, or delete it, if your app configurations are stored at another location.
+
+The `"type"` property must be set to `"webGroup"`:
+
+```json
+{
+    "name": "web-group-app",
+    "title": "Web Group App",
+    "type": "webGroup",
+    "hidden": true,
+    "details": {
+        "url": "https://localhost:3000/",
+        "autoOpenDevTools": true,
+        "preloadScripts": ["https://example.com/my-script.js"],
+        "pool": {
+            "min": 5
+        }
+    }
+}
+```
+
+The `"url"` property is required and must point to the location of your custom Web Group App.
+
+Use the `"autoOpenDevTools"` property to automatically open the Chrome Dev Tools (disabled by default) when debugging your Web Group App.
+
+Use the `"preloadScripts"` property to specify a list of URLs pointing to scripts that will be loaded and executed before loading the Web Group App.
+
+Use the `"pool"` property to specify the minimum number of cached Web Group App instances (default is `3`) used for improving group performance and user experience. The higher the number, the more memory will be consumed; the lower the number, the higher the chance to experience delay during web group operations.
+
+The `"hidden"` property is set to `true` in order to hide the Web Group App from the Glue42 [Toolbar](../../../glue42-concepts/glue42-toolbar/index.html), because this is a service app used directly by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to handle Glue42 Window groups.
 
 ## Grouping Applications
 

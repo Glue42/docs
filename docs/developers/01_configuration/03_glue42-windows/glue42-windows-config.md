@@ -6,6 +6,30 @@ The global behavior of [Glue42 Windows](../../../glue42-concepts/windows/window-
 
 ## Glue42 Window Properties
 
+### Classic & Web Groups
+
+Switch from the default Glue42 [classic groups](../../../glue42-concepts/windows/window-management/overview/index.html#window_groups-classic_groups) to the Glue42 [web groups](../../../glue42-concepts/windows/window-management/overview/index.html#window_groups-web_groups):
+
+```json
+// The default value is `"Classic"`.
+{
+    "groupType": "Web"
+}
+```
+
+### Renderer Transparency Mode
+
+To specify how to handle the transparency of the HTML elements that determine the bounds of app windows in [Glue42 Window groups](../../../glue42-concepts/windows/window-management/overview/index.html#window_groups) and [Workspaces](../../../glue42-concepts/windows/workspaces/overview/index.html), use the `"rendererTransparencyMode"` property. These HTML elements are placed over the app windows and must be transparent in order for the app windows to be visible and for the mouse clicks to reach the app windows. For Windows 7 the mode is fixed to `"Regions"`. For Windows 8+, you can use `"KeyColor"` or `"Transparent"`. The `"KeyColor"` value selects a color that will be used as a background for the overlaying HTML elements and will always be transparent. To specify which color will always be transparent, use the `"rendererTransparencyKeyColor"` property. The `"Transparent"` value enables true transparency in Glue42 [web groups](../../../glue42-concepts/windows/window-management/overview/index.html#window_groups-web_groups) and [Workspaces](../../../glue42-concepts/windows/workspaces/overview/index.html), but won't work if you are using Glue42 [classic groups](../../../glue42-concepts/windows/window-management/overview/index.html#window_groups-classic_groups). In this case, if you set `"Transparent"` as a value, it will be used only for Workspaces, and the classic groups will fall back to `"KeyColor"` or `"Regions"`. Setting `"rendererTransparencyMode"` to `"Auto"` will select `"KeyColor"` (for Windows 8+) or `"Regions"` (for Windows 7) depending on your OS:
+
+```json
+{
+    "rendererTransparencyMode": "KeyColor",
+    "rendererTransparencyKeyColor": "#FE0000"
+}
+```
+
+*Note that it is strongly recommended for any popup windows in your custom Workspaces App or Web Group App to use shadows or transparency only if `"rendererTransparencyMode"` is set to `"Transparent"`. Otherwise, the shadow or the transparency will blend with the color specified in the `"rendererTransparencyKeyColor"` property which will result in an undesirable visual effect. Also, the color specified in `"rendererTransparencyKeyColor"` shouldn't be used individually or in a gradient, because it will always be rendered as transparent.*
+
 ### Edge Distance
 
 Configure the distance between the edges of neighboring Glue42 Windows:

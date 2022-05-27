@@ -17,7 +17,7 @@
                 "name",
                 "details"
             ],
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "type": {
                     "description": "Type of the application.",
@@ -28,6 +28,7 @@
                         "node",
                         "canvas",
                         "workspaces",
+                        "webGroup",
                         "clickonce",
                         "citrix",
                         "childWindow"
@@ -53,6 +54,9 @@
                         },
                         {
                             "$ref": "#/definitions/workspaces"
+                        },
+                        {
+                            "$ref": "#/definitions/webGroup"
                         },
                         {
                             "$ref": "#/definitions/clickonce"
@@ -217,7 +221,7 @@
             "title": "WindowConfig",
             "type": "object",
             "description": "Single window application.",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "url": {
                     "description": "Required. URL pointing to the location of the window application.",
@@ -435,7 +439,8 @@
                     "enum": [
                         "flat",
                         "tab",
-                        "html"
+                        "html",
+                        "frameless"
                     ],
                     "type": "string",
                     "default": "flat"
@@ -1065,6 +1070,9 @@
                     },
                     "additionalProperties": false
                 },
+                "jumpList": {
+                    "$ref": "system.json#/definitions/jumpListConfig"
+                },
                 "allowOSInfo": {
                     "description": "If `true`, the app can retrieve OS information.",
                     "type": "boolean",
@@ -1091,7 +1099,7 @@
             "title": "activityConfig",
             "type": "object",
             "description": "Defines an activity as a set of activity window types. Also defines the other activity related parameters (like layout and initial context).",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "activityType": {
                     "type": "string"
@@ -1142,7 +1150,7 @@
             "title": "EXEConfig",
             "type": "object",
             "description": "Executable application. Could be anything that the OS can execute via the appropriate system calls.",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "showConsole": {
                     "description": "If `true`, the console will be visible.",
@@ -1257,7 +1265,8 @@
                     "enum": [
                         "flat",
                         "tab",
-                        "html"
+                        "html",
+                        "frameless"
                     ],
                     "type": "string",
                     "default": "flat"
@@ -1452,6 +1461,9 @@
                 "timeout": {
                     "description": "Starting timeout in seconds.",
                     "type": "number"
+                },
+                "jumpList": {
+                    "$ref": "system.json#/definitions/jumpListConfig"
                 }
             }
         },
@@ -1521,7 +1533,8 @@
                     "enum": [
                         "flat",
                         "tab",
-                        "html"
+                        "html",
+                        "frameless"
                     ],
                     "type": "string",
                     "default": "flat"
@@ -1670,6 +1683,9 @@
                     "description": "Whether to terminate the application when Glue42 Enterprise shuts down.",
                     "type": "boolean",
                     "default": true
+                },
+                "jumpList": {
+                    "$ref": "system.json#/definitions/jumpListConfig"
                 }
             }
         },
@@ -1743,7 +1759,8 @@
                     "enum": [
                         "flat",
                         "tab",
-                        "html"
+                        "html",
+                        "frameless"
                     ],
                     "type": "string",
                     "default": "flat"
@@ -1904,7 +1921,7 @@
             "title": "NodeConfig",
             "type": "object",
             "description": "Node application",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "showConsole": {
                     "description": "If `true`, the console of the Node.js script will be visible.",
@@ -2020,7 +2037,7 @@
             "title": "ChildWindowConfig",
             "type": "object",
             "description": "Child-window application",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "owner": {
                     "description": "The host application name",
@@ -2083,7 +2100,8 @@
                     "enum": [
                         "flat",
                         "tab",
-                        "html"
+                        "html",
+                        "frameless"
                     ],
                     "type": "string",
                     "default": "flat"
@@ -2199,6 +2217,9 @@
                 "timeout": {
                     "description": "Starting timeout in seconds.",
                     "type": "number"
+                },
+                "jumpList": {
+                    "$ref": "system.json#/definitions/jumpListConfig"
                 }
             },
             "required": [
@@ -2209,7 +2230,7 @@
             "title": "activityWindow",
             "type": "object",
             "description": "A window which takes part in an activity and may or may not be the owner.",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "type": {
                     "description": "The application identifier.",
@@ -2287,7 +2308,7 @@
             "title": "activityTarget",
             "type": "object",
             "description": "Specifies how this application will be registered as an activity window.",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "enabled": {
                     "description": "Whether to register the application as an activity window.",
@@ -2312,7 +2333,7 @@
             "title": "canvasConfig",
             "type": "object",
             "description": "Defines a canvas layout.",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "lanes": {
                     "type": "number"
@@ -2426,7 +2447,7 @@
             "title": "workspacesConfig",
             "type": "object",
             "description": "Defines a workspace config.",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "saveWorkspaceApp": {
                     "type": "string"
@@ -2518,15 +2539,80 @@
                     "type": "number",
                     "description": "Controls the count of cached frames, which will be used for workspace extract. The higher the number the higher the consumed memory, the lower the number the chance for workspace extract rejection, because the pool is empty will be higher.",
                     "default": 3
+                },
+                "allowOSInfo": {
+                    "description": "If `true`, the app can retrieve OS information.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "syncTitleWithDocumentTitle": {
+                    "description": "If `true`, tab title will change when the document title is updated",
+                    "type": "boolean"
+                },
+                "restrictWindowDropByOrigin": {
+                    "description": "If `true` only applications opened in the workspace will be allowed to be dropped inside of it and all other apps won't be",
+                    "type": "boolean",
+                    "default": false
                 }
             },
             "required": []
+        },
+        "webGroup": {
+            "title": "webGroupConfig",
+            "type": "object",
+            "description": "Configuration for the Web Group App used in Glue42 Enterprise for web-based Glue42 Window groups.",
+            "additionalProperties": true,
+            "properties": {
+                "url": {
+                    "description": "URL pointing to the location of the Web Group App.",
+                    "type": "string"
+                },
+                "preloadScripts": {
+                    "description": "A list of URLs pointing to scripts that will be loaded and executed before loading the Web Group App.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "autoOpenDevTools": {
+                    "description": "If `true`, the Chrome Dev Tools for the web group page will start automatically. Suitable for debugging purposes, in case your web group page contains an error and can't start properly.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "pool": {
+                    "$ref": "#/definitions/webGroupPoolConfig"
+                }
+            },
+            "required": [
+                "url"
+            ]
+        },
+        "webGroupPoolConfig": {
+            "title": "webGroupPoolConfig",
+            "type": "object",
+            "description": "Configuration for the pool of cached Web Group App instances that will be used for various operations - open, extract, unstick, etc.",
+            "additionalProperties": true,
+            "properties": {
+                "min": {
+                    "type": "number",
+                    "description": "The minimum number of cached Web Group App instances. The higher the number, the more memory will be consumed; the lower the number, the higher the chance to experience delay during web group operations.",
+                    "default": 3,
+                    "min": 3
+                },
+                "max": {
+                    "type": "number",
+                    "description": "Reserved for future use.",
+                    "default": 10,
+                    "min": 3
+                }
+            }
         },
         "canvasApplication": {
             "title": "canvasApplicationConfig",
             "type": "object",
             "description": "Defines a canvas application",
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
                 "name": {
                     "type": "string"

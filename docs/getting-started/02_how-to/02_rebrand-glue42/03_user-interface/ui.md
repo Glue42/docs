@@ -53,6 +53,10 @@ ipcRenderer.on("setEnvRegion", (event, arg) => {
 });
 ```
 
+<glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.15">
+
+The Glue42 [frameless window](../../../../glue42-concepts/windows/window-management/overview/index.html#window_modes-frameless_windows) type allows you to customize the splash screen of [**Glue42 Enterprise**](https://glue42.com/enterprise/) with transparent areas or use irregular shapes for it.
+
 ## Loaders
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with built-in loaders that can be replaced with custom ones.
@@ -345,6 +349,6 @@ The following is an example configuration for a custom notification toast app:
 
 ## Themes
 
-Use the `themes.json` configuration file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in `%LocalAppData%\Tick42\GlueDesktop\config` to customize the look and feel of Glue42 Windows. For details and examples on how to customize Glue42 Windows, window and tab groups, see the [Configuration > Themes](../../../../developers/configuration/themes/index.html) section.
+Use the `themes.json` configuration file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in `%LocalAppData%\Tick42\GlueDesktop\config` to customize the look and feel of Glue42 Windows. For details and examples on how to customize Glue42 Windows, window and tab groups, see the [Developers > Configuration > Themes](../../../../developers/configuration/themes/index.html) section.
 
 [Workspaces](../../../../glue42-concepts/windows/workspaces/overview/index.html) are entirely customizable too. For more details on how to customize the Workspaces UI or build an entirely new custom Workspaces App, see the [Extending Workspaces](../../../../glue42-concepts/windows/workspaces/overview/index.html#extending_workspaces) section.

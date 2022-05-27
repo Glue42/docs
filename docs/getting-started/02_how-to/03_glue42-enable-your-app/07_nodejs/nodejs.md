@@ -79,7 +79,7 @@ The following is an example configuration for a Node.js app:
 
 The `"name"`, `"type"` and `"path"` properties are required and `"type"` must be set to `"node"`. The `"path"` property points to a JavaScript file that [**Glue42 Enterprise**](https://glue42.com/enterprise/) will execute in a Node.js environment.
 
-*For details on how to configure a remotely hosted Node.js app, see the [Application Configuration > Node.js > Remote](../../../../developers/configuration/application/index.html#application_configuration-nodejs-remote) section.*
+*For details on how to configure a remotely hosted Node.js app, see the [Developers > Configuration > Application > Node.js > Remote](../../../../developers/configuration/application/index.html#application_configuration-nodejs-remote) section.*
 
 *For details on how to use different Node.js versions, see the [Using Different Node.js Versions](../../../../developers/configuration/application/index.html#application_configuration-nodejs-using_different_nodejs_versions) section.*
 
