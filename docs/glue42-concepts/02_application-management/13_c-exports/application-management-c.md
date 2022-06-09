@@ -77,7 +77,7 @@ glue_destroy_resource(my_app_factory);
 
 ## App State
 
-You can save a state for the main and child windows of your app, as well as restore an initial or previously saved state. The initial state of an app can be passed through [application configuration](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#application_configuration).
+You can save a state for the main and child windows of your app, as well as restore an initial or previously saved state. The initial state of an app can be passed through [application configuration](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#app_configuration).
 
 ### Main Window
 

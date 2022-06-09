@@ -59,7 +59,7 @@ const glue = await Glue(config).catch(console.error);
 console.log(glue.version);
 ``` -->
 
-## Application Configuration
+## App Configuration
 
 To add your Node.js app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 
@@ -79,16 +79,16 @@ The following is an example configuration for a Node.js app:
 
 The `"name"`, `"type"` and `"path"` properties are required and `"type"` must be set to `"node"`. The `"path"` property points to a JavaScript file that [**Glue42 Enterprise**](https://glue42.com/enterprise/) will execute in a Node.js environment.
 
-*For details on how to configure a remotely hosted Node.js app, see the [Developers > Configuration > Application > Node.js > Remote](../../../../developers/configuration/application/index.html#application_configuration-nodejs-remote) section.*
+*For details on how to configure a remotely hosted Node.js app, see the [Developers > Configuration > Application > Node.js > Remote](../../../../developers/configuration/application/index.html#app_configuration-nodejs-remote) section.*
 
-*For details on how to use different Node.js versions, see the [Using Different Node.js Versions](../../../../developers/configuration/application/index.html#application_configuration-nodejs-using_different_nodejs_versions) section.*
+*For details on how to use different Node.js versions, see the [Using Different Node.js Versions](../../../../developers/configuration/application/index.html#app_configuration-nodejs-using_different_nodejs_versions) section.*
 
 ## Glue42 JavaScript Concepts
 
 Once the Glue42 JavaScript library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
-- [Application Management](../../../../glue42-concepts/application-management/javascript/index.html)
-- [Application Preferences](../../../../glue42-concepts/application-preferences/javascript/index.html)
+- [App Management](../../../../glue42-concepts/application-management/javascript/index.html)
+- [App Preferences](../../../../glue42-concepts/application-preferences/javascript/index.html)
 - [Intents](../../../../glue42-concepts/intents/javascript/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/javascript/index.html)

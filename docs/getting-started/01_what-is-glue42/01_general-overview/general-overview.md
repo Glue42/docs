@@ -183,7 +183,7 @@ For more information, visit the [official Glue42 site](https://glue42.com/) or e
 
 - [Applications](../../../glue42-concepts/application-management/overview/index.html) - manage your applications and application instances;
 
-- [Application Preferences](../../../glue42-concepts/application-preferences/overview/index.html) - save and restore user-specific application preferences;
+- [App Preferences](../../../glue42-concepts/application-preferences/overview/index.html) - save and restore user-specific application preferences;
 
 - [Intents](../../../glue42-concepts/intents/overview/index.html) - find and start the right application, offer the user a list of all appropriate apps for performing a certain action;
 

@@ -1,6 +1,6 @@
 ## Overview
 
-The [Window Management](../../../../reference/glue/latest/windows/index.html) API enables you to create and manipulate Glue42 Windows and is the basis of the [Application Management](../../../application-management/overview/index.html) API. It allows users to [group Glue42 Windows](#window_groups) so that they move, maximize and minimize together, and provides the following features, not found in any normal browser:
+The [Window Management](../../../../reference/glue/latest/windows/index.html) API enables you to create and manipulate Glue42 Windows and is the basis of the [App Management](../../../application-management/overview/index.html) API. It allows users to [group Glue42 Windows](#window_groups) so that they move, maximize and minimize together, and provides the following features, not found in any normal browser:
 
 - 4 types of window modes: flat, tab, HTML and frameless;
 
@@ -61,7 +61,7 @@ HTML windows are available for web apps only. The HTML page spans the entire win
 
 Frameless windows are based on HTML windows, but allow for creating applications with freeform (non-rectangular) shapes and transparent areas. They don't have the usual Glue42 Window decorations - title bars, standard system buttons ("Minimize", "Maximize", "Close"), resizing areas, and can't be dragged (unless you define a [custom draggable area](https://www.electronjs.org/docs/latest/tutorial/window-customization#set-custom-draggable-region) within the web app), can't be dropped in [Workspaces](../../workspaces/overview/index.html) or stuck to other Glue42 Windows. Frameless windows can be saved and restored in [Layouts](../../layouts/overview/index.html) and can use all Glue42 functionalities provided by the Glue42 libraries.
 
-The following example demonstrates a freeform frameless window, registered in [**Glue42 Enterprise**](https://glue42.com/enterprise/) as a Glue42 enabled app, and using the [Application Management](../../../application-management/overview/index.html) API to start another app. The window is draggable, because the web app has a defined draggable area:
+The following example demonstrates a freeform frameless window, registered in [**Glue42 Enterprise**](https://glue42.com/enterprise/) as a Glue42 enabled app, and using the [App Management](../../../application-management/overview/index.html) API to start another app. The window is draggable, because the web app has a defined draggable area:
 
 ![Frameless Window](../../../../images/window-management/window-mode-frameless.gif)
 
@@ -662,7 +662,7 @@ The default styles for the Web Group App must not be removed, because they conta
 You should consider the following technical limitations when using the [`@glue42/groups-ui-react`](https://www.npmjs.com/package/@glue42/groups-ui-react) library:
 
 - Unless you set the `"rendererTransparencyMode"` property in the [`stickywindows.json`](../../../../assets/configuration/stickywindows.json) configuration file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) to `"Transparent"` (usable on Windows 8+), any popups you may use must not have shadows or transparency. If `"rendererTransparencyMode"` is set to any other value, the shadow or the transparency will blend with the color specified in the `"rendererTransparencyKeyColor"` property which will result in an undesirable visual effect. Also, the color specified in `"rendererTransparencyKeyColor"` shouldn't be used individually or in a gradient, because it will always be rendered as transparent. For more details, see the [Developers > Configuration > Glue42 Windows](../../../../developers/configuration/glue42-windows/index.html#glue42_window_properties-renderer_transparency_mode) section.
-- Hot module reloading may not work well because of the pool with instances of the Web Group App. This pool is [configurable](../../../../developers/configuration/application/index.html#application_configuration-web_group_app) and is necessary for ensuring smooth operation and better user experience when performing group operations.
+- Hot module reloading may not work well because of the pool with instances of the Web Group App. This pool is [configurable](../../../../developers/configuration/application/index.html#app_configuration-web_group_app) and is necessary for ensuring smooth operation and better user experience when performing group operations.
 
 As the Glue42 [web groups](#window_groups-web_groups) are still an experimental feature, the [`@glue42/groups-ui-react`](https://www.npmjs.com/package/@glue42/groups-ui-react) library currently doesn't support the following:
 

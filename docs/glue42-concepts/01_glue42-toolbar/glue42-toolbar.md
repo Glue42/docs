@@ -14,7 +14,7 @@ In the example below, you can see several helpful functionalities of the Floatin
 
 - moving the Floating Toolbar, switching from vertical to horizontal view and vice versa;
 - switching the theme from the Settings;
-- listing applications from application stores;
+- listing applications from app stores;
 - using applications, choosing favorite applications;
 - [Workspace](../windows/workspaces/overview/index.html) and [Layout](../windows/layouts/overview/index.html) save and restore options;
 - feedback form;
@@ -105,7 +105,7 @@ The source code for the Floating Toolbar is [available on GitHub](https://github
 
 The Launchpad is available as a React Component on NPM - [`@glue42/launchpad-ui-react`](https://www.npmjs.com/package/@glue42/launchpad-ui-react). You can use the component in your own apps and also modify it by passing different options. For more details, see the README file of the [`@glue42/launchpad-ui-react`](https://www.npmjs.com/package/@glue42/launchpad-ui-react) package.
 
-Once you have implemented a toolbar, you must host it, create an [application configuration](../../developers/configuration/application/index.html#application_configuration) file for it and add it to your application store. Make sure to set the `"shell"` top-level key to `true`:
+Once you have implemented a toolbar, you must host it, create an [application configuration](../../developers/configuration/application/index.html#app_configuration) file for it and add it to your app store. Make sure to set the `"shell"` top-level key to `true`:
 
 ```json
 {

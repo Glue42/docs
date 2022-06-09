@@ -1,6 +1,6 @@
 ## Login Screen
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) allows showing a login screen before the first application is loaded. This is useful if you have shared authentication between your apps (SSO) and you want the user to log in just once.
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) allows showing a login screen before the first app is loaded. This is useful if you have shared authentication between your apps (SSO) and you want the user to log in just once.
 
 To enable using a login screen, you have to modify the system configuration of [**Glue42 Enterprise**](https://glue42.com/enterprise/). To complete the authentication process and allow the user access, you have to signal Glue42 that the user has logged in successfully.
 
@@ -68,19 +68,19 @@ The optional object passed as an argument to `authDone()` has the following prop
 | `token` | `string` | The token will be applied to each request to the remote stores or the [Glue42 Server](../../../../glue42-concepts/glue42-server/index.html). |
 | `headers` | `JSON object` | Extra headers that will be passed to the remote stores or the [Glue42 Server](../../../../glue42-concepts/glue42-server/index.html). |
 
-## Remote Applications & Layouts
+## Remote Apps & Layouts
 
-In the standard [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployment model, application definitions aren't stored locally on the user machine, but are served remotely. Remote application and Layout stores can be hosted and retrieved using the [Glue42 Server](#remote_applications__layouts-glue42_server) and/or [REST services](#remote_applications__layouts-rest_stores).
+In the standard [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployment model, app definitions aren't stored locally on the user machine, but are served remotely. Remote apps and [Layouts](../../../../glue42-concepts/windows/layouts/overview/index.html) can be hosted and retrieved using [Glue42 Server stores](#remote_apps__layouts-glue42_server) and/or [REST stores](#remote_apps__layouts-rest_stores).
 
-The settings for the application and Layout stores are defined in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in `%LocalAppData%\Tick42\GlueDesktop\config`. The app store settings are under the `"appStores"` top-level key, the Layout store settings are under the `"layouts"` top-level key.
+The settings for the app and Layout stores are defined in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in `%LocalAppData%\Tick42\GlueDesktop\config`. The app store settings are under the `"appStores"` top-level key, the Layout store settings are under the `"layouts"` top-level key.
 
-*Note that [**Glue42 Enterprise**](https://glue42.com/enterprise/) respects the FDC3 standards and can retrieve standard Glue42, as well as FDC3-compliant application definitions. For more details on working with FDC3-compliant apps, see the [FDC3 Compliance](../../../fdc3-compliance/index.html) section, the [FDC3 App Directory documentation](https://fdc3.finos.org/docs/app-directory/overview) and the [FDC3 Application](https://fdc3.finos.org/schemas/1.2/app-directory#tag/Application) schema.*
+*Note that [**Glue42 Enterprise**](https://glue42.com/enterprise/) respects the FDC3 standards and can retrieve standard Glue42, as well as FDC3-compliant app definitions. For more details on working with FDC3-compliant apps, see the [FDC3 Compliance](../../../fdc3-compliance/index.html) section, the [FDC3 App Directory documentation](https://fdc3.finos.org/docs/app-directory/overview) and the [FDC3 Application](https://fdc3.finos.org/schemas/1.2/app-directory#tag/Application) schema.*
 
 ### Glue42 Server
 
-#### Applications
+#### Apps
 
-To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch application configurations from a [Glue42 Server](../../../../glue42-concepts/glue42-server/index.html), set the `"type"` property of the app store configuration object to `"server"`:
+To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch app configurations from a [Glue42 Server](../../../../glue42-concepts/glue42-server/index.html), set the `"type"` property of the app store configuration object to `"server"`:
 
 ```json
 {
@@ -92,9 +92,11 @@ To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch ap
 }
 ```
 
+*For more details, see [App Stores > Glue42 Server Stores](../../../../glue42-concepts/application-management/overview/index.html#app_stores-glue42_server).*
+
 #### Layouts
 
-To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch application configurations from a [Glue42 Server](../../../../glue42-concepts/glue42-server/index.html), set the `"type"` property of the `"store"` object to `"server"`:
+To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch Layouts from a [Glue42 Server](../../../../glue42-concepts/glue42-server/index.html), set the `"type"` property of the `"store"` object to `"server"`:
 
 ```json
 {
@@ -106,13 +108,13 @@ To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch ap
 }
 ```
 
-*Note that when using the [Glue42 Server](../../../../glue42-concepts/glue42-server/index.html) as a Layout store, Layout files aren't only fetched from the server, but are also saved on the server (e.g., when the user edits and saves an existing Layout).*
+*For more details, see [Layout Stores](../../../../glue42-concepts/windows/layouts/overview/index.html#layout_stores).*
 
 ### REST Stores
 
-#### Applications
+#### Apps
 
-To configure a connection to the REST service providing the application store, add a new entry to the `"appStores"` top-level key of the `system.json` file:
+To configure a connection to the REST service providing the app store, add a new entry to the `"appStores"` top-level key of the `system.json` file:
 
 ```json
 {
@@ -131,25 +133,18 @@ To configure a connection to the REST service providing the application store, a
 }
 ```
 
-The only required properties for each app store configuration object are `"type"`, which should be set to `"rest"`, and `"url"`, which is the address of the remote application store. You can also set the authentication, polling interval, cache persistence and cache folder.
-
-| Property | Description |
-|----------|-------------|
-| `"auth"` | Authentication configuration. Can be one of `"no-auth"`, `"negotiate"` or `"kerberos"`. |
-| `"pollInterval"` | Interval in milliseconds at which to poll the REST service for updates. |
-| `"enablePersistentCache"` | Whether to cache and persist the configuration files locally (e.g., in case of connection interruptions). |
-| `"cacheFolder"` | Where to keep the persisted configuration files. |
-
-The remote store must return application definitions in the following response shape:
+The remote store must return app definitions in the following response shape:
 
 ```json
 {
     "applications": [
-        // List of application definition objects.
-        {...}, {...}
+        // List of app definition objects.
+        {}, {}
     ]
 }
 ```
+
+*For more details, see [App Stores > Remote](../../../../glue42-concepts/application-management/overview/index.html#app_stores-remote).*
 
 #### Layouts
 
@@ -168,14 +163,7 @@ To configure a connection to the REST service providing the Layout store, edit t
 }
 ```
 
-| Property | Description |
-|----------|-------------|
-| `"type"` | Can be `"file"`, `"rest"` or `"server"`, depending on the type of Layout store. |
-| `"restURL"` | The URL address of the Layouts REST service. |
-| `"restFetchInterval"` | Interval in seconds at which to fetch Layouts from the REST service. |
-| `"restClientAuth"` | Authentication configuration. Can be one of `"no-auth"`, `"negotiate"` or `"kerberos"`. |
 
-*The `"restURL"`, `"restFetchInterval"` and `"restClientAuth"` properties are valid only when `"type"` is set to `"rest"`. Otherwise, they are ignored.*
 
 The remote store must return Layout definitions in the following response shape:
 
@@ -183,18 +171,20 @@ The remote store must return Layout definitions in the following response shape:
 {
     "layouts": [
         // List of Layout definition objects.
-        {...}, {...}
+        {}, {}
     ]
 }
 ```
 
+*For more details, see [Layout Stores](../../../../glue42-concepts/windows/layouts/overview/index.html#layout_stores).*
+
 ### Example Store Implementations
 
-#### Applications
+#### Apps
 
-For a reference implementation of a remote application configurations store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example that implements the [FDC3 App Directory](https://fdc3.finos.org/docs/appd-intro) and is compatible with [**Glue42 Enterprise**](https://glue42.com/enterprise/). This basic implementation doesn't take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the README file in the repository.
+For a reference implementation of a remote app configurations store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example that implements the [FDC3 App Directory](https://fdc3.finos.org/docs/appd-intro) and is compatible with [**Glue42 Enterprise**](https://glue42.com/enterprise/). This basic implementation doesn't take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the README file in the repository.
 
-For a .NET implementation of a remote application configurations store, see the [.NET REST Config](https://github.com/Tick42/rest-config-example-net) example.
+For a .NET implementation of a remote app configurations store, see the [.NET REST Config](https://github.com/Tick42/rest-config-example-net) example.
 
 #### Layouts
 
@@ -230,7 +220,7 @@ Use the `"gw"` top-level key in the `system.json` file to set the port number. T
 }
 ```
 
-The following example demonstrates creating a system configuration file for a `"PROD"` environment and an `"EMEA"` region, named `system-PROD-EMEA.json`. The port for the Glue42 Gateway isn't specified, as it is set to `0` in the common system configuration file. The only setting that will be overridden is for the [application stores](#remote_applications__layouts) under the `"appStores"` top-level key:
+The following example demonstrates creating a system configuration file for a `"PROD"` environment and an `"EMEA"` region, named `system-PROD-EMEA.json`. The port for the Glue42 Gateway isn't specified, as it is set to `0` in the common system configuration file. The only setting that will be overridden is for the [app stores](#remote_apps__layouts) under the `"appStores"` top-level key:
 
 ```json
 // system-PROD-EMEA.json
@@ -283,7 +273,7 @@ tick42-glue-desktop.exe -- config=config/system.json configOverrides config0=con
 
 *Note that to specify command line arguments using a shortcut to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) executable file, you must right click on the shortcut, select the "Properties" menu option, go to the "Target" field and add the arguments after the name of the executable file. Note the space before and after the double dash.*
 
-*For details on how to automatically create shortcuts during installation when using the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installer application for deployment, see the [Installer > Shortcuts](../installer/index.html#shortcuts) section. Otherwise, you can use PowerShell or any other deployment technology to create shortcuts.*
+*For details on how to automatically create shortcuts during installation when using the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installer app for deployment, see the [Installer > Shortcuts](../installer/index.html#shortcuts) section. Otherwise, you can use PowerShell or any other deployment technology to create shortcuts.*
 
 ## Issue Reporting
 
@@ -426,7 +416,7 @@ The `"allowMultipleInstances"` property accepts the following values:
 
 It's possible to install multiple versions of [**Glue42 Enterprise**](https://glue42.com/enterprise/) on the same machine. If you plan on supporting multiple installations, ensure that the different versions are installed in separate folders, and use relative paths in the `system.json` configuration file in order to avoid data overwriting.
 
-*Note that the [MS Office Connectors](../../../../connectors/ms-office/overview/index.html) are integrated with the registered MS Office application at installation time. This means that only their last-installed version will be available.*
+*Note that the [MS Office Connectors](../../../../connectors/ms-office/overview/index.html) are integrated with the registered MS Office app at installation time. This means that only their last-installed version will be available.*
 
 ### Global Protocol Handler
 
@@ -440,7 +430,7 @@ The default name of the Glue42 [global protocol](../../../../glue42-concepts/glu
 }
 ```
 
-The following example demonstrates how to start a Glue42 enabled application using the `app` protocol option after you have changed the default protocol name:
+The following example demonstrates how to start a Glue42 enabled app using the `app` protocol option after you have changed the default protocol name:
 
 ```cmd
 mycustomprotocol://app/clientlist

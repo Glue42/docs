@@ -1,6 +1,6 @@
 ## Listing Applications
 
-The .NET **Application Management** API is accessible through `glue.AppManager`.
+The .NET App Management API is accessible through `glue.AppManager`.
 
 To get a collection of all available Glue42 enabled applications, use the `AwaitApplications()` method:
 
@@ -14,7 +14,7 @@ To get a specific application, use `AwaitApplication()` and pass a predicate fun
 var app = await glue.AppManager.AwaitApplication(a => a.Name == "appName");
 ```
 
-*See the .NET [Application Management example](https://github.com/Glue42/net-examples/tree/master/app-management-demo) on GitHub.*
+*See the .NET [App Management example](https://github.com/Glue42/net-examples/tree/master/app-management-demo) on GitHub.*
 
 ## Starting Applications
 
@@ -66,7 +66,7 @@ var appWindows = app.Instances.FirstOrDefault()?.Windows;
 
 ## Events
 
-The .NET Application Management API offers methods for monitoring application and instance events - adding/removing applications, starting/stopping instances and more.
+The .NET App Management API offers methods for monitoring application and instance events - adding/removing applications, starting/stopping instances and more.
 
 ### Application
 
@@ -119,7 +119,7 @@ glue.AppManager.ApplicationInstanceStopped += (appManager, instanceArgs) =>
 
 ## Multi Window Apps
 
-Glue42 .NET offers support for applications (WPF and WinForms) consisting of multiple windows. Each window can be registered not only as a [Glue42 Window](../../windows/window-management/net/index.html#glue42_windows), but also as a Glue42 application that you can save and restore in a [Layout](../../windows/layouts/overview/index.html), start directly from the Glue42 Toolbar, etc. This features allows you to register WPF and WinForms windows at runtime and to properly persist their state when saving and restoring a Layout. 
+Glue42 .NET offers support for applications (WPF and WinForms) consisting of multiple windows. Each window can be registered not only as a [Glue42 Window](../../windows/window-management/net/index.html#glue42_windows), but also as a Glue42 application that you can save and restore in a [Layout](../../windows/layouts/overview/index.html), start directly from the Glue42 Toolbar, etc. This features allows you to register WPF and WinForms windows at runtime and to properly persist their state when saving and restoring a Layout.
 
 *See the .NET [Multi Window Demo example](https://github.com/Glue42/net-examples/tree/master/multiwindow-demo) on GitHub.*
 
@@ -246,15 +246,15 @@ Selector.SelectedIndex = appState?.SelectedIndex ?? -1;
 
 ## Bootstrapped Apps
 
-A common use-case is to have a bootstrapping application that handles user login and launches your apps. The bootstrapper can be any application and in the general case it isn't Glue42 enabled, but the applications it launches are. This scenario can be handled both through [application configuration](#bootstrapped_apps-application_configuration) or [runtime configuration](#bootstrapped_apps-runtime_configuration) when initializing Glue42 in the respective apps. 
+A common use-case is to have a bootstrapping application that handles user login and launches your apps. The bootstrapper can be any application and in the general case it isn't Glue42 enabled, but the applications it launches are. This scenario can be handled both through [app configuration](#bootstrapped_apps-app_configuration) or [runtime configuration](#bootstrapped_apps-runtime_configuration) when initializing Glue42 in the respective apps.
 
 *Note that defining application configurations for Glue42 enabled .NET apps isn't mandatory. Glue42 enabled .NET applications announce themselves to [**Glue42 Enterprise**](https://glue42.com/enterprise/) automatically when started. The configuration file is necessary only if you want your app to be launchable from [**Glue42 Enterprise**](https://glue42.com/enterprise/). If you decide to create application configurations for the bootstrapper and the bootstrapped apps, the name of the bootstrapper specified in the `"name"` property of the bootstrapper configuration, in the `"launcherApp"` property of the bootstrapped app configuration, and in the initialization options in the bootstrapped app code must be the same.*
 
-You must specify the name of the bootstraping app and clear the starting context passed by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to it. Clearing the starting context is very important, because [**Glue42 Enterprise**](https://glue42.com/enterprise/) by default will store the command line arguments with which the bootstrapper has been started and will try to pass them again on restore, which in some cases may not be possible or may lead to undesired results.
+You must specify the name of the bootstrapping app and clear the starting context passed by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to it. Clearing the starting context is very important, because [**Glue42 Enterprise**](https://glue42.com/enterprise/) by default will store the command line arguments with which the bootstrapper has been started and will try to pass them again on restore, which in some cases may not be possible or may lead to undesired results.
 
-### Application Configuration
+### App Configuration
 
-To specify the name of the bootstrapper in the [application configurations](../../../developers/configuration/application/index.html#application_configuration-exe) of the bootstrapped apps, use the `"launcherApp"` property of the `"details"` top-level key:
+To specify the name of the bootstrapper in the [app configurations](../../../developers/configuration/application/index.html#app_configuration-exe) of the bootstrapped apps, use the `"launcherApp"` property of the `"details"` top-level key:
 
 ```json
 // Configuration file for the bootstrapped app.
@@ -278,7 +278,7 @@ To clear the starting context for the bootstrapper, set the `"startingContextMod
 - run the bootstrapper as a hidden window;
 - clear the starting context for the bootstrapper;
 - track the bootstrapper using its process, because it isn't Glue42 enabled;
-- prevent closing the bootstrapper on shutdown; 
+- prevent closing the bootstrapper on shutdown;
 
 ```json
 // Example configuration file for the bootstrapper.
@@ -305,7 +305,7 @@ To clear the starting context for the bootstrapper, set the `"startingContextMod
 
 ### Runtime Configuration
 
-It is mandatory to specify the name of the bootstrapper in the `InitializeOptions` object during the [initialization](../../../getting-started/how-to/glue42-enable-your-app/net/index.html) of Glue42 in your bootstrapped app, irrespective of whether you have created an [application configuration](../../../developers/configuration/application/index.html#application_configuration-exe) for it. This is necessary, because when a Glue42 enabled .NET app announces itself to [**Glue42 Enterprise**](https://glue42.com/enterprise/), it overwrites the configuration settings specified in its configuration file.
+It is mandatory to specify the name of the bootstrapper in the `InitializeOptions` object during the [initialization](../../../getting-started/how-to/glue42-enable-your-app/net/index.html) of Glue42 in your bootstrapped app, irrespective of whether you have created an [application configuration](../../../developers/configuration/application/index.html#app_configuration-exe) for it. This is necessary, because when a Glue42 enabled .NET app announces itself to [**Glue42 Enterprise**](https://glue42.com/enterprise/), it overwrites the configuration settings specified in its configuration file.
 
 The following example demonstrates how to instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to:
 

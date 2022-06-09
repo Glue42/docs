@@ -78,7 +78,7 @@ The table below describes the properties of the optional settings object:
 
 *Note that in Python it isn't possible to pass a function as a value, therefore the properties of the `config` objects which accept a function as a value can't be set.*
 
-## Application Configuration
+## App Configuration
 
 To add your Dash app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 

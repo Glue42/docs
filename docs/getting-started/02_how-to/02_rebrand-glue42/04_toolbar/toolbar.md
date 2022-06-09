@@ -8,7 +8,7 @@ The Glue42 [Launchpad](../../../../glue42-concepts/glue42-toolbar/index.html#lau
 
 ## Custom Toolbar
 
-Once you have implemented a toolbar, you must host it, create an [application configuration](../../../../developers/configuration/application/index.html#application_configuration) file for it and add it to your application store. Make sure to set the `"shell"` top-level key to `true`:
+Once you have implemented a toolbar, you must host it, create an [app configuration](../../../../developers/configuration/application/index.html#app_configuration) file for it and add it to your app store. Make sure to set the `"shell"` top-level key to `true`:
 
 ```json
 {

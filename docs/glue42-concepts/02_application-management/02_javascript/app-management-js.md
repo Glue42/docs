@@ -1,8 +1,8 @@
 ## Restart and Shutdown
 
-The Application Management API is accessible through the [`glue.appManager`](../../../reference/glue/latest/appmanager/index.html) object.
+The App Management API is accessible through the [`glue.appManager`](../../../reference/glue/latest/appmanager/index.html) object.
 
-*See the JavaScript [Application Management example](https://github.com/Glue42/js-examples/tree/master/app-management) on GitHub.*
+*See the JavaScript [App Management example](https://github.com/Glue42/js-examples/tree/master/app-management) on GitHub.*
 
 To restart [**Glue42 Enterprise**](https://glue42.com/enterprise/), use the [`restart()`](../../../reference/glue/latest/appmanager/index.html#API-restart) method. This will close all running applications and their instances and then restart [**Glue42 Enterprise**](https://glue42.com/enterprise/):
 
@@ -22,7 +22,7 @@ await glue.appManager.exit();
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.12">
 
-Application definitions can be imported, exported and removed at runtime using the [`InMemoryStore`](../../../reference/glue/latest/appmanager/index.html#InMemoryStore) object of the Application Management API.
+Application definitions can be imported, exported and removed at runtime using the [`InMemoryStore`](../../../reference/glue/latest/appmanager/index.html#InMemoryStore) object of the App Management API.
 
 *Note that all application [`Definition`](../../../reference/glue/latest/appmanager/index.html#Definition) objects provided at runtime are stored in-memory and the methods of the `InMemoryStore` object operate only on them - i.e., the application definitions provided to [**Glue42 Enterprise**](https://glue42.com/enterprise/) through local or remote configuration files aren't affected.*
 
@@ -155,7 +155,7 @@ await appInstance.stop();
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.11">
 
-The shutdown event provided by the Application Management API allows you to execute custom code before [**Glue42 Enterprise**](https://glue42.com/enterprise/) shuts down. The available time for the execution of your code is 60 seconds. The callback you provide for handling the event will receive a [`ShuttingDownEventArgs`](../../../reference/glue/latest/appmanager/index.html#ShuttingDownEventArgs) object as an argument. Use its `restarting` property to determine whether [**Glue42 Enterprise**](https://glue42.com/enterprise/) is restarting or is shutting down:
+The shutdown event provided by the App Management API allows you to execute custom code before [**Glue42 Enterprise**](https://glue42.com/enterprise/) shuts down. The available time for the execution of your code is 60 seconds. The callback you provide for handling the event will receive a [`ShuttingDownEventArgs`](../../../reference/glue/latest/appmanager/index.html#ShuttingDownEventArgs) object as an argument. Use its `restarting` property to determine whether [**Glue42 Enterprise**](https://glue42.com/enterprise/) is restarting or is shutting down:
 
 ```javascript
 // The async code in the handler will be awaited up to 60 seconds
@@ -183,7 +183,7 @@ glue.appManager.onShuttingDown(handler);
 
 ### Application Events
 
-The set of applications defined for the current user can be changed at runtime. To track the events which fire when an application has been added, removed or updated, use the respective methods exposed by the Application Management API.
+The set of applications defined for the current user can be changed at runtime. To track the events which fire when an application has been added, removed or updated, use the respective methods exposed by the App Management API.
 
 Application added event:
 
@@ -214,7 +214,7 @@ const unsubscribe = glue.appManager.onAppChanged(handler);
 
 ### Instance Events
 
-To monitor instance related events globally (for all instances of all applications running in [**Glue42 Enterprise**](https://glue42.com/enterprise/)) or on an application level (only instances of a specific application), use the respective methods exposed by the Application Management API.
+To monitor instance related events globally (for all instances of all applications running in [**Glue42 Enterprise**](https://glue42.com/enterprise/)) or on an application level (only instances of a specific application), use the respective methods exposed by the App Management API.
 
 #### Global
 
@@ -268,4 +268,4 @@ app.onInstanceStopped(handler);
 
 ## Reference
 
-For a complete list of the available Application Management API methods and properties, see the [Application Management API Reference Documentation](../../../reference/glue/latest/appmanager/index.html).
+For a complete list of the available App Management API methods and properties, see the [App Management API Reference Documentation](../../../reference/glue/latest/appmanager/index.html).

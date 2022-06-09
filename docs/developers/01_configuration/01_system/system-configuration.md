@@ -1,12 +1,12 @@
 ## System Configuration
 
-The system configuration of [**Glue42 Enterprise**](https://glue42.com/enterprise/) is located in the `system.json` file in the main configuration folder - `%LocalAppData%\Tick42\GlueDesktop\config`. This file allows you to alter system-wide configurations for window behavior, application stores, Gateway settings and much more. In most cases, the default configuration settings should suffice. For more details, see the [system configuration schema](../../../assets/configuration/system.json).
+The system configuration of [**Glue42 Enterprise**](https://glue42.com/enterprise/) is located in the `system.json` file in the main configuration folder - `%LocalAppData%\Tick42\GlueDesktop\config`. This file allows you to alter system-wide configurations for window behavior, app stores, Gateway settings and much more. In most cases, the default configuration settings should suffice. For more details, see the [system configuration schema](../../../assets/configuration/system.json).
 
 See also the [Glue42 Platform Features](../../../glue42-concepts/glue42-platform-features/index.html) section of the documentation, as many of the platform features are configured via the `system.json` file.
 
 The following examples demonstrate some of the available system level configurations.
 
-*Note that the globally defined properties in the `system.json` file will be overridden by the respective property definitions in the [application configuration](../application/index.html) files.*
+*Note that some of the globally defined properties in the `system.json` file may be overridden using the respective property definitions in the [app configuration](../application/index.html) files.*
 
 ## Dynamic Gateway Port
 
@@ -24,9 +24,13 @@ To configure the Glue42 Gateway to use a random free port, go to the `"configura
 }
 ```
 
-## Application Stores
+## App Stores
 
-To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load application configuration files from a local path, use the `"appStores"` top-level key. Set the `"type"` property of the app store configuration object to `"path"` and specify a relative or an absolute path to the application definitions. The environment variables set by [**Glue42 Enterprise**](https://glue42.com/enterprise/) can also be used as values:
+The settings for the app configuration stores are defined under the `"appStores"` top-level key, which accepts an array of objects defining one or more app stores.
+
+### Local
+
+To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load app configuration files from a local path, set the `"type"` property of the app store configuration object to `"path"` and specify a relative or an absolute path to the app definitions. The environment variables set by [**Glue42 Enterprise**](https://glue42.com/enterprise/) can also be used as values:
 
 ```json
 {
@@ -53,7 +57,22 @@ To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load app
 }
 ```
 
-To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load application definitions from a remote application store, set the the `"type"` property of the app store configuration object to `"rest"` and provide details about the remote application store:
+Each local path app store object has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"type"` | `string` | **Required.** Type of the app store. Must be set to `"path"` for local path app stores. |
+| `"details"` | `object` | **Required.** Specific details about the app store. |
+
+The `"details"` object has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"path"` | `string` | **Required.** Must point to the local app store. The specified path can be absolute or relative and you can use defined environment variables. |
+
+### Remote
+
+To configure a connection to the REST service providing the remote app store, add a new entry to the `"appStores"` top-level key and set its `"type"` to `"rest"`:
 
 ```json
 {
@@ -72,18 +91,50 @@ To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load app
 }
 ```
 
-The only required properties for each app store configuration object are `"type"`, which should be set to `"rest"`, and `"url"`, which is the address of the remote application store. You can also set the authentication, polling interval, cache persistence and cache folder.
+Each remote app store object has the following properties:
 
-| Property | Description |
-|----------|-------------|
-| `"auth"` | Authentication configuration. Can be one of `"no-auth"`, `"negotiate"` or `"kerberos"`. |
-| `"pollInterval"` | Interval in milliseconds at which to poll the REST service for updates. |
-| `"enablePersistentCache"` | Whether to cache and persist the configuration files locally (e.g., in case of connection interruptions). |
-| `"cacheFolder"` | Where to keep the persisted configuration files. |
+| Property | Type | Description |
+|----------|------|-------------|
+| `"type"` | `string` | **Required.** Type of the app store. Must be set to `"rest"` for remote app stores. |
+| `"details"` | `object` | **Required.** Specific details about the app store. |
+| `"isRequired"` | `boolean` | If `true` (default), the app store will be required. If the app store can't be retrieved, [**Glue42 Enterprise**](https://glue42.com/enterprise/) will throw an error and shut down. If `false`, [**Glue42 Enterprise**](https://glue42.com/enterprise/) will initiate normally, without apps from that store. |
 
-*For details on working with remote store compliant with FDC3 App Directory standards, see the [FDC3 Compliance](../../../getting-started/fdc3-compliance/index.html#fdc3_for_glue42_enterprise-app_directory) section and the [FDC3 App Directory documentation](https://fdc3.finos.org/docs/app-directory/overview).*
+The `"details"` object has the following properties:
 
-You can also use the [Glue42 Server](../../../glue42-concepts/glue42-server/index.html) for hosting and retrieving application stores. The [Glue42 Server](../../../glue42-concepts/glue42-server/index.html) is a complete server-side solution for providing data to Glue42. To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch application configurations from a [Glue42 Server](../../../glue42-concepts/glue42-server/index.html), set the `"type"` property of the app store configuration object to `"server"`:
+| Property | Type | Description |
+|----------|------|-------------|
+| `"url"` | `string` | **Required.** The URL to the REST service providing the app configurations. |
+| `"auth"` | `string` | Authentication configuration. Can be one of `"no-auth"` (default), `"negotiate"` or `"kerberos"`. |
+| `"pollInterval"` | `number` | Interval in milliseconds at which to poll the REST service for updates. Default is `60000`. |
+| `"enablePersistentCache"` | `boolean` | If `true` (default), will cache and persist the configuration files locally (e.g., in case of connection interruptions). |
+| `"cacheFolder"` | `string` | Where to keep the persisted configuration files. |
+| `"readCacheAfter"` | `number` | Interval in milliseconds after which to try to read the cache. Default is `30000`. |
+| `"startRetries"` | `number` | Number of times [**Glue42 Enterprise**](https://glue42.com/enterprise/) will try to connect to the REST server. Default is `5`. |
+| `"startRetryInterval"` | `number` | Interval in milliseconds at which [**Glue42 Enterprise**](https://glue42.com/enterprise/) will try to connect to the REST Server. Default is `10000`. |
+| `"requestTimeout"` | `number` | Timeout in milliseconds to wait for a response from the REST server. Default is `20000`. |
+| `"proxy"` | `string` | HTTP proxy to use when fetching data. |
+| `"rejectUnauthorized"` | `boolean` | If `true` (default), SSL validation will be enabled for the REST server. |
+
+The remote store must return app definitions in the following response shape:
+
+```json
+{
+    "applications": [
+        // List of app definition objects.
+        {}, {}
+    ]
+}
+```
+
+*For details on working with remote app stores compliant with FDC3 App Directory standards, see the [FDC3 Compliance](../../../getting-started/fdc3-compliance/index.html#fdc3_for_glue42_enterprise-app_directory) section and the [FDC3 App Directory documentation](https://fdc3.finos.org/docs/app-directory/overview).*
+
+*For a reference implementation of a remote app configurations store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example that implements the [FDC3 App Directory](https://fdc3.finos.org/docs/appd-intro) and is compatible with [**Glue42 Enterprise**](https://glue42.com/enterprise/). This basic implementation doesn't take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the README file in the repository.*
+
+*For a .NET implementation of a remote app configurations store, see the [.NET REST Config](https://github.com/Tick42/rest-config-example-net) example.*
+
+### Glue42 Server
+
+To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch app configurations from a [Glue42 Server](../../../glue42-concepts/glue42-server/index.html), set the `"type"` property of the app store configuration object to `"server"`:
 
 ```json
 {
@@ -95,9 +146,95 @@ You can also use the [Glue42 Server](../../../glue42-concepts/glue42-server/inde
 }
 ```
 
-## Application Preferences Store
+The server app store object has the following properties:
 
-Application preferences can be stored locally in a file, or remotely - using a REST service or the [Glue42 Server](../../../glue42-concepts/glue42-server/index.html). By default, application preferences are stored locally in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\prefs` folder where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) where to store application preferences, use the `"store"` property of the `"applicationPreferences"` top-level key:
+| Property | Type | Description |
+|----------|------|-------------|
+| `"type"` | `string` | **Required.** Type of the app store. Must be set to `"server"` for app stores retrieved from a [Glue42 Server](../../../glue42-concepts/glue42-server/index.html). |
+
+If you are using only a [Glue42 Server](../../../glue42-concepts/glue42-server/index.html) for retrieving app configurations, you can set the `"appStores"` key to an empty array. [**Glue42 Enterprise**](https://glue42.com/enterprise/) will automatically try to connect to the [Glue42 Server](../../../glue42-concepts/glue42-server/index.html) using its [configuration](../../../glue42-concepts/glue42-server/index.html#how_to-configure_glue42_enterprise), and will retrieve the app configurations from it, if any.
+
+## Layout Stores
+
+The settings for the Layout stores are defined under the `"layouts"` top-level key, which accepts an object with a `"store"` property as a value.
+
+The `"store"` object has the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `"type"` | `string` | Type of the Layout store. Can be one of `"file"` (default), `"rest"` or `"server"`. |
+| `"restURL"` | `string` | URL pointing to the Layout store. Valid only in `"rest"` mode. |
+| `"restFetchInterval"` | `number` | Interval in seconds at which to poll the REST service for updates. Default is `60`. Valid only in `"rest"` mode. |
+| `"restClientAuth"` | `object` | Authentication configuration. Can be one of `"no-auth"` (default), `"negotiate"` or `"kerberos"`. Valid only in `"rest"` mode. |
+| `"rejectUnauthorized"` | `boolean` | If `true` (default), SSL validation will be enabled for the REST server. Valid only in `"rest"` mode. |
+
+### Local
+
+By default, the Layouts are saved to and loaded from a local Layout store located in the `%LocalAppData%\Tick42\UserData\T42-DEMO\layouts` folder, where you can store, customize and delete your Layout files locally.
+
+To instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to manage Layouts as local files, set the `"type"` property of the `"store"` object to `"file"`:
+
+```json
+{
+    "layouts" : {
+        "store": {
+            "type": "file"
+        }
+    }
+}
+```
+
+### Remote
+
+To configure a connection to the REST service providing the Layout store, set the `"type"` property of the `"store"` object to `"rest"`:
+
+```json
+{
+    "layouts": {
+        "store": {
+            "type": "rest",
+            "restURL": "http://localhost:8004/",
+            "restFetchInterval": 20,
+            "restClientAuth": "no-auth"
+        }
+    }
+}
+```
+
+The remote store must return Layout definitions in the following response shape:
+
+```json
+{
+    "layouts": [
+        // List of Layout definition objects.
+        {}, {}
+    ]
+}
+```
+
+*For a reference implementation of a remote Layout definitions store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example. The user Layouts are stored in files with the same structure as local Layout files. This basic implementation doesn't take the user into account and returns the same set of data for all users. New Layouts are stored in files using the name of the Layout and there isn't validation for the name. The operation for removing a Layout isn't implemented and just logs to the console. For instructions on running the sample server on your machine, see the README file in the repository.*
+
+*For a .NET implementation of a remote Layout definitions store, see the [.NET REST Config](https://github.com/Tick42/rest-config-example-net) example.*
+
+### Glue42 Server
+
+To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to fetch Layouts from a [Glue42 Server](../../../glue42-concepts/glue42-server/index.html), set the `"type"` property of the `"store"` to `"server"`:
+
+```json
+{
+    "layouts" : {
+        "store": {
+            "type": "server"
+        }
+    }
+}
+```
+
+*Note that when using the [Glue42 Server](../../../glue42-concepts/glue42-server/index.html) as a Layout store, Layout files aren't only fetched from the server, but are also saved on the server (e.g., when the user edits and saves an existing Layout).*
+
+## App Preferences Store
+
+App preferences can be stored locally in a file, or remotely - using a REST service or a [Glue42 Server](../../../glue42-concepts/glue42-server/index.html). By default, app preferences are stored locally in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\prefs` folder where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) where to store app preferences, use the `"store"` property of the `"applicationPreferences"` top-level key:
 
 ```json
 {
@@ -112,28 +249,32 @@ Application preferences can be stored locally in a file, or remotely - using a R
 }
 ```
 
-The `"store"` key has the following properties:
+The `"store"` object has the following properties:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `"type"` | `"file"` \| `"rest"` \| `"server"` | The type of the app preferences store. |
+| `"type"` | `string` | The type of the app preferences store. Can be one of `"file"` (default), `"rest"` or `"server"`. |
 | `"restURL"` | `string` | The URL of the REST service providing the app preferences. Valid only in `"rest"` mode. |
-| `"restClientAuth"` | `"no-auth"` \| `"negotiate"` \| `"kerberos"` |  The client authentication mechanism for the REST service. Valid only in `"rest"` mode. |
-| `"newDataCheckInterval"` | `number` | Interval in seconds at which to check for new data from the REST or server store. Executed only if subscribers are available. |
+| `"restClientAuth"` | `string` |  The client authentication mechanism for the REST service. Can be one of `"no-auth"` (default), `"negotiate"` or `"kerberos"`. Valid only in `"rest"` mode. |
+| `"newDataCheckInterval"` | `number` | Interval in seconds at which to check for new data from the REST store. Executed only if subscribers are available. Valid only in `"rest"` mode. |
 
 The `"type"` property accepts the following values:
 
 | Value | Description |
 |-------|-------------|
-| `"file"` | Default. Application preferences will be saved locally in a file. |
-| `"rest"` | Application preferences will be saved using the REST service at the URL provided to the `"restURL"` property. |
-| `"server"` | Application preferences will be saved using the Glue42 Server (the Glue42 Server must be configured first). |
+| `"file"` | Default. App preferences will be saved locally in a file. |
+| `"rest"` | App preferences will be saved using the REST service at the URL provided to the `"restURL"` property. |
+| `"server"` | App preferences will be saved using a [Glue42 Server](../../../glue42-concepts/glue42-server/index.html) (the [Glue42 Server](../../../glue42-concepts/glue42-server/index.html) must be [configured](../../../glue42-concepts/glue42-server/index.html#how_to-configure_glue42_enterprise) first). |
 
-## Application Settings
+*For a reference implementation of a remote app preferences store, see the [Node.js REST Config](https://github.com/Glue42/rest-config-example-node-js) example. This basic implementation doesn't take the user into account and returns the same set of data for all requests. For instructions on running the sample server on your machine, see the README file in the repository.*
 
-- Use the `"titleFormat"` property under the `"applications"` top-level key to set a format for the titles of application windows. Use the supported macros - `{title}` and `{instanceIndex}`:
+## App Settings
+
+### Title Format
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.10">
+
+Use the `"titleFormat"` property of the `"applications"` top-level key to set a format for the titles of app windows. Use the supported macros - `{title}` and `{instanceIndex}`:
 
 ```json
 {
@@ -145,13 +286,13 @@ The `"type"` property accepts the following values:
 
 ![Title format](../../../images/system-configuration/title-format.png)
 
-The value for the `{title}` macro is the title specified in the application configuration file. The `{instanceIndex}` macro is the consecutive number of the application instance. It is incremented for each new application instance starting from `1`. If all instances are closed, the counter is reset. If some instances are closed while others are still running, the counter will continue to increment accordingly.
+The value for the `{title}` macro is the title specified in the app configuration file. The `{instanceIndex}` macro is the consecutive number of the app instance. It is incremented for each new app instance starting from `1`. If all instances are closed, the counter is reset. If some instances are closed while others are still running, the counter will continue to increment accordingly.
 
-*Note that if the application sets the title programmatically through any of the Glue42 APIs, the specified title format will be overridden. For web applications, the window title can be synced with the document title by using the `"syncTitleWithDocumentTitle"` property which will override the specified title format.*
+*Note that if the app sets the title programmatically through any of the Glue42 APIs, the specified title format will be overridden. For web apps, the window title can be synced with the document title by using the `"syncTitleWithDocumentTitle"` property of the `"windows"` top-level key, which will override the specified title format.*
 
 ## Window Settings
 
-Global Glue42 Window settings are found under the `"windows"` top-level key of the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and can be overridden per application by the [application configuration](../application/index.html) settings.
+Global Glue42 Window settings are found under the `"windows"` top-level key of the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and can be overridden per app by the [app configuration](../application/index.html) settings.
 
 ### Sticky Button
 
@@ -219,6 +360,8 @@ Each object in the `"actions"` array has the following properties:
 | `"singleInstanceTitle"` | `string` | Title of the action to be displayed in the context menu when there is a single instance with a single taskbar icon. |
 | `"multiInstanceTitle"` | `string` | Title of the action to be displayed in the context menu when there are multiple instances with grouped taskbar icons. |
 
+*For more information, see [Glue42 Platform Features > Jump List](../../../glue42-concepts/glue42-platform-features/index.html#jump_list).*
+
 ### Downloading Files
 
 To configure the global behavior of the Glue42 Windows when downloading files, use the `"downloadSettings"` property of the `"windows"` top-level key:
@@ -238,7 +381,7 @@ To configure the global behavior of the Glue42 Windows when downloading files, u
 }
 ```
 
-*For more information, see the [Glue42 Platform Features: Downloading Files](../../../glue42-concepts/glue42-platform-features/index.html#downloading_files).*
+*For more information, see [Glue42 Platform Features > Downloading Files](../../../glue42-concepts/glue42-platform-features/index.html#downloading_files).*
 
 ### Zooming
 
@@ -257,7 +400,7 @@ To set the zoom behavior of the Glue42 Windows, use the `"zoom"` property of the
 }
 ```
 
-*For more information, see the [Glue42 Platform Features: Zooming](../../../glue42-concepts/glue42-platform-features/index.html#zooming).*
+*For more information, see [Glue42 Platform Features > Zooming](../../../glue42-concepts/glue42-platform-features/index.html#zooming).*
 
 ### Printing
 
@@ -323,7 +466,7 @@ To enable or disable printing a web page as a PDF file, or to configure the defa
 
 *For more details on all available properties for printing to a PDF file and their values, see the `"printToPdfSettings"` key in the [`system.json`](../../../assets/configuration/system.json) schema.*
 
-The `"print"` and `"printToPdfSettings"` properties are also available under the `"details"` key of the configuration file for [window applications](../application/index.html#application_configuration-window). Use them to override the system-wide print settings.
+The `"print"` and `"printToPdfSettings"` properties are also available under the `"details"` key of the configuration file for [window apps](../application/index.html#app_configuration-window). Use them to override the system-wide print settings.
 
 ### User Agent
 
@@ -339,7 +482,7 @@ To specify a custom `User-Agent` request header to be sent when connecting to a 
 
 ## Citrix Apps
 
-Mind that the default system settings for the Citrix Virtual Apps support should work fine in most cases and usually it isn't necessary to make any modifications. If the default settings don't work for your specific environment, use the `"citrix"` top-level key to provide custom values.
+Note that the default system settings for the Citrix Virtual Apps support should work fine in most cases and usually it isn't necessary to make any modifications. If the default settings don't work for your specific environment, use the `"citrix"` top-level key to provide custom values.
 
 The following configuration contains the default Citrix settings:
 

@@ -1,6 +1,6 @@
 {
-    "menuItem": "Application Preferences",
-    "title": "Application Preferences",
+    "menuItem": "App Preferences",
+    "title": "App Preferences",
     "displayTitle": true,
     "titleType": "title"
 }

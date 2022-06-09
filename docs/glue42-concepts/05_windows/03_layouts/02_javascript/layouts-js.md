@@ -1,6 +1,6 @@
 ## Configuration
 
-It is possible to configure the [Layouts](../../../../reference/glue/latest/layouts/index.html) library by using the `layouts` property of the optional [`Config`](../../../../reference/glue/latest/glue/index.html#Config-layouts) object passed during the initialization of the Glue42 JavaScript library. The Layouts library supports several [modes](../../../../reference/glue/latest/layouts/index.html#Mode) of initialization. It can also be configured whether to auto save the context of individual windows and for which Layout types (Global, Application Default, Workspace) to save it.
+It is possible to configure the [Layouts](../../../../reference/glue/latest/layouts/index.html) library by using the `layouts` property of the optional [`Config`](../../../../reference/glue/latest/glue/index.html#Config-layouts) object passed during the initialization of the Glue42 JavaScript library. The Layouts library supports several [modes](../../../../reference/glue/latest/layouts/index.html#Mode) of initialization. It can also be configured whether to auto save the context of individual windows and for which Layout types (Global, App Default, Workspace) to save it.
 
 Below is an example of configuring the Layouts library:
 
@@ -23,7 +23,7 @@ The `layouts` object has the following properties:
 | Property | Type | Description |
 |----------|------|-------------|
 | `mode` | `"full"` \| `"slim"` \| `"fullWaitSnapshot"` | In `"full"` mode, all Layout functionalities are available. In `"slim"` mode, Layout events aren't tracked and Layouts can't be manipulated. The `"fullWaitSnapshot"` mode is the same as the `"full"` mode, except that the Layouts library will notify that it is ready a little later - when a snapshot of the available Layouts has been received. |
-| `autoSaveWindowContext` | `boolean` \| [`LayoutType[]`](../../../../reference/glue/latest/layouts/index.html#LayoutType) | If `true`, window context will be saved for all Layout types. If an array of Layout types is passed instead, window context will be saved only for the specified Layout types. Possible Layout types are `"Global"`, `"Application Default"` and `"Workspace"`. |
+| `autoSaveWindowContext` | `boolean` \| [`LayoutType[]`](../../../../reference/glue/latest/layouts/index.html#LayoutType) | If `true`, window context will be saved for all Layout types. If an array of Layout types is passed instead, window context will be saved only for the specified Layout types. Possible Layout types are `"Global"`, `"ApplicationDefault"` and `"Workspace"`. |
 
 ## Layout Types
 
@@ -54,7 +54,7 @@ const currentLayout = await glue.layouts.getCurrentLayout();
 To get a collection of all currently available [`Layout`](../../../../reference/glue/latest/layouts/index.html#Layout) objects, use the [`list()`](../../../../reference/glue/latest/layouts/index.html#API-list) method:
 
 ```javascript
-const layouts = glue.layouts.list(); 
+const layouts = glue.layouts.list();
 ```
 
 *The `list()` method isn't available in `"slim"` mode. Use [`export()`](#layout_operations-exporting_and_importing) instead.*
@@ -64,7 +64,7 @@ const layouts = glue.layouts.list();
 To save a Layout, use the [`save()`](../../../../reference/glue/latest/layouts/index.html#API-save) method and pass a [`NewLayoutOptions`](../../../../reference/glue/latest/layouts/index.html#NewLayoutOptions) object with a required `name` property. Note that if a Layout with that name already exists, it will be replaced. This method returns the saved [`Layout`](../../../../reference/glue/latest/layouts/index.html#Layout) object:
 
 ```javascript
-const layoutConfig = { 
+const layoutConfig = {
     name: "My Layout",
     // Optionally specify a Layout type. The default is "Global".
     type: "Workspace"
@@ -116,7 +116,7 @@ The [`ImportMode`](../../../../reference/glue/latest/layouts/index.html#ImportMo
 
 ## Layout Events
 
-The Layouts API allows your application to react to Layout events - adding, removing, updating or renaming a Layout. Use the returned unsubscribe function to stop receiving notifications about the respective event.
+The Layouts API allows your app to react to Layout events - adding, removing, updating or renaming a Layout. Use the returned unsubscribe function to stop receiving notifications about the respective event.
 
 To subscribe for the event which fires when a Layout is added, use the [`onAdded()`](../../../../reference/glue/latest/layouts/index.html#API-onAdded) method:
 
@@ -144,15 +144,15 @@ glue.layouts.onRenamed(console.log);
 
 ## Saving and Updating Context
 
-When a Layout is saved, applications can store context data in it. When the Layout is restored, the context data is also restored and returned to the applications. Context data can be saved in all Layout types. 
+When a Layout is saved, apps can store context data in it. When the Layout is restored, the context data is also restored and returned to the apps. Context data can be saved in all Layout types.
 
-*Note that saving large volumes of custom data as window context (e.g., thousands of lines of table data) can lead to significant delays when saving a Layout. A Layout usually contains several (in some cases - many) applications and/or Workspaces (which can also contain many apps) and if one or more of the apps saves large amounts of context data each time a Layout is saved, this will significantly slow down the saving process. The methods for saving custom context work best with smaller amounts of data. If your application needs to save large amounts of data, you have to think about how to design this process better - for instance, you may store IDs, indices, etc., as context data, save the actual data to a database and when you restore the Layout, fetch the data using the data IDs saved as window context.*
+*Note that saving large volumes of custom data as window context (e.g., thousands of lines of table data) can lead to significant delays when saving a Layout. A Layout usually contains several (in some cases - many) apps and/or Workspaces (which can also contain many apps) and if one or more of the apps saves large amounts of context data each time a Layout is saved, this will significantly slow down the saving process. The methods for saving custom context work best with smaller amounts of data. If your application needs to save large amounts of data, you have to think about how to design this process better - for instance, you may store IDs, indices, etc., as context data, save the actual data to a database and when you restore the Layout, fetch the data using the data IDs saved as window context.*
 
-Each window (application) can store window specific context. When restored, the window will have the saved context.
+Each window (app) can store window specific context. When restored, the window will have the saved context.
 
 ### Saving Context Data
 
-To save context data, applications can subscribe for Layout save requests using the [`onSaveRequested()`](../../../../reference/glue/latest/layouts/index.html#API-onSaveRequested) method. A Layout save request event is fired when the user attempts to save a Layout or close a window, Workspace, etc. The on `onSaveRequested()` method accepts a callback which will be invoked when a Layout save request is triggered. The callback will receive as an argument a [`SaveRequestContext`](../../../../reference/glue/latest/layouts/index.html#SaveRequestContext) object containing the Layout name, type and context. Use it to determine the type of the Layout and instruct your application to react accordingly:
+To save context data, apps can subscribe for Layout save requests using the [`onSaveRequested()`](../../../../reference/glue/latest/layouts/index.html#API-onSaveRequested) method. A Layout save request event is fired when the user attempts to save a Layout or close a window, Workspace, etc. The on `onSaveRequested()` method accepts a callback which will be invoked when a Layout save request is triggered. The callback will receive as an argument a [`SaveRequestContext`](../../../../reference/glue/latest/layouts/index.html#SaveRequestContext) object containing the Layout name, type and context. Use it to determine the type of the Layout and instruct your app to react accordingly:
 
 ```javascript
 glue.layouts.onSaveRequested((requestInfo) => {
@@ -183,9 +183,9 @@ const windowContext = await glue.windows.my().getContext();
 const gridWidth = windowContext.gridWidth;
 ```
 
-### Updating Application Default Context
+### Updating App Default Context
 
-To manually update the context of the current window in its Application Default Layout, use the `updateDefaultContext()` method:
+To manually update the context of the current window in its App Default Layout, use the `updateDefaultContext()` method:
 
 ```javascript
 const context = { glue: 42 };
@@ -195,7 +195,7 @@ await glue.layouts.updateDefaultContext(context);
 
 ### Updating Context of Apps in Global Layouts
 
-To update the context that will be saved for the current application in the currently loaded Global Layout, use the [`updateAppContextInCurrent()`](../../../../reference/glue/latest/layouts/index.html#API-updateAppContextInCurrent) method. This method allows you to update the saved context for the current application in the Layout without having to save the entire Layout:
+To update the context that will be saved for the current app in the currently loaded Global Layout, use the [`updateAppContextInCurrent()`](../../../../reference/glue/latest/layouts/index.html#API-updateAppContextInCurrent) method. This method allows you to update the saved context for the current app in the Layout without having to save the entire Layout:
 
 ```javascript
 const context = { glue: 42 };

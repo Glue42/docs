@@ -10,7 +10,7 @@ The main components of [**Glue42 Enterprise**](https://glue42.com/enterprise/) a
 
 **Glue42 Desktop** is an Electron based application which offers APIs for:
 
-[Application Management](../../../glue42-concepts/application-management/overview/index.html)
+[App Management](../../../glue42-concepts/application-management/overview/index.html)
 
 - Loading the list of application configurations for the current user;
 - Managing the applications life-cycle (starting/stopping apps);
@@ -37,14 +37,15 @@ The Glue42 APIs are available in JavaScript/TypeScript (as well as through light
 The Glue42 Gateway is a transport with domain specific protocols. It enables the communication between applications running in [**Glue42 Enterprise**](https://glue42.com/enterprise/).
 By default, it uses WebSockets for delivering messages to applications. Other options are also available upon request. The Glue42 Gateway is written in Clojure and can be transpiled to Java and JavaScript.
 
-### Application Stores
+### App Stores
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) loads the list of applications available to the user from a pre-configured set of [application stores](../../../glue42-concepts/application-management/overview/index.html#application_stores). They can be of different type:
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) loads the list of applications available to the user from a pre-configured set of [app stores](../../../glue42-concepts/application-management/overview/index.html#app_stores). They can be of different type:
 
 - Local stores - definitions are read from folders on the machine that is running [**Glue42 Enterprise**](https://glue42.com/enterprise/);
 - Remote stores - definitions are fetched from a REST service;
+- Glue42 Server stores - definitions are retrieved from a [Glue42 Server](../../../glue42-concepts/glue42-server/index.html)
 
-To add an application to [**Glue42 Enterprise**](https://glue42.com/enterprise/), you need to add it to an application store.
+To add an application to [**Glue42 Enterprise**](https://glue42.com/enterprise/), you need to add it to an app store.
 
 ### Connectors
 

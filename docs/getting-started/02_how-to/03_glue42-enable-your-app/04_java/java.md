@@ -89,7 +89,7 @@ Glue.builder()
         .build();
 ```
 
-## Application Configuration
+## App Configuration
 
 To configure your Glue42 enabled Java app and add it to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you can use CONF, PROPERTIES, JSON files and system properties to externalize your configuration. For example, if you want to specify a name for your application, you can do so in a `glue.conf` file:
 
@@ -141,13 +141,13 @@ The following is an example JSON configuration for a Java app:
 
 *To be able to start Glue42 Java on a dual core machine, you have to pass the `-Dglue.gateway.ws.max-pool-size=3` parameter to the JVM by adding it to the `"parameters"` property described above.*
 
-*For more details, see the [Application Configuration](../../../../developers/configuration/application/index.html#application_configuration-exe) section.*
+*For more details, see the [Application Configuration](../../../../developers/configuration/application/index.html#app_configuration-exe) section.*
 
 ## Glue42 Java Concepts
 
 Once you have created a `Glue` instance, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
-- [Application Management](../../../../glue42-concepts/application-management/java/index.html)
+- [App Management](../../../../glue42-concepts/application-management/java/index.html)
 - [Intents](../../../../glue42-concepts/intents/java/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/java/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/java/index.html)

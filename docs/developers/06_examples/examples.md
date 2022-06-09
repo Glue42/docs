@@ -6,8 +6,8 @@ Here you can find links to Glue42 examples in GitHub. These implementations are 
 
 [JavaScript Examples Repository](https://github.com/Glue42/js-examples)
 
-- Application Management Example
-- Application Preferences Example
+- App Management Example
+- App Preferences Example
 - Channels Example
 - Flydown Example
 - Intents Example
@@ -23,7 +23,7 @@ Here you can find links to Glue42 examples in GitHub. These implementations are 
 
 [.NET Examples Repository](https://github.com/Glue42/net-examples)
 
-- Application Management Example
+- App Management Example
 - Multi Window App Example
 - Interop Example
 - Interop Streaming Example
@@ -41,7 +41,7 @@ The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.co
 [Angular Examples Repository](https://github.com/Glue42/ng-glue-examples)
 
 - Full demo application example
-- Application Management Example
+- App Management Example
 - Interop Example
 - Glue42 Window Example
 - Layouts Example

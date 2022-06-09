@@ -1,6 +1,6 @@
 ## Glue42 Windows
 
-In order for windows created from an external WPF/WinForms applications to become Glue42 Windows, they must first be registered via the **.NET Window Management** API. 
+In order for windows created from an external WPF/WinForms applications to become Glue42 Windows, they must first be registered via the **.NET Window Management** API.
 
 ## Window Options
 
@@ -36,7 +36,7 @@ To set the title of the window:
 glueWindowOptions.WithTitle("My Window");
 ```
 
-## Registering Windows 
+## Registering Windows
 
 To register a window as a Glue42 Window, use the `RegisterWindow()` method passing the window object as a first parameter and a window options object as a second:
 
@@ -113,7 +113,7 @@ glueWindow.Unregister();
 
 ## Registering Windows as App Instances
 
-The .NET Window Management library allows WPF and WinForms applications to announce the windows initiated by them as Glue42 application instances (see [Application Management](../../../application-management/net/index.html)). This is necessary when you have a [multi window application](../../../application-management/net/index.html#multi_window_apps) and its windows are registered as Glue42 applications - then the multi window application becomes responsible for notifying [**Glue42 Enterprise**](https://glue42.com/enterprise/) about new app instances.
+The .NET Window Management library allows WPF and WinForms applications to announce the windows initiated by them as Glue42 application instances (see [App Management](../../../application-management/net/index.html)). This is necessary when you have a [multi window application](../../../application-management/net/index.html#multi_window_apps) and its windows are registered as Glue42 applications - then the multi window application becomes responsible for notifying [**Glue42 Enterprise**](https://glue42.com/enterprise/) about new app instances.
 
 The `RegisterAppWindow()` method registers the window both as a Glue42 Window and as a Glue42 application instance. It accepts the WPF window object (or the WinForms window handle), the Glue42 application object, the application name and an application options builder as arguments:
 
@@ -131,11 +131,11 @@ glue.GlueWindows.RegisterAppWindow(myWindow, myWindow, myWindowAppName,
 
 ## Window Operations
 
-Once an application window is registered, the Window Management API will accept full control over the window positioning, sizing and visibility. The application shouldn't use *native* methods (for example, WPF/WinForms calls) to control the window as it will interfere with the Glue42 window management. 
+Once an application window is registered, the Window Management API will accept full control over the window positioning, sizing and visibility. The application shouldn't use *native* methods (for example, WPF/WinForms calls) to control the window as it will interfere with the Glue42 window management.
 
 You can perform operations on the current window and on any other registered window.
 
-The window object also offers access to the host application instance, connecting the Window Management API with the [Application Management API](../../../application-management/net/index.html):
+The window object also offers access to the host application instance, connecting the Window Management API with the [App Management API](../../../application-management/net/index.html):
 
 ```csharp
 IAppManagerApplication appInstance = targetWindow.Instance;
@@ -165,7 +165,7 @@ To change the bounds of the window, use:
 // Set the window bounds - left, top, width, height.
 var newWindowBounds = new GlueWindowBounds(10, 10, 200, 200);
 
-myWindow.Bounds = newWindowBounds; 
+myWindow.Bounds = newWindowBounds;
 ```
 
 ### Visibility
@@ -251,7 +251,7 @@ To manipulate any Glue42 Window, use the `Update()` method of the window instanc
 ```csharp
 var allWindows = await glue.GlueWindows.GetGDWindows();
 var newTitle = "New Title";
-var targetWindow = allWindows.FirstOrDefault((window) => 
+var targetWindow = allWindows.FirstOrDefault((window) =>
 {
     return window.Descriptor.Name == "My Window";
 });
@@ -291,7 +291,7 @@ await targetWindow.Update((window) =>
 
 ## Window Events
 
-The .NET Window Management API offers methods for listening for Glue42 Window events. To get notified for window events, use the `Subscribe()` method directly on an API level or on a window instance. 
+The .NET Window Management API offers methods for listening for Glue42 Window events. To get notified for window events, use the `Subscribe()` method directly on an API level or on a window instance.
 
 The example below demonstrates subscribing for an event by using `Subscribe()` on an API level:
 
@@ -323,7 +323,7 @@ To get notified when the window title changes:
 
 ```csharp
 var subscription = window.Subscribe(
-    EventType.TitleChanged, 
+    EventType.TitleChanged,
     (descriptor, eventType) =>
         {
             var title = descriptor.Title;
@@ -337,7 +337,7 @@ To get notified when the window bounds change:
 
 ```csharp
 var subscription = window.Subscribe(
-    EventType.BoundsChanged, 
+    EventType.BoundsChanged,
     (descriptor, eventType) =>
         {
             var bounds = descriptor.Bounds;
@@ -351,7 +351,7 @@ To get notified when the window visibility changes:
 
 ```csharp
 var subscription = window.Subscribe(
-    EventType.VisibilityChanged, 
+    EventType.VisibilityChanged,
     (descriptor, eventType) =>
         {
             var isVisible = descriptor.isVisible;
@@ -365,7 +365,7 @@ To get notified when the window frame color changes:
 
 ```csharp
 var subscription = window.Subscribe(
-    EventType.FrameColorChanged, 
+    EventType.FrameColorChanged,
     (descriptor, eventType) =>
         {
             var frameColor = descriptor.FrameColor;
@@ -394,7 +394,7 @@ glueWindow.Update(windowUpdate => windowUpdate.AddButton(button =>
 
 ## WPF Example
 
-This is a minimalistic WPF example that registers its main window as a Glue42 Window. 
+This is a minimalistic WPF example that registers its main window as a Glue42 Window.
 
 *See the .NET [WPF example](https://github.com/Glue42/net-examples/tree/master/wpf-sw) on GitHub.*
 
@@ -407,10 +407,10 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        base.OnStartup(e);    
+        base.OnStartup(e);
 
         Glue = new Glue42();
-        Glue.Initialize("MyDemo");        
+        Glue.Initialize("MyDemo");
     }
 ```
 
@@ -427,7 +427,7 @@ public partial class MainWindow : Window
         glueWindowOptions.WithType(GlueWindowType.Flat);
         glueWindowOptions.WithTitle("Example Window");
 
-        // Register the window. 
+        // Register the window.
         App.Glue.GlueWindows.RegisterWindow(this, glueWindowOptions)
             .ContinueWith(r =>
             {
@@ -436,4 +436,4 @@ public partial class MainWindow : Window
     }
 }
 
-``` 
+```

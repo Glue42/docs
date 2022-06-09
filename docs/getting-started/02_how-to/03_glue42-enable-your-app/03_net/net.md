@@ -45,7 +45,7 @@ Glue42.InitializeGlue(initializeOptions)
 
 ```
 
-## Application Configuration
+## App Configuration
 
 To add your .NET app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 
@@ -74,7 +74,7 @@ The following is an example configuration for a .NET app:
 | `"command"` | The actual command to execute (the EXE file name). |
 | `"parameters"` | Specifies command line arguments. |
 
-For more detailed information about the application definitions, see the [Configuration](../../../../developers/configuration/application/index.html#application_configuration-exe) documentation.
+For more detailed information about the application definitions, see the [Configuration](../../../../developers/configuration/application/index.html#app_configuration-exe) documentation.
 
 *See the [.NET examples](https://github.com/Glue42/net-examples) on GitHub which demonstrate various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
 
@@ -153,7 +153,7 @@ We offer a **Glue42 Silverlight** library as a version of the Glue42 .NET librar
 
 Once the Glue42 .NET library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
-- [Application Management](../../../../glue42-concepts/application-management/net/index.html)
+- [App Management](../../../../glue42-concepts/application-management/net/index.html)
 - [Intents](../../../../glue42-concepts/intents/net/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/net/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/net/index.html)

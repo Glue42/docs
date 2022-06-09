@@ -470,7 +470,7 @@ await myWindow.moveResize(bounds);
 
 The placement feature of the Window Management API provides a way for a Glue42 Window to occupy a specific position on the screen. This position can be set only once - initially, on window creation, or can be kept throughout the entire lifetime of the window. The placement feature solves the problem of reacting adequately to changes of the screen resolution or the size of the application virtualization window hosting the Glue42 Window, ensuring that the Glue42 Window always stays at the desired screen position and with the desired dimensions. This is especially useful if you are developing a toolbar or a notifications panel that must always stay at the same position on the screen.
 
-Window placement is controlled through the [application configuration](../../../../developers/configuration/application/index.html#application_configuration-window) (see the `placement` property in the [application.json](../../../../assets/configuration/application.json) schema) and programmatically.
+Window placement is controlled through the [application configuration](../../../../developers/configuration/application/index.html#app_configuration-window) (see the `placement` property in the [application.json](../../../../assets/configuration/application.json) schema) and programmatically.
 
 To get the current placement settings for a window, use the [`placementSettings`](../../../../reference/glue/latest/windows/index.html#GDWindow-placementSettings) property of a [`GDWindow`](../../../../reference/glue/latest/windows/index.html#GDWindow) instance:
 
@@ -492,7 +492,7 @@ const settings = {
 await myWindow.place(settings);
 ```
 
-*Note that the settings specified in the `place()` method won't be merged with the existing placement settings (if any) but will entirely overwrite them. If `snapped` is set to `true`, the `place()` method will also overwrite the settings saved in the Application Default layout (see [Layouts](../../layouts/overview/index.html)).*
+*Note that the settings specified in the `place()` method won't be merged with the existing placement settings (if any) but will entirely overwrite them. If `snapped` is set to `true`, the `place()` method will also overwrite the settings saved in the App Default Layout (see [Layouts](../../layouts/overview/index.html)).*
 
 The following table describes the properties of the [`PlacementSettings`](../../../../reference/glue/latest/windows/index.html#PlacementSettings) object:
 
@@ -706,7 +706,7 @@ Each Glue42 Window has a dedicated [context](../../../data-sharing-between-apps/
 
 Contexts can be set/passed initially on window creation and updated at runtime. Context changes can be tracked by subscribing to an event which fires when the window context has been updated (see [Window Events](#window_events)).
 
-*Note that saving large volumes of custom data as window context (e.g., thousands of lines of table data) can lead to significant delays. A user usually has several (in some cases - many) running applications and/or Workspaces (which can also contain many apps) and if one or more of the apps saves large amounts of context data, this will significantly slow down the saving process (e.g., on shutdown or when saving a layout). Saving custom context works best with smaller amounts of data. If your application needs to save large amounts of data, you have to think about how to design this process better - for instance, you may store IDs, indices, etc., as context data, save the actual data to a database and when you restore the application, fetch the data using the data IDs saved as window context.*
+*Note that saving large volumes of custom data as window context (e.g., thousands of lines of table data) can lead to significant delays. A user usually has several (in some cases - many) running applications and/or Workspaces (which can also contain many apps) and if one or more of the apps saves large amounts of context data, this will significantly slow down the saving process (e.g., on shutdown or when saving a Layout). Saving custom context works best with smaller amounts of data. If your application needs to save large amounts of data, you have to think about how to design this process better - for instance, you may store IDs, indices, etc., as context data, save the actual data to a database and when you restore the application, fetch the data using the data IDs saved as window context.*
 
 ### Get
 

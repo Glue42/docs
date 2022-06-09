@@ -2,7 +2,7 @@
 
 All [Glue42 .NET](../net/index.html) functionalities are available for your Blazor WebAssembly and Blazor Server apps through the [`GlueBase`](https://www.nuget.org/packages/GlueBase/) library.
 
-Your Glue42 enabled Blazor apps can be configured as Glue42 applications (see [Application Configuration](#application_configuration)) in order to be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) and hosted in [Glue42 Windows](../../../../glue42-concepts/windows/window-management/overview/index.html), or they can run independently in a browser.
+Your Glue42 enabled Blazor apps can be configured as Glue42 applications (see [Application Configuration](#app_configuration)) in order to be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) and hosted in [Glue42 Windows](../../../../glue42-concepts/windows/window-management/overview/index.html), or they can run independently in a browser.
 
 *For the differences in initializing the Glue42 library in hosted and browser Blazor apps, see the [Hosted & Browser Apps](#initialization-hosted__browser_apps) section).*
 
@@ -161,7 +161,7 @@ builder.Services.AddScoped<IGlueLoggerFactory, GlueLoggerFactory>(serviceProvide
     new GlueLoggerFactory(serviceProvider.GetService<ILoggerFactory>()));
 ```
 
-## Application Configuration
+## App Configuration
 
 To add your Blazor app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., T42-DEMO).
 
@@ -183,13 +183,13 @@ The following is an example configuration for a Blazor app:
 
 The `"name"`, `"type"` and `"url"` properties are required and `"type"` must be set to `"window"`. The `"url"` property points to the location of the web application.
 
-For more details, see the [Application Configuration](../../../../developers/configuration/application/index.html#application_configuration-window) section.
+For more details, see the [Application Configuration](../../../../developers/configuration/application/index.html#app_configuration-window) section.
 
 ## Glue42 .NET Concepts
 
 Once the [`GlueBase`](https://www.nuget.org/packages/GlueBase/) library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
-- [Application Management](../../../../glue42-concepts/application-management/net/index.html)
+- [App Management](../../../../glue42-concepts/application-management/net/index.html)
 - [Intents](../../../../glue42-concepts/intents/net/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/net/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/net/index.html)

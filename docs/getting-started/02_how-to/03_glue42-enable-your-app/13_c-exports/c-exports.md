@@ -37,7 +37,7 @@ void connection_status_callback (glue_state state, const char* message, const gl
 glue_init("my_cpp_app", &connection_status_callback);
 ```
 
-## Application Configuration
+## App Configuration
 
 To add your C++ application (or any EXE application) to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 
@@ -68,7 +68,7 @@ The following is an example configuration for a C++ app:
 
 Once the Glue42 library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
-- [Application Management](../../../../glue42-concepts/application-management/c-exports/index.html)
+- [App Management](../../../../glue42-concepts/application-management/c-exports/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/c-exports/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/c-exports/index.html)
 - [Interop](../../../../glue42-concepts/data-sharing-between-apps/interop/c-exports/index.html)

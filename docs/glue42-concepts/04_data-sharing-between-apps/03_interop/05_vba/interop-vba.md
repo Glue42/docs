@@ -309,7 +309,7 @@ Interop Streams are used extensively in [**Glue42 Enterprise**](https://glue42.c
 - in Glue42 Windows - to publish notifications about window status change (events);
 - in application configuration settings - to publish application configuration changes, and notifications about application instance state change (events);
 - in the Glue42 Notification Service (GNS) Desktop Manager and GNS Interop Servers - to publish Notifications (real-time data);
-- in the Window Management and Application Management APIs (events);
+- in the Window Management and App Management APIs (events);
 
 ## Publishing Stream Data
 

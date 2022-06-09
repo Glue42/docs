@@ -299,8 +299,8 @@ describe("Mock Glue42", () => {
 
 Once the Glue42 React library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
-- [Application Management](../../../../glue42-concepts/application-management/javascript/index.html)
-- [Application Preferences](../../../../glue42-concepts/application-preferences/javascript/index.html)
+- [App Management](../../../../glue42-concepts/application-management/javascript/index.html)
+- [App Preferences](../../../../glue42-concepts/application-preferences/javascript/index.html)
 - [Intents](../../../../glue42-concepts/intents/javascript/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/javascript/index.html)

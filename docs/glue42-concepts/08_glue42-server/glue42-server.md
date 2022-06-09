@@ -10,15 +10,15 @@ It also includes an Admin UI that helps managing the data stored in the Glue42 S
 
 ## Features
 
-#### Application Store
+#### App Store
 
-The Glue42 Server provides an [application definition store](../application-management/overview/index.html#application_stores) that can be used by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve the list of applications for the current user.
+The Glue42 Server provides an [application definition store](../application-management/overview/index.html#app_stores) that can be used by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve the list of applications for the current user.
 
 #### Layout Store
 
 The Glue42 Server is a [Layout store](../windows/layouts/overview/index.html#layout_stores) from where common or private user Layouts can be fetched.
 
-#### Application Preferences Store
+#### App Preferences Store
 
 The Glue42 Server is an [application preferences](../application-preferences/overview/index.html) store where any application running in [**Glue42 Enterprise**](https://glue42.com/enterprise/) can store custom data per user and retrieve it later.
 
@@ -129,9 +129,9 @@ To configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to connect 
 }
 ```
 
-This will add the Glue42 Server as an additional application store. If you want the Glue42 Server to be the only app store, set the `"appStores"` top-level key to an empty array.
+This will add the Glue42 Server as an additional app store. If you want the Glue42 Server to be the only app store, set the `"appStores"` top-level key to an empty array.
 
-This will also instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to store Layouts and Application Preferences on the Glue42 Server.
+This will also instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to store Layouts and App Preferences on the Glue42 Server.
 
 If you want to send client crashes to the server, edit the `"output"` property of the `"crashReporter"` top-level key:
 

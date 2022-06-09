@@ -48,7 +48,7 @@ The following example demonstrates how to use the `"hidden"` and `"autoStart"` t
 
 *Note that service windows aren't closed when restoring a [Layout](../windows/layouts/overview/index.html).*
 
-*For more details, see the [Developers > Configuration > Application](../../developers/configuration/application/index.html#application_configuration-service_window) section and the [application configuration schema](../../assets/configuration/application.json).*
+*For more details, see the [Developers > Configuration > Application](../../developers/configuration/application/index.html#app_configuration-service_window) section and the [application configuration schema](../../assets/configuration/application.json).*
 
 ## Citrix Applications
 
@@ -58,7 +58,7 @@ The following example demonstrates how to use the `"hidden"` and `"autoStart"` t
 
 Additionally, [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be run as a Citrix Virtual App itself, in which case any other Virtual Apps from the same VDA can be configured as normal applications. See [Dynamic Gateway Port](../../developers/configuration/system/index.html#dynamic_gateway_port) for configuration specifics.
 
-For more details on configuring a Citrix application, see the [Application Configuration](../../developers/configuration/application/index.html#application_configuration-citrix_app) section. For details on configuring the system-wide Citrix Virtual Apps support, see the [System Configuration](../../developers/configuration/system/index.html#citrix_apps) section.
+For more details on configuring a Citrix application, see the [Application Configuration](../../developers/configuration/application/index.html#app_configuration-citrix_app) section. For details on configuring the system-wide Citrix Virtual Apps support, see the [System Configuration](../../developers/configuration/system/index.html#citrix_apps) section.
 
 *Note that this feature is experimental – although it has been properly tested, additional tests and adjustments might be necessary for your specific Citrix environment.*
 
@@ -92,7 +92,7 @@ When your Citrix app is connected to [**Glue42 Enterprise**](https://glue42.com/
 
 ![Citrix Application Settings](../../images/citrix/citrix-settings-net.png)
 
-5. Configure your application as a [Glue42 Citrix app](../../developers/configuration/application/index.html#application_configuration-citrix_app).
+5. Configure your application as a [Glue42 Citrix app](../../developers/configuration/application/index.html#app_configuration-citrix_app).
 
 You will now be able to run your .NET Citrix application from [**Glue42 Enterprise**](https://glue42.com/enterprise/) and interoperate with it using the various Glue42 APIs.
 
@@ -106,7 +106,7 @@ To Glue42 enable a Java Citrix app:
 
 ![Citrix Application Settings](../../images/citrix/citrix-settings-java.png)
 
-3. Configure your application as a [Glue42 Citrix app](../../developers/configuration/application/index.html#application_configuration-citrix_app).
+3. Configure your application as a [Glue42 Citrix app](../../developers/configuration/application/index.html#app_configuration-citrix_app).
 
 You will now be able to run your Java Citrix application from [**Glue42 Enterprise**](https://glue42.com/enterprise/) and interoperate with it using the various Glue42 APIs.
 
@@ -452,7 +452,7 @@ Download settings can also be specified using the [Window Management](../windows
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a predefined application which can be used to open a URL in the default browser using the [Application Management API](../application-management/overview/index.html). The following example shows how to open a URL in the default browser by using the [JavaScript Application Management API](../application-management/javascript/index.html).
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a predefined application which can be used to open a URL in the default browser using the [App Management API](../application-management/overview/index.html). The following example shows how to open a URL in the default browser by using the [JavaScript App Management API](../application-management/javascript/index.html).
 
 Get the [`Application`](../../reference/glue/latest/appmanager/index.html#Application) instance by passing the name of the app - `"open-browser"`, invoke the [`start`](../../reference/glue/latest/appmanager/index.html#Application-start) method to start the app and pass a starting context with a `url` property holding the URL:
 

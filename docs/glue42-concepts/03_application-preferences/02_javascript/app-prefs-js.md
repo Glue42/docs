@@ -2,9 +2,9 @@
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.12">
 
-The Application Preferences API is accessible through the [`glue.prefs`](../../../reference/glue/latest/application%20preferences/index.html) object.
+The App Preferences API is accessible through the [`glue.prefs`](../../../reference/glue/latest/application%20preferences/index.html) object.
 
-*See the JavaScript [Application Preferences example](https://github.com/Glue42/js-examples/tree/master/app-preferences) on GitHub.*
+*See the JavaScript [App Preferences example](https://github.com/Glue42/js-examples/tree/master/app-preferences) on GitHub.*
 
 ## Get
 
@@ -102,4 +102,4 @@ await glue.prefs.clearAll();
 
 ## Reference
 
-For a complete list of the available Application Preferences API methods and properties, see the [Application Preferences API Reference Documentation](../../../reference/glue/latest/application%20preferences/index.html).
+For a complete list of the available App Preferences API methods and properties, see the [App Preferences API Reference Documentation](../../../reference/glue/latest/application%20preferences/index.html).

@@ -1204,7 +1204,7 @@ In this step-by-step guide you will be creating a custom [**Glue42 Enterprise**]
 
 - creating a custom shortcut;
 
-- installing [**Glue42 Enterprise**](https://glue42.com/enterprise/) with a custom system configuration in order to setup [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve [application configurations from a REST service](../functionality/index.html#remote_applications__layouts-rest_stores-applications);
+- installing [**Glue42 Enterprise**](https://glue42.com/enterprise/) with a custom system configuration in order to setup [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve [application configurations from a REST service](../functionality/index.html#remote_apps__layouts-rest_stores-apps);
 
 *You must have a running REST service from which to retrieve application configurations. For testing purposes, you can use the [Node.js REST Configuration Example](https://github.com/Tick42/rest-config-example-node-js).*
 
@@ -1368,7 +1368,7 @@ The shortcut will use the provided custom icon file for its icon. This icon file
 
 8. **Custom system configuration file for Glue42 Enterprise**
 
-Use the default `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in the `%LocalAppData%\Tick42\GlueDesktop\config` folder as a basis for your custom system configuration. Get the `system.json` from a previous installation of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and modify the `"appStores"` top-level array to configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to [retrieve application configurations from a REST service](../functionality/index.html#remote_applications__layouts-rest_stores-applications):
+Use the default `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in the `%LocalAppData%\Tick42\GlueDesktop\config` folder as a basis for your custom system configuration. Get the `system.json` from a previous installation of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and modify the `"appStores"` top-level array to configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to [retrieve application configurations from a REST service](../functionality/index.html#remote_apps__layouts-rest_stores-apps):
 
 ```json
 {
@@ -1376,7 +1376,7 @@ Use the default `system.json` file of [**Glue42 Enterprise**](https://glue42.com
         {
             "type": "rest",
             "details": {
-                // URL to your remote application store.
+                // URL to your remote app store.
                 "url": "http://localhost:8004/apps/",
             }
         }

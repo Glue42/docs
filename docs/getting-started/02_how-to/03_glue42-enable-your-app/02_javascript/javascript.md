@@ -203,7 +203,7 @@ If auto injection of the library is disabled on a system level, it can't be enab
 
 To configure auto injection on an application level, edit (or add) the `"autoInjectAPI"` property under the `"details"` top-level key of the application configuration file.
 
-*See [Application Configuration](#application_configuration) below or the [Configuration](../../../../developers/configuration/application/index.html#application_configuration) section for more details on how to create an application definition and where the application configuration files should be stored.*
+*See [Application Configuration](#app_configuration) below or the [Configuration](../../../../developers/configuration/application/index.html#app_configuration) section for more details on how to create an application definition and where the application configuration files should be stored.*
 
 Below is an example configuration for auto injection on an application level:
 
@@ -242,7 +242,7 @@ Below is an example configuration that will auto initialize an application with 
 }
 ```
 
-## Application Configuration
+## App Configuration
 
 To add your JavaScript app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 
@@ -272,8 +272,8 @@ The `"name"`, `"type"` and `"url"` properties are required and `"type"` must be 
 
 Once the Glue42 JavaScript library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
-- [Application Management](../../../../glue42-concepts/application-management/javascript/index.html)
-- [Application Preferences](../../../../glue42-concepts/application-preferences/javascript/index.html)
+- [App Management](../../../../glue42-concepts/application-management/javascript/index.html)
+- [App Preferences](../../../../glue42-concepts/application-preferences/javascript/index.html)
 - [Intents](../../../../glue42-concepts/intents/javascript/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/javascript/index.html)

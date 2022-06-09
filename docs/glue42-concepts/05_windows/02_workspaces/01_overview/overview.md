@@ -599,7 +599,7 @@ Using a custom button and a custom popup for the Add Workspace component:
 
 The `components` prop of the `<Workspaces />` component has a `popups` property that enables you to pass custom components or Glue42 apps that will act as system popups. To specify a custom Glue42 app as a system popup, pass its name as a string.
 
-*Note that if you decide to use the default system popups, you must ensure that they receive their required props. This includes a `glue` object with initialized [Workspaces](../javascript/index.html) library and [Application Management](../../../application-management/overview/index.html) library initialized in `"full"` or `"skipIcons"` mode.*
+*Note that if you decide to use the default system popups, you must ensure that they receive their required props. This includes a `glue` object with initialized [Workspaces](../javascript/index.html) library and [App Management](../../../application-management/overview/index.html) library initialized in `"full"` or `"skipIcons"` mode.*
 
 The following example demonstrates how to pass default popup components and their props correctly and how to pass a custom Glue42 app as a popup:
 
