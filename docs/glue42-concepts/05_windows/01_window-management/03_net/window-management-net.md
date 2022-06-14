@@ -1,6 +1,6 @@
 ## Glue42 Windows
 
-In order for windows created from an external WPF/WinForms applications to become Glue42 Windows, they must first be registered via the **.NET Window Management** API.
+In order for windows created from an external WPF/WinForms applications to become Glue42 Windows, they must first be registered via the .NET Window Management API.
 
 ## Window Options
 
@@ -48,7 +48,7 @@ The `RegisterWindow()` method returns a window instance of type `IGlueWindow`.
 
 ### WPF Windows
 
-*Note that it is **mandatory** for an external WPF application to have an `app.manifest` file with the following section:*
+*Note that it is mandatory for an external WPF application to have an `app.manifest` file with the following section:*
 
 ```xml
 <application xmlns="urn:schemas-microsoft-com:asm.v3">

@@ -4,11 +4,11 @@
 
 ## How It All Works
 
-The main components of [**Glue42 Enterprise**](https://glue42.com/enterprise/) are **Glue42 Desktop** and the Glue42 Gateway. These two components can be packed together or deployed independently.
+The main components of [**Glue42 Enterprise**](https://glue42.com/enterprise/) are Glue42 Desktop and the Glue42 Gateway. These two components can be packed together or deployed independently.
 
 ### Glue42 Desktop
 
-**Glue42 Desktop** is an Electron based application which offers APIs for:
+Glue42 Desktop is an Electron based application which offers APIs for:
 
 [App Management](../../../glue42-concepts/application-management/overview/index.html)
 
@@ -30,7 +30,7 @@ The main components of [**Glue42 Enterprise**](https://glue42.com/enterprise/) a
 
 The Glue42 APIs are available in JavaScript/TypeScript (as well as through lightweight Glue42 React and Angular wrappers) for web applications and in .NET, Java, and COM/VBA for desktop applications.
 
-**Glue42 Desktop** is highly customizable and many of its features can be enabled, disabled or [re-configured](../../../developers/configuration/overview/index.html).
+Glue42 Desktop is highly customizable and many of its features can be enabled, disabled or [re-configured](../../../developers/configuration/overview/index.html).
 
 ### Glue42 Gateway
 

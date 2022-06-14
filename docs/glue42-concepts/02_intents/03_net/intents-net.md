@@ -37,14 +37,14 @@ var handler = intent.Handlers[0];
 
 await glue.Intents.Raise(intent,
     // Pass the desired Intent handler.
-    builder => builder.WithHandler(handler));          
+    builder => builder.WithHandler(handler));
 ```
 
 Or:
 
 ```csharp
 await glue.Intents.Raise("ShowChart",
-    builder => 
+    builder =>
         // Target a specific Intent handler.
         builder.WithTargetSelector(handler =>
             handler.ApplicationName.Contains("InstrumentChart")));

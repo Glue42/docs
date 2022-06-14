@@ -1,6 +1,6 @@
 ## Glue42 Windows
 
-In order for windows of VBA applications to become **Glue42 Windows**, they must be registered as Glue42 Windows after the Glue42 COM library has been initialized.
+In order for windows of VBA applications to become Glue42 Windows, they must be registered as Glue42 Windows after the Glue42 COM library has been initialized.
 
 ## Registering VBA UserForms
 

@@ -13,7 +13,7 @@ public interface ICRMService : IDisposable
 }
 ```
 
-`CRMServiceImpl` holds the actual application logic that will handle **Interop** calls:
+`CRMServiceImpl` holds the actual application logic that will handle Interop calls:
 
 ```csharp
 public class CRMServiceImpl : ICRMService
@@ -26,7 +26,7 @@ public class CRMServiceImpl : ICRMService
 }
 ```
 
-After the interface is implemented, we create an instance and pass it to the `RegisterService()` method. By doing so, any method of the interface that is attributed with `ServiceOperation` will be exposed as an **Interop** method:
+After the interface is implemented, we create an instance and pass it to the `RegisterService()` method. By doing so, any method of the interface that is attributed with `ServiceOperation` will be exposed as an Interop method:
 
 ```csharp
 var impl = new CRMServiceImpl();
@@ -36,13 +36,13 @@ glue.Interop.RegisterService<ICRMService>(impl);
 Any app that wants to call the `SynchronizeContact()` method should create a proxy of `ICRMService`:
 
 ```csharp
-var crmService = Glue.Interop.CreateServiceProxy<ICRMService>();
+var crmService = glue.Interop.CreateServiceProxy<ICRMService>();
 var result = crmService.SynchronizeContact(new Contact() { Id = "293" });
 ```
 
 ## Returning Results
 
-You can return results from **Interop** methods in two ways:
+You can return results from Interop methods in two ways:
 
 ### Synchronous Results
 
@@ -95,7 +95,7 @@ public class StateService : IStateService
 To check if there is a service, the methods (endpoints) of which are all implemented (by one or many servers):
 
 ```csharp
-Glue.Interop.IsServiceAvailable(serviceProxy);
+glue.Interop.IsServiceAvailable(serviceProxy);
 ```
 
 ## Available Service Operations
@@ -103,7 +103,7 @@ Glue.Interop.IsServiceAvailable(serviceProxy);
 To check if there is an available service method:
 
 ```csharp
-Glue.Interop.IsServiceOperationAvailable(serviceProxy, p => p.SynchronizeContact(null));
+glue.Interop.IsServiceOperationAvailable(serviceProxy, p => p.SynchronizeContact(null));
 ```
 
 ## Unregister a Service
@@ -121,7 +121,7 @@ glue.Interop.UnregisterService<ICRMService>(impl);
 ### Method Registration
 
 ```csharp
-IServerMethod interopMethod = Glue.Interop.RegisterEndpoint(mdb => mdb.SetMethodName("DoWork"),
+IServerMethod interopMethod = glue.Interop.RegisterEndpoint(mdb => mdb.SetMethodName("DoWork"),
     (method, context, caller, resultBuilder, asyncResponseCallback, cookie) =>
         ThreadPool.QueueUserWorkItem(_ =>
         {
@@ -140,7 +140,7 @@ IServerMethod interopMethod = Glue.Interop.RegisterEndpoint(mdb => mdb.SetMethod
 ### Method Invocation
 
 ```csharp
-Glue.Interop.Invoke("DoWork", mib => mib.SetContext(cb => cb.AddValue("id", Guid.NewGuid().ToString("N")))
+glue.Interop.Invoke("DoWork", mib => mib.SetContext(cb => cb.AddValue("id", Guid.NewGuid().ToString("N")))
 .SkipInvocationMetrics().SetInvocationLoggingLevel(LogLevel.Info),
 new TargetSettings().WithTargetInvokeTimeout(TimeSpan.FromSeconds(8)).WithTargetType(MethodTargetType.Any))
 .ContinueWith(r =>
@@ -171,7 +171,7 @@ IDictionary<IInstance, IMethod[]> methodsPerServer = glue.Interop.GetTargetEndpo
 
 ### Server Added/Removed Events
 
-The **Interop** API exposes multiple events:
+The Interop API exposes multiple events:
 
 ```csharp
 glue.Interop.TargetStatusChanged += (sender, eargs) => ServersLabel.Text = "Servers: " + string.Join(", ", eargs.Servers.Select(serverInfo => serverInfo.ApplicationName));
@@ -180,7 +180,7 @@ glue.Interop.TargetStatusChanged += (sender, eargs) => ServersLabel.Text = "Serv
 ### Method Added/Removed Events
 
 ```csharp
-Glue.Interop.EndpointStatusChanged += (sender, args) => { Console.WriteLine($"{args.InteropEndpoint} is now {args.EndpointStatus}");};
+glue.Interop.EndpointStatusChanged += (sender, args) => { Console.WriteLine($"{args.InteropEndpoint} is now {args.EndpointStatus}");};
 ```
 
 ## Defining Service Options Adapter Logic
@@ -215,7 +215,7 @@ public class ServiceOptions : IServiceOptions
 }
 ```
 
-Then implement the service options adapter, adapting your business logic to the inner **Interop** logic:
+Then implement the service options adapter, adapting your business logic to the inner Interop logic:
 
 ```csharp
 internal class OptionsAdapter : IAGMServiceOptionsAdapter<IServiceOptions>
@@ -300,7 +300,7 @@ Interop streams are used extensively in [**Glue42 Enterprise**](https://glue42.c
 
 ### Subscribing to a Stream
 
-Streams are simply special Interop methods, so subscribing to a stream resembles very much invoking a method. To subscribe, you need to create a pending subscription request by calling `Glue.Interop.Subscribe()`.
+Streams are simply special Interop methods, so subscribing to a stream resembles very much invoking a method. To subscribe, you need to create a pending subscription request by calling `glue.Interop.Subscribe()`.
 Then the subscriber calls `IEventStream.Open()` passing a stream-subscription handler for receiving data and status updates from that stream. If the publisher accepts the subscription request, this opens a "long-living" data subscription (as opposed to request-response (`Invoke()` method)) to the publisher(s), so that when the publishing side publishes data, the data will be received by all subscribers to that stream. A subscriber can decide to cancel the subscription at any time, or the publisher can remove the subscriber - that way, the subscriber is no longer subscribed to the stream of that publisher and is no longer going to receive updates.
 
 The case where the subscription targets more than one publisher (configured in `targetSettings`) is called a broadcast subscription.
@@ -352,12 +352,12 @@ Task<IEventStream> Subscribe(
 ```
 
 The `subscriptionRequest` holds the arguments for the subscription request. Typically, this represents the subscriber's area of interest (desired context) for that particular stream.
-The subscription context is received by the publisher(s) of that stream and the publisher can then **group** subscribers in stream branches (more on stream branches in [Publishing Streams](#streaming-publishing_streams)).
+The subscription context is received by the publisher(s) of that stream and the publisher can then group subscribers in stream branches (more on stream branches in [Publishing Streams](#streaming-publishing_streams)).
 
 The `targetSettings` holds various options for selecting targets (or publishers) for that particular stream subscription request, so, for example, you can target a single publisher based on a filter or target multiple publishers (offering the same stream) at once and open stream subscriptions to all of them, receiving data from each one of them.
 
 ```csharp
-Glue.Interop.Subscribe(streamName,
+glue.Interop.Subscribe(streamName,
     new ClientEventStreamHandler
     {
         // this lambda is invoked when the status of the stream has changed
@@ -383,7 +383,7 @@ Glue.Interop.Subscribe(streamName,
 
 ### Publishing Streams
 
-To start publishing data, you need to create an Interop stream by calling `Glue.Interop.RegisterStreamingEndpoint()`. This registers an Interop streaming method, similar to the one created by `Glue.Interop.RegisterEndpoint()`, but this enables the registering side to receive subscription requests from other Glue42 peers, accept or reject them, group them by some criteria (e.g., subscription area of interest, passed in the subscription request arguments) and push data to them, where the data is distributed to all underlying subscribers by the Glue42 Gateway.
+To start publishing data, you need to create an Interop stream by calling `glue.Interop.RegisterStreamingEndpoint()`. This registers an Interop streaming method, similar to the one created by `glue.Interop.RegisterEndpoint()`, but this enables the registering side to receive subscription requests from other Glue42 peers, accept or reject them, group them by some criteria (e.g., subscription area of interest, passed in the subscription request arguments) and push data to them, where the data is distributed to all underlying subscribers by the Glue42 Gateway.
 
 Here is the signature of the method:
 
@@ -396,12 +396,12 @@ IServerEventStream RegisterStreamingEndpoint(
     object cookie = null);
 ```
 
-The stream definition is identical to the Interop method definition for the `Glue.Interop.RegisterEndpoint()` call.
+The stream definition is identical to the Interop method definition for the `glue.Interop.RegisterEndpoint()` call.
 
 An example of registering a stream:
 
 ```csharp
-IServerEventStream streamingMethod = Glue.Interop.RegisterStreamingEndpoint(
+IServerEventStream streamingMethod = glue.Interop.RegisterStreamingEndpoint(
     mdb => mdb.SetMethodName(streamName),
     new ServerEventStreamHandler(false)
     {
@@ -444,7 +444,7 @@ IServerEventStream streamingMethod = Glue.Interop.RegisterStreamingEndpoint(
         }
     }
     // optionally, supply request-response handler for that streaming method
-    // so that it can be invoked via "Glue.Interop.Invoke()", and subscribe to it:
+    // so that it can be invoked via "glue.Interop.Invoke()", and subscribe to it:
     //  ,(method, context, caller, builder, callback, cookie) =>
     //  {
     //      // the method is invoked in the old-style manner - calculate the result
@@ -494,7 +494,7 @@ Using Glue42 to serialize your objects and push them to streams/branches:
 if (streamingMethod.TryGetBranch(out IEventStreamBranch streamBranch, "myBranchName"))
 {
     streamBranch.Push(cb => cb
-        .AddValue("my_object_data", Glue.AGMObjectSerializer.Serialize(myObject))
+        .AddValue("my_object_data", glue.AGMObjectSerializer.Serialize(myObject))
         .AddValue("OtherValues", new[] {1.2, 3, 54}));
 }
 ```
@@ -536,7 +536,7 @@ public class Pear : Fruit
 }
 
 // Create the streaming endpoint.
-var stream = Glue.Interop.RegisterStreamingEndpoint(asmb => { asmb.SetMethodName("FruitsStream"); },
+var stream = glue.Interop.RegisterStreamingEndpoint(asmb => { asmb.SetMethodName("FruitsStream"); },
     new ServerEventStreamHandler(true));
 
 // Every 1000 msecs publish random fruits on this stream.
@@ -544,7 +544,7 @@ var rnd = new Random();
 new Timer(state =>
 {
     stream.Broadcast(cb =>
-        Enumerable.Range(1, rnd.Next(5, 25)).Each(i => cb.AddObject(Glue, $"fruit{i}",
+        Enumerable.Range(1, rnd.Next(5, 25)).Each(i => cb.AddObject(glue, $"fruit{i}",
             i % 2 == 0 ? new Apple
             {
                 Price = rnd.Next(),
@@ -563,11 +563,11 @@ Subscribing to the stream and consuming the data:
 
 ```csharp
 // Consume the stream on the subscription side.
-var subscriptionStream = await Glue.Interop.Subscribe("FruitsStream", new ClientEventStreamHandler
+var subscriptionStream = await glue.Interop.Subscribe("FruitsStream", new ClientEventStreamHandler
 {
     EventHandler = (info, data, _) =>
     {
-        var fruits = data.ResultContext.DeserializeMap<string, Fruit>(Glue,
+        var fruits = data.ResultContext.DeserializeMap<string, Fruit>(glue,
             // This is the decider - can choose what specific object to create.
             (value, serializer) =>
             {

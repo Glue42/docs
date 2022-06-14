@@ -4,7 +4,7 @@ Global saving and restoring is an operation in which all applications running on
 
 ### Saving a Global Layout
 
-The **Layouts** API can be accessed through `glue.Layouts`.
+The Layouts API is accessible through `glue.Layouts`.
 
 To save a global layout, use `glue.Layouts.Save()` passing a configuration object with a required `name` property. Note that if a layout with that `name` already exists, it will be replaced. The resolved `Task` includes the saved layout information, which can then be used or manipulated.
 
@@ -49,7 +49,7 @@ glue.Layouts.List() // returns an array of layout objects
 To remove a layout, use the `glue.Layouts.Remove()` method. You must pass the layout instance to be removed:
 
 ```csharp
-glue.Layouts.Remove(layout).ContinueWith(t => 
+glue.Layouts.Remove(layout).ContinueWith(t =>
 {
     ILayout removedLayout = t.Result;
     // handle removed layout
@@ -101,7 +101,7 @@ When a global layout is saved, applications can store custom data with it. When 
 
 *Note that saving large volumes of custom data as window context (e.g., thousands of lines of table data) can lead to significant delays when saving a layout. A layout usually contains several (in some cases - many) applications and/or Workspaces (which can also contain many apps) and if one or more of the apps saves large amounts of context data each time a layout is saved, this will significantly slow down the saving process. The methods for saving custom context work best with smaller amounts of data. If your application needs to save large amounts of data, you have to think about how to design this process better - for instance, you may store IDs, indices, etc., as context data, save the actual data to a database and when you restore the layout, fetch the data using the data IDs saved as window context.*
 
-The custom data is the **window context** - each window (application) can store window specific context. When restored, the window will have the saved context.
+The custom data is the window context - each window (application) can store window specific context. When restored, the window will have the saved context.
 
 To save custom data, applications can subscribe for layout save requests. The callback passed as an argument will be invoked when a layout save is requested.
 You can define your own typed configuration for your application:
@@ -148,10 +148,10 @@ initializeOptions.SetSaveRestoreStateEndpoint(saveState => new AppState
         SelectedClient = "some client"
     }.AsCompletedTask());
 
-Glue42.InitializeGlue(initializeOptions).ContinueWith(t => 
+Glue42.InitializeGlue(initializeOptions).ContinueWith(t =>
 {
     Glue42 glue = t.Result;
-    
+
     // Glue42 is initialized, so we can extract the restore state in a typed fashion like so:
     AppState restoreState = glue.GetRestoreState<AppState>();
 
@@ -165,9 +165,9 @@ If you want to return any object and work in an untyped manner, you can do it by
 Glue42.InitializeGlue(new InitializeOptions
 {
     OnSaveState = _ => new Dictionary<string, object>().AsCompletedTask<object>()
-}).ContinueWith(t => 
+}).ContinueWith(t =>
 {
     Glue42 glue = t.Result;
     var restoreState = glue.GetRestoreState<Dictionary<string, object>>();
 });
-``` 
+```

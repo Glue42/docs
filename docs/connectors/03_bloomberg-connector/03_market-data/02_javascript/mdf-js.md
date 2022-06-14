@@ -1,12 +1,12 @@
 ## Initialization
 
-The **BBG Market Data** library is available as an NPM package - [`@glue42/bbg-market-data`](https://www.npmjs.com/package/@glue42/bbg-market-data). To install it, run the following command in your project directory:
+The BBG Market Data library is available as an NPM package - [`@glue42/bbg-market-data`](https://www.npmjs.com/package/@glue42/bbg-market-data). To install it, run the following command in your project directory:
 
 ```cmd
 npm install @glue42/bbg-market-data
 ```
 
-The **BBG Market Data** API depends on Glue42 [Interop](../../../../glue42-concepts/data-sharing-between-apps/interop/overview/index.html), an instance of which must be passed to the `BBGMarketData()` factory function. The function also accepts as a second parameter a configuration object that controls logging behavior and can also provide an optional custom logger implementation. The configuration object can also specify the interval at which to attempt reconnection to the Bloomberg Connector if a connection doesn't exist or is interrupted.
+The BBG Market Data API depends on Glue42 [Interop](../../../../glue42-concepts/data-sharing-between-apps/interop/overview/index.html), an instance of which must be passed to the `BBGMarketData()` factory function. The function also accepts as a second parameter a configuration object that controls logging behavior and can also provide an optional custom logger implementation. The configuration object can also specify the interval at which to attempt reconnection to the Bloomberg Connector if a connection doesn't exist or is interrupted.
 
 ```typescript
 import BBGMarketData from "@glue42/bbg-market-data";
@@ -22,7 +22,7 @@ GlueCoreFactory().then(glue => {
 
 ## Connection
 
-To receive updates about changes in the connection between the **BBG Market Data** API and the Bloomberg Connector, you can use the `onConnectionStatusChanged()` method. It accepts a callback with which you can handle changes in the connection status and returns an unsubscribe function that you can invoke to stop receiving updates about the connection status:
+To receive updates about changes in the connection between the BBG Market Data API and the Bloomberg Connector, you can use the `onConnectionStatusChanged()` method. It accepts a callback with which you can handle changes in the connection status and returns an unsubscribe function that you can invoke to stop receiving updates about the connection status:
 
 ```typescript
 function handleConnectionChanges (status: ConnectionStatus): void {
@@ -171,7 +171,7 @@ request.onEvent(function handleBloombergEvent(event: BloombergEvent) {
 
 ### Market Data Subscription
 
-A Market Data Subscription request enables retrieval of streaming data for securities that are priced intraday by using the Bloomberg API Subscription paradigm. It uses the Bloomberg API core service `//blp/mktdata`. The subscriber receives updates once a field value changes at the source. Desired fields must explicitly be listed in the subscription to receive updates for them. It is **required** for each subscription to have a `security` property and at least one field in the `fileds` property. A full range of options (like `subscriptionId`, `intervalInSeconds`, `delayed`) can be specified in the `Subscription`.
+A Market Data Subscription request enables retrieval of streaming data for securities that are priced intraday by using the Bloomberg API Subscription paradigm. It uses the Bloomberg API core service `//blp/mktdata`. The subscriber receives updates once a field value changes at the source. Desired fields must explicitly be listed in the subscription to receive updates for them. It is required for each subscription to have a `security` property and at least one field in the `fileds` property. A full range of options (like `subscriptionId`, `intervalInSeconds`, `delayed`) can be specified in the `Subscription`.
 
 Below is an example of creating and opening a Market Data Subscription request:
 
@@ -240,7 +240,7 @@ const subscriptions: Subscription[] = [
 
 A Historical Data request enables the retrieval of end-of-day data for a set of securities and fields over a specified period, which can be set to daily, monthly, quarterly, semi-annually or annually by using the Bloomberg Request/Response paradigm. It uses the Bloomberg API core service `//blp/refdata`.
 
-At least one value in the `securities` and in the `fields` properties is **required** along with a `startDate` and an `endDate`. A range of other options can be specified in the `HistoricalDataRequestArguments` object. To create a Historical Data request, use the `createHistoricalDataRequest()` method:
+At least one value in the `securities` and in the `fields` properties is required along with a `startDate` and an `endDate`. A range of other options can be specified in the `HistoricalDataRequestArguments` object. To create a Historical Data request, use the `createHistoricalDataRequest()` method:
 
 ```typescript
 const requestArgs: HistoricalDataRequestArguments = {
@@ -272,7 +272,7 @@ request.open();
 A Reference Data request retrieves the current data available for a security/field pair by using the Bloomberg Request/Response paradigm.
 It uses the Bloomberg API core service `//blp/refdata`.
 
-At least one value in the `securities` and in the `fields` properties is **required**. A range of other options can be specified in the `ReferenceDataRequestArguments` object. To create a Reference Data request, use the `createReferenceDataRequest()` method.
+At least one value in the `securities` and in the `fields` properties is required. A range of other options can be specified in the `ReferenceDataRequestArguments` object. To create a Reference Data request, use the `createReferenceDataRequest()` method.
 
 ```typescript
 const requestArgs: ReferenceDataRequestArguments = {
@@ -301,7 +301,7 @@ request.open();
 
 The Instrument List request performs a search for securities based on a specified search string. This functionality resembles the `SECF <GO>` function of the Bloomberg Professional Service. It uses the Bloomberg API core service `//blp/instruments`.
 
-Specifying a search string and a maximum number of results is **required**. A range of other options can be specified in the `InstrumentListRequestArguments` object. To create an Instrument List request, use the `createInstrumentListRequest()` method:
+Specifying a search string and a maximum number of results is required. A range of other options can be specified in the `InstrumentListRequestArguments` object. To create an Instrument List request, use the `createInstrumentListRequest()` method:
 
 ```typescript
 const requestArgs: InstrumentListRequestArguments = {
@@ -330,7 +330,7 @@ request.open();
 
 The Intraday Bar request enables retrieval of summary intervals for intraday data covering five event types: `TRADE`, `BID`, `ASK`, `BEST BID` and `BEST ASK`, over a period of time by using the Bloomberg Request/Response paradigm. It uses the Bloomberg API core service `//blp/refdata`.
 
-It is **required** to specify a `security` and `eventType`. Also, `startDateTime` and `endDateTime` points in UTC must be specified. A range of other options can be specified in the `IntraDayBarRequestArguments` object. To create an Intraday Bar request, use the `createIntraDayBarRequest()` method:
+It is required to specify a `security` and `eventType`. Also, `startDateTime` and `endDateTime` points in UTC must be specified. A range of other options can be specified in the `IntraDayBarRequestArguments` object. To create an Intraday Bar request, use the `createIntraDayBarRequest()` method:
 
 ```typescript
 const requestArgs: IntraDayBarRequestArguments = {
@@ -361,7 +361,7 @@ request.open();
 
 The Snapshot request enables retrieval of static market list snapshot data by using the Bloomberg Request/Response paradigm. It uses the Bloomberg API core service `//blp/mktlist`.
 
-It is **required** to specify a `security`. To create a Snapshot request, use the `createSnapshotRequest()` method:
+It is required to specify a `security`. To create a Snapshot request, use the `createSnapshotRequest()` method:
 
 ```typescript
 const requestArgs: SnapshotRequestArguments = {

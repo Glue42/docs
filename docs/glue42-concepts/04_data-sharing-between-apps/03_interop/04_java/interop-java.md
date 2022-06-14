@@ -2,8 +2,7 @@
 
 ### Registering Methods
 
-To offer a method to other applications, call `glue.interop().register()`, passing the method **definition** and a
-callback to handle client invocations.
+To offer a method to other applications, call `glue.interop().register()`, passing the method definition and a callback to handle client invocations.
 
 ```java
 glue.interop().<Map<String, Object>, Map<String, Object>>register(
@@ -49,10 +48,10 @@ Examples:
 
 `Composite` is a structure which contains one or more fields of type:
 
-- **scalar** (bool, int, etc.)
-- **array of scalars**
-- a **composite** (nested structure)
-- an **array of composites**
+- scalar (bool, int, etc.)
+- array of scalars
+- a composite (nested structure)
+- an array of composites
 
 Using `Composite` you can define almost any non-recursive, non-self-referential structure.
 
@@ -73,7 +72,7 @@ The `doSomethingAsync()` method above returns a `Future` object.
 
 ### Invoking Methods
 
-To invoke a method offered by other applications, call `glue.interop().invoke()`, passing the method **name** and **arguments**. Then use the returned `Future` to receive result or an error.
+To invoke a method offered by other applications, call `glue.interop().invoke()`, passing the method name and arguments. Then use the returned `Future` to receive result or an error.
 
 ```java
 Map<String, Object> arg = new HashMap<>();
@@ -88,8 +87,7 @@ glue.interop().invoke("Sum", arg)
 
 ## Multiple Responses
 
-Invoking a method on multiple **Interop** instances produces **multiple**
-responses.
+Invoking a method on multiple Interop instances produces multiple responses.
 
 This is how you can iterate over all responses:
 
@@ -122,7 +120,7 @@ System.out.println(glue.interop().getMethods());
 
 #### Live Search Query
 
-Glue42 Java offers a fluent API for finding Interop methods. It enables you to make a **live query** when you search for methods to invoke. This means that once you have an initial result from the search query, methods will be automatically added to/removed from that result when they become available or, respectively, unavailable.
+Glue42 Java offers a fluent API for finding Interop methods. It enables you to make a live query when you search for methods to invoke. This means that once you have an initial result from the search query, methods will be automatically added to/removed from that result when they become available or, respectively, unavailable.
 
 The query starts from the `Search` class. You can use different methods of the `Search` class to specify criteria for the query:
 
@@ -328,7 +326,7 @@ The `StreamConsumer` reference can be used to:
 
 ### Multicasting Data Using Branches
 
-A single stream supports one or multiple named sub-streams that are called **branches**. In cases where it isn't necessary for a stream to be split into multiple sub-streams, a **default** branch is used.
+A single stream supports one or multiple named sub-streams that are called branches. In cases where it isn't necessary for a stream to be split into multiple sub-streams, a default branch is used.
 
 ```java
 glue.interop()
@@ -362,7 +360,7 @@ Map<String, StreamBranch> allBranches = stream.getBranches();
 List<StreamConsumer<?>> allConsumers = stream.getConsumers();
 ```
 
-If your stream publishing code uses **branches** (e.g., creates a branch for each unique set of subscription arguments and associates consumers with that branch), whenever a data arrives from your underlying source, you can use that branch to publish data instead of manually iterating over all consumers to send data to the interested clients.
+If your stream publishing code uses branches (e.g., creates a branch for each unique set of subscription arguments and associates consumers with that branch), whenever a data arrives from your underlying source, you can use that branch to publish data instead of manually iterating over all consumers to send data to the interested clients.
 
 ```java
 String branchKey = "Providers";

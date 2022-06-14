@@ -1,6 +1,6 @@
 ## Raising a Notification
 
-The **Glue42 Notification Service** API can be accessed through the `Notifications` property of the `Glue` object:
+The Glue42 Notification Service API can be accessed through the `Notifications` property of the `Glue` object:
 
 ```csharp
 var notification = new DesktopNotification("New Trade",
@@ -37,7 +37,7 @@ var notification = new DesktopNotification(Title.Text,
 
 Notifications may contain actions (usually displayed as buttons in the UI) that the user can execute when they see the notification. Executing an action results in invoking an Interop method. This Interop method can be registered by the publisher of the notification or any other application that can handle the action. The handler of the Interop action can also receive parameters, specified by the publisher of the notification.
 
-In the following example, we add actions **Call Client** and **Open Portfolio** passing a `customerId` parameter to the action handlers:
+In the following example, we add actions Call Client and Open Portfolio passing a `customerId` parameter to the action handlers:
 
 ```csharp
 var parameters = new List<GlueMethodParameter>()

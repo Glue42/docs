@@ -63,7 +63,7 @@ The `"store"` object has the following properties:
 | `"type"` | `string` | Type of the Layout store. Can be one of `"file"` (default), `"rest"` or `"server"`. |
 | `"restURL"` | `string` | URL pointing to the Layout store. Valid only in `"rest"` mode. |
 | `"restFetchInterval"` | `number` | Interval in seconds at which to poll the REST service for updates. Default is `60`. Valid only in `"rest"` mode. |
-| `"restClientAuth"` | `object` | Authentication configuration. Can be one of `"no-auth"` (default), `"negotiate"` or `"kerberos"`. Valid only in `"rest"` mode. |
+| `"restClientAuth"` | `string` | Authentication configuration. Can be one of `"no-auth"` (default), `"negotiate"` or `"kerberos"`. Valid only in `"rest"` mode. |
 | `"rejectUnauthorized"` | `boolean` | If `true` (default), SSL validation will be enabled for the REST server. Valid only in `"rest"` mode. |
 
 ### Local

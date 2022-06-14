@@ -147,7 +147,7 @@ Here is an example configuration for a ClickOnce application:
 
 ## Glue42 Silverlight
 
-We offer a **Glue42 Silverlight** library as a version of the Glue42 .NET library. Glue42 Silverlight offers the same features and functionalities as the Glue42 .NET library, it is only tailored to meet the specifications of the MS Silverlight framework.
+We offer a Glue42 Silverlight library as a version of the Glue42 .NET library. Glue42 Silverlight offers the same features and functionalities as the Glue42 .NET library, it is only tailored to meet the specifications of the MS Silverlight framework.
 
 ## Glue42 .NET Concepts
 

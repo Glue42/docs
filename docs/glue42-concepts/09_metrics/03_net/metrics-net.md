@@ -1,10 +1,10 @@
 ## Metric System
 
-A metrics system groups one or more metrics. For example, a **Hardware Metric System** is a metric system that groups all metrics, which measure the hardware performance – CPU usage, HDD Disk usage etc.
+A metrics system groups one or more metrics. For example, a Hardware Metric System is a metric system that groups all metrics, which measure the hardware performance – CPU usage, HDD Disk usage etc.
 
 Metrics can be added or removed from the system programmatically.
 
-The metric system is a composite structure. One metric system may contain other metric systems - e.g., a **Databases** metric system can be defined to contain the *Oracle_1* and *MySql_2* metric sub-systems. In this example, the *Oracle_1* and *MySql_2* sub-systems are specific metric systems that measure the performance and the load of the database servers *Oracle_1* and *MySql_2*.
+The metric system is a composite structure. One metric system may contain other metric systems - e.g., a Databases metric system can be defined to contain the *Oracle_1* and *MySql_2* metric sub-systems. In this example, the *Oracle_1* and *MySql_2* sub-systems are specific metric systems that measure the performance and the load of the database servers *Oracle_1* and *MySql_2*.
 
 Every metric system has one system state metric. The purpose of this state metric is to provide information about the condition of the metric system. The state can be:
 - `GREEN` - when the system is working properly;
@@ -58,8 +58,8 @@ databasesMetricSystem.RemoveChild(mysqlMetricSystem);
 
 Now that you have created metric systems, you can start defining metrics. Our database metrics systems will have the following metrics:
 
-- **address metric** - database server name;
-- **count metric** - number of all inserted records;
+- address metric - database server name;
+- count metric - number of all inserted records;
 
 ```csharp
 IAddressMetric oracleServerAddress = oracleMetricSystem.GetOrCreateAddressMetric("databaseServer", new AddressMetricOptions().WithDescription("database server name"));
@@ -95,4 +95,4 @@ oracleServerAddress.SetValue("192.168.0.111", 1521);
 
 // increase the metric whenever you insert a database record
 oracleInsertedRecords.Increment();
-``` 
+```

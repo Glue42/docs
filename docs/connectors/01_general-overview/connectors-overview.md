@@ -18,7 +18,7 @@ End users are able to work in whichever UI they prefer and use the supported app
 
 ### Developers
 
-As a **developer**, you no longer need to waste time and effort struggling to understand and implement grid components and text editors that clients neither like, nor want to use. You can focus on implementing the things that add value to your business.
+As a developer, you no longer need to waste time and effort struggling to understand and implement grid components and text editors that clients neither like, nor want to use. You can focus on implementing the things that add value to your business.
 
 - Download the [**Glue42 Enterprise**](https://glue42.com/enterprise/) trial version from [here](https://glue42.com/free-trial/).
 
@@ -26,7 +26,7 @@ As a **developer**, you no longer need to waste time and effort struggling to un
 
 ### End Users
 
-As an **end user**, you will continue working with a familiar environment and won't need to learn how to use new and incompatible application UIs. Enjoy the comfort of using all these familiar apps whenever and however you need to.
+As an end user, you will continue working with a familiar environment and won't need to learn how to use new and incompatible application UIs. Enjoy the comfort of using all these familiar apps whenever and however you need to.
 
 - See why organizations around the world are choosing [**Glue42 Enterprise**](https://glue42.com/enterprise/) as their desktop management solution: our partners' [success stories](https://glue42.com/success-stories/).
 

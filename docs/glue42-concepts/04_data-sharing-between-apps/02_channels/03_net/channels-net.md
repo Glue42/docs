@@ -5,7 +5,7 @@
 For .NET applications, you can add the Channel Selector at runtime:
 
 ```csharp
-IGlueWindows glueWindows = Glue.GlueWindows;
+IGlueWindows glueWindows = glue.GlueWindows;
 var glueWindowOptions = glueWindows?.GetStartupOptions() ?? new GlueWindowOptions();
 
 // Request Channel support, so the window will show the Channel Selector.
@@ -15,7 +15,7 @@ glueWindowOptions.WithChannelSupport(true);
 System.Windows.Window window = this;
 
 // See also Window Management for more details on registering windows as Glue42 Windows.
-Glue.GlueWindows.RegisterWindow(window, glueWindowOptions)
+glue.GlueWindows.RegisterWindow(window, glueWindowOptions)
     .ContinueWith(r =>
     {
         IGlueWindow glueWindow = r.Result;
@@ -40,7 +40,7 @@ The callback is invoked when:
 
 The second callback (Channel change handle) is invoked when:
 - You switch the Channel and the application (window) is assigned to a new Channel.
-- Your app (window) isn't joined to a Channel anymore (e.g. you have deselected the current Channel). In this case, it will be **undefined/null**.
+- Your app (window) isn't joined to a Channel anymore (e.g. you have deselected the current Channel). In this case, it will be undefined/null.
 
 ### Channel Discovery
 
@@ -50,7 +50,7 @@ Your app can discover Channels in 3 ways:
 
 ```csharp
 // This will return an array of all currently known Channels.
-IGlueChannel[] channels = Glue.Channels.GetChannels();
+IGlueChannel[] channels = glue.Channels.GetChannels();
 ```
 
 - Through a subscription:
@@ -58,17 +58,17 @@ IGlueChannel[] channels = Glue.Channels.GetChannels();
 ```csharp
 // The subscription lambda will be invoked for all current Channels
 // and for any newly created Channel.
-Glue.Channels.Subscribe(channel => HandleChannel(channel));
+glue.Channels.Subscribe(channel => HandleChannel(channel));
 ```
 
 - Awaiting a Channel by name as a `Task`, or awaiting a specific Channel with a lambda filter:
 
 ```csharp
 // By name.
-Glue.Channels.AwaitChannel("Green").ContinueWith(...);
+glue.Channels.AwaitChannel("Green").ContinueWith(...);
 
 // With a lambda filter - allows finer filtering.
-Glue.Channels.AwaitChannel(channel => IsChannelInteresting(channel)).ContinueWith(...);
+glue.Channels.AwaitChannel(channel => IsChannelInteresting(channel)).ContinueWith(...);
 ```
 
 ### Joining a Channel
@@ -76,7 +76,7 @@ Glue.Channels.AwaitChannel(channel => IsChannelInteresting(channel)).ContinueWit
 Once it finds a Channel, your app can join it:
 
 ```csharp
-IGlueChannelContext glueChannelContext = Glue.Channels.JoinChannel(channel);
+IGlueChannelContext glueChannelContext = glue.Channels.JoinChannel(channel);
 ```
 
 The `glueChannelContext` can then be used for reading, writing and subscribing for Channel data.

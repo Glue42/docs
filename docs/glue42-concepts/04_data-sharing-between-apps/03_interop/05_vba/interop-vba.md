@@ -297,10 +297,9 @@ AllInteropServers = Glue.GetTargets()
 
 ### Overview
 
-Your application can publish events that can be observed by other applications, or it can provide real-time data (e.g., market data, news alerts, notifications, etc.) to other applications by publishing an Interop stream.
-Your application can also receive and react to these events and data by creating an Interop stream subscription.
+Your application can publish events that can be observed by other applications, or it can provide real-time data (e.g., market data, news alerts, notifications, etc.) to other applications by publishing an Interop stream. Your application can also receive and react to these events and data by creating an Interop stream subscription.
 
-Applications that create and publish to Interop Streams are called **publishers**, and applications that subscribe to Interop Streams are called **subscribers**. An application can be both.
+Applications that create and publish to Interop Streams are called *publishers*, and applications that subscribe to Interop Streams are called *subscribers*. An application can be both.
 
 <glue42 name="diagram" image="../../../../images/interop/interop-streaming.gif">
 

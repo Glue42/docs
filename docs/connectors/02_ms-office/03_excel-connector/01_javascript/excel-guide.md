@@ -1,10 +1,10 @@
 ## Introduction
 
-The Glue42 Excel Connector allows applications to use Excel as a local data editor. The application uploads tabular data into Excel, so that the user may view it and edit it in a familiar environment. Any changes can then be transmitted back to the application for validation, processing, auditing and/or long-term storage. 
+The Glue42 Excel Connector allows applications to use Excel as a local data editor. The application uploads tabular data into Excel, so that the user may view it and edit it in a familiar environment. Any changes can then be transmitted back to the application for validation, processing, auditing and/or long-term storage.
 
 ## Initialization
 
-As shown in the [Set Up Your Application](../../set-up-your-application/javascript/index.html) section, you need to initialize the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) library and set the [`excel`](../../../../reference/glue4office/latest/excel/index.html) property of the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) configuration object to `true`: 
+As shown in the [Set Up Your Application](../../set-up-your-application/javascript/index.html) section, you need to initialize the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) library and set the [`excel`](../../../../reference/glue4office/latest/excel/index.html) property of the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) configuration object to `true`:
 
 ```javascript
 const config = {
@@ -109,8 +109,8 @@ You can also specify a background and/or a foreground color and a column width:
 ```javascript
 const columns = [
     {
-        header: "Symbol", 
-        fieldName: "symbol", 
+        header: "Symbol",
+        fieldName: "symbol",
         width: 80
     }
     // ...
@@ -173,10 +173,10 @@ const config = {
         { quantity: 200, symbol: "GOOG" },
     ],
     options: {
-        // Configure Excel to trigger sheet change events when the user changes 
+        // Configure Excel to trigger sheet change events when the user changes
         // one or more cells in a given row and then selects a cell in a different row.
         // By default, sheet change events will be triggered when the user clicks a predefined button in Excel.
-        updateTrigger: ["row"] 
+        updateTrigger: ["row"]
     }
 };
 
@@ -211,8 +211,8 @@ unsubscribe()   // sheet no longer tracked for changes
 
 There are 2 types of validation you can perform before you accept data from Excel:
 
-- preventing users from typing incompatible data (e.g., column is numeric but the user types in some text), which you can do using **Declarative Validation**;
-- preventing users from breaking the integrity of your data (which can span all data), which you can do using **Programmatic Validation**;
+- preventing users from typing incompatible data (e.g., column is numeric but the user types in some text), which you can do using Declarative Validation;
+- preventing users from breaking the integrity of your data (which can span all data), which you can do using Programmatic Validation;
 
 ### Declarative Validation
 
@@ -220,7 +220,7 @@ You can specify what kind of data the user is allowed to type in a given column 
 
 ```javascript
 const quantityColumn = {
-    header: "Quantity", 
+    header: "Quantity",
     fieldName: "quantity",
     // whole numbers only
     validation: {
@@ -253,7 +253,7 @@ The [`list`](../../../../reference/glue4office/latest/excel/index.html#Validatio
 
 ```javascript
 const stateColumn = {
-    header: "State", 
+    header: "State",
     fieldName: "state",
     validation: {
         alert: "Stop",
@@ -277,7 +277,7 @@ sheet.onChanged((data, errorCallback, doneCallback, delta) => {
 })
 ```
 
-When your app receives an update from Excel, you can signal Excel back by calling the `errorCallback` and let Excel know that there were errors in the user's input which need to be corrected in Excel before the data is accepted by your web application. 
+When your app receives an update from Excel, you can signal Excel back by calling the `errorCallback` and let Excel know that there were errors in the user's input which need to be corrected in Excel before the data is accepted by your web application.
 
 The `errorCallback` accepts a list of [validation errors](../../../../reference/glue4office/latest/excel/index.html#ValidationError), where a validation error specifies which cell (row and column) is in error and what the problem is. Here is an example of handling multiple validation errors:
 
@@ -302,8 +302,8 @@ sheet.onChanged((data, errorCallback, doneCallback, delta) => {
                 })
             }
         }, [])
-        
-    // if during the validation there are any errors accumulated 
+
+    // if during the validation there are any errors accumulated
     // you need to call the errorCallback, otherwise the doneCallback
     if (errors.length > 0) {
         errorCallback(errors)
@@ -326,7 +326,7 @@ The possible values are:
 
 |Trigger Type|Description|
 |---|---|
-|`button`|When the user clicks the **Return Data** button on the **Glue42** ribbon|
+|`button`|When the user clicks the Return Data button on the Glue42 ribbon|
 |`row`|When the user changes one or more cells in a given row and then selects a cell in a different row|
 |`save`|When the user tries to save the worksheet|
 
@@ -373,7 +373,7 @@ Upon launching, the Glue42 Excel Connector registers the following streams and m
 |T42.ExcelScript.Grid.ReadRow|Method: Get Columns in Sheet|
 |T42.ExcelScript.Table.ReadRow|Method: Get Columns in Table|
 |T42.ExcelScript.Table.GetInformation|Method: Get Tables|
-|T42.ExcelScript.Workbook.GetTemplates|Method: Get Templates|		
+|T42.ExcelScript.Workbook.GetTemplates|Method: Get Templates|
 
 ## Reference
 
