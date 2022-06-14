@@ -860,11 +860,11 @@ For a complete list of the available Displays API methods and properties, see th
 
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) offers a [Logger](../../reference/glue/latest/logger/index.html) API which enables JavaScript applications to create a hierarchy of sub-loggers mapped to application components where you can control the level of logging for each component. You can also route the output of log messages (depending on the logging level) to a variety of targets - the developer console or an external output (usually a rolling file on the desktop, but actually any target the `log4net` library supports).
 
+*Note that you can also customize the logging mechanism of [**Glue42 Enterprise**](https://glue42.com/enterprise/) through its [logging configuration](../../developers/configuration/system/index.html#logging).*
+
 ### Logging to Files from Your JavaScript Application
 
 Adding logging to files to your JavaScript apps can be helpful in a variety of ways. Having a well-designed and meaningful logging structure in your apps and their components can save a lot of time when debugging an app during development or troubleshooting problems with an app in production.
-
-*Logging to files for JavaScript applications is available from Glue42 JavaScript version 4.8.0 or later and [**Glue42 Enterprise**](https://glue42.com/enterprise/) 3.9 or later.*
 
 ### Logging Configuration
 
