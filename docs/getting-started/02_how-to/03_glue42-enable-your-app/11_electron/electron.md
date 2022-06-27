@@ -2,7 +2,7 @@
 
 All Glue42 [JavaScript](../javascript/index.html) functionalities are available for your Electron apps through the Glue42 Electron library - [`@glue42/electron`](https://www.npmjs.com/package/@glue42/electron).
 
-Your Glue42 enabled Electron apps can be configured as Glue42 applications (see [Application Configuration](#app_configuration)) in order to be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/), or they can run independently.
+Your Glue42 enabled Electron apps can be configured as Glue42 apps (see [App Configuration](#app_configuration)) in order to be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/), or they can run independently.
 
 When initialized in your Electron app, the [`@glue42/electron`](https://www.npmjs.com/package/@glue42/electron) library will discover any running instance of Glue42 and connect to it and will inject the Glue42 library in all windows of your app. Registering your main window as a [Glue42 Window](../../../../glue42-concepts/windows/window-management/overview/index.html) will enable it to stick to other Glue42 Windows, use [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) and be saved and restored in [Layouts](../../../../glue42-concepts/windows/layouts/overview/index.html). The library allows your app to register itself as an [app factory](#registering_app_windows-app_factories) for certain types of windows and also to register its own [child windows](#registering_app_windows-child_windows) as Glue42 apps so that they can participate in Glue42.
 
@@ -53,13 +53,13 @@ The configuration object has the following properties, all of which are optional
 
 ### Startup Options
 
-When your Electron app is started by [**Glue42 Enterprise**](https://glue42.com/enterprise/), you can extract the application startup options from the `glue` object returned by the initialized Glue42 Electron library:
+When your Electron app is started by [**Glue42 Enterprise**](https://glue42.com/enterprise/), you can extract the app startup options from the `glue` object returned by the initialized Glue42 Electron library:
 
 ```javascript
 // Extracting the startup options.
 const options = glue.startupOptions;
 
-// Extracting the application starting context.
+// Extracting the app starting context.
 const context = options.context;
 
 // Extracting the Glue42 Window settings.
@@ -71,10 +71,10 @@ The startup options object has the following properties:
 | Property | Type | Description |
 |----------|------|-------------|
 | `instanceId` | `string` | Instance ID. |
-| `context` | `object` | Startup context for the new application. |
+| `context` | `object` | Startup context for the new app. |
 | `gwURL` | `string` | URL to the Glue42 Gateway to which to connect. |
 | `gwToken` | `string` | Token to be used as an authentication mechanism when connecting to the Glue42 Gateway. |
-| `applicationConfig` | `object` | The app configuration as defined in the app store. See [Application Configuration](#app_configuration). |
+| `applicationConfig` | `object` | The app configuration as defined in the app store. See [App Configuration](#app_configuration). |
 | `env` | `string` | The [**Glue42 Enterprise**](https://glue42.com/enterprise/) environment. |
 | `region` | `string` | The [**Glue42 Enterprise**](https://glue42.com/enterprise/) region. |
 | `windowOptions` | `object` | [Glue42 Window](../../../../glue42-concepts/windows/window-management/overview/index.html) settings. |
@@ -83,11 +83,11 @@ The startup options object has the following properties:
 
 The Glue42 Electron library allows you to register your Electron app windows in the Glue42 framework dynamically at runtime. This will enable them to stick to other [Glue42 Windows](../../../../glue42-concepts/windows/window-management/overview/index.html), use [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) and be saved and restored in [Layouts](../../../../glue42-concepts/windows/layouts/overview/index.html).
 
-*For details on how to configure your Electron app as a Glue42 app using configuration files, see the [Application Configuration](#app_configuration) section.*
+*For details on how to configure your Electron app as a Glue42 app using configuration files, see the [App Configuration](#app_configuration) section.*
 
 ### Main Window
 
-When your app is ready and the Glue42 Electron library has been initialized, register your main window using the `registerStartupWindow()` method. Pass the main window as a required first argument and, optionally, pass a configuration object that will override the [application configuration](#app_configuration) (if any).
+When your app is ready and the Glue42 Electron library has been initialized, register your main window using the `registerStartupWindow()` method. Pass the main window as a required first argument and, optionally, pass a configuration object that will override the [app configuration](#app_configuration) (if any).
 
 The following example demonstrates how to register the main window, enable the Glue42 [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) and join the `"Red"` Channel:
 
@@ -113,7 +113,7 @@ The following example demonstrates how to register a child window as a tab windo
 ```javascript
 const bw = new BrowserWindow();
 
-// Provide an application definition.
+// Provide an app definition.
 const appDefinition = {
     name: "my-child-electron-app",
     title: "My Child Electron App"
@@ -136,10 +136,10 @@ const glue42Window = await glue.registerChildWindow(bw, appDefinition, options);
 
 You can register your Electron app as a factory for different types of windows. This will allow any other Glue42 app to create that window with a given context - e.g., open a chat window and pass relevant information to it.
 
-To register an app factory, use the `registerAppFactory()` method which accepts an application definition and a factory function as required parameters. The factory function will be invoked with three arguments - the provided application definition, a context object (startup context or last saved context when restoring the window) and a service object that holds information about the current Glue42 environment which is necessary for connecting to Glue42:
+To register an app factory, use the `registerAppFactory()` method which accepts an app definition and a factory function as required parameters. The factory function will be invoked with three arguments - the provided app definition, a context object (startup context or last saved context when restoring the window) and a service object that holds information about the current Glue42 environment which is necessary for connecting to Glue42:
 
 ```javascript
-// Provide an application definition.
+// Provide an app definition.
 const appDefinition = {
     name: "my-child-electron-app",
     title: "My Child Electron App"
@@ -157,7 +157,7 @@ const factory = (appDefinition, context, glue42electron) => {
     return bw;
 };
 
-// Register the application factory.
+// Register the app factory.
 await glue.registerAppFactory(appDefinition, factory);
 ```
 
@@ -165,7 +165,7 @@ await glue.registerAppFactory(appDefinition, factory);
 
 ## App Configuration
 
-To add your Electron app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
+To add your Electron app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with app configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 
 The following is an example configuration for an Electron app:
 
@@ -186,20 +186,20 @@ The following is an example configuration for an Electron app:
 | Property | Description |
 |----------|-------------|
 | `"type"` | Must be `"exe"`. |
-| `"path"` | The path to the application - relative or absolute. You can also use the `%GDDIR%` environment variable, which points to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installation folder. |
+| `"path"` | The path to the app - relative or absolute. You can also use the `%GDDIR%` environment variable, which points to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installation folder. |
 | `"command"` | The actual command to execute (the EXE file name). |
 | `"parameters"` | Specifies command line arguments. |
 
-For more detailed information about the application definitions, see the [Configuration](../../../../developers/configuration/application/index.html#app_configuration-exe) documentation.
+For more detailed information about the app definitions, see the [Configuration](../../../../developers/configuration/application/index.html#app_configuration-exe) documentation.
 
 *See the [Electron example](https://github.com/Glue42/electron-example) on GitHub which demonstrates the various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
 
 ## Glue42 JavaScript Concepts
 
-Once the Glue42 Electron library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
+Once the Glue42 Electron library has been initialized, your app has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
 - [App Management](../../../../glue42-concepts/application-management/javascript/index.html)
-- [App Preferences](../../../../glue42-concepts/application-preferences/javascript/index.html)
+- [App Preferences](../../../../glue42-concepts/app-preferences/javascript/index.html)
 - [Intents](../../../../glue42-concepts/intents/javascript/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/javascript/index.html)

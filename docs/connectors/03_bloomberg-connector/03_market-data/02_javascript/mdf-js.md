@@ -97,7 +97,7 @@ request
 
 To handle response data, attach a callback to the `onData()` method of the request instance. The method returns an `UnsubscribeFunction`. The `onData()` method handles data from real-time subscriptions and data from partial responses from static reference data requests.
 
-When handling data from a non-subscription request, the data is wrapped in a `ResponseData` object. The Boolean property `isLast` is set to `false` when the response contains a Bloomberg `PARTIAL_RESPONSE` event and is set to `true` when the response contains a Bloomberg `RESPONSE` event. After a `RESPONSE` event, no more events will be received and the application can now process the returned data accordingly.
+When handling data from a non-subscription request, the data is wrapped in a `ResponseData` object. The Boolean property `isLast` is set to `false` when the response contains a Bloomberg `PARTIAL_RESPONSE` event and is set to `true` when the response contains a Bloomberg `RESPONSE` event. After a `RESPONSE` event, no more events will be received and the app can now process the returned data accordingly.
 
 Handling partial response data from static reference data requests:
 

@@ -2,7 +2,7 @@
 
 All [Glue42 .NET](../net/index.html) functionalities are available for your Blazor WebAssembly and Blazor Server apps through the [`GlueBase`](https://www.nuget.org/packages/GlueBase/) library.
 
-Your Glue42 enabled Blazor apps can be configured as Glue42 applications (see [Application Configuration](#app_configuration)) in order to be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) and hosted in [Glue42 Windows](../../../../glue42-concepts/windows/window-management/overview/index.html), or they can run independently in a browser.
+Your Glue42 enabled Blazor apps can be configured as Glue42 apps (see [App Configuration](#app_configuration)) in order to be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) and hosted in [Glue42 Windows](../../../../glue42-concepts/windows/window-management/overview/index.html), or they can run independently in a browser.
 
 *For the differences in initializing the Glue42 library in hosted and browser Blazor apps, see the [Hosted & Browser Apps](#initialization-hosted__browser_apps) section).*
 
@@ -84,7 +84,7 @@ await context.SetValue(ric, "partyPortfolio.ric").ConfigureAwait(false);
 
 ### Hosted & Browser Apps
 
-When initializing the [`GlueBase`](https://www.nuget.org/packages/GlueBase/) library in Blazor apps, you have to consider whether your app is configured as a Glue42 application and can be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/), or is running independently in a browser. In the different scenarios you will need different mechanisms for providing authentication and application information to Glue42. In the case of a hosted Blazor app, [**Glue42 Enterprise**](https://glue42.com/enterprise/) injects this information in the Glue42 Window and you must expose a function to extract it. In the case of a Blazor app running in a browser, this information must be provided manually through user input.
+When initializing the [`GlueBase`](https://www.nuget.org/packages/GlueBase/) library in Blazor apps, you have to consider whether your app is configured as a Glue42 app and can be started by [**Glue42 Enterprise**](https://glue42.com/enterprise/), or is running independently in a browser. In the different scenarios you will need different mechanisms for providing authentication and app information to Glue42. In the case of a hosted Blazor app, [**Glue42 Enterprise**](https://glue42.com/enterprise/) injects this information in the Glue42 Window and you must expose a function to extract it. In the case of a Blazor app running in a browser, this information must be provided manually through user input.
 
 #### Hosted Apps
 
@@ -107,7 +107,7 @@ initOptions = await Glue42Base.GetHostedGDOptions(
 
 #### Browser Apps
 
-If your Blazor app is opened in a browser window, you must provide the username, the Glue42 authentication details and the application name yourself:
+If your Blazor app is opened in a browser window, you must provide the username, the Glue42 authentication details and the app name yourself:
 
 ```csharp
 var username = await GetPromptInput("user name").ConfigureAwait(false);
@@ -119,7 +119,7 @@ initOptions = new InitializeOptions
     {
         AuthenticationProvider = new GatewaySecretAuthenticationProvider(username, username)
     },
-    // Make sure that the application name is different for each scoped `GlueProvider`.
+    // Make sure that the app name is different for each scoped `GlueProvider`.
     ApplicationName = appName
 };
 ```
@@ -163,7 +163,7 @@ builder.Services.AddScoped<IGlueLoggerFactory, GlueLoggerFactory>(serviceProvide
 
 ## App Configuration
 
-To add your Blazor app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., T42-DEMO).
+To add your Blazor app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with app configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., T42-DEMO).
 
 The following is an example configuration for a Blazor app:
 
@@ -181,13 +181,13 @@ The following is an example configuration for a Blazor app:
 }
 ```
 
-The `"name"`, `"type"` and `"url"` properties are required and `"type"` must be set to `"window"`. The `"url"` property points to the location of the web application.
+The `"name"`, `"type"` and `"url"` properties are required and `"type"` must be set to `"window"`. The `"url"` property points to the location of the web app.
 
-For more details, see the [Application Configuration](../../../../developers/configuration/application/index.html#app_configuration-window) section.
+For more details, see the [Developers > Configuration > Application](../../../../developers/configuration/application/index.html#app_configuration-window) section.
 
 ## Glue42 .NET Concepts
 
-Once the [`GlueBase`](https://www.nuget.org/packages/GlueBase/) library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
+Once the [`GlueBase`](https://www.nuget.org/packages/GlueBase/) library has been initialized, your app has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
 - [App Management](../../../../glue42-concepts/application-management/net/index.html)
 - [Intents](../../../../glue42-concepts/intents/net/index.html)

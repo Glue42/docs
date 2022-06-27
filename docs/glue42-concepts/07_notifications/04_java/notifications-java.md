@@ -24,7 +24,7 @@ glue.notifications()
 
 ## Actions
 
-Notifications may contain actions (usually displayed as buttons in the UI) that the user can execute when they see the notification. Executing an action results in invoking an Interop method. This Interop method can be registered by the publisher of the notification or any other application that can handle the action. The handler of the Interop action can also receive parameters, specified by the publisher of the notification.
+Notifications may contain actions (usually displayed as buttons in the UI) that the user can execute when they see the notification. Executing an action results in invoking an Interop method. This Interop method can be registered by the publisher of the notification or any other app that can handle the action. The handler of the Interop action can also receive parameters, specified by the publisher of the notification.
 
 In the following example, we add actions Call Client and Open Portfolio, passing an `id` parameter to both actions:
 

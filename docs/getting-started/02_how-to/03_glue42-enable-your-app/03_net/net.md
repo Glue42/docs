@@ -20,7 +20,7 @@ Another option is to reference the `Glue42.dll` - the file is delivered with the
 
 ## Initialization
 
-The .NET Glue42 library is initialized asynchronously with an optional `InitializeOptions` object, in which you can specify what Glue42 features you want your application to use.
+The .NET Glue42 library is initialized asynchronously with an optional `InitializeOptions` object, in which you can specify what Glue42 features you want your app to use.
 
 Here is an example initialization:
 
@@ -47,9 +47,9 @@ Glue42.InitializeGlue(initializeOptions)
 
 ## App Configuration
 
-To add your .NET app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
+To add your .NET app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with app configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 
-*Note that you can also launch manually your Glue42 enabled .NET app and it will automatically register itself and its child windows in the [**Glue42 Enterprise**](https://glue42.com/enterprise/) in-memory store. In this case, your app will be available in the Glue42 environment until the next restart of [**Glue42 Enterprise**](https://glue42.com/enterprise/). This is useful if you have a multi window Glue42 enabled application with dynamic Glue42 enabled child windows (e.g., different user configurations, software updates, etc.) - when your main window starts its child windows, they will be registered automatically.*
+*Note that you can also launch manually your Glue42 enabled .NET app and it will automatically register itself and its child windows in the [**Glue42 Enterprise**](https://glue42.com/enterprise/) in-memory store. In this case, your app will be available in the Glue42 environment until the next restart of [**Glue42 Enterprise**](https://glue42.com/enterprise/). This is useful if you have a multi window Glue42 enabled app with dynamic Glue42 enabled child windows (e.g., different user configurations, software updates, etc.) - when your main window starts its child windows, they will be registered automatically.*
 
 The following is an example configuration for a .NET app:
 
@@ -70,21 +70,21 @@ The following is an example configuration for a .NET app:
 | Property | Description |
 |----------|-------------|
 | `"type"` | Must be `"exe"`. |
-| `"path"` | The path to the application - relative or absolute. You can also use the `%GDDIR%` environment variable, which points to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installation folder. |
+| `"path"` | The path to the app - relative or absolute. You can also use the `%GDDIR%` environment variable, which points to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installation folder. |
 | `"command"` | The actual command to execute (the EXE file name). |
 | `"parameters"` | Specifies command line arguments. |
 
-For more detailed information about the application definitions, see the [Configuration](../../../../developers/configuration/application/index.html#app_configuration-exe) documentation.
+For more detailed information about the app definitions, see the [Configuration](../../../../developers/configuration/application/index.html#app_configuration-exe) documentation.
 
 *See the [.NET examples](https://github.com/Glue42/net-examples) on GitHub which demonstrate various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
 
 ## Glue42 ClickOnce
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) offers support for ClickOnce applications. Below you can see how to initialize the Glue42 .NET library in your ClickOnce application and how to register a ClickOnce application in [**Glue42 Enterprise**](https://glue42.com/enterprise/).
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) offers support for ClickOnce apps. Below you can see how to initialize the Glue42 .NET library in your ClickOnce app and how to register a ClickOnce app in [**Glue42 Enterprise**](https://glue42.com/enterprise/).
 
 ### Initialization
 
-In a ClickOnce application, the .NET Glue42 library is initialized the same way as in other .NET applications:
+In a ClickOnce app, the .NET Glue42 library is initialized the same way as in other .NET apps:
 
 ```csharp
 var initializeOptions = new InitializeOptions()
@@ -107,19 +107,19 @@ Glue42.InitializeGlue(initializeOptions)
 
 ```
 
-You can also set methods for saving and restoring the state of your Glue42 enabled ClickOnce application:
+You can also set methods for saving and restoring the state of your Glue42 enabled ClickOnce app:
 
 ```csharp
 initializeOptions.SetSaveRestoreStateEndpoint(GetState, RestoreState);
 ```
 
-`GetState` and `RestoreState` are user defined methods for what information about the ClickOnce application state to save and later restore.
+`GetState` and `RestoreState` are user defined methods for what information about the ClickOnce app state to save and later restore.
 
-### Registering a ClickOnce Application
+### Registering ClickOnce Apps
 
-To show your ClickOnce application in the Application Manager of [**Glue42 Enterprise**](https://glue42.com/enterprise/), you need to create a configuration JSON file and add it to the application configuration store.
+To show your ClickOnce app in the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a configuration JSON file and add it to the app configuration store.
 
-Here is an example configuration for a ClickOnce application:
+Here is an example configuration for a ClickOnce app:
 
 ```json
 {
@@ -142,8 +142,8 @@ Here is an example configuration for a ClickOnce application:
 | Property | Description |
 |----------|-------------|
 | `"type"` | Must be `"clickonce"`. |
-| `"url"` | The web address pointing to the physical location where the ClickOnce application is deployed and from where it will be installed on the user machine. |
-| `"customProperties"` | Application [context](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/net/index.html) with custom parameters your application can access at runtime through `glue.GDStartingContext.ApplicationConfig.CustomProperties["propertyName"]`. |
+| `"url"` | The web address pointing to the physical location where the ClickOnce app is deployed and from where it will be installed on the user machine. |
+| `"customProperties"` | Context with custom parameters your app can access at runtime through `glue.GDStartingContext.ApplicationConfig.CustomProperties["propertyName"]`. |
 
 ## Glue42 Silverlight
 
@@ -151,7 +151,7 @@ We offer a Glue42 Silverlight library as a version of the Glue42 .NET library. G
 
 ## Glue42 .NET Concepts
 
-Once the Glue42 .NET library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
+Once the Glue42 .NET library has been initialized, your app has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
 - [App Management](../../../../glue42-concepts/application-management/net/index.html)
 - [Intents](../../../../glue42-concepts/intents/net/index.html)

@@ -2,11 +2,11 @@
 
 *See the [Delphi 10](https://github.com/Glue42/native-examples/tree/main/glue-com/GlueDelphi) and [Delphi 7](https://github.com/Glue42/native-examples/tree/main/glue-com/GlueDelphi7) examples on GitHub.*
 
-Individual forms in a multi-form application can be registered as separate Glue42 applications. The forms to be registered as Glue42 apps must implement the [`IGlueApp`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglueapp) interface and the main form must be registered as a Glue42 application factory in order to create and register the forms.
+Individual forms in a multi-form app can be registered as separate Glue42 apps. The forms to be registered as Glue42 apps must implement the [`IGlueApp`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglueapp) interface and the main form must be registered as a Glue42 app factory in order to create and register the forms.
 
 ## App Factories
 
-To make a form a factory for Glue42 applications, implement the [`IAppFactory`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iappfactory) interface. The [`CreateApp`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iappfactory-createapp) method of the interface will be invoked by Glue42 whenever a new form is to be created as a Glue42 application:
+To make a form a factory for Glue42 apps, implement the [`IAppFactory`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iappfactory) interface. The [`CreateApp`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iappfactory-createapp) method of the interface will be invoked by Glue42 whenever a new form is to be created as a Glue42 app:
 
 ```delphi
 TMainForm = class(TForm, IAppFactory)
@@ -16,9 +16,9 @@ protected
   ...
 ```
 
-The form acting as a Glue42 application factory may be invisible.
+The form acting as a Glue42 app factory may be invisible.
 
-After initializing Glue42, register the main form as an app factory. The following example demonstrates registering the main form as an app factory for two Glue42 applications:
+After initializing Glue42, register the main form as an app factory. The following example demonstrates registering the main form as an app factory for two Glue42 apps:
 
 ```delphi
 procedure TMainForm.InitializeGlue;
@@ -29,14 +29,14 @@ begin
   ...
   G42.Start(inst);
   ...
-  // Register an application.
+  // Register an app.
   ZeroMemory(@appDef, sizeof(appDef));
   appDef.Name := 'DelpiFormApp01';
   appDef.title := 'Delphi Form App 01';
   appDef.Category := 'COM Apps';
   G42.AppFactoryRegistry.RegisterAppFactory(appDef, Self);
 
-  // Register another application.
+  // Register another app.
   ZeroMemory(@appDef, sizeof(appDef));
   appDef.Name := 'DelpiFormApp02';
   appDef.title := 'Delphi Form App 02';
@@ -47,7 +47,7 @@ begin
 
 ## Registering App Instances
 
-After the main form has been registered as an [app factory](#app_factories), it can create and register child forms as separate Glue42 applications. The forms that are to be registered as Glue42 applications must first implement the [`IGlueApp`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglueapp) interface and its methods:
+After the main form has been registered as an [app factory](#app_factories), it can create and register child forms as separate Glue42 apps. The forms that are to be registered as Glue42 apps must first implement the [`IGlueApp`](../../../getting-started/how-to/glue42-enable-your-app/delphi/index.html#interfaces-iglueapp) interface and its methods:
 
 ```delphi
 TApp01Form = class(TForm, IGlueApp)

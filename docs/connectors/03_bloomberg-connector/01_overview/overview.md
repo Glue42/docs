@@ -1,6 +1,6 @@
 ## Overview
 
-With the Glue42 Bloomberg Connector you can bring various Bloomberg services to your Glue42 enabled applications. The Bloomberg Connector is a .NET application which is part of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and is auto started with [**Glue42 Enterprise**](https://glue42.com/enterprise/) as a hidden application. It offers sets of protocols based on [Interop methods](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html) for connecting to the [Bloomberg Market Data service](https://www.bloomberg.com/professional/product/market-data/), as well as to the [Bloomberg Terminal](https://www.bloomberg.com/professional/solution/bloomberg-terminal/). Currently, a more convenient JavaScript (TypeScript) wrapping API is offered only for connecting to the Market Data service. With the provided API protocols, however, you can access the Bloomberg Market Data service and control the Bloomberg Terminal features with any JavaScript, .NET, Java or COM technology.
+With the Glue42 Bloomberg Connector you can bring various Bloomberg services to your Glue42 enabled apps. The Bloomberg Connector is a .NET app which is part of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and is auto started with [**Glue42 Enterprise**](https://glue42.com/enterprise/) as a hidden app. It offers sets of protocols based on [Interop methods](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html) for connecting to the [Bloomberg Market Data service](https://www.bloomberg.com/professional/product/market-data/), as well as to the [Bloomberg Terminal](https://www.bloomberg.com/professional/solution/bloomberg-terminal/). Currently, a more convenient JavaScript (TypeScript) wrapping API is offered only for connecting to the Market Data service. With the provided API protocols, however, you can access the Bloomberg Market Data service and control the Bloomberg Terminal features with any JavaScript, .NET, Java or COM technology.
 
 The Bloomberg Connector also offers a Bloomberg Simulator where the API can be used without having an actual Bloomberg Terminal installed.
 
@@ -31,7 +31,7 @@ if (groups && groups.length > 0) {
 
 ### Market Data
 
-The Bloomberg Market Data offers retrieval of real-time/delayed streaming market data and static reference market data for securities through subscription and request/response mechanisms. Using the available [Market Data protocols](../market-data/bbg-mdf-protocol/index.html) or [APIs](../market-data/javascript/index.html) you can easily acquire market data provided by Bloomberg in order to show it, use it or redistribute it throughout your applications. The following functionalities are available:
+The Bloomberg Market Data offers retrieval of real-time/delayed streaming market data and static reference market data for securities through subscription and request/response mechanisms. Using the available [Market Data protocols](../market-data/bbg-mdf-protocol/index.html) or [APIs](../market-data/javascript/index.html) you can easily acquire market data provided by Bloomberg in order to show it, use it or redistribute it throughout your apps. The following functionalities are available:
 
 - [Subscription to streaming market data](../market-data/javascript/index.html#request_types-market_data_subscription);
 - [Historical Data requests](../market-data/javascript/index.html#request_types-historical_data);
@@ -64,7 +64,7 @@ The Bloomberg Worksheets are spreadsheets containing a list of securities to mon
 
 ### Bloomberg Components
 
-The Bloomberg Components are Bloomberg applications (windows) providing Bloomberg Terminal functionalities. The following Bloomberg Components manipulations are available:
+The Bloomberg Components are Bloomberg apps (windows) providing Bloomberg Terminal functionalities. The following Bloomberg Components manipulations are available:
 
 - Host Bloomberg Components (hosted in WPF windows, can be created on demand) in Glue42 windows that can participate in Glue42 layouts and workspaces;
 - Get/set context properties of the Bloomberg components via a Glue42 invocation method;

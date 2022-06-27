@@ -1,14 +1,14 @@
 ## Overview
 
-The Glue42 Dev Tools are meant to help both developers and non-technical users to better understand the processes taking place inside the Glue42 enabled applications. They deliver useful internal framework information in an intuitive and user-friendly UI.
+The Glue42 Dev Tools are meant to help both developers and non-technical users to better understand the processes taking place inside the Glue42 enabled apps. They deliver useful internal framework information in an intuitive and user-friendly UI.
 
 This information is useful when testing app integration, app performance or app interaction with other apps or [contexts](../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) within the Glue42 environment. Testing your app behavior doesn't require the use of dummy apps for the debugging process - you can directly see and interfere with the processes taking place between real apps, in real time. Whether you are a single developer working on the compatibility of an app with Glue42, or you collaborate with other dev teams and want to ensure cross-team method implementation consistency, the Dev Tools provide powerful means to extract and monitor the necessary information.
 
-Launch each Dev Tool from the Dev Tools Launcher application accessible from the Glue42 toolbar.
+Launch each Dev Tool from the Dev Tools Launcher app accessible from the Glue42 toolbar.
 
 ![Dev Tools Launcher](../../images/dev-tools/launcher.png)
 
-Available applications:
+Available apps:
 
 - [Application Monitor](#application_monitor)
 - [Performance Report](#performance_report) (accessible from Application Monitor)
@@ -17,19 +17,19 @@ Available applications:
 
 In addition, the following tools are also available for debugging:
 
-- [Applications View](../../getting-started/what-is-glue42/general-overview/index.html#using_glue42_enterprise-applications_view) - a tool that provides general overview of all running hidden or visible applications.
+- [Applications View](../../getting-started/what-is-glue42/general-overview/index.html#using_glue42_enterprise-applications_view) - a tool that provides general overview of all running hidden or visible apps.
 - Press `F12` on a focused Glue42 window to open the built-in browser developer console.
 - Add DevTools Extensions supported by Electron to [**Glue42 Enterprise**](https://glue42.com/enterprise/). See [Adding DevTools Extensions](../../glue42-concepts/glue42-platform-features/index.html#adding_devtools_extensions).
 
 ## Application Monitor
 
-The Application Monitor provides an overview of all applications running in [**Glue42 Enterprise**](https://glue42.com/enterprise/) and their performance. This tool is useful when you want to gain a general perspective of how an app (or several apps) behaves within [**Glue42 Enterprise**](https://glue42.com/enterprise/). See how much time it takes for [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load your app, how long has the app been running, what potential issues your app has or may cause and compare the performance of different apps.
+The Application Monitor provides an overview of all apps running in [**Glue42 Enterprise**](https://glue42.com/enterprise/) and their performance. This tool is useful when you want to gain a general perspective of how an app (or several apps) behaves within [**Glue42 Enterprise**](https://glue42.com/enterprise/). See how much time it takes for [**Glue42 Enterprise**](https://glue42.com/enterprise/) to load your app, how long has the app been running, what potential issues your app has or may cause and compare the performance of different apps.
 
 ![Application Monitor](../../images/dev-tools/application-monitor/app-monitor.png)
 
 ### Enabling Performance Tracking
 
-The Application Monitor is disabled by default. To be able to use the Application Monitor and the Performance Report, enable the tracking of application performance information from the [**Glue42 Enterprise**](https://glue42.com/enterprise/) system configuration.
+The Application Monitor is disabled by default. To be able to use the Application Monitor and the Performance Report, enable the tracking of app performance information from the [**Glue42 Enterprise**](https://glue42.com/enterprise/) system configuration.
 
 Configure the `"performanceTracker"` top-level key in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) to enable performance tracking:
 
@@ -45,9 +45,9 @@ Configure the `"performanceTracker"` top-level key in the `system.json` file of 
 
 | Property | Description |
 |----------|-------------|
-| `"enable"` | Whether to enable or disable tracking applications in the [Application Monitor](#application_monitor). |
+| `"enable"` | Whether to enable or disable tracking apps in the [Application Monitor](#application_monitor). |
 | `"trackAutoStarted"` | Whether to track the performance of auto started Glue42 apps. |
-| `"isTrackingEnabled"` | Whether to enable or disable gathering and sending application performance information to [Performance Report](#performance_report). |
+| `"isTrackingEnabled"` | Whether to enable or disable gathering and sending app performance information to [Performance Report](#performance_report). |
 
 ### Toolbar
 
@@ -67,12 +67,12 @@ The Application Monitor toolbar offers the following grid display controls:
 
 ### Rows
 
-Each row represents an application and the information inside it is updated every 2 seconds.
+Each row represents an app and the information inside it is updated every 2 seconds.
 
-- "Report" button - opens a new window with a [Performance Report](#performance_report) for an individual application.
+- "Report" button - opens a new window with a [Performance Report](#performance_report) for an individual app.
 - "Performance Report" button - select several apps and click the "Performance Report" button at the bottom to open a [Performance Report](#performance_report) for the selected apps.
 
-To focus an application, double click anywhere on its row. This action will also show a hidden application for a limited period of time (20 seconds), in case you need to open a browser dev console for it, for example.
+To focus an app, double click anywhere on its row. This action will also show a hidden app for a limited period of time (20 seconds), in case you need to open a browser dev console for it, for example.
 
 ![Focus](../../images/dev-tools/application-monitor/focus.gif)
 
@@ -80,18 +80,18 @@ To focus an application, double click anywhere on its row. This action will also
 
 Columns are classified in 3 logical groups:
 
-*   Application information - `Type`, `PID`, `Window ID`, `State`, `Glue Version`;
-*   Resource consumption (hidden by default) - `CPU`, `Memory`, `Max CPU`, `Max Memory`;
-*   Internal performance information - `Creation Time`, `Load Time` (hidden by default), `Glue Load` and `Issues`;
+- App information - `Type`, `PID`, `Window ID`, `State`, `Glue Version`;
+- Resource consumption (hidden by default) - `CPU`, `Memory`, `Max CPU`, `Max Memory`;
+- Internal performance information - `Creation Time`, `Load Time` (hidden by default), `Glue Load` and `Issues`;
 
-Right click anywhere in the application information grid to choose which columns to show/hide. Drag and drop columns to reorder them.
+Right click anywhere in the app information grid to choose which columns to show/hide. Drag and drop columns to reorder them.
 
 ![Reorder](../../images/dev-tools/application-monitor/reorder.gif)
 
 | Column | Description |
 |--------|-------------|
-| `NAME` | The name is the application name registered in the App Manager. |
-| `TYPE` | The type of the monitored application. |
+| `NAME` | The name is the app name registered in the Glue42 Toolbar. |
+| `TYPE` | The type of the monitored app. |
 | `PID` | The ID of the window process. |
 | `WINDOW ID` | The Glue42 window ID. |
 | `CREATION TIME` | The exact time the window was created. |
@@ -103,15 +103,15 @@ Right click anywhere in the application information grid to choose which columns
 | `MAX CPU` | The maximum CPU usage recorded since the start. |
 | `MEMORY` | The memory used by the process. |
 | `MAX MEMORY` | The maximum private memory recorded since the creation of the window. |
-| `LOAD TIME` | The time between the first and the last recorded events for the application - e.g., from creating the window to the last request made. |
+| `LOAD TIME` | The time between the first and the last recorded events for the app - e.g., from creating the window to the last request made. |
 
 ## Performance Report
 
-Performance Report is a tool for finding performance issues of applications running in [**Glue42 Enterprise**](https://glue42.com/enterprise/). It is useful for delving into performance, requests, issues and also enables you to compare app performance. To initiate Performance Report for a single app, click the "Report" button at the end of the row of the respective application. For Performance Report for multiple apps, select the desired apps and click the Performance Report button at the bottom of the window.
+Performance Report is a tool for finding performance issues of apps running in [**Glue42 Enterprise**](https://glue42.com/enterprise/). It is useful for delving into performance, requests, issues and also enables you to compare app performance. To initiate Performance Report for a single app, click the "Report" button at the end of the row of the respective app. For Performance Report for multiple apps, select the desired apps and click the Performance Report button at the bottom of the window.
 
 ![Initiate](../../images/dev-tools/performance-report/initiate.gif)
 
-Performance Report visualizes all events happening during the life cycle of an application. The tool shows information about all requests, redirects, console messages, errors and issues. There are 4 groups of built in events.
+Performance Report visualizes all events happening during the life cycle of an app. The tool shows information about all requests, redirects, console messages, errors and issues. There are 4 groups of built in events.
 
 ### Built-in Event Types
 
@@ -130,7 +130,7 @@ Some use-cases defined as browser events:
 
 #### Glue42 Events
 
-All events grouped as "Glue" events (`connection`, `interop`, `appManager`, `glue`, etc.) measure the time it takes to initialize the respective Glue42 components. These events mark the important initialization stages Glue42 goes through in order for you to be able to use it in your application.
+All events grouped as "Glue" events (`connection`, `interop`, `appManager`, `glue`, etc.) measure the time it takes to initialize the respective Glue42 components. These events mark the important initialization stages Glue42 goes through in order for you to be able to use it in your app.
 
 #### System Events
 
@@ -138,7 +138,7 @@ All Electron events - refreshes, interactions, events concerning browser/window 
 
 #### Requests
 
-Network requests and redirects made by the monitored applications.
+Network requests and redirects made by the monitored apps.
 
 ### Event Visualization
 
@@ -160,13 +160,13 @@ The Timeline view shows the events on a time chart. If you want to find out whic
 
 ![Requests](../../images/dev-tools/performance-report/requests.png)
 
-All requests grouped by application with their time, status code, status text and size.
+All requests grouped by app with their time, status code, status text and size.
 
 #### Console Messages View
 
 ![Console Messages](../../images/dev-tools/performance-report/console-messages.png)
 
-A unified view of all console messages of all monitored applications. Start the Chrome Dev Tools from this tab (convenient for hidden applications).
+A unified view of all console messages of all monitored apps. Start the Chrome Dev Tools from this tab (convenient for hidden apps).
 
 #### Issues View
 
@@ -179,15 +179,15 @@ An Issue is a pre-defined rule that has been broken:
 
 ## Context Viewer
 
-Many applications use some type of Glue42 context to interact with other applications in the Glue42 environment. The Context Viewer provides a convenient way for a developer to edit and track the changes of a context object - a Glue42 Window context, a [shared context](../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) or a [Channel context](../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html).
+Many apps use some type of Glue42 context to interact with other apps in the Glue42 environment. The Context Viewer provides a convenient way for a developer to edit and track the changes of a context object - a Glue42 Window context, a [shared context](../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) or a [Channel context](../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html).
 
-Editing and tracking context updates is useful if you want to ensure that your application interacts with context objects as intended. The visual aid and action options provided by the Context Viewer enable you to check whether your app updates the context correctly and whether it reacts to context updates as expected. In some cases, context updates may be happening very frequently rendering the task of retracing the process very difficult. In other cases, an application may be breaking the accepted context data format which in turn causes all other applications interacting with that context object to break. In such situations, the Context Viewer tool greatly simplifies the debugging process.
+Editing and tracking context updates is useful if you want to ensure that your app interacts with context objects as intended. The visual aid and action options provided by the Context Viewer enable you to check whether your app updates the context correctly and whether it reacts to context updates as expected. In some cases, context updates may be happening very frequently rendering the task of retracing the process very difficult. In other cases, an app may be breaking the accepted context data format which in turn causes all other apps interacting with that context object to break. In such situations, the Context Viewer tool greatly simplifies the debugging process.
 
 ### Using the Context Viewer
 
 The Context Viewer tracks the following types of contexts in the Glue42 framework:
 
-- Global/Shared Contexts - named objects used for sharing data between applications. [Shared contexts](../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) are also used by the Glue42 color [Channels](../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) as dedicated Channel context.
+- Global/Shared Contexts - named objects used for sharing data between apps. [Shared contexts](../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) are also used by the Glue42 color [Channels](../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) as dedicated Channel context.
 - Window Context - dedicated [Glue42 Window context](../../glue42-concepts/windows/window-management/javascript/index.html#context);
 
 From the left menu, choose a context type and click on a specific context to display it in the Main Editor page.
@@ -214,7 +214,7 @@ The following buttons may appear in the Editor toolbar:
 
 Edit the selected context in the Main Editor of the Context Viewer by directly overwriting context values or property names. Save the context from the "Save" button of the editor to see the changes.
 
-In the example below the "Client List" application is listening for context updates on the "Red" Glue42 Channel. The context of the "Red" Channel is opened in the Main Editor of the Context Viewer. See how when the ID of a client is updated, the "Client List" application responds automatically by selecting the respective client:
+In the example below the "Client List" app is listening for context updates on the "Red" Glue42 Channel. The context of the "Red" Channel is opened in the Main Editor of the Context Viewer. See how when the ID of a client is updated, the "Client List" app responds automatically by selecting the respective client:
 
 ![Editing context](../../images/dev-tools/context-viewer/editing-context.gif)
 
@@ -236,7 +236,7 @@ In the example below, "History Mode" for the "Red" Channel is enabled, meaning t
 
 ## Interop Viewer
 
-The Interop Viewer allows you to discover all [Interop](../../glue42-concepts/data-sharing-between-apps/interop/overview/index.html) methods and streams registered by [**Glue42 Enterprise**](https://glue42.com/enterprise/) and by your Glue42 enabled apps. Use custom arguments to invoke any Interop method or subscribe to any Interop stream through the Interop Viewer to monitor the results in real time without the need for dummy applications.
+The Interop Viewer allows you to discover all [Interop](../../glue42-concepts/data-sharing-between-apps/interop/overview/index.html) methods and streams registered by [**Glue42 Enterprise**](https://glue42.com/enterprise/) and by your Glue42 enabled apps. Use custom arguments to invoke any Interop method or subscribe to any Interop stream through the Interop Viewer to monitor the results in real time without the need for dummy apps.
 
 The Interop Viewer enables you to test all registered Interop methods and streams to check whether they behave correctly or whether they have been registered in the correct format. I| is useful when debugging your apps, as well as when working on a multi-team project - inspecting the method names and signatures will quickly let you know whether the generally accepted rules for method naming or method signatures are being followed.
 

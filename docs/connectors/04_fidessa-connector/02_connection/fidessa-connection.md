@@ -36,7 +36,7 @@ Default configuration settings:
 
 ### Custom
 
-To change the default connection settings, use the `"customProperties"` top-level key of your [application configuration](../../../developers/configuration/application/index.html) file (usually located in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy - e.g., `T42-DEMO`). Assign to it an object holding your custom connection properties:
+To change the default connection settings, use the `"customProperties"` top-level key of your [app configuration](../../../developers/configuration/application/index.html) file (usually located in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy - e.g., `T42-DEMO`). Assign to it an object holding your custom connection properties:
 
 ```json
 {

@@ -1,6 +1,6 @@
 ## Overview
 
-The Fidessa Tracking Groups are mapped via configuration to the [Glue42 Channels](../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) which allows passing context between Fidessa applications and Glue42 enabled applications.
+The Fidessa Tracking Groups are mapped via configuration to the [Glue42 Channels](../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) which allows passing context between Fidessa apps and Glue42 enabled apps.
 
 Below is an example configuration of a Glue42 Channel which shows that the "Red" Glue42 Channel is mapped to Fidessa Tracking Group 5.
 
@@ -48,9 +48,9 @@ On how to update and subscribe for changes to a Channel context, see the [Glue42
 
 ## Channel Updates
 
-A Channel is updated every time the user selects an instrument, order or counterparty in a Fidessa application or in a Glue42 enabled application.
+A Channel is updated every time the user selects an instrument, order or counterparty in a Fidessa app or in a Glue42 enabled app.
 
-When an update from a Fidessa application arrives, the mapping service handles the conversion of instrument codes from FIM (Fidessa Instrument Mnemonic) to other standards (Bloomberg, Reuters Instrument Code, etc.). For instance, when a Fidessa application returns `"VOD.L"`, the connector translates that mnemonic to other standards as well and updates the context object accordingly:
+When an update from a Fidessa app arrives, the mapping service handles the conversion of instrument codes from FIM (Fidessa Instrument Mnemonic) to other standards (Bloomberg, Reuters Instrument Code, etc.). For instance, when a Fidessa app returns `"VOD.L"`, the connector translates that mnemonic to other standards as well and updates the context object accordingly:
 
 ```javascript
 {
@@ -74,4 +74,4 @@ If there is no active mapping service, the value for the `instrument.id` propert
 }
 ```
 
-When a Glue42 enabled application updates the Channel context, the Fidessa Connector first tries to retrieve the instrument ID from the configured `fimPath` (see [Connection Settings](../connection/index.html#settings)) and if no instrument ID is available there, the value of the `instrument.id` property is sent to the mapping service. If no mapping service is available, or if the mapping service returns an object which doesn't contain an `instrument.id.fim` property, the update is ignored.
+When a Glue42 enabled app updates the Channel context, the Fidessa Connector first tries to retrieve the instrument ID from the configured `fimPath` (see [Connection Settings](../connection/index.html#settings)) and if no instrument ID is available there, the value of the `instrument.id` property is sent to the mapping service. If no mapping service is available, or if the mapping service returns an object which doesn't contain an `instrument.id.fim` property, the update is ignored.

@@ -2,7 +2,7 @@
 
 The global behavior of [Glue42 Windows](../../../glue42-concepts/windows/window-management/overview/index.html) in [**Glue42 Enterprise**](https://glue42.com/enterprise/) is configured via the `stickywindows.json` configuration file located in the `%LocalAppData%\Tick42\GlueDesktop\config` folder. Some of the configurable properties are explained below. For more details, see the [Glue42 Windows configuration schema](../../../assets/configuration/stickywindows.json).
 
-*Note that some properties in the `stickywindows.json` may be overridden by properties defined in the [application configuration](../application/index.html) file of your app.*
+*Note that some properties in the `stickywindows.json` may be overridden by properties defined in the [app configuration](../application/index.html) file of your app.*
 
 ## Glue42 Window Properties
 
@@ -57,7 +57,7 @@ Hide or show the group caption:
 
 ### Resizing with Windows Gestures
 
-Configure the resize behavior of Glue42 Windows in a group when resizing the group with Windows gestures. Some Glue42 Windows may have size restrictions in their configuration - e.g., `"maxWidth": 200`. Specify whether the rest of the windows in the group should stay relative in size to the restricted windows or should fill the rest of the space. In the examples below, the "Client List" application has a width restriction of 400 pixels:
+Configure the resize behavior of Glue42 Windows in a group when resizing the group with Windows gestures. Some Glue42 Windows may have size restrictions in their configuration - e.g., `"maxWidth": 200`. Specify whether the rest of the windows in the group should stay relative in size to the restricted windows or should fill the rest of the space. In the examples below, the "Client List" app has a width restriction of 400 pixels:
 
 ```json
 {

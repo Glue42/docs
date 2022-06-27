@@ -8,7 +8,7 @@ If you are using the legacy Glue42 Angular wrapper, [`@glue42/ng-glue`](https://
 
 ## Prerequisites
 
-This package should be used only in Angular applications. If your app was created with the Angular CLI, then you don't need to take any additional steps. Otherwise, make sure to install the peer dependencies of `@glue42/ng`:
+This package should be used only in Angular apps. If your app was created with the Angular CLI, then you don't need to take any additional steps. Otherwise, make sure to install the peer dependencies of `@glue42/ng`:
 
 ```json
 {
@@ -37,7 +37,7 @@ The Glue42 Angular library exposes two important elements:
 
 ### Glue42Ng Module
 
-The `Glue42Ng` module is responsible for initializing the [**Glue42 Enterprise**](https://glue42.com/enterprise/) [JavaScript library](../../../../reference/glue/latest/glue/index.html). You must import the `Glue42Ng` module *once* for the entire application - in the *root module* by using the `forRoot()` method. This methods accepts a settings object which has the following signature:
+The `Glue42Ng` module is responsible for initializing the [**Glue42 Enterprise**](https://glue42.com/enterprise/) [JavaScript library](../../../../reference/glue/latest/glue/index.html). You must import the `Glue42Ng` module *once* for the entire app - in the *root module* by using the `forRoot()` method. This methods accepts a settings object which has the following signature:
 
 ```typescript
 export interface Glue42NgSettings {
@@ -61,12 +61,12 @@ The table below describes the properties of the `Glue42NgSettings` object.
 
 | Property | Description |
 |----------|-------------|
-| `web` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [Glue42 Web](https://www.npmjs.com/package/@glue42/web) library. The `factory` property accepts the factory function exposed by Glue42 Web. You should define this object if your application is a Web Client. |
-| `webPlatform` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [Web Platform](https://www.npmjs.com/package/@glue42/web-platform) library. The `factory` property accepts the factory function exposed by Glue42 Web Platform. You should define this object if your application is a Web Platform application (or Main application) in the context of [**Glue42 Core**](https://glue42.com/core/). |
-| `desktop` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [@glue42/desktop](https://www.npmjs.com/package/@glue42/desktop) library used in [**Glue42 Enterprise**](https://glue42.com/enterprise/). The `factory` property accepts the factory function exposed by the library. You should define this object if your application is a [**Glue42 Enterprise**](https://glue42.com/enterprise/) application. |
+| `web` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [Glue42 Web](https://www.npmjs.com/package/@glue42/web) library. The `factory` property accepts the factory function exposed by Glue42 Web. You should define this object if your app is a Web Client. |
+| `webPlatform` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [Web Platform](https://www.npmjs.com/package/@glue42/web-platform) library. The `factory` property accepts the factory function exposed by Glue42 Web Platform. You should define this object if your app is a Web Platform app (or Main app) in the context of [**Glue42 Core**](https://glue42.com/core/). |
+| `desktop` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [@glue42/desktop](https://www.npmjs.com/package/@glue42/desktop) library used in [**Glue42 Enterprise**](https://glue42.com/enterprise/). The `factory` property accepts the factory function exposed by the library. You should define this object if your app is a [**Glue42 Enterprise**](https://glue42.com/enterprise/) app. |
 | `holdInit` | *Optional*. Defines whether your app initialization must wait for the Glue42 factory function to resolve. Defaults to `true`. |
 
-*Note that you can define either the `web`, or the `webPlatform` property together with `desktop`. This is useful if you want your application to have different initialization characteristics in [**Glue42 Core**](https://glue42.com/core/) and [**Glue42 Enterprise**](https://glue42.com/enterprise/).*
+*Note that you can define either the `web`, or the `webPlatform` property together with `desktop`. This is useful if you want your app to have different initialization characteristics in [**Glue42 Core**](https://glue42.com/core/) and [**Glue42 Enterprise**](https://glue42.com/enterprise/).*
 
 All properties are optional, but it is recommended that you provide the factory functions explicitly. If no factory functions are provided, the library will try to select an appropriate function attached to the global `window` object.
 
@@ -274,10 +274,10 @@ As you can see, this approach requires a little bit more code, but it gives you 
 
 ## Glue42 JavaScript Concepts
 
-Once the Glue42 Angular library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
+Once the Glue42 Angular library has been initialized, your app has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
 - [App Management](../../../../glue42-concepts/application-management/javascript/index.html)
-- [App Preferences](../../../../glue42-concepts/application-preferences/javascript/index.html)
+- [App Preferences](../../../../glue42-concepts/app-preferences/javascript/index.html)
 - [Intents](../../../../glue42-concepts/intents/javascript/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/javascript/index.html)

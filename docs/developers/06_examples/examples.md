@@ -40,7 +40,7 @@ The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.co
 
 [Angular Examples Repository](https://github.com/Glue42/ng-glue-examples)
 
-- Full demo application example
+- Full demo app example
 - App Management Example
 - Interop Example
 - Glue42 Window Example
@@ -78,9 +78,9 @@ The Java examples are shipped with the [**Glue42 Enterprise**](https://glue42.co
 
 - [Search Provider Example](https://github.com/Glue42/search-provider) - a basic search provider that can be used to return results for custom entities to the Global Search app.
 
-- [Node.js REST Config Example](https://github.com/Glue42/rest-config-example-node-js) - A simple Node.js REST server, which acts as a remote application, Layout, application preferences and system configuration store. You can use this example to test fetching applications, Layouts, application preferences and system configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
+- [Node.js REST Config Example](https://github.com/Glue42/rest-config-example-node-js) - A simple Node.js REST server, which acts as a remote app, Layout, app preferences and system configuration store. You can use this example to test fetching apps, Layouts, app preferences and system configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
 
-- [.NET REST Config Example](https://github.com/Tick42/rest-config-example-net) - A simple .NET REST server, which acts as a remote application and Layout store. You can use this example to test fetching applications and Layouts configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
+- [.NET REST Config Example](https://github.com/Tick42/rest-config-example-net) - A simple .NET REST server, which acts as a remote app and Layout store. You can use this example to test fetching apps and Layouts configuration files to [**Glue42 Enterprise**](https://glue42.com/enterprise/) from a remote REST service.
 
 - [Playwright Example](https://github.com/Glue42/playwright-example) - a Glue42 end-to-end test example using Playwright.
 

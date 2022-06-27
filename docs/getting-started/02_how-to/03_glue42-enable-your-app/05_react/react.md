@@ -16,7 +16,7 @@ npm install --save @glue42/react-hooks react react-dom
 
 ## Library Features
 
-The Glue42 React Hooks library offers a way to consume the APIs of the [**Glue42 Enterprise**](https://glue42.com/enterprise/) [JavaScript library](../../../../reference/glue/latest/glue/index.html) in your web applications via [React Hooks](https://reactjs.org/docs/hooks-intro.html) and [React Context](https://reactjs.org/docs/context.html). The Glue42 React Hooks library provides the following features described below.
+The Glue42 React Hooks library offers a way to consume the APIs of the [**Glue42 Enterprise**](https://glue42.com/enterprise/) [JavaScript library](../../../../reference/glue/latest/glue/index.html) in your web apps via [React Hooks](https://reactjs.org/docs/hooks-intro.html) and [React Context](https://reactjs.org/docs/context.html). The Glue42 React Hooks library provides the following features described below.
 
 ### Context
 
@@ -55,11 +55,11 @@ The table below describes the properties of the `GlueInitSettings` object.
 
 | Property | Description |
 |----------|-------------|
-| `web` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [Glue42 Web](https://www.npmjs.com/package/@glue42/web) library. The `factory` property accepts the factory function exposed by Glue42 Web. You should define this object if your application is a Web Client. |
-| `webPlatform` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [Web Platform](https://www.npmjs.com/package/@glue42/web-platform) library. The `factory` property accepts the factory function exposed by Glue42 Web Platform. You should define this object if your application is a Web Platform application (or Main application) in the context of [**Glue42 Core**](https://glue42.com/core/). |
-| `desktop` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [@glue42/desktop](https://www.npmjs.com/package/@glue42/desktop) library used in [**Glue42 Enterprise**](https://glue42.com/enterprise/). The `factory` property accepts the factory function exposed by the library. You should define this object if your application is a [**Glue42 Enterprise**](https://glue42.com/enterprise/) application. |
+| `web` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [Glue42 Web](https://www.npmjs.com/package/@glue42/web) library. The `factory` property accepts the factory function exposed by Glue42 Web. You should define this object if your app is a Web Client. |
+| `webPlatform` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [Web Platform](https://www.npmjs.com/package/@glue42/web-platform) library. The `factory` property accepts the factory function exposed by Glue42 Web Platform. You should define this object if your app is a Web Platform app (or Main app) in the context of [**Glue42 Core**](https://glue42.com/core/). |
+| `desktop` | *Optional*. An object with two properties: `config` and `factory`. The `config` property accepts a configuration object for the [@glue42/desktop](https://www.npmjs.com/package/@glue42/desktop) library used in [**Glue42 Enterprise**](https://glue42.com/enterprise/). The `factory` property accepts the factory function exposed by the library. You should define this object if your app is a [**Glue42 Enterprise**](https://glue42.com/enterprise/) app. |
 
-*Note that you can define either the `web`, or the `webPlatform` property together with `desktop`. This is useful if you want your application to have different initialization characteristics in [**Glue42 Core**](https://glue42.com/core/) and [**Glue42 Enterprise**](https://glue42.com/enterprise/).*
+*Note that you can define either the `web`, or the `webPlatform` property together with `desktop`. This is useful if you want your app to have different initialization characteristics in [**Glue42 Core**](https://glue42.com/core/) and [**Glue42 Enterprise**](https://glue42.com/enterprise/).*
 
 All properties are optional, but it is recommended that you provide the factory functions explicitly. If no factory functions are provided, the library will try to select an appropriate function attached to the global `window` object.
 
@@ -121,7 +121,7 @@ To access the [**Glue42 Enterprise**](https://glue42.com/enterprise/) APIs, init
 
 - #### GlueProvider
 
-Add the `<GlueProvider />` component by wrapping your other components inside it (preferably the root one). Pass the settings object to the `<GlueProvider />`. It will initialize the [**Glue42 Enterprise**](https://glue42.com/enterprise/) [JavaScript library](../../../../reference/glue/latest/glue/index.html) and make the [**Glue42 Enterprise**](https://glue42.com/enterprise/) APIs available in your application by setting the returned `glue` object as the value of `GlueContext`:
+Add the `<GlueProvider />` component by wrapping your other components inside it (preferably the root one). Pass the settings object to the `<GlueProvider />`. It will initialize the [**Glue42 Enterprise**](https://glue42.com/enterprise/) [JavaScript library](../../../../reference/glue/latest/glue/index.html) and make the [**Glue42 Enterprise**](https://glue42.com/enterprise/) APIs available in your app by setting the returned `glue` object as the value of `GlueContext`:
 
 ```javascript
 //index.js
@@ -297,10 +297,10 @@ describe("Mock Glue42", () => {
 
 ## Glue42 JavaScript Concepts
 
-Once the Glue42 React library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
+Once the Glue42 React library has been initialized, your app has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
 - [App Management](../../../../glue42-concepts/application-management/javascript/index.html)
-- [App Preferences](../../../../glue42-concepts/application-preferences/javascript/index.html)
+- [App Preferences](../../../../glue42-concepts/app-preferences/javascript/index.html)
 - [Intents](../../../../glue42-concepts/intents/javascript/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html)
 - [Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/javascript/index.html)

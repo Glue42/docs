@@ -1,14 +1,14 @@
 ## Interop Events
 
-The Glue42 Salesforce Connector allows you to trigger Interop events in Salesforce from other Glue42 enabled applications. Use the `GlueInteropRegister` event to [register Interop methods](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_registration) in Salesforce and the `GlueCustomInteropEvent` to handle method invocations.
+The Glue42 Salesforce Connector allows you to trigger Interop events in Salesforce from other Glue42 enabled apps. Use the `GlueInteropRegister` event to [register Interop methods](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_registration) in Salesforce and the `GlueCustomInteropEvent` to handle method invocations.
 
 In short, you have to create a Salesforce Component and a Controller for it that will check the Glue42 connection and register an Interop method. After that, you need to create another Component and a Controller for it that will handle method invocations from other Glue42 enabled apps.
 
 ## Example
 
-The example below demonstrates inbound interoperability from other Glue42 enabled apps to Salesforce. The Components for registering an Interop method and handling its invocation will be attached to the Sales Lightning app Home page. Another Glue42 enabled application will [invoke](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_invocation) the method and supply arguments for it. The example also shows how to check for the Glue42 connection status using the `GlueConnectionStatus` event.
+The example below demonstrates inbound interoperability from other Glue42 enabled apps to Salesforce. The Components for registering an Interop method and handling its invocation will be attached to the Sales Lightning app Home page. Another Glue42 enabled app will [invoke](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_invocation) the method and supply arguments for it. The example also shows how to check for the Glue42 connection status using the `GlueConnectionStatus` event.
 
-The registered Interop method will trigger a toast notification in Salesforce with title, text and type provided by the invoking application.
+The registered Interop method will trigger a toast notification in Salesforce with title, text and type provided by the invoking app.
 
 ### Method Registration
 
@@ -47,10 +47,10 @@ To create the Controller, select "CONTROLLER" from the right menu of the Develop
         if (status) {
             // Get the `GlueInteropRegister` event.
         	const appEvent = $A.get("e.Tick42:GlueInteropRegister");
-            
+
             // Provide a method name.
             appEvent.setParams({ "method": "ShowToast" });
-            appEvent.fire();   
+            appEvent.fire();
         };
     }
 })
@@ -62,7 +62,7 @@ To create the Controller, select "CONTROLLER" from the right menu of the Develop
 
 Follow the steps in the previous section to create a new Component that will handle method invocations.
 
-Paste the following code in the newly opened CMP file and save it to create the Component: 
+Paste the following code in the newly opened CMP file and save it to create the Component:
 
 ```xml
 <aura:component implements="flexipage:availableForAllPageTypes" access="global">
@@ -70,7 +70,7 @@ Paste the following code in the newly opened CMP file and save it to create the 
 </aura:component>
 ```
 
-The `handleInvocation` handler will be triggered when the Interop method is invoked by other Glue42 enabled applications.
+The `handleInvocation` handler will be triggered when the Interop method is invoked by other Glue42 enabled apps.
 
 #### Controller
 
@@ -80,11 +80,11 @@ To create the Controller, select "CONTROLLER" from the right menu of the Develop
 ({
     // Triggered when a `GlueCustomInteropEvent` is fired.
 	handleInvocation: function(component, event, helper) {
-        // The invoking application provides the arguments for the method.
+        // The invoking app provides the arguments for the method.
         const { title, message, type } = JSON.parse(event.getParam("args"));
-        
+
         const toastEvent = $A.get("e.force:showToast");
-        
+
         if (message && message !== "") {
             toastEvent.setParams({ title, message, type });
             toastEvent.fire();

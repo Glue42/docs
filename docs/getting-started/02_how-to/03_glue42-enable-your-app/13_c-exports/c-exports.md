@@ -39,7 +39,7 @@ glue_init("my_cpp_app", &connection_status_callback);
 
 ## App Configuration
 
-To add your C++ application (or any EXE application) to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
+To add your C++ app (or any EXE app) to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with app configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 
 The following is an example configuration for a C++ app:
 
@@ -60,13 +60,13 @@ The following is an example configuration for a C++ app:
 | Property | Description |
 |----------|-------------|
 | `"type"` | Must be `"exe"`. |
-| `"path"` | The path to the application - relative or absolute. You can also use the `%GDDIR%` environment variable, which points to the [Glue42 Enterprise](https://glue42.com/enterprise/) installation folder. |
+| `"path"` | The path to the app - relative or absolute. You can also use the `%GDDIR%` environment variable, which points to the [Glue42 Enterprise](https://glue42.com/enterprise/) installation folder. |
 | `"command"` | The actual command to execute (the EXE file name). |
 | `"parameters"` | Specifies command line arguments. |
 
 ## Glue42 C Exports Concepts
 
-Once the Glue42 library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
+Once the Glue42 library has been initialized, your app has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
 - [App Management](../../../../glue42-concepts/application-management/c-exports/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/c-exports/index.html)
@@ -584,7 +584,7 @@ typedef void (*app_callback_function)(
 | Name | Type | Description |
 |------|------|-------------|
 | `command` | [`glue_app_command`](#enums-glueappcommand) | Use the command to determine the type of the app instance event. |
-| `callback` | `const void*` | Correlational callback that can be passed to other Glue42 methods - e.g., to [`glue_app_announce_instance()`](#functions-glueappannounceinstance) when announcing the newly created app instance, or to [`glue_push_payload()`](#functions-gluepushpayload) when saving the application state. |
+| `callback` | `const void*` | Correlational callback that can be passed to other Glue42 methods - e.g., to [`glue_app_announce_instance()`](#functions-glueappannounceinstance) when announcing the newly created app instance, or to [`glue_push_payload()`](#functions-gluepushpayload) when saving the app state. |
 | `payload` | `const glue_payload` | A [`glue_payload`](#structs-gluepayload) value that can be used for initial or restored state of the app. |
 | `cookie` | `COOKIE` | Optional callback cookie. |
 
@@ -798,9 +798,9 @@ extern "C" GLUE_LIB_API int __cdecl glue_app_announce_instance(
 
 | Name | Type | Description |
 |------|------|-------------|
-| `app_factory_request` | `const void*` | The correlational callback from the [`app_callback_function`](#types-appcallbackfunction) passed to the [`glue_app_register_factory()`](#functions-glueappregisterfactory) method when registering the application factory. |
+| `app_factory_request` | `const void*` | The correlational callback from the [`app_callback_function`](#types-appcallbackfunction) passed to the [`glue_app_register_factory()`](#functions-glueappregisterfactory) method when registering the app factory. |
 | `hwnd` | `HWND` | The window handle. |
-| `app_callback` | [`app_callback_function`](#types-appcallbackfunction) | Callback function for handling application instance events. |
+| `app_callback` | [`app_callback_function`](#types-appcallbackfunction) | Callback function for handling app instance events. |
 | `window_callback` | [`glue_window_callback_function`](#types-gluewindowcallbackfunction) | Callback function for handling Glue42 Window events. |
 | `cookie` | `COOKIE` | Optional callback cookie. |
 
@@ -825,7 +825,7 @@ extern "C" GLUE_LIB_API const void* __cdecl glue_app_register_factory(
 | Name | Type | Description |
 |------|------|-------------|
 | `app_factory` | `const char*` | The name of the app. |
-| `callback` | [`app_callback_function`](#types-appcallbackfunction) | Callback function for handling application instance events. Will be called when an instance of the app is created. |
+| `callback` | [`app_callback_function`](#types-appcallbackfunction) | Callback function for handling app instance events. Will be called when an instance of the app is created. |
 | `cookie` | `COOKIE` | Optional callback cookie. |
 
 *Return value:* Reference to the app factory. Call [`glue_destroy_resource()`](#functions-gluedestroyresource) to unregister the app factory.
@@ -906,7 +906,7 @@ extern "C" GLUE_LIB_API int __cdecl glue_init(
 
 | Name | Type | Description |
 |------|------|-------------|
-| `app_name` | `const char*` | The application name to be used when announcing to Glue42. |
+| `app_name` | `const char*` | The app name to be used when announcing to Glue42. |
 | `callback` | [`glue_init_callback_function`](#types-glueinitcallbackfunction) | Callback function for handling Glue42 status updates. |
 | `cookie` | `COOKIE` | Optional callback cookie. |
 
@@ -1296,7 +1296,7 @@ extern "C" GLUE_LIB_API int __cdecl glue_register_endpoint(
 
 ### glue_register_main_window
 
-Registers the main window of your app simultaneously as a Glue42 Window and as a Glue42 application in the Glue42 environment.
+Registers the main window of your app simultaneously as a Glue42 Window and as a Glue42 app in the Glue42 environment.
 
 *Signature:*
 
@@ -1315,7 +1315,7 @@ extern "C" GLUE_LIB_API const void* __cdecl glue_register_main_window(
 | Name | Type | Description |
 |------|------|-------------|
 | `hwnd` | `HWND` | The window handle. |
-| `app_callback` | [`app_callback_function`](#types-appcallbackfunction) | Callback function for handling application instance events. |
+| `app_callback` | [`app_callback_function`](#types-appcallbackfunction) | Callback function for handling app instance events. |
 | `window_callback` | [`glue_window_callback_function`](#types-gluewindowcallbackfunction) | Callback function for handling Glue42 Window updates. |
 | `title` | `const char*` | Optional title for the Glue42 Window. |
 | `cookie` | `COOKIE` | Optional callback cookie. |
@@ -1350,7 +1350,7 @@ extern "C" GLUE_LIB_API const void* __cdecl glue_register_streaming_endpoint(
 
 ### glue_register_window
 
-Registers a window simultaneously as a Glue42 Window and as a Glue42 application in the Glue42 environment. Can be the main or a child window of your app.
+Registers a window simultaneously as a Glue42 Window and as a Glue42 app in the Glue42 environment. Can be the main or a child window of your app.
 
 *Signature:*
 
@@ -1378,7 +1378,7 @@ extern "C" GLUE_LIB_API const void* __cdecl glue_register_window(
 
 ### glue_set_save_state
 
-Sets a callback function for persisting any user-specific data for this application instance. Use the Glue42 methods prefixed with `glue_push_` in the [`invocation_callback_function`](#types-invocationcallbackfunction) to push the data to be saved.
+Sets a callback function for persisting any user-specific data for this app instance. Use the Glue42 methods prefixed with `glue_push_` in the [`invocation_callback_function`](#types-invocationcallbackfunction) to push the data to be saved.
 
 *Signature:*
 
@@ -1393,7 +1393,7 @@ extern "C" GLUE_LIB_API int __cdecl glue_set_save_state(
 
 | Name | Type | Description |
 |------|------|-------------|
-| `callback` | [`invocation_callback_function`](#types-invocationcallbackfunction) | Callback function for handling saving the application state. |
+| `callback` | [`invocation_callback_function`](#types-invocationcallbackfunction) | Callback function for handling saving the app state. |
 | `cookie` | `COOKIE` | Optional callback cookie. |
 
 *Return value:* `0` if successful.

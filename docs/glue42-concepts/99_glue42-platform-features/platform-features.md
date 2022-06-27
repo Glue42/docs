@@ -1,17 +1,17 @@
 ## Service Windows
 
-Service windows are hidden windows which perform a specific supporting role for your applications. They can be configured as any normal window (name, URL, etc.), the difference being that UI configuration isn't necessary, as it is assumed that the purpose of these windows is to provide some background service to your applications. Therefore, the user doesn't need to see them or interact with them.
+Service windows are hidden windows which perform a specific supporting role for your apps. They can be configured as any normal window (name, URL, etc.), the difference being that UI configuration isn't necessary, as it is assumed that the purpose of these windows is to provide some background service to your apps. Therefore, the user doesn't need to see them or interact with them.
 
-Service windows may be useful in many scenarios. For instance, you may have a number of applications that will receive and process data from several different providers. Instead of setting up each application to receive and then process the data from every provider, you can create a hidden service window which will communicate with the providers, collect the data, pre-process it and route it to the respective applications. This way, your applications will handle communication with only one end point, all the necessary data is consolidated, processed and filtered at one central data hub from where it can be sent to any window. Depending on your needs and goals, you can configure your service windows to auto start on system startup, or to start when an application requests that service. The service windows approach offers you additional flexibility and versatility in designing solutions for the application services you need.
+Service windows may be useful in many scenarios. For instance, you may have a number of apps that will receive and process data from several different providers. Instead of setting up each app to receive and then process the data from every provider, you can create a hidden service window which will communicate with the providers, collect the data, pre-process it and route it to the respective apps. This way, your apps will handle communication with only one end point, all the necessary data is consolidated, processed and filtered at one central data hub from where it can be sent to any window. Depending on your needs and goals, you can configure your service windows to auto start on system startup, or to start when an app requests that service. The service windows approach offers you additional flexibility and versatility in designing solutions for the app services you need.
 
 <glue42 name="diagram" image="../../images/platform-features/service-windows.png">
 
-There are different ways to configure a service window, depending on whether you want the window to be automatically started when [**Glue42 Enterprise**](https://glue42.com/enterprise/) is initiated. Use a combination of the following [application configuration](../../developers/configuration/application/index.html) properties to specify whether the window should be automatically started, invisible, or hidden from the [Glue42 Toolbar](../glue42-toolbar/index.html):
+There are different ways to configure a service window, depending on whether you want the window to be automatically started when [**Glue42 Enterprise**](https://glue42.com/enterprise/) is initiated. Use a combination of the following [app configuration](../../developers/configuration/application/index.html) properties to specify whether the window should be automatically started, invisible, or hidden from the [Glue42 Toolbar](../glue42-toolbar/index.html):
 
 | Property | Type | Description |
 |----------|------|-------------|
 | `"service"` | `boolean` | If `true`, both the `"autoStart"` top-level key and the `"hidden"` property of the `"details"` object will be overridden and set to `true`. The window will be invisible and will start automatically on [**Glue42 Enterprise**](https://glue42.com/enterprise/) startup. |
-| `"hidden"` | `boolean` | If `true`, the application won't be available in the [Glue42 Toolbar](../glue42-toolbar/index.html). |
+| `"hidden"` | `boolean` | If `true`, the app won't be available in the [Glue42 Toolbar](../glue42-toolbar/index.html). |
 | `"autoStart"` | `boolean` | If `true`, the window will be started automatically on [**Glue42 Enterprise**](https://glue42.com/enterprise/) startup. |
 | `"details"` | `object` | Use the `"hidden"` Boolean property of the `"details"` object to set the window visibility. If `true`, the window will be invisible. |
 
@@ -48,17 +48,17 @@ The following example demonstrates how to use the `"hidden"` and `"autoStart"` t
 
 *Note that service windows aren't closed when restoring a [Layout](../windows/layouts/overview/index.html).*
 
-*For more details, see the [Developers > Configuration > Application](../../developers/configuration/application/index.html#app_configuration-service_window) section and the [application configuration schema](../../assets/configuration/application.json).*
+*For more details, see the [Developers > Configuration > Application](../../developers/configuration/application/index.html#app_configuration-service_window) section and the [app configuration schema](../../assets/configuration/application.json).*
 
-## Citrix Applications
+## Citrix Apps
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.12">
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) provides *experimental* support for Citrix Virtual Apps. Citrix applications can participate in the Glue42 environment as first-class citizens - they can be configured and added to the Glue42 Toolbar, saved in Layouts and Workspaces, and can use all Glue42 functionalities like Interop, Channels, etc.
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) provides *experimental* support for Citrix Virtual Apps. Citrix apps can participate in the Glue42 environment as first-class citizens - they can be configured and added to the Glue42 Toolbar, saved in Layouts and Workspaces, and can use all Glue42 functionalities like Interop, Channels, etc.
 
-Additionally, [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be run as a Citrix Virtual App itself, in which case any other Virtual Apps from the same VDA can be configured as normal applications. See [Dynamic Gateway Port](../../developers/configuration/system/index.html#dynamic_gateway_port) for configuration specifics.
+Additionally, [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be run as a Citrix Virtual App itself, in which case any other Virtual Apps from the same VDA can be configured as normal apps. See [Dynamic Gateway Port](../../developers/configuration/system/index.html#dynamic_gateway_port) for configuration specifics.
 
-For more details on configuring a Citrix application, see the [Application Configuration](../../developers/configuration/application/index.html#app_configuration-citrix_app) section. For details on configuring the system-wide Citrix Virtual Apps support, see the [System Configuration](../../developers/configuration/system/index.html#citrix_apps) section.
+For more details on configuring a Citrix app, see the [Developers > Configuration > Application](../../developers/configuration/application/index.html#app_configuration-citrix_app) section. For details on configuring the system-wide Citrix Virtual Apps support, see the [System Configuration](../../developers/configuration/system/index.html#citrix_apps) section.
 
 *Note that this feature is experimental – although it has been properly tested, additional tests and adjustments might be necessary for your specific Citrix environment.*
 
@@ -70,9 +70,9 @@ To Glue42 enable a .NET Citrix app:
 
 1. In your Visual Studio project, reference the `Glue42.dll` available in the [Glue42 NuGet package](https://www.nuget.org/packages/Glue42/).
 
-2. Follow the standard procedure for [Glue42 enabling .NET applications](../../getting-started/how-to/glue42-enable-your-app/net/index.html).
+2. Follow the standard procedure for [Glue42 enabling .NET apps](../../getting-started/how-to/glue42-enable-your-app/net/index.html).
 
-3. After initializing Glue42, you can check whether your application is connected to Glue42 in the following manner:
+3. After initializing Glue42, you can check whether your app is connected to Glue42 in the following manner:
 
 ```csharp
 using Tick42.StartingContext;
@@ -88,33 +88,33 @@ else if (InitializeOptions.IsCitrixVirtualApp)
 
 When your Citrix app is connected to [**Glue42 Enterprise**](https://glue42.com/enterprise/), you may want to remove any custom window decorations, since the top-level window chrome will be handled by [**Glue42 Enterprise**](https://glue42.com/enterprise/).
 
-4. Add `%**` to the application arguments in the Citrix Application Settings:
+4. Add `%**` to the app arguments in the Citrix Application Settings:
 
 ![Citrix Application Settings](../../images/citrix/citrix-settings-net.png)
 
-5. Configure your application as a [Glue42 Citrix app](../../developers/configuration/application/index.html#app_configuration-citrix_app).
+5. Configure your app as a [Glue42 Citrix app](../../developers/configuration/application/index.html#app_configuration-citrix_app).
 
-You will now be able to run your .NET Citrix application from [**Glue42 Enterprise**](https://glue42.com/enterprise/) and interoperate with it using the various Glue42 APIs.
+You will now be able to run your .NET Citrix app from [**Glue42 Enterprise**](https://glue42.com/enterprise/) and interoperate with it using the various Glue42 APIs.
 
 ### Java Citrix Apps
 
 To Glue42 enable a Java Citrix app:
 
-1. Follow the standard procedure for [Glue42 enabling Java applications](../../getting-started/how-to/glue42-enable-your-app/java/index.html).
+1. Follow the standard procedure for [Glue42 enabling Java apps](../../getting-started/how-to/glue42-enable-your-app/java/index.html).
 
-2. In the Citrix Application Settings, set the path to a `javaw.exe` or `java.exe` file, use standard VM arguments to launch your Java app, and add `%**` at the end of the application arguments:
+2. In the Citrix Application Settings, set the path to a `javaw.exe` or `java.exe` file, use standard VM arguments to launch your Java app, and add `%**` at the end of the app arguments:
 
 ![Citrix Application Settings](../../images/citrix/citrix-settings-java.png)
 
-3. Configure your application as a [Glue42 Citrix app](../../developers/configuration/application/index.html#app_configuration-citrix_app).
+3. Configure your app as a [Glue42 Citrix app](../../developers/configuration/application/index.html#app_configuration-citrix_app).
 
-You will now be able to run your Java Citrix application from [**Glue42 Enterprise**](https://glue42.com/enterprise/) and interoperate with it using the various Glue42 APIs.
+You will now be able to run your Java Citrix app from [**Glue42 Enterprise**](https://glue42.com/enterprise/) and interoperate with it using the various Glue42 APIs.
 
 ## Preload Scripts
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
 
-The [application configuration](../../developers/configuration/application/index.html) file allows you to specify preload scripts for an application. The preload scripts will be executed before the actual web app is loaded and before each `<iframe>` on the page. Use the `"preloadScripts"` array of the `"details"` top-level key in the application configuration file to define the scripts and they will be executed in the specified order. This allows for easily injecting Glue42 functionality into third-party web applications over which you have little to no control.
+The [app configuration](../../developers/configuration/application/index.html) file allows you to specify preload scripts for an app. The preload scripts will be executed before the actual web app is loaded and before each `<iframe>` on the page. Use the `"preloadScripts"` array of the `"details"` top-level key in the app configuration file to define the scripts and they will be executed in the specified order. This allows for easily injecting Glue42 functionality into third-party web apps over which you have little to no control.
 
 The following example demonstrates defining two preload scripts by providing their respective URLs:
 
@@ -208,15 +208,15 @@ You can use exact URL values or regular expressions to specify allowed and forbi
 
 The Glue42 global protocol can be used in different formats depending on what you want to do.
 
-#### Applications
+#### Apps
 
-To start a Glue42 enabled application, use the `app` protocol option and pass the application name:
+To start a Glue42 enabled app, use the `app` protocol option and pass the app name:
 
 ```cmd
 glue42://app/clientlist
 ```
 
-To pass startup options for a Glue42 enabled application, use `?` after the app identifier and `&` before each settings. The following example demonstrates passing a location and context for the started app:
+To pass startup options for a Glue42 enabled app, use `?` after the app identifier and `&` before each settings. The following example demonstrates passing a location and context for the started app:
 
 ```cmd
 glue42://app/clientlist?left=100&context.clientID=1
@@ -292,7 +292,7 @@ Currently, only one predefined action is supported - centering an app or a group
 
 **Configuration**
 
-The jump list can be enabled, disabled and configured globally and per app. The [application configuration](../../developers/configuration/application/index.html) will override the global [system configuration](../../developers/configuration/system/index.html).
+The jump list can be enabled, disabled and configured globally and per app. The [app configuration](../../developers/configuration/application/index.html) will override the global [system configuration](../../developers/configuration/system/index.html).
 
 To configure the jump list system-wide, use the `"jumpList"` property of the `"windows"` top-level key in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/). The following is the default system jump list configuration:
 
@@ -340,7 +340,7 @@ Each object in the `"actions"` array has the following properties:
 | `"singleInstanceTitle"` | `string` | Title of the action to be displayed in the context menu when there is a single instance with a single taskbar icon. |
 | `"multiInstanceTitle"` | `string` | Title of the action to be displayed in the context menu when there are multiple instances with grouped taskbar icons. |
 
-To override the system configuration per app, use the `"jumpList"` property of the `"details"` top-level key in the [application configuration](../../developers/configuration/application/index.html) file. The following example demonstrates how to disable the jump list for an app:
+To override the system configuration per app, use the `"jumpList"` property of the `"details"` top-level key in the [app configuration](../../developers/configuration/application/index.html) file. The following example demonstrates how to disable the jump list for an app:
 
 ```json
 {
@@ -366,7 +366,7 @@ To override the system configuration per app, use the `"jumpList"` property of t
 
 **Configuration**
 
-The file download behavior is controlled by the system configuration. It can be alternatively overridden by the application configuration. The system download behavior configuration can be set in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) from the `"downloadSettings"` property of the `"windows"` top-level key:
+The file download behavior is controlled by the system configuration. It can be alternatively overridden by the app configuration. The system download behavior configuration can be set in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) from the `"downloadSettings"` property of the `"windows"` top-level key:
 
 System configuration example:
 
@@ -396,7 +396,7 @@ The `"downloadSettings"` object has the following properties:
 | `"enableDownloadBar"` | `boolean` | If `true`, a download bar tracking the progress will appear at the bottom of the window when downloading. If `false`, the download process will be invisible. |
 | `"path"` | `string` | Path where the downloaded file will be saved. Due to security reasons, it is only possible to provide two download paths: the Windows "Temp" or "Downloads" folder. |
 
-You can also override the default system download behavior in the application configuration JSON file:
+You can also override the default system download behavior in the app configuration JSON file:
 
 ```json
 {
@@ -452,7 +452,7 @@ Download settings can also be specified using the [Window Management](../windows
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a predefined application which can be used to open a URL in the default browser using the [App Management API](../application-management/overview/index.html). The following example shows how to open a URL in the default browser by using the [JavaScript App Management API](../application-management/javascript/index.html).
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) comes with a predefined app which can be used to open a URL in the default browser using the [App Management API](../application-management/overview/index.html). The following example shows how to open a URL in the default browser by using the [JavaScript App Management API](../application-management/javascript/index.html).
 
 Get the [`Application`](../../reference/glue/latest/appmanager/index.html#Application) instance by passing the name of the app - `"open-browser"`, invoke the [`start`](../../reference/glue/latest/appmanager/index.html#Application-start) method to start the app and pass a starting context with a `url` property holding the URL:
 
@@ -492,7 +492,7 @@ Enable the context menu:
 }
 ```
 
-- per application, under the `"details"` top-level key of the application configuration file:
+- per app, under the `"details"` top-level key of the app configuration file:
 
 ```json
 [
@@ -506,7 +506,7 @@ Enable the context menu:
 
 ## Hotkeys
 
-The Hotkeys API allows applications to register key combinations and receive notifications when a key combination is pressed by the user irrespective of whether the application is on focus or not. Hotkeys is useful for web applications that don't have access to system resources and can't register global shortcuts.
+The Hotkeys API allows apps to register key combinations and receive notifications when a key combination is pressed by the user irrespective of whether the app is on focus or not. Hotkeys is useful for web apps that don't have access to system resources and can't register global shortcuts.
 
 ### Configuration
 
@@ -529,13 +529,13 @@ The hotkeys object has the following properties:
 | Property | Type | Description |
 |----------|------|-------------|
 | `"enabled"` | `boolean` | If `true`, hotkeys will be enabled. |
-| `"whitelist"` | `string[]` | List of applications that can register hotkeys. Any app not on the list won't be able to register hotkeys. |
-| `"blacklist"` | `string[]` | List of applications that can't register hotkeys. Any app not on the list will be able to register hotkeys. |
-| `"reservedHotkeys"` | `string[]` | List of reserved (system or other) hotkeys that can't be overridden by other applications. |
+| `"whitelist"` | `string[]` | List of apps that can register hotkeys. Any app not on the list won't be able to register hotkeys. |
+| `"blacklist"` | `string[]` | List of apps that can't register hotkeys. Any app not on the list will be able to register hotkeys. |
+| `"reservedHotkeys"` | `string[]` | List of reserved (system or other) hotkeys that can't be overridden by other apps. |
 
 ### Hotkeys API
 
-The Hotkeys API is accessible through the [`glue.hotkeys`](../../reference/glue/latest/hotkeys/index.html) object. To register a hotkey, your application must be using a Glue42 JavaScript version newer than 4.3.5.
+The Hotkeys API is accessible through the [`glue.hotkeys`](../../reference/glue/latest/hotkeys/index.html) object. To register a hotkey, your app must be using a Glue42 JavaScript version newer than 4.3.5.
 
 To register a hotkey, use the [`register()`](../../reference/glue/latest/hotkeys/index.html#API-register) method:
 
@@ -576,7 +576,7 @@ const isRegistered = glue.hotkeys.isRegistered("shift+alt+c");
 
 ### Hotkeys View
 
-There is a utility view that allows you to see all hotkeys registered by different applications. You can open it from the [**Glue42 Enterprise**](https://glue42.com/enterprise/) tray icon menu - right-click on the tray icon to display the menu. When you click on the Hotkeys item you will see a list of the hotkeys registered by your app:
+There is a utility view that allows you to see all hotkeys registered by different apps. You can open it from the [**Glue42 Enterprise**](https://glue42.com/enterprise/) tray icon menu - right-click on the tray icon to display the menu. When you click on the Hotkeys item you will see a list of the hotkeys registered by your app:
 
 ![Hotkeys](../../images/platform-features/hotkeys.gif)
 
@@ -584,7 +584,7 @@ For a complete list of the available Hotkeys API methods and properties, see the
 
 ## Zooming
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) supports zooming in and out of windows of JavaScript applications. Zooming can be controlled via configuration (system-wide or per application) or programmatically via the available methods/properties of a window instance.
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) supports zooming in and out of windows of JavaScript apps. Zooming can be controlled via configuration (system-wide or per app) or programmatically via the available methods/properties of a window instance.
 
 You can zoom in and out of windows in several ways:
 
@@ -594,7 +594,7 @@ You can zoom in and out of windows in several ways:
 - mouse pad gestures;
 - using the right-click context menu (if enabled);
 
-*Note that zooming is based on domain - i.e., if you open two applications with the same domain and change the zoom factor of one of them, the zoom factor of the other will change accordingly.*
+*Note that zooming is based on domain - i.e., if you open two apps with the same domain and change the zoom factor of one of them, the zoom factor of the other will change accordingly.*
 
 ![Zooming](../../images/platform-features/zooming.gif)
 
@@ -622,7 +622,7 @@ You can configure window zooming system-wide from the `system.json` file in the 
 | `"factors"` | `number[]` | List of zoom factors to be used when the user zooms in or out of the window. The factors must be in ascending order and may have integer or floating point values. Zooming will only work with factor values within the range of 25 to 500. Avoid passing negative values when setting the zoom factor (via configuration or programmatically), as this will cause unexpected behavior.|
 | `"defaultFactor"` | `number` | Default zoom factor within the range of 25 to 500. Avoid negative values. |
 
-You can also enable zooming per application which will override the system-wide zoom configuration. Use the `"zoom"` property under the `"details"` top-level key of the application configuration file:
+You can also enable zooming per app which will override the system-wide zoom configuration. Use the `"zoom"` property under the `"details"` top-level key of the app configuration file:
 
 ```json
 [
@@ -692,11 +692,11 @@ unsubscribe();
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.9">
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) provides a way for applications to programmatically capture screenshots of the available monitors. Based on custom logic you can capture one or all monitors in order to save a snapshot of the visual state at a given moment.
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) provides a way for apps to programmatically capture screenshots of the available monitors. Based on custom logic you can capture one or all monitors in order to save a snapshot of the visual state at a given moment.
 
 ### Configuration
 
-To enable display capturing you must add the `"allowCapture"` property to your application configuration file and set it to `true`.
+To enable display capturing you must add the `"allowCapture"` property to your app configuration file and set it to `true`.
 
 ```json
 {
@@ -858,17 +858,17 @@ For a complete list of the available Displays API methods and properties, see th
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.9">
 
-[**Glue42 Enterprise**](https://glue42.com/enterprise/) offers a [Logger](../../reference/glue/latest/logger/index.html) API which enables JavaScript applications to create a hierarchy of sub-loggers mapped to application components where you can control the level of logging for each component. You can also route the output of log messages (depending on the logging level) to a variety of targets - the developer console or an external output (usually a rolling file on the desktop, but actually any target the `log4net` library supports).
+[**Glue42 Enterprise**](https://glue42.com/enterprise/) offers a [Logger](../../reference/glue/latest/logger/index.html) API which enables JavaScript apps to create a hierarchy of sub-loggers mapped to app components where you can control the level of logging for each component. You can also route the output of log messages (depending on the logging level) to a variety of targets - the developer console or an external output (usually a rolling file on the desktop, but actually any target the `log4net` library supports).
 
-### Logging to Files from Your JavaScript Application
+*Note that you can also customize the logging mechanism of [**Glue42 Enterprise**](https://glue42.com/enterprise/) through its [logging configuration](../../developers/configuration/system/index.html#logging).*
+
+### Logging to Files from Your JavaScript App
 
 Adding logging to files to your JavaScript apps can be helpful in a variety of ways. Having a well-designed and meaningful logging structure in your apps and their components can save a lot of time when debugging an app during development or troubleshooting problems with an app in production.
 
-*Logging to files for JavaScript applications is available from Glue42 JavaScript version 4.8.0 or later and [**Glue42 Enterprise**](https://glue42.com/enterprise/) 3.9 or later.*
-
 ### Logging Configuration
 
-Logging for applications in [**Glue42 Enterprise**](https://glue42.com/enterprise/) is disabled by default. To allow it, add an `"allowLogging"` key to your application configuration file and set it to `true`:
+Logging for apps in [**Glue42 Enterprise**](https://glue42.com/enterprise/) is disabled by default. To allow it, add an `"allowLogging"` key to your app configuration file and set it to `true`:
 
 ```json
 {
@@ -882,9 +882,9 @@ Logging for applications in [**Glue42 Enterprise**](https://glue42.com/enterpris
 
 The Logger API is accessible through the [`glue.logger`](../../reference/glue/latest/logger/index.html) object.
 
-Logger instances have a [`subLogger()`](../../reference/glue/latest/logger/index.html#API-subLogger) method that creates a new sub-logger of the current logger. The name of each logger instance is a dot delimited string containing all names of the loggers constituting an hierarchy line from the base logger (the application name) down to the current logger. This allows an effective and intuitive logging structure which can be easily adjusted to the component hierarchy in your app. For instance, a structure like `app-name.main-component.sub-component` gives you a clear idea from where the respective log entry originates and helps you find the necessary information much faster in a log file that may (and usually does) contain thousands of entries.
+Logger instances have a [`subLogger()`](../../reference/glue/latest/logger/index.html#API-subLogger) method that creates a new sub-logger of the current logger. The name of each logger instance is a dot delimited string containing all names of the loggers constituting an hierarchy line from the base logger (the app name) down to the current logger. This allows an effective and intuitive logging structure which can be easily adjusted to the component hierarchy in your app. For instance, a structure like `app-name.main-component.sub-component` gives you a clear idea from where the respective log entry originates and helps you find the necessary information much faster in a log file that may (and usually does) contain thousands of entries.
 
-To use a logger in your Glue42 enabled applications, create a logger instance with the `subLogger()` method and assign the logger a name:
+To use a logger in your Glue42 enabled apps, create a logger instance with the `subLogger()` method and assign the logger a name:
 
 ```javascript
 const logger = glue.logger.subLogger("main-component");
@@ -912,7 +912,7 @@ logger.error("Could not load component!");
 
 ### Location and Output
 
-User application log files are located in the `%LocalAppData%\Tick42\UserData\<ENV>-<REG>\logs\applications` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). A separate log file is created for each application that has logging enabled. The file is named after the application and is created after the app starts to output log entries. All instances of an application log to the same file.
+User app log files are located in the `%LocalAppData%\Tick42\UserData\<ENV>-<REG>\logs\applications` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`). A separate log file is created for each app that has logging enabled. The file is named after the app and is created after the app starts to output log entries. All instances of an app log to the same file.
 
 The log file entries are in the following format:
 
@@ -934,7 +934,7 @@ For a complete list of the available Logger API methods and properties, see the 
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.14">
 
-By default, Glue42 enabled web apps aren't allowed to manipulate cookies. To allow an application to manipulate cookies for the default web session, use the `"allowCookiesManipulation"` property of the `"details"` top-level key in the [application configuration]() file:
+By default, Glue42 enabled web apps aren't allowed to manipulate cookies. To allow an app to manipulate cookies for the default web session, use the `"allowCookiesManipulation"` property of the `"details"` top-level key in the [app configuration](../../developers/configuration/application/index.html) file:
 
 ```json
 {
@@ -987,7 +987,7 @@ await glue42gd.cookies.remove(url, name);
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.13">
 
-You can allow applications to access OS information (list of running processes, OS version, Glue42 start time) through their [application configuration](../../developers/configuration/application/index.html). The information can then be retrieved through the `glue42gd` object injected in the global `window` object when the application is started.
+You can allow apps to access OS information (list of running processes, OS version, Glue42 start time) through their [app configuration](../../developers/configuration/application/index.html). The information can then be retrieved through the `glue42gd` object injected in the global `window` object when the app is started.
 
 ### Configuration
 
@@ -1021,7 +1021,7 @@ const startTime = glue42gd.glue42StartTime;
 
 ## Adding DevTools Extensions
 
-You can extend the Chrome DevTools in [**Glue42 Enterprise**](https://glue42.com/enterprise/) with additional extensions. To add a [DevTools Extension supported by Electron](https://electronjs.org/docs/tutorial/devtools-extension#supported-devtools-extensions), you need to have the extension installed and add a configuration for it in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and in the configuration file of your application. The example below demonstrates adding the React DevTools Extension to [**Glue42 Enterprise**](https://glue42.com/enterprise/):
+You can extend the Chrome DevTools in [**Glue42 Enterprise**](https://glue42.com/enterprise/) with additional extensions. To add a [DevTools Extension supported by Electron](https://electronjs.org/docs/tutorial/devtools-extension#supported-devtools-extensions), you need to have the extension installed and add a configuration for it in the `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and in the configuration file of your app. The example below demonstrates adding the React DevTools Extension to [**Glue42 Enterprise**](https://glue42.com/enterprise/):
 
 1. Install the [React DevTools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) Chrome extension.
 
@@ -1039,7 +1039,7 @@ You can extend the Chrome DevTools in [**Glue42 Enterprise**](https://glue42.com
 
 *Replace `<username>` with your local username. The path must point to the version folder of the extension containing the `manifest.json` file. Remember to escape the backslash characters.*
 
-4. Open the JSON configuration file of your application and add the following configuration under the `"details"` top-level key:
+4. Open the JSON configuration file of your app and add the following configuration under the `"details"` top-level key:
 
 ```json
 {

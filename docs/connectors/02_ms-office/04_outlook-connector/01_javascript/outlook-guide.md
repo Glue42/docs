@@ -1,20 +1,20 @@
 ## Introduction
 
-The Glue42 Outlook Connector allows applications to use Outlook for creating emails, tasks, meetings and appointments, so that the user may view and edit these in a familiar environment. Once the items are sent or saved by the user, they can then be transmitted back to the application for processing, auditing and/or long-term storage.
+The Glue42 Outlook Connector allows apps to use Outlook for creating emails, tasks, meetings and appointments, so that the user may view and edit these in a familiar environment. Once the items are sent or saved by the user, they can then be transmitted back to the app for processing, auditing and/or long-term storage.
 
-The Glue42 Outlook Connector API lets your application interact with Outlook, and enables it to:
+The Glue42 Outlook Connector API lets your app interact with Outlook, and enables it to:
 
 - Initiate new emails with rich HTML body and attachments and get notified when the email has been sent.
 - Monitor certain folders in Outlook and get notified when an email has been received.
-- Save complete email messages with attachments in your web application.
+- Save complete email messages with attachments in your web app.
 - Show a saved email in Outlook.
 - Initiate the creation of new tasks and get notified when a task is created.
-- Save complete tasks with attachments in your web application.
+- Save complete tasks with attachments in your web app.
 - Show a saved task in Outlook.
 
 ## Initialization
 
-As shown in the [Set Up Your Application](../../set-up-your-application/javascript/index.html) section, you need to initialize the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) library and set the [`outlook`](../../../../reference/glue4office/latest/outlook/index.html#OutlookAPI) property of the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) configuration object to `true`:
+As shown in the [Set Up Your App](../../set-up-your-app/javascript/index.html) section, you need to initialize the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) library and set the [`outlook`](../../../../reference/glue4office/latest/outlook/index.html#OutlookAPI) property of the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) configuration object to `true`:
 
 ```javascript
 const config = {
@@ -143,10 +143,10 @@ If you save the email IDs in your app, you can later use them to display the ema
 
 To attach files to a new email, you need to set the [`attachments`](../../../../reference/glue4office/latest/outlook/index.html#EmailParams-attachments) property. There are two ways to add attachments to your emails:
 
-- creating attachments directly from your application content;
+- creating attachments directly from your app content;
 - attaching existing files;
 
-**Application Content**
+#### App Content
 
 Suppose your app is displaying a list of customers, received as a `JSON` from a backend call. You can create a file from this data (e.g., CSV or HTML) and attach it to an email:
 
@@ -167,7 +167,7 @@ outlook.newEmail({
     .catch(console.error)
 ```
 
-**Existing Files**
+#### Existing Files
 
 If you are using The Glue42 Excel or Word Connectors and have created a file for which you know the file path, you can attach the file by specifying the file paths in the [`attachments`](../../../../reference/glue4office/latest/outlook/index.html#EmailParams-attachments) property:
 
@@ -195,7 +195,7 @@ If you save the email IDs in your app, you can later use them to display the ema
 
 When an email arrives in the monitored folder, the Glue42 Outlook Connector will try to map the email addresses to Outlook contacts, so [`sender`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-sender), [`to`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-to), [`cc`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-cc) and [`bcc`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-bcc) will contain instances of [`T42Contact`](../../../../reference/glue4office/latest/outlook/index.html#T42Contact).
 
-In addition, any attachments in the [`attachments`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-attachments) property will be instances of [`T42Attachment`](../../../../reference/glue4office/latest/outlook/index.html#T42Attachment). Note that the data in the attachments can be quite large and is delivered to your application on demand. If you need to get hold of the attachment data (encoded in Base64), you can call the [`getData()`](../../../../reference/glue4office/latest/outlook/index.html#Attachment-getData) method:
+In addition, any attachments in the [`attachments`](../../../../reference/glue4office/latest/outlook/index.html#T42Email-attachments) property will be instances of [`T42Attachment`](../../../../reference/glue4office/latest/outlook/index.html#T42Attachment). Note that the data in the attachments can be quite large and is delivered to your app on demand. If you need to get hold of the attachment data (encoded in Base64), you can call the [`getData()`](../../../../reference/glue4office/latest/outlook/index.html#Attachment-getData) method:
 
 ```javascript
 outlook.onEmailReceived(email => {
@@ -208,7 +208,7 @@ outlook.onEmailReceived(email => {
 });
 ```
 
-The attachment data is received in chunks, visible to your application, as it could be quite large. You might want to let the user view the progress or even cancel the download. The [`getData()`](../../../../reference/glue4office/latest/outlook/index.html#Attachment-getData) method allows you to pass an optional callback to report the progress and cancel the download if you return `true` from the callback:
+The attachment data is received in chunks, visible to your app, as it could be quite large. You might want to let the user view the progress or even cancel the download. The [`getData()`](../../../../reference/glue4office/latest/outlook/index.html#Attachment-getData) method allows you to pass an optional callback to report the progress and cancel the download if you return `true` from the callback:
 
 ```javascript
 attachment.getData(percent => {
@@ -303,7 +303,7 @@ If you save the task IDs in your app, you can later use them to display the task
 
 Task attachments work in the same way as email ones - to attach files to a new task, you need to set the [`attachments`](../../../../reference/glue4office/latest/outlook/index.html#TaskParams-attachments) property. Again, just like for emails, the property supports:
 
-- creating attachments directly from your application content;
+- creating attachments directly from your app content;
 - attaching existing files;
 
 There are at least three kinds of attachments that can be added to a task - Word documents, created using the Glue42 Word Connector; Excel documents, created using the Glue42 Excel Connector; and Outlook MSG files, created by the Glue42 Outlook Connector.

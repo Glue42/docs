@@ -1,6 +1,6 @@
 ## Overview
 
-The Bloomberg Market Data offers retrieval of real-time/delayed streaming market data and static reference market data for securities through subscription and request/response mechanisms. Using the available Market Data protocols or [APIs](../javascript/index.html) you can easily acquire market data provided by Bloomberg in order to show it, use it or redistribute it throughout your applications.
+The Bloomberg Market Data offers retrieval of real-time/delayed streaming market data and static reference market data for securities through subscription and request/response mechanisms. Using the available Market Data protocols or [APIs](../javascript/index.html) you can easily acquire market data provided by Bloomberg in order to show it, use it or redistribute it throughout your apps.
 
 ## Creating Requests
 
@@ -9,9 +9,9 @@ The Bloomberg Market Data offers retrieval of real-time/delayed streaming market
 - To create a Bloomberg Market Data Subscription request, use:
 
 ```csharp
-(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success} result) 
-T42.MDFApi.CreateSubscriptionRequest 
-(String callbackMethod, String requestCorrelationId, String service, Value settings, 
+(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success} result)
+T42.MDFApi.CreateSubscriptionRequest
+(String callbackMethod, String requestCorrelationId, String service, Value settings,
 Composite:TerminalSubscription{String fields, String options, String security, String subscriptionId}[] subscriptions)
 ```
 
@@ -22,7 +22,7 @@ The `T42.MDFApi.CreateSubscriptionRequest` method will create a session (or reus
 - To create a Bloomberg Static Reference Data request, use:
 
 ```csharp
-(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success} result) 
+(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success} result)
 T42.MDFApi.CreateRequest (String callbackMethod, String operation, Composite[] operationArgs, String requestCorrelationId, String service, Value settings)
 ```
 
@@ -33,7 +33,7 @@ The `T42.MDFApi.CreateRequest` method will create a session (or reuse a named on
 - To cancel a request, use:
 
 ```csharp
-(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success}[] result) 
+(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success}[] result)
 T42.MDFApi.CancelRequests (String[] requestCorrelationIds)
 ```
 
@@ -46,7 +46,7 @@ This allows you to cancel previous requests and subscriptions by specifying thei
 - To close a named session, use:
 
 ```csharp
-(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success} result) 
+(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success} result)
 T42.MDFApi.CloseSession (String sessionName)
 ```
 
@@ -57,8 +57,8 @@ This allows you to "clear" and close existing sessions by name.
 - To get descriptions (schemas) of service operations, use:
 
 ```csharp
-(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success} result) 
+(Composite:TerminalResult{String correlationId, Value elementSchema, String message, Value requestSchema, Value responseSchemas, Bool success} result)
 T42.MDFApi.DescribeServiceSchemas (String operation, String service, Value settings)
 ```
 
-This allows you to describe service operations and get their request/response schemas. This is particularly helpful when you can't remember the arguments of a request or you have typos/wrong types of values. If you don't specify the operation argument, the method will return all operations within the specified service. 
+This allows you to describe service operations and get their request/response schemas. This is particularly helpful when you can't remember the arguments of a request or you have typos/wrong types of values. If you don't specify the operation argument, the method will return all operations within the specified service.

@@ -1,19 +1,19 @@
 ## Interop Actions
 
-The Salesforce Connector allows you to create Actions in Salesforce which can [invoke Interop methods](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_invocation). This is achieved through the `glueInvoke` event that the Salesforce Connector makes available to all Salesforce Components. The `glueInvoke` event accepts two arguments as parameters - an Interop method name and a `payload` object containing arguments with which to invoke the specified Interop method. 
+The Salesforce Connector allows you to create Actions in Salesforce which can [invoke Interop methods](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_invocation). This is achieved through the `glueInvoke` event that the Salesforce Connector makes available to all Salesforce Components. The `glueInvoke` event accepts two arguments as parameters - an Interop method name and a `payload` object containing arguments with which to invoke the specified Interop method.
 
 In short, you have to create a Salesforce Component and Controller for it which will check the Glue42 connection, set the arguments for the `glueInvoke` event and fire it. After that, you need to assign this Action to a button of a Salesforce object (`Contact`, `Account`, `Lead`, etc.).
 
 ## Example
 
-The Action example below demonstrates outbound interoperability from Salesforce to other Glue42 enabled applications. The Action is attached to a button of the `Contact` Salesforce object and invokes an Interop method [registered](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_registration) by a Glue42 enabled application. The example also shows how to check for the Glue42 connection status using the `ResendGlueConnectionStatus` and `GlueConnectionStatus` events.
+The Action example below demonstrates outbound interoperability from Salesforce to other Glue42 enabled apps. The Action is attached to a button of the `Contact` Salesforce object and invokes an Interop method [registered](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_registration) by a Glue42 enabled app. The example also shows how to check for the Glue42 connection status using the `ResendGlueConnectionStatus` and `GlueConnectionStatus` events.
 
-The registered Interop method will open a "Client List" application when invoked:
+The registered Interop method will open a "Client List" app when invoked:
 
 ```javascript
 const name = "OpenClientPortfolio";
 const handler = () => {
-    // Start the Client List application.
+    // Start the Client List app.
     glue.appManager.application("channelsclientlist").start();
 };
 
@@ -68,7 +68,7 @@ To create the Controller, select "CONTROLLER" from the right menu of the Develop
                 message: "Please, connect to Glue42 to continue.",
                 type: "error"
             });
-           	
+
             toastEvent.fire();
         } else {
             // No arguments are necessary for this example invocation.
@@ -80,11 +80,11 @@ To create the Controller, select "CONTROLLER" from the right menu of the Develop
             // Set the event parameters (`method` and `payload`) by passing
             // the name and arguments for the Interop method you want to invoke.
             // It is assumed that the method you want to invoke has already been
-            // registered by another Glue42 enabled application.
+            // registered by another Glue42 enabled app.
             appEvent.setParams({ "method": "OpenClientPortfolio", "payload": JSON.stringify(payload) });
 
             // Fire the event.
-            appEvent.fire(); 
+            appEvent.fire();
 
             // Close the quick action.
             const dismissAction = $A.get("e.force:closeQuickAction");
@@ -94,7 +94,7 @@ To create the Controller, select "CONTROLLER" from the right menu of the Develop
 })
 ```
 
-*Keep in mind that the Interop method you want to invoke first has to be [registered](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_registration) by a Glue42 enabled application.*
+*Keep in mind that the Interop method you want to invoke first has to be [registered](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#method_registration) by a Glue42 enabled app.*
 
 ### Assigning the Action
 
@@ -110,4 +110,4 @@ Drag and drop the Action in the "Salesforce Mobile and Lightning Experience Acti
 
 The Action will now be available when you navigate to the "Sales" Lightning app and open a contact:
 
-![Action](../../../images/salesforce/action.gif) 
+![Action](../../../images/salesforce/action.gif)

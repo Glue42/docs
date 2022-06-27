@@ -4,14 +4,14 @@ What is a notification? A notification is an event important enough to be brough
 
 A few contextual examples:
 
-- an *alert* from an application for an automatic machine restart, or from a metrics monitoring tool for a system running hot;
+- an *alert* from an app for an automatic machine restart, or from a metrics monitoring tool for a system running hot;
 - a *trade order execution* notification from an Order Management System;
 - a *workflow task* assigned to a user or a group of users that can optionally need a response (e.g., a change of client address);
 - an *activity* that is forwarded/re-assigned to a user (e.g., handling a client call);
 
 The Glue42 Notification Service (GNS) is an unopinionated architecture, a set of executables, APIs and specifications for delivering notifications directly to the desktop. It provides:
 
-- A common data model for normalizing notifications raised by applications.
+- A common data model for normalizing notifications raised by apps.
 - Consolidation of notifications from multiple backend and desktop servers and their customizable delivery to the user's desktop via the GNS Desktop Manager.
 - Specification for GNS servers for passive (REST) and active ([Interop](../../data-sharing-between-apps/interop/overview/index.html), HTTP Push) publishing of notifications.
 - Interop Publishing API for desktop GNS Servers.

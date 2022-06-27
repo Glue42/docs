@@ -8,7 +8,7 @@ The main window of your app is automatically registered and announced as a Glue4
 // Here `my_app` is a previously defined MFC object from which you can extract the window handle.
 const HWND handle = my_app->m_pMainWnd->m_hWnd;
 
-// Callback for handling Glue42 application events.
+// Callback for handling Glue42 app events.
 void app_event_callback (glue_app_command command, const void* callback, const glue_payload* payload, COOKIE cookie) {
     std::cout << "App event for main window: " << command << std::endl;
 }
@@ -77,7 +77,7 @@ glue_destroy_resource(my_app_factory);
 
 ## App State
 
-You can save a state for the main and child windows of your app, as well as restore an initial or previously saved state. The initial state of an app can be passed through [application configuration](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#app_configuration).
+You can save a state for the main and child windows of your app, as well as restore an initial or previously saved state. The initial state of an app can be passed through [app configuration](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#app_configuration).
 
 ### Main Window
 
@@ -87,7 +87,7 @@ To save and restore a state for your main window, use the [`app_callback_functio
 // Here `my_app` is a previously defined MFC object from which you can extract the window handle.
 const HWND handle = my_app->m_pMainWnd->m_hWnd;
 
-// Callback for handling Glue42 application events.
+// Callback for handling Glue42 app events.
 void app_event_callback (glue_app_command command, const void* callback, const glue_payload* payload, COOKIE cookie) {
     // Check the command with which the app event handler was invoked.
     switch (command) {
@@ -114,7 +114,7 @@ void window_event_callback (glue_window_command command, const char* context_nam
 glue_register_main_window(handle, &app_event_calback, &window_event_callback, "Main Window");
 ```
 
-If you have registered your main window via [`glue_register_window()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueregisterwindow), which doesn't accept a callback for handling application events, you can use [`glue_set_save_state()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-gluesetsavestate) to save you app state. It accepts an [`invocation_callback_function`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#types-invocationcallbackfunction) as an argument which you can use to push a state to be saved. The state can then be restored by extracting it from the [**Glue42 Enterprise**](https://glue42.com/enterprise/) starting context with [`glue_get_starting_context_reader()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-gluegetstartingcontextreader). Before attempting to extract a saved state from the starting context, you must check whether your app has been started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) using [`glue_is_launched_by_gd()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueislaunchedbygd):
+If you have registered your main window via [`glue_register_window()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueregisterwindow), which doesn't accept a callback for handling app events, you can use [`glue_set_save_state()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-gluesetsavestate) to save you app state. It accepts an [`invocation_callback_function`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#types-invocationcallbackfunction) as an argument which you can use to push a state to be saved. The state can then be restored by extracting it from the [**Glue42 Enterprise**](https://glue42.com/enterprise/) starting context with [`glue_get_starting_context_reader()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-gluegetstartingcontextreader). Before attempting to extract a saved state from the starting context, you must check whether your app has been started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) using [`glue_is_launched_by_gd()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueislaunchedbygd):
 
 ```cpp
 void save_state_callback (const char* endpoint_name, COOKIE cookie, const ::glue_payload* payload, const void* endpoint) {
@@ -174,7 +174,7 @@ void child_app_event_callback(const glue_app_command command, const void* callba
 
 ## Events
 
-To handle Glue42 app events (creating a child instance, saving and restoring state, shutdown), use the [`app_callback_function`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#types-appcallbackfunction) passed to [`glue_register_main_window()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueregistermainwindow), [`glue_app_register_factory()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueappregisterfactory) or [`glue_app_announce_instance()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueappannounceinstance). It will be invoked with an app command as a [`glue_app_command`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#enums-glueappcommand) indicating the Glue42 app event, a correlational callback that can be passed to other Glue42 methods (e.g., [`glue_app_announce_instance()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueappannounceinstance) when announcing a newly created app instance, or to [`glue_push_payload()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-gluepushpayload) when saving the application state), a [`glue_payload`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#structs-gluepayload) value holding the initial or restored state, and an optional callback cookie.
+To handle Glue42 app events (creating a child instance, saving and restoring state, shutdown), use the [`app_callback_function`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#types-appcallbackfunction) passed to [`glue_register_main_window()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueregistermainwindow), [`glue_app_register_factory()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueappregisterfactory) or [`glue_app_announce_instance()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueappannounceinstance). It will be invoked with an app command as a [`glue_app_command`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#enums-glueappcommand) indicating the Glue42 app event, a correlational callback that can be passed to other Glue42 methods (e.g., [`glue_app_announce_instance()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-glueappannounceinstance) when announcing a newly created app instance, or to [`glue_push_payload()`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#functions-gluepushpayload) when saving the app state), a [`glue_payload`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#structs-gluepayload) value holding the initial or restored state, and an optional callback cookie.
 
 The `create` [`glue_app_command`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#enums-glueappcommand) is used only when creating child app instances and therefore this event can be handled only when registering an [app factory](#app_factories):
 
@@ -199,7 +199,7 @@ const void* my_app_factory = glue_app_register_factory("Child App", &app_factory
 All other app events can be handled in the [`app_callback_function`](../../../getting-started/how-to/glue42-enable-your-app/c-exports/index.html#types-appcallbackfunction) when registering a main window or announcing a child instance:
 
 ```cpp
-// Callback for handling Glue42 application events.
+// Callback for handling Glue42 app events.
 void app_event_callback (glue_app_command command, const void* callback, const glue_payload* payload, COOKIE cookie) {
     // Check the command with which the app event handler was invoked.
     switch (command) {
@@ -214,7 +214,7 @@ void app_event_callback (glue_app_command command, const void* callback, const g
             break;
         }
         case glue_app_command::shutdown:
-            std::cout << "The application will shutdown." << std::endl;
+            std::cout << "The app will shutdown." << std::endl;
             // Close the window and free resources.
             break;
         default:

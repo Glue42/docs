@@ -1,6 +1,6 @@
 ## Introduction
 
-This tutorial is a collection of hands-on exercises, in which we will be building a web application taking advantage of many of the Glue42 features available today. As our fictitious users start using our application, we will be getting a lot of change requests to improve the application in various ways and we will be using Glue42 to accomplish this. We will start by creating an application called **Client Portfolio** which will (initially) consist of two windows:
+This tutorial is a collection of hands-on exercises, in which we will be building a web app taking advantage of many of the Glue42 features available today. As our fictitious users start using our app, we will be getting a lot of change requests to improve the app in various ways and we will be using Glue42 to accomplish this. We will start by creating an app called **Client Portfolio** which will (initially) consist of two windows:
 
 - a **Clients** window - showing a list of clients (**ID** and **Name**);
 - a **Portfolio** window - showing the list of equities the selected client owns (**Symbol** and **Quantity** but also the **Best Bid** and **Offer** prices, if available);
@@ -38,14 +38,14 @@ The tutorial directory is organized as follows:
 - **resources** - a sleek Tick42 icon;
 - **solution** - the full tutorial solution;
 - **start** - the startup app skeleton;
-- **support** - all of the support applications you will need to complete the tutorial, bundled with the corresponding configuration files;
+- **support** - all of the support apps you will need to complete the tutorial, bundled with the corresponding configuration files;
 - **util** - a simple image to base64 converter;
 
-Glue42 for JavaScript is also available as versioned NPM packages (and also runs in Node.js), but to keep things simple, in this tutorial we are going to use the latest development version, browserified and ready to be included in your HTML pages. The tutorial is broken into several parts, each demonstrating different Glue42 capabilities, and each part will depend on the completion of the previous ones. We will try to minimize the amount of boilerplate code not related to Glue42, so we will have all HTML, CSS and some JavaScript files already coded and ready to use. Plain HTML and JavaScript are used throughout the tutorial to avoid confusion with other technologies. The coding you are required to do is marked with `TUTOR_TODO` comments, so make sure you search for all of these in all parts of the tutorial. Even though each chapter depends on the previous one, we have provided all the necessary support files, applications and code from the beginning, so you can start and complete the tutorial with your own additions to the starter skeleton, without losing progress.
+Glue42 for JavaScript is also available as versioned NPM packages (and also runs in Node.js), but to keep things simple, in this tutorial we are going to use the latest development version, browserified and ready to be included in your HTML pages. The tutorial is broken into several parts, each demonstrating different Glue42 capabilities, and each part will depend on the completion of the previous ones. We will try to minimize the amount of boilerplate code not related to Glue42, so we will have all HTML, CSS and some JavaScript files already coded and ready to use. Plain HTML and JavaScript are used throughout the tutorial to avoid confusion with other technologies. The coding you are required to do is marked with `TUTOR_TODO` comments, so make sure you search for all of these in all parts of the tutorial. Even though each chapter depends on the previous one, we have provided all the necessary support files, apps and code from the beginning, so you can start and complete the tutorial with your own additions to the starter skeleton, without losing progress.
 
 Each part will try to introduce you to just one Glue42 concept, in as little detail as necessary to complete it. You can get a lot more detailed information about the Glue42 APIs in the [API guides](../../../glue42-concepts/glue42-toolbar/index.html) and [references](../../../reference/glue/latest/glue/index.html).
 
-Naturally, we have also included a full tutorial solution, which follows the application structure set in the startup skeleton. Also included are partial tutorial solutions at the start of each task to get you going. If you get stuck and wish to start with certain tasks completed, simply checkout the branch with name corresponding to the chapter and task number you want to start from.
+Naturally, we have also included a full tutorial solution, which follows the app structure set in the startup skeleton. Also included are partial tutorial solutions at the start of each task to get you going. If you get stuck and wish to start with certain tasks completed, simply checkout the branch with name corresponding to the chapter and task number you want to start from.
 
 ## 1. Setting Up
 
@@ -58,20 +58,20 @@ cd /*path-to-tutorial*
 npm install
 ```
 
-As we will be building a web application, we will need a server. Actually, we will need two servers - one will host our apps and one will supply us with fake data, so we can have something to work with. We have set this up for you, so just run `npm start`. This will launch a simple **HTTP server**, which will host the tutorial directory at `http://localhost:22909/`. You will also get a simple **REST server** at port **22910**. After that, you need to start up Glue42 Enterprise. The [**Glue42 Enterprise**](https://glue42.com/enterprise/) setup is outside the scope of this tutorial, so we assume you already have it installed and configured. If you don't have it yet, download and install it from [here](https://glue42.com).
+As we will be building a web app, we will need a server. Actually, we will need two servers - one will host our apps and one will supply us with fake data, so we can have something to work with. We have set this up for you, so just run `npm start`. This will launch a simple **HTTP server**, which will host the tutorial directory at `http://localhost:22909/`. You will also get a simple **REST server** at port **22910**. After that, you need to start up Glue42 Enterprise. The [**Glue42 Enterprise**](https://glue42.com/enterprise/) setup is outside the scope of this tutorial, so we assume you already have it installed and configured. If you don't have it yet, download and install it from [here](https://glue42.com).
 
-### 1.2. Deploying and Publishing Your Application
+### 1.2. Deploying and Publishing Your App
 
 In the `start` folder you will find all the files (HTML and JavaScript) you will be working on. Together they form the tutorial startup skeleton. Begin by copying these files into the `app` directory.
 
 It is a good idea to read more about [Glue42 initialization and configuration](../../../getting-started/how-to/glue42-enable-your-app/javascript/index.html) before you start with this part of the tutorial.
 
-Now, we need to initialize Glue42. **It is very important how you configure Glue42.** The defaults (e.g. passing an empty configuration object) should be sufficient for most applications. However, we have prepared a Glue42 configuration object in `lib/tick42-glue/tick42-glue-config.js`. You will find `TUTOR_TODO Chapter 1.2 Task 1` in `portfolio.html` and `TUTOR_TODO Chapter 1.2 Task 2` in `clients.html`, where you will be prompted to include the Glue42 configuration object and the Glue42 library. Once you have included the configuration and the library in both HTML files, you will be able to initialize Glue42 and add the variable `glue` to the global namespace. To do this, go to `clients.js`, find the `TUTOR_TODO Chapter 1.2 Task 3` and:
+Now, we need to initialize Glue42. **It is very important how you configure Glue42.** The defaults (e.g. passing an empty configuration object) should be sufficient for most apps. However, we have prepared a Glue42 configuration object in `lib/tick42-glue/tick42-glue-config.js`. You will find `TUTOR_TODO Chapter 1.2 Task 1` in `portfolio.html` and `TUTOR_TODO Chapter 1.2 Task 2` in `clients.html`, where you will be prompted to include the Glue42 configuration object and the Glue42 library. Once you have included the configuration and the library in both HTML files, you will be able to initialize Glue42 and add the variable `glue` to the global namespace. To do this, go to `clients.js`, find the `TUTOR_TODO Chapter 1.2 Task 3` and:
 
 - call the Glue42 factory function
 - pass the config object from `lib/tick42-glue/tick42-glue-config.js`
 - when the `Promise` is resolved, assign the received `glue` instance to the window object (global namespace)
-- call these five functions, which will bootstrap the application and define the skeleton of the app:
+- call these five functions, which will bootstrap the app and define the skeleton of the app:
 	- `checkGlueConnection()`;
 	- `setUpUi()`;
 	- `setupClients()`;
@@ -81,30 +81,30 @@ Now, we need to initialize Glue42. **It is very important how you configure Glue
 
 Now find `TUTOR_TODO Chapter 1.2 Task 4` in `portfolio.js` and do the same. It is pretty much identical, apart from the functions you need to call in the `then()` statement.
 
-**Publishing the Application**
+**Publishing the App**
 
-The application has initialized Glue42 and is deployed (`http-server`), now you should publish it, so it is available to your users in the Application Manager. In this tutorial, we will explain and work with the **file configuration** mode.
+The app has initialized Glue42 and is deployed (`http-server`), now you should publish it, so it is available to your users in the Glue42 Toolbar. In this tutorial, we will explain and work with the **file configuration** mode.
 
-*We have a session dedicated to on-boarding your applications, where we will show you how to prepare and manage configurations in the Glue42 Configuration Manager using an utility and a set of use case oriented batch files.*
+*We have a session dedicated to on-boarding your apps, where we will show you how to prepare and manage configurations in the Glue42 Configuration Manager using an utility and a set of use case oriented batch files.*
 
-You can read more about Application Configuration in the [Configuration documentation](../../../developers/configuration/application/index.html) which explains in detail how the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configurations work. For this part of the tutorial, all you need to know is that:
+You can read more about App Configuration in the [Configuration documentation](../../../developers/configuration/application/index.html) which explains in detail how the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configurations work. For this part of the tutorial, all you need to know is that:
 
 - [**Glue42 Enterprise**](https://glue42.com/enterprise/) components (windows and native executables) are configured in JSON files, where the most important part is the URL (or path) of the component.
 - The configuration files are stored in `%LocalAppData%\Tick42\GlueDesktop\config`.
 
-**Note:**  Configuration changes are detected in real-time both in Configuration Manager and file configuration modes, so once you change a configuration file, you don't need to restart [**Glue42 Enterprise**](https://glue42.com/enterprise/) to detect the changes.
+**Note:**  Configuration changes are detected in real-time, so once you change a configuration file, you don't need to restart [**Glue42 Enterprise**](https://glue42.com/enterprise/) to detect the changes.
 
-To publish the application:
+To publish the app:
 
 - Copy the `tutorial-*-applications.json` files (from `/start/configs/chapter-1`) to the app configuration folder (`%LocalAppData%\Tick42\GlueDesktop\config\apps`).
 - If you have followed the above instructions and copied the files to the `/app` directory, you wouldn't need to make any changes. If, on the other hand, you decided not to place them in `/app`, then you need to modify the `tutorial-*-applications.json` files so that they contain the correct **Clients** and **Portfolio** windows URLs.
 
-Once you publish your applications to Glue42 Enterprise, you should be able to launch any of them. Open the Developer Console (`F12`) and type `glue` or `glue.info` to verify Glue42 has been loaded.
+Once you publish your apps to Glue42 Enterprise, you should be able to launch any of them. Open the Developer Console (`F12`) and type `glue` or `glue.info` to verify Glue42 has been loaded.
 
 You should verify that everything works:
 
-- Make sure both **Clients** and **Portfolio** appear in the App Manager.
-- Click on both applications to launch the windows.
+- Make sure both **Clients** and **Portfolio** appear in the Glue42 Toolbar.
+- Click on both apps to launch the windows.
 - Verify that **Clients** loads a sample list of clients.
 - Both windows should have a green field in the top left corner saying **Glue is available**.
 
@@ -112,29 +112,29 @@ You should verify that everything works:
 
 Here are a few things that might have gone wrong:
 
-1. "I don't see the applications": make sure you have copied the JSON files to the correct configuration folder and the files from `/start` to `/app`.
-2. "I see the applications, but when I click them, I see a 'Page Not Found' message": make sure you have run `npm install` and `npm start`, which will fire up the server you need. Also, double check the URLs in the configuration files - the applications are trying to reach the files in the `/app` directory of the tutorial. Make sure to either put your files there or change the URL to look in `/start`.
-3. "I have the applications and both windows are loading, but **Clients** doesn't display any clients": you need to run `npm start`, which will start the REST server that provides the fake data.
-4. "I don't have an App Manager": you need to run the [**Glue42 Enterprise**](https://glue42.com/enterprise/) application.
+1. "I don't see the apps": make sure you have copied the JSON files to the correct configuration folder and the files from `/start` to `/app`.
+2. "I see the apps, but when I click them, I see a 'Page Not Found' message": make sure you have run `npm install` and `npm start`, which will fire up the server you need. Also, double check the URLs in the configuration files - the apps are trying to reach the files in the `/app` directory of the tutorial. Make sure to either put your files there or change the URL to look in `/start`.
+3. "I have the apps and both windows are loading, but **Clients** doesn't display any clients": you need to run `npm start`, which will start the REST server that provides the fake data.
+4. "I don't have an Glue42 Toolbar": you need to run the [**Glue42 Enterprise**](https://glue42.com/enterprise/) app.
 5. "Pages load but nothing works": hit `F12` and have a look at the console output for any errors.
 6. "Something else happened": let us know, and we will update this tutorial section as we resolve it.
 
 ## 2. Interop Methods
 
 ### Overview
-Now that we have the applications defined, it is time to "glue" them together before we show them to our users. In this part, we will "listen" for party changes in the **Portfolio** window by **registering an Interop method** and will trigger such a change from the **Clients** window by **invoking an Interop method**. In order to complete this part, you should have the **Interop** [documentation](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html) and [reference](../../../reference/glue/latest/interop/index.html) at hand.
+Now that we have the apps defined, it is time to "glue" them together before we show them to our users. In this part, we will "listen" for party changes in the **Portfolio** window by **registering an Interop method** and will trigger such a change from the **Clients** window by **invoking an Interop method**. In order to complete this part, you should have the **Interop** [documentation](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html) and [reference](../../../reference/glue/latest/interop/index.html) at hand.
 
 ### 2.1. Registering Methods
 
 We will start with the **Portfolio** window, where we will demonstrate **registering an Interop method** (`SetParty()`), which, when called, will trigger the window to re-load the portfolio for the selected **party** (client).
 
-Since different applications might be using different party identifiers, when we define a party, we will define it as a `Composite` and use the party ID's as members of this composite parameter. We also need to check if this hasn't been already defined, and either re-use it directly, if it contains all we need, or consult with the other developer teams to include our party ID.
+Since different apps might be using different party identifiers, when we define a party, we will define it as a `Composite` and use the party ID's as members of this composite parameter. We also need to check if this hasn't been already defined, and either re-use it directly, if it contains all we need, or consult with the other developer teams to include our party ID.
 
 Assuming we are the first to propose the **party** object, our method registration will have:
 
 - name: `"SetParty"`;
 - display name: `"Set Party"`;
-- description: `"Switches the application window to work with the specified party"`;
+- description: `"Switches the app window to work with the specified party"`;
 - will accept a `Composite` parameter called `party` with 2 optional `party` identifiers (strings) - `pId` and `salesForceId`, of which we will only use the `pId` in this tutorial;
 
 **Note:** Only the **name** property and the **method handler** are required during registration but the best practice is to always populate the **display name** and **description**, because as we will see later, the display name can actually be shown in a context menu, and the description can be used both as a tool tip, and as documentation for our colleagues.
@@ -175,7 +175,7 @@ glue.interop.invoke("SetParty",
     });
 ```
 
-You should test whether the method invocation works. Again, you don't need to run the **Portfolio** window to do so. All you need is this method to be available (but don't care which application offers it), so you can **register a dummy method implementation** in the Developer Console (`F12`). Try that, run the **Clients** window, register the method in the Developer Console and check if the invocation works.
+You should test whether the method invocation works. Again, you don't need to run the **Portfolio** window to do so. All you need is this method to be available (but don't care which app offers it), so you can **register a dummy method implementation** in the Developer Console (`F12`). Try that, run the **Clients** window, register the method in the Developer Console and check if the invocation works.
 
 Now that we have tested whether `SetParty()` is correctly registered in the **Portfolio** window, and whether we are invoking it correctly from the **Clients** window, we can expect that the windows can interoperate. Launch both windows and verify that clicking a **client** from the **Clients** window loads and displays the client's **portfolio** in the **Portfolio** window.
 
@@ -185,7 +185,7 @@ By default, [**Glue42 Enterprise**](https://glue42.com/enterprise/) windows are 
 
 ### 2.3. Object Types and Method Discovery
 
-Some of our users have [Thomson Reuters Eikon](https://eikon.thomsonreuters.com/index.html)  installed, while others have [Bloomberg Terminal](https://www.bloomberg.com/professional/solution/bloomberg-terminal/). Both are software products providing a set of financial tools used to see news and various charts about certain **instruments**. Users say they have to constantly switch between applications, copying and pasting ticker symbols from our application to Eikon or Bloomberg. Both terminal applications have a Glue42 add-in which registers methods like **Show News** and **Show Chart** and we can easily offer these in our **Portfolio** window, but we would rather not hardcode the logic to show these actions in the **Portfolio** window of our application, especially since some users may not have any of these applications installed.
+Some of our users have [Thomson Reuters Eikon](https://eikon.thomsonreuters.com/index.html)  installed, while others have [Bloomberg Terminal](https://www.bloomberg.com/professional/solution/bloomberg-terminal/). Both are software products providing a set of financial tools used to see news and various charts about certain **instruments**. Users say they have to constantly switch between apps, copying and pasting ticker symbols from our app to Eikon or Bloomberg. Both terminal apps have a Glue42 add-in which registers methods like **Show News** and **Show Chart** and we can easily offer these in our **Portfolio** window, but we would rather not hardcode the logic to show these actions in the **Portfolio** window of our app, especially since some users may not have any of these apps installed.
 
 In Glue42, the concept of context-sensitive methods works by setting up a context (which we call **Object Type**) when you register a method. The idea is that one app registers a method(s) tagged with one or more object types, and then another app(s) can dynamically discover (at runtime) the method(s) for a particular **object type**.
 
@@ -205,11 +205,11 @@ We are excited we have a decent proof of concept, so we are going to show it to 
 
 ## 3. Interop Streams
 
-In this part we will use the [Interop Streaming](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#streaming) API to add real-time market data to our application.
+In this part we will use the [Interop Streaming](../../../glue42-concepts/data-sharing-between-apps/interop/javascript/index.html#streaming) API to add real-time market data to our app.
 
-Our users say they mostly use Eikon to see real-time market data. They say that if we can bring the **best bid and offer** (BBO) prices in our application, they will have a lot more screen real estate.
+Our users say they mostly use Eikon to see real-time market data. They say that if we can bring the **best bid and offer** (BBO) prices in our app, they will have a lot more screen real estate.
 
-For the purpose of this tutorial, we have provided a Sample Price Publisher (`/support/sample-price-publisher`), which streams fake **bid and offer prices**. Before you proceed, make sure you copy the config file (`/support/tutorial-sample-price-publisher-applications.json`) to the application configuration folder and launch **SamplePricePublisher** from the Application Manager, just like you did with **Portfolio** and **Clients**.
+For the purpose of this tutorial, we have provided a Sample Price Publisher (`/support/sample-price-publisher`), which streams fake **bid and offer prices**. Before you proceed, make sure you copy the config file (`/support/tutorial-sample-price-publisher-applications.json`) to the app configuration folder and launch **SamplePricePublisher** from the Glue42 Toolbar, just like you did with **Portfolio** and **Clients**.
 
 Your task is to implement the `subscribeBySymbol()` and the `unsubscribeSymbolPrices()` functions. Open `portfolio.js` and find `TUTOR_TODO Chapter 3 Task 1`. In `subscribeBySymbol()` you need to subscribe to a stream named `T42.MarketStream.Subscribe` (created by the Sample Price Publisher), which expects a single subscription argument called `Symbol` (string).
 
@@ -231,23 +231,23 @@ Glue42 windows can be extensively customized via:
 
 - [Glue42 Window configuration](../../../reference/glue/latest/windows/index.html#WindowSettings) - at [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployment time;
 - [Glue42 Window Groups configuration](../../../reference/glue/latest/windows/index.html#Group) - at [**Glue42 Enterprise**](https://glue42.com/enterprise/) deployment time;
-- [Application configuration](../../../developers/configuration/application/index.html) - at application deployment time;
+- [App configuration](../../../developers/configuration/application/index.html) - at app deployment time;
 
 Once created, the developer is in full control of the windows using the [Window Management](../../../glue42-concepts/windows/window-management/javascript/index.html) API.
 
 ### 4.1. Opening Windows at Runtime
 
-The users are starting to like our application, but they are saying it is inconvenient having to push two buttons in the App Manager, then grab the **Portfolio** window and stick it to the **Clients** one. They also say that they always put the **Portfolio** window below the **Clients** one.
+The users are starting to like our app, but they are saying it is inconvenient having to push two buttons in the Glue42 Toolbar, then grab the **Portfolio** window and stick it to the **Clients** one. They also say that they always put the **Portfolio** window below the **Clients** one.
 
-In this chapter we will first remove **Portfolio** from the App Manager, then add a button on the **Clients** window, and finally use the **Window Management** API to open the **Portfolio** window and stick it below the **Clients** window. You may need the [Windows Management API guide](../../../glue42-concepts/windows/window-management/javascript/index.html) and [reference](../../../reference/glue/latest/windows/index.html) in order to implement this part.
+In this chapter we will first remove **Portfolio** from the Glue42 Toolbar, then add a button on the **Clients** window, and finally use the **Window Management** API to open the **Portfolio** window and stick it below the **Clients** window. You may need the [Windows Management API guide](../../../glue42-concepts/windows/window-management/javascript/index.html) and [reference](../../../reference/glue/latest/windows/index.html) in order to implement this part.
 
-Your task is to remove the **Portfolio** application from the App Manager and use the **Window Management** API to open it directly from the **Clients** window, instructing [**Glue42 Enterprise**](https://glue42.com/enterprise/) to position and stick it below the **Clients** window.
+Your task is to remove the **Portfolio** app from the Glue42 Toolbar and use the **Window Management** API to open it directly from the **Clients** window, instructing [**Glue42 Enterprise**](https://glue42.com/enterprise/) to position and stick it below the **Clients** window.
 
 Begin by modifying the **Portfolio** JSON file in the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configuration folder:
 
 ```json
 {
-    "hidden": true  // this hides the Portfolio application from the App Manager
+    "hidden": true  // this hides the Portfolio app from the Glue42 Toolbar
 }
 ```
 
@@ -275,7 +275,7 @@ glue.windows.open(
 ```
 ![Glue42 JavaScript Tutorial Chapter 4.1](../../../images/tutorials/enterprise-js/4.1.gif "Glue42 JavaScript Tutorial Chapter 4.1")
 
-**Note:** Opening windows using the **Window Management** API is OK, but, ideally, you would want to use the [**Application Management**](../../../glue42-concepts/application-management/javascript/index.html) API to manage your applications and subscribe to application/instance related events. We will take a deeper look at the [**Application Management**](../../../glue42-concepts/application-management/javascript/index.html) API in **Chapter 5**.
+**Note:** Opening windows using the **Window Management** API is OK, but, ideally, you would want to use the [App Management](../../../glue42-concepts/application-management/javascript/index.html) API to manage your apps and subscribe to app/instance related events. We will take a deeper look at the [App Management](../../../glue42-concepts/application-management/javascript/index.html) API in **Chapter 5**.
 
 ### 4.2. Window Styles
 
@@ -285,7 +285,7 @@ In this chapter we will use **Window Styles** to convert the windows to borderle
 
 Finally, we will use loader animations to show the default loading animation (feel free to change it) while we are loading data.
 
-The first thing you need to do, is to go to the **Clients** application JSON file (in the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configuration folder) and add or modify:
+The first thing you need to do, is to go to the **Clients** app JSON file (in the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configuration folder) and add or modify:
 
 ```json
 {
@@ -297,7 +297,7 @@ The first thing you need to do, is to go to the **Clients** application JSON fil
 }
 ```
 
-Then open the **Portfolio** application JSON file and add or modify the following:
+Then open the **Portfolio** app JSON file and add or modify the following:
 
 ```json
 {
@@ -313,7 +313,7 @@ Then open the **Portfolio** application JSON file and add or modify the followin
 }
 ```
 
-These settings will make our application feel more like a single app, instead of two separate apps and will also set the window restrictions we were asked to do.
+These settings will make our app feel more like a single app, instead of two separate apps and will also set the window restrictions we were asked to do.
 
  In `clients.js` find `TUTOR_TODO Chapter 4.2 Task 1` - you will need to tweak the `options` object to set various `allow` attributes and dimensions. Your task is to make sure that the newly created **Portfolio** window:
 - is in HTML mode;
@@ -323,7 +323,7 @@ These settings will make our application feel more like a single app, instead of
 The [window settings documentation](../../../glue42-concepts/windows/window-management/javascript/index.html#window_settings) may come in handy here.
 
 **Important note!**
-*You may have noticed that we are configuring the **Portfolio** window twice (once in the config file and once from the `options` object in our code). The reason is that for the time being we are using the **Window Management** API to open a new window/application. When we do this, the application config file isn't taken into account. The proper way to open an application is by using the **Application Management** API, which we will take a look at in **Chapter 5**. When we start using the **Application Management** API, our settings in the config file will be taken into account, but we could still override them with our `options` object.*
+*You may have noticed that we are configuring the **Portfolio** window twice (once in the config file and once from the `options` object in our code). The reason is that for the time being we are using the **Window Management** API to open a new window/app. When we do this, the app config file isn't taken into account. The proper way to open an app is by using the **App Management** API, which we will take a look at in **Chapter 5**. When we start using the **App Management** API, our settings in the config file will be taken into account, but we could still override them with our `options` object.*
 
 Finally, in order to detect when the **Clients** window is closed, you will use a **Window Management** API event ([`windowRemoved()`](../../../reference/glue/latest/windows/index.html#API-windowRemoved)), so that when **Clients** is closed, you will close the **Portfolio** window as well.
 But how would you know which window is the **Clients** window? The user could be running multiple instances, so you can't simply test whether the name of the window starts with `clients_window`. So, we need to pass the instance (window [`id`](../../../reference/glue/latest/windows/index.html#GDWindow-id)) of the **Clients** window to the **Portfolio**. One way would be to pass it in the URL, but what if we want to pass more complex data (objects, arrays or a mix of them)?
@@ -337,7 +337,7 @@ As a last touch, go to `clients.js` and add the loader animations in the `getCli
 
 The users say it would be great if they can see multiple client portfolios at once. They aren't sure how this will work, because they worry about screen real estate.
 
-In this chapter we will use the **Tabbed Windows** feature to extend our application. We will keep the option to open a generic **Portfolio** window below the **Clients** window, but we will add the option to stack individual **Portfolio** tabs to the right of the **Clients** window. The idea here is to create a tab frame the first time we select a **client**, put the **Portfolio** window in it and every time the user clicks on a different **client**, we will add another window as a tab in the same tab frame. We are also going to name them after the selected **client** by using the `setTitle()` method on the window object, and also demonstrate passing context from the **Clients** to the **Portfolio** window, something which is unique to Glue42 Enterprise.
+In this chapter we will use the **Tabbed Windows** feature to extend our app. We will keep the option to open a generic **Portfolio** window below the **Clients** window, but we will add the option to stack individual **Portfolio** tabs to the right of the **Clients** window. The idea here is to create a tab frame the first time we select a **client**, put the **Portfolio** window in it and every time the user clicks on a different **client**, we will add another window as a tab in the same tab frame. We are also going to name them after the selected **client** by using the `setTitle()` method on the window object, and also demonstrate passing context from the **Clients** to the **Portfolio** window, something which is unique to Glue42 Enterprise.
 
 Now, find the `TUTOR_TODO Chapter 4.3 Task 1` in `clients.js`, inside the `openTabWindow()` function. We call this function every time a **client (row)** is clicked (the same way we invoke an Interop method) and pass the selected **client**. You should also check if the **client**'s tab is already opened - if so, you should [`activate()`](../../../reference/glue/latest/windows/index.html#GDWindow-activate) it.
 
@@ -371,7 +371,7 @@ Our users loved the tabs so much that they want us to extend this functionality.
 Also, our users hate the big **Portfolio** button and want something more subtle which doesn't take that much space.
 Furthermore, they said that it would be great if we could somehow allow them to scatter the tabs as individual windows so that they can move them around freely, but also have a convenient way to gather them back in a frame and stick this frame back to **Clients**.
 
-Yes, that is too much. But Glue42 can enable your application to do all of the above (and more), so let's tackle this problem one piece at a time.
+Yes, that is too much. But Glue42 can enable your app to do all of the above (and more), so let's tackle this problem one piece at a time.
 
 **Adding a "Subtle" Button to Open the Selected Client's Portfolio**
 
@@ -388,7 +388,7 @@ The idea here is to snap the **Portfolio** window or tab group to the bottom of 
 The Glue42 Browser injects several useful objects into each window. One of them is `glue42gd.monitors`. This returns an array of objects describing each physical monitor on the user's desktop. For the tutorial, assume the user is running on the primary one (the `isPrimary` property of the `monitor` object is set to `true`). Once you have identified the primary monitor, you can use the `workingAreaHeight` property, which gives you the usable height of the monitor (minus the task bar).
 Now, you can check if the bottom of your window (top + height) + the height of the **Portfolio** window (the default height is `400` but we will expose an `originalHeight` on the window object) is less than the working area height.
 
-The **Window Management** API offers a property called [`bottomNeighbours`](../../../reference/glue/latest/windows/index.html#GDWindow-bottomNeighbours) (returns an array of all windows attached to the bottom of the current window) for each window object, so for the purpose of this tutorial, simply check if the **Clients** window has any bottom neighbours. If it doesn't **and** if it passes the above check, snap the **Portfolio** window or tab group (depending on what is clicked) to the bottom (you can re-use the `openWindow()` function and pass `"bottom"`), otherwise pass `"right"`.
+The **Window Management** API offers a property called [`bottomNeighbours`](../../../reference/glue/latest/windows/index.html#GDWindow-bottomNeighbours) (returns an array of all windows attached to the bottom of the current window) for each window object, so for the purpose of this tutorial, simply check if the **Clients** window has any bottom neighbors. If it doesn't **and** if it passes the above check, snap the **Portfolio** window or tab group (depending on what is clicked) to the bottom (you can re-use the `openWindow()` function and pass `"bottom"`), otherwise pass `"right"`.
 
 Locate `TUTOR_TODO Chapter 4.4 Task 2` in `getWindowDirection()` in `clients.js` to get the primary monitor and return a `direction`. Then, in `TUTOR_TODO Chapter 4.4 Task 3` pass the `direction` to `openTabWindow()` as a second argument, instead of the hardcoded `"right"`.
 In `TUTOR_TODO Chapter 4.4 Task 4` use the **Window Management** API for handling frame button clicks to handle a frame button click, check the `id` and open a **Portfolio** window. Get the direction and pass it as a third argument to `openWindow()`.
@@ -428,17 +428,17 @@ Finally, upon clicking **Gather**, get the detached windows from the **Clients**
 
 ![Glue42 JavaScript Tutorial Chapter 4.4](../../../images/tutorials/enterprise-js/4.4.8.gif "Glue42 JavaScript Tutorial Chapter 4.4")
 
-## 5. Application Management
+## 5. App Management
 
-We are making a good progress with our application, but now is a good moment to take a step back and improve on something. Up until this moment we have been using the **Window Management** API to open applications. This works fine, but it isn't the proper way to manage applications in Glue42 Enterprise. Now, we are going to take a look at the **Application Management** API and see how and why we should use it to open our applications.
+We are making a good progress with our app, but now is a good moment to take a step back and improve on something. Up until this moment we have been using the **Window Management** API to open apps. This works fine, but it isn't the proper way to manage apps in Glue42 Enterprise. Now, we are going to take a look at the **App Management** API and see how and why we should use it to open our apps.
 
-As we previously discussed, opening applications via the **Window Management** API completely bypasses the settings in the JSON file. This leads to some confusion and possibly mistakes. Opening an application via the **Application Management** API ensures that our settings will be taken into account and we can still override them in our code (by providing a [`windowSettings`](../../../reference/glue/latest/windows/index.html#GDWindow-tabs) object).
+As we previously discussed, opening apps via the **Window Management** API completely bypasses the settings in the JSON file. This leads to some confusion and possibly mistakes. Opening an app via the **App Management** API ensures that our settings will be taken into account and we can still override them in our code (by providing a [`windowSettings`](../../../reference/glue/latest/windows/index.html#GDWindow-tabs) object).
 
-By using the **Application Management** API you don't need to know the URL of the application, which, in cases where there are multiple environments and regions, is very helpful and ensures you will launch the correct app.
+By using the **App Management** API you don't need to know the URL of the app, which, in cases where there are multiple environments and regions, is very helpful and ensures you will launch the correct app.
 
 Furthermore, the user might not be entitled to open a given app and using the **Window Management** API bypasses the entitlement checks done by Glue42, only to fail later when the newly opened window loads.
 
-Modifying your code to use the **Application Management** API is quite easy. In `clients.js` locate the `TUTOR_TODO Chapter 5 Task 1` inside `openWindow()`. Here you will need to make two objects: one is the `context` and the other one is the `windowSettings` object. Basically, the second one should contain everything we currently have in the `options` object, apart from the `context` itself. After that, call the start of an application using the proper API: `glue.appManager.application("Portfolios").start(context, windowSettings)`.
+Modifying your code to use the **App Management** API is quite easy. In `clients.js` locate the `TUTOR_TODO Chapter 5 Task 1` inside `openWindow()`. Here you will need to make two objects: one is the `context` and the other one is the `windowSettings` object. Basically, the second one should contain everything we currently have in the `options` object, apart from the `context` itself. After that, call the start of an app using the proper API: `glue.appManager.application("Portfolios").start(context, windowSettings)`.
 
 You can also remove the window style properties like [`minHeight`](../../../reference/glue/latest/windows/index.html#WindowSettings-minHeight) and [`allowMinimize`](../../../reference/glue/latest/windows/index.html#WindowSettings-allowMinimize) and set them in the configuration file.
 
@@ -449,13 +449,13 @@ Note that you can't re-use the filtering you (likely) did in `openTabWindow()`, 
 
 Our users say some **instruments** don't have a ticker symbol, but either CUSIP, or ISIN, or SEDOL, and they would be very interested in a solution which lets them search by **any** instrument identification code when they are managing a client's portfolio.
 
-In this chapter we will use the [Glue42 Search Service (GSS)](../../../reference/gss/latest/gss/index.html) and [Client Search APIs](../../../reference/gss/latest/gss/index.html#API) to offer this functionality. We don't have the actual search back-end yet, but that is fine because we have sample Java and JavaScript **GSS publishers** which we can feed with sample data. Switching search providers is a matter of configuration, so our application is actually oblivious of what the real data source is.
+In this chapter we will use the [Glue42 Search Service (GSS)](../../../reference/gss/latest/gss/index.html) and [Client Search APIs](../../../reference/gss/latest/gss/index.html#API) to offer this functionality. We don't have the actual search back-end yet, but that is fine because we have sample Java and JavaScript **GSS publishers** which we can feed with sample data. Switching search providers is a matter of configuration, so our app is actually oblivious of what the real data source is.
 
 Your task here is to allow the user to search for **instruments** and add them to the **portfolio**. For this, you will be using GSS.
 
 In this tutorial we will be using the [GSS simple wrapper](../../../reference/gss/latest/gss/index.html) API.
 
-You will need a supporting application which is the sample JavaScript Instrument GSS provider. The configuration file is named `tutorial-instrument-provider-applications`, it is located in the `support` directory and you should copy it to `%LocalAppData%\Tick42\GlueDesktop\config\apps`.
+You will need a supporting app which is the sample JavaScript Instrument GSS provider. The configuration file is named `tutorial-instrument-provider-applications`, it is located in the `support` directory and you should copy it to `%LocalAppData%\Tick42\GlueDesktop\config\apps`.
 
 The Instrument GSS Provider will start automatically when you launch [**Glue42 Enterprise**](https://glue42.com/enterprise/) and it should just display "Sample GSS Publisher".
 
@@ -482,9 +482,9 @@ The market data team is now sending GNS notifications when a major financial eve
 
 We ask the market data team to add [Glue42 Routing](../../../glue42-concepts/notifications/javascript/index.html#glue42_routing) to their [GNS](../../../glue42-concepts/notifications/javascript/index.html) notifications so we can trap these on the desktop, instead of in the generic GNS notifications UI. They will route the notification so that when it arrives on the user's desktop, the user will still be able to see the notification toast, but when they click it, it will take them to our new "who-to-call" window instead of the generic notification details window.
 
-In this chapter, your task is to handle notifications from your app by registering a Glue42 Routing handler for GNS notifications in your application.
+In this chapter, your task is to handle notifications from your app by registering a Glue42 Routing handler for GNS notifications in your app.
 
-In order to complete this task, you will need a supporting application (GNS publisher) which is called **Market Data Monitor**. From it you can manually raise notifications which you will see in the GNS UI. The configuration file `tutorial-market-data-monitor-applications.json` can be found in the `support` directory. You should copy it to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) application config folder (`%LocalAppData%\Tick42\GlueDesktop\config\apps`). Then, in order to register **Market Data Monitor** as a GNS publisher, you should copy this configuration to `%LocalAppData%\Tick42\GnsDesktopManager\Config\overrides.gnsDesktopManager.LOCAL-GD3-GLUE4OFFICE.properties`, but be careful not to replace any of its previous contents.
+In order to complete this task, you will need a supporting app (GNS publisher) which is called **Market Data Monitor**. From it you can manually raise notifications which you will see in the GNS UI. The configuration file `tutorial-market-data-monitor-applications.json` can be found in the `support` directory. You should copy it to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) app config folder (`%LocalAppData%\Tick42\GlueDesktop\config\apps`). Then, in order to register **Market Data Monitor** as a GNS publisher, you should copy this configuration to `%LocalAppData%\Tick42\GnsDesktopManager\Config\overrides.gnsDesktopManager.LOCAL-GD3-GLUE4OFFICE.properties`, but be careful not to replace any of its previous contents.
 
 ```properties
 gns.providersRepository.MarketData.type=AgmServer
@@ -518,9 +518,9 @@ Double-click the notification. Instead of showing the details of the notificatio
 
 This tutorial assumes that you already have [**Glue42 Enterprise**](https://glue42.com/enterprise/) Office Connectors installed, but you can find the documentation [here.](../../../connectors/general-overview/index.html)
 
-Knowing our users spend a considerable amount of time working with Outlook, where they usually have to copy and paste data from our applications, we will try to surprise them by adding the ability to compose an e-mail at the click of a button, right from our web application.
+Knowing our users spend a considerable amount of time working with Outlook, where they usually have to copy and paste data from our apps, we will try to surprise them by adding the ability to compose an e-mail at the click of a button, right from our web app.
 
-First, you should include `glue4office-dev.js` (located in `lib/tick42-g4oe`) in `portfolio.html` with `TUTOR_TODO Chapter 8 Task 1`. Then you need to uncomment the `Send as e-mail` button from `TUTOR_TODO Chapter 8 Task 2`, which, when clicked, will send the data the user is looking at in a new message, along with an attachment of the raw data, ready to be imported and analyzed into other applications, such as Excel.
+First, you should include `glue4office-dev.js` (located in `lib/tick42-g4oe`) in `portfolio.html` with `TUTOR_TODO Chapter 8 Task 1`. Then you need to uncomment the `Send as e-mail` button from `TUTOR_TODO Chapter 8 Task 2`, which, when clicked, will send the data the user is looking at in a new message, along with an attachment of the raw data, ready to be imported and analyzed into other apps, such as Excel.
 
 Next, you will need to enable the Glue42 Outlook Connector by running `_EnableGlueOutlook.cmd` in `%LocalAppData%\Tick42\GlueOutlook`. Exit Outlook before attempting to install the connector.
 
@@ -532,7 +532,7 @@ You don’t need to actually build a portfolio table using HTML, just prepare so
 
 Finally, in `TUTOR_TODO Chapter 8 Task 5`, compose a new email ([`g4o.outlook.newEmail()`](../../../reference/glue4office/latest/outlook/index.html#API-newEmail)) passing the `content` object.
 
-Now run Outlook. The connector runs within Outlook, and it will start it for you. You can read about how to configure an application to start automatically with [**Glue42 Enterprise**](https://glue42.com/enterprise/) in the [Application Configuration Guide](../../../developers/configuration/application/index.html).
+Now run Outlook. The connector runs within Outlook, and it will start it for you. You can read about how to configure an app to start automatically with [**Glue42 Enterprise**](https://glue42.com/enterprise/) in the [App Configuration Guide](../../../developers/configuration/application/index.html).
 
 When you are ready, you should be able to compose a new email from Glue42 within Outlook.
 
@@ -540,14 +540,14 @@ When you are ready, you should be able to compose a new email from Glue42 within
 
 ## 9. Glue42 Excel Connector
 
-Some of our users are power Excel users and they have asked us if we could somehow let them export the data from our application into Excel for some last minute modifications and then get it back into our application to be submitted to the back-end.
+Some of our users are power Excel users and they have asked us if we could somehow let them export the data from our app into Excel for some last minute modifications and then get it back into our app to be submitted to the back-end.
 We can use the Glue42 Excel Connector which gives us exactly that functionality.
 
 Your first task, `TUTOR_TODO Chapter 9 Task 1`, is to uncomment the `Send to Excel` button in `portfolio.html`. Next, in `portfolio.js` you need to enable Excel in the [`Glue4Office`](../../../reference/glue4office/latest/glue4office/index.html) config object in `TUTOR_TODO Chapter 9 Task 2`. Then in `TUTOR_TODO Chapter 9 Task 3` create an Excel spreadsheet ([`g4o.excel.openSheet()`](../../../reference/glue4office/latest/excel/index.html#API-openSheet)), passing the supplied config object.
 
 As a finishing touch, when the `Promise` is resolved, you will receive a reference to the new sheet so you can subscribe to its [`onChanged()`](../../../reference/glue4office/latest/excel/index.html#Sheet-onChanged) event. When that is invoked, pass the new data to the `loadPortfolioFromExcel()` method.
 
-As a result, your application will be able to send the current portfolio to Excel when the button is clicked and will update the portfolio when the user modifies and saves the data in Excel.
+As a result, your app will be able to send the current portfolio to Excel when the button is clicked and will update the portfolio when the user modifies and saves the data in Excel.
 
 ![Glue42 JavaScript Tutorial Chapter 9](../../../images/tutorials/enterprise-js/9.gif "Glue42 JavaScript Tutorial Chapter 9")
 
@@ -555,15 +555,15 @@ As a result, your application will be able to send the current portfolio to Exce
 
 Some of our users are looking at the Reuters Eikon all day and it has a dark background. They are complaining that our app, and apps from other teams, are giving them a headache because they are using a light theme. They would be very thankful if we did something about it.
 
-After some brainstorming with developers from the other teams, we have decided to implement a light and a dark theme. However, users want to switch to either the dark or the light theme in all applications at the same time and would hate to do that in each application.
+After some brainstorming with developers from the other teams, we have decided to implement a light and a dark theme. However, users want to switch to either the dark or the light theme in all apps at the same time and would hate to do that in each app.
 
-Using Glue42 [Shared Contexts](../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html), we will broadcast the theme change to all applications on the user's desktop. When our applications start, they will query the theme name by reading the shared context and will automatically switch to the currently used theme.
+Using Glue42 [Shared Contexts](../../../glue42-concepts/data-sharing-between-apps/shared-contexts/javascript/index.html), we will broadcast the theme change to all apps on the user's desktop. When our apps start, they will query the theme name by reading the shared context and will automatically switch to the currently used theme.
 
-In this assignment, you will need to add theme support in your application. We have already developed the theme switching application for you. It isn't a big deal, just a couple of calls, but feel free to check out its code.
+In this assignment, you will need to add theme support in your app. We have already developed the theme switching app for you. It isn't a big deal, just a couple of calls, but feel free to check out its code.
 
-- Deploy the theme switching application in [**Glue42 Enterprise**](https://glue42.com/enterprise/) (copy the `tutorial-theme-chooser-applications.json` file from the `support` directory) to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) `config` folder.
+- Deploy the theme switching app in [**Glue42 Enterprise**](https://glue42.com/enterprise/) (copy the `tutorial-theme-chooser-applications.json` file from the `support` directory) to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) `config` folder.
 - Switch to your code and find `TUTOR_TODO Chapter 10 Task 1` in `clients.js` and `TUTOR_TODO Chapter 10 Task 2` in `portfolio.js`. Subscribe for context changes (the context event is called `theme`) in both tasks. You need to check the `name` property in the context change you receive - if it is `dark`, you will need to call `setTheme("bootstrap-dark.min.css")`, and if it is `light`, call `setTheme("bootstrap.min.css")`.
-- When you are ready, you will be able to switch the theme from the theme switching application (so make sure you run that first).
+- When you are ready, you will be able to switch the theme from the theme switching app (so make sure you run that first).
 
 Here is what your app will look like after you have implemented the functionality and have pressed the “Dark” button in the theme switching app.
 
@@ -573,7 +573,7 @@ Here is what your app will look like after you have implemented the functionalit
 
 An operative just emailed us about a pilot user claiming that when he selects a **client**, either the client's **portfolio** won't load at all or will take too long to load. He can't remember which **client** that was.
 
-In this chapter, using the [Metrics](../../../glue42-concepts/metrics/javascript/index.html) API and [reference](../../../reference/glue/latest/metrics/index.html), we will make our application:
+In this chapter, using the [Metrics](../../../glue42-concepts/metrics/javascript/index.html) API and [reference](../../../reference/glue/latest/metrics/index.html), we will make our app:
 
 - add an **Error Count** metric to record the number of times our AJAX requests have failed;
 - add a **Time Span** metric to capture the latency of the requests;
@@ -600,7 +600,7 @@ Now that our metrics are set up, we should use them to change system state, if n
 
 ## Congratulations!
 
-You should now have the foundation to start working on Glue42 enabling your real applications.
+You should now have the foundation to start working on Glue42 enabling your real apps.
 
 Next step?
 

@@ -6,7 +6,7 @@
 
 The Notifications API is accessible through the [`glue.notifications`](../../../reference/glue/latest/notifications/index.html) object.
 
-To raise a notification from your application, use the [`raise()`](../../../reference/glue/latest/notifications/index.html#API-raise) method of the API. The method accepts as an argument a required [`Glue42NotificationOptions`](../../../reference/glue/latest/notifications/index.html#Glue42NotificationOptions) object with settings for the notification you want to raise:
+To raise a notification from your app, use the [`raise()`](../../../reference/glue/latest/notifications/index.html#API-raise) method of the API. The method accepts as an argument a required [`Glue42NotificationOptions`](../../../reference/glue/latest/notifications/index.html#Glue42NotificationOptions) object with settings for the notification you want to raise:
 
 ```javascript
 const options = {
@@ -36,7 +36,7 @@ The [`Glue42NotificationOptions`](../../../reference/glue/latest/notifications/i
 | `title` | The title of the notification. |
 | `clickInterop` | Accepts an [`InteropActionSettings`](../../../reference/glue/latest/notifications/index.html#InteropActionSettings) object as a value. Use this property to [invoke an Interop method](../../data-sharing-between-apps/interop/javascript/index.html#method_invocation) when the user clicks on the notification. You can specify arguments for the method and an [Interop target](../../data-sharing-between-apps/interop/javascript/index.html#method_invocation-targeting). |
 | `severity` | Defines the urgency of the notification which is represented visually by different colors in the notification UI. Can be `"Low"`, `"Medium"`, `"High"`, `"Critical"` or `"None"`. |
-| `source` | Overrides the source of the notification. Provide the name of the Glue42 application which you want to be displayed as a source of the notification. |
+| `source` | Overrides the source of the notification. Provide the name of the Glue42 app which you want to be displayed as a source of the notification. |
 | `type` | Accepts `"Notification"` or `"Alert"` as a value. This property is meant to be used only as a way to distinguish between notification types in case you want to create different visual representations for them - e.g., the `"Notification"` type may be considered a general notification, while the `"Alert"` type may be considered a more important or urgent notification. |
 
 ## Notification Click
@@ -64,7 +64,7 @@ notification.onclick = () => console.log("Notification was clicked.");
 
 ### Interop Click Handler
 
-You can also use the `clickInterop` property of the [`Glue42NotificationOptions`](../../../reference/glue/latest/notifications/index.html#Glue42NotificationOptions) object to specify an Interop method that will be invoked when the user clicks on the notification. For instance, another application has [registered an Interop method](../../data-sharing-between-apps/interop/javascript/index.html#method_registration):
+You can also use the `clickInterop` property of the [`Glue42NotificationOptions`](../../../reference/glue/latest/notifications/index.html#Glue42NotificationOptions) object to specify an Interop method that will be invoked when the user clicks on the notification. For instance, another app has [registered an Interop method](../../data-sharing-between-apps/interop/javascript/index.html#method_registration):
 
 ```javascript
 const methodName = "HandleNotificationClick";
@@ -160,7 +160,7 @@ notification.onaction = function (actionEvent) {
 
 The `Glue42NotificationAction` object extends the standard web `NotificationAction` object by adding an `interop` property which you can use to [invoke Interop methods](../../data-sharing-between-apps/interop/javascript/index.html#method_invocation) when the user clicks an action button in the notification.
 
-First, [register an Interop method](../../data-sharing-between-apps/interop/javascript/index.html#method_registration) in another application:
+First, [register an Interop method](../../data-sharing-between-apps/interop/javascript/index.html#method_registration) in another app:
 
 ```javascript
 const methodName = "HandleNotificationClick";
@@ -202,7 +202,7 @@ const notification = await glue.notifications.raise(notificationOptions);
 
 <glue42 name="addClass" class="colorSection" element="p" text="Available since Glue42 Enterprise 3.12.1">
 
-Notifications can be filtered programmatically based on lists of allowed and/or blocked applications.
+Notifications can be filtered programmatically based on lists of allowed and/or blocked apps.
 
 To set a notification filter, use the [`setFilter()`](../../../reference/glue/latest/notifications/index.html#API-setFilter) method and pass a [`NotificationFilter`](../../../reference/glue/latest/notifications/index.html#NotificationFilter) object as an argument:
 
@@ -215,17 +215,17 @@ const filter = {
 await glue.notifications.setFilter(filter);
 ```
 
-Use a [`NotificationFilter`](../../../reference/glue/latest/notifications/index.html#NotificationFilter) object to specify which applications will be able to raise notifications. This object has two properties:
+Use a [`NotificationFilter`](../../../reference/glue/latest/notifications/index.html#NotificationFilter) object to specify which apps will be able to raise notifications. This object has two properties:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `allowed` | `string[]` | List of the names of the applications which will be allowed to raise notifications. Use `*` to allow all applications. |
-| `blocked` | `string[]` | List of the names of the applications which won't be allowed to raise notifications. Use `*` to block all applications. |
+| `allowed` | `string[]` | List of the names of the apps which will be allowed to raise notifications. Use `*` to allow all apps. |
+| `blocked` | `string[]` | List of the names of the apps which won't be allowed to raise notifications. Use `*` to block all apps. |
 
 Using a combination of both lists enables you to create various filters:
 
 ```javascript
-// Allows all applications to raise notifications.
+// Allows all apps to raise notifications.
 const allowAll = {
     allowed: ["*"]
 };
@@ -291,14 +291,14 @@ Glue42 Routing enables customization of GNS notifications delivery and display. 
 
 There are 4 customizations you can make:
 
-- specify an [Interop](../../data-sharing-between-apps/interop/javascript/index.html) handler method which will be called by the GNS Desktop Manager before passing a notification to GNS clients (UIs). The GNS Desktop Manager will call this method and if any application returns `true`, the GNS Desktop Manager will assume that the application will handle the notification and won't pass it to other clients.
+- specify an [Interop](../../data-sharing-between-apps/interop/javascript/index.html) handler method which will be called by the GNS Desktop Manager before passing a notification to GNS clients (UIs). The GNS Desktop Manager will call this method and if any app returns `true`, the GNS Desktop Manager will assume that the app will handle the notification and won't pass it to other clients.
 - specify an Interop popup method which should be called by GNS clients instead of displaying their own notifications;
 - specify an Interop detail method which should be called by GNS clients instead of displaying their own notification details view;
 - specify a list of Glue42 Actions associated with the notification which GNS clients can use to display buttons or a context menu with the actions applicable to a notification. Each action is tied to an Interop method which will be called when the action is executed.
 
 #### Using Notifications in a Workflow
 
-A mortgage specialist might be entering information about a mortgage in an application. This will create a server-side notification that in turn will be pushed to a mortgage support team. Then, the notification will be received by a team member who will click on it and the "Mortgages" application will be automatically opened. The team member can then review and validate the information entered by the mortgage specialist.
+A mortgage specialist might be entering information about a mortgage in an app. This will create a server-side notification that in turn will be pushed to a mortgage support team. Then, the notification will be received by a team member who will click on it and the "Mortgages" app will be automatically opened. The team member can then review and validate the information entered by the mortgage specialist.
 
 All this becomes possible by assigning an Interop detail routing method to the notification so that the GNS Desktop Manager will call this method (registered by the "Mortgages" app) instead of showing the notification details.
 

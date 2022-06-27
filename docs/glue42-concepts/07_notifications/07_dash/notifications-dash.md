@@ -19,7 +19,7 @@ app.layout = dash_glue42.Glue42(id="glue42", children=[
 
 ## Raising Notifications from a Web App
 
-To raise a notification, define an application callback handler and for `Output` pass the ID and the `raise` property of the `Notifications` component. For `Input` use the component that you want to trigger raising the notification. The callback must return an object with [notification options](../../../reference/glue/latest/notifications/index.html#Glue42NotificationOptions) - title, body, actions, etc.
+To raise a notification, define an app callback handler and for `Output` pass the ID and the `raise` property of the `Notifications` component. For `Input` use the component that you want to trigger raising the notification. The callback must return an object with [notification options](../../../reference/glue/latest/notifications/index.html#Glue42NotificationOptions) - title, body, actions, etc.
 
 The following example demonstrates raising a notification with a title, body and an action button. The action is handled by an already [registered Interop method](../../data-sharing-between-apps/interop/dash/index.html#method_registration):
 
@@ -57,7 +57,7 @@ The [`Glue42NotificationOptions`](../../../reference/glue/latest/notifications/i
 | `title` | The title of the notification. |
 | `clickInterop` | Accepts an [`InteropActionSettings`](../../../reference/glue/latest/notifications/index.html#InteropActionSettings) object as a value. Use this property to [invoke an Interop method](../../data-sharing-between-apps/interop/dash/index.html#method_invocation) when the user clicks on the notification. You can specify arguments for the method and an [Interop target](../../data-sharing-between-apps/interop/dash/index.html#targeting). |
 | `severity` | Defines the urgency of the notification which is represented visually by different colors in the notification UI. Can be `"Low"`, `"Medium"`, `"High"`, `"Critical"` or `"None"`. |
-| `source` | Overrides the source of the notification. Provide the name of the Glue42 application which you want to be displayed as a source of the notification. |
+| `source` | Overrides the source of the notification. Provide the name of the Glue42 app which you want to be displayed as a source of the notification. |
 | `type` | Accepts `"Notification"` or `"Alert"` as a value. This property is meant to be used only as a way to distinguish between notification types in case you want to create different visual representations for them - e.g., the `"Notification"` type may be considered a general notification, while the `"Alert"` type may be considered a more important or urgent notification. |
 
 
@@ -92,7 +92,7 @@ def raise_notification(_):
 
 ## Notification Actions
 
-You can create action buttons for the notification. When the user clicks on an action button, the specified callbacks will be invoked. 
+You can create action buttons for the notification. When the user clicks on an action button, the specified callbacks will be invoked.
 
 ![Actions](../../../images/notifications/actions.png)
 
@@ -107,7 +107,7 @@ To handle action button clicks, use the `interop` property of the action object 
     prevent_initial_call=True
 )
 def raise_notification(_):
-    
+
     call_client_interop = {
         "method": "CallClient",
         "arguments": {

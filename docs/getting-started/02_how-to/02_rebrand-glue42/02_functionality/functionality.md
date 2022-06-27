@@ -435,3 +435,7 @@ The following example demonstrates how to start a Glue42 enabled app using the `
 ```cmd
 mycustomprotocol://app/clientlist
 ```
+
+### Logging
+
+The logging mechanism of [**Glue42 Enterprise**](https://glue42.com/enterprise/) is based on [`log4js-node`](https://github.com/log4js-node/log4js-node) and can be customized through the `logger.json` configuration file. You can modify the configuration for the default log appenders used by [**Glue42 Enterprise**](https://glue42.com/enterprise/) or add your custom log appenders. For more details, see the [Developers > Configuration > System > Logging](../../../../developers/configuration/system/index.html#logging) section.

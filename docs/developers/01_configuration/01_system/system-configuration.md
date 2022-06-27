@@ -8,6 +8,8 @@ The following examples demonstrate some of the available system level configurat
 
 *Note that some of the globally defined properties in the `system.json` file may be overridden using the respective property definitions in the [app configuration](../application/index.html) files.*
 
+The [logging](#logging) configuration for [**Glue42 Enterprise**](https://glue42.com/enterprise/) is found in the `logger.json` file located in `%LocalAppData%\Tick42\GlueDesktop\config`.
+
 ## Dynamic Gateway Port
 
 The Glue42 Gateway starts on port 8385 by default. In environments where multiple user sessions run on the same machine (e.g., running [**Glue42 Enterprise**](https://glue42.com/enterprise/) as a Citrix Virtual App), using a predefined port won't work, as the first instance of [**Glue42 Enterprise**](https://glue42.com/enterprise/) will occupy that port and all other instances won't be able to connect. To avoid this, the Glue42 Gateway can be configured from the `system.json` file to choose dynamically a free port on startup.
@@ -505,3 +507,107 @@ The `"citrix"` key has the following properties:
 | `"launcherModule"` | The file name of the Citrix module used to launch published Citrix Virtual Apps. |
 | `"launcherArguments"` | The command line arguments used to launch published Citrix Virtual Apps. |
 | `"launcherSpawnInterval"` | Interval in milliseconds at which multiple launcher modules will be spawned. |
+
+## Logging
+
+The logging configuration for [**Glue42 Enterprise**](https://glue42.com/enterprise/) is found in the `logger.json` file located in `%LocalAppData%\Tick42\GlueDesktop\config`. A JSON schema for the `logger.json` file isn't available, as the [**Glue42 Enterprise**](https://glue42.com/enterprise/) logging mechanism is based on [`log4js-node`](https://github.com/log4js-node/log4js-node). The logging configuration provided in the `logger.json` file is identical to the `log4js-node` configuration as described in the `log4js-node` [API documentation](https://log4js-node.github.io/log4js-node/api.html).
+
+*Note that [**Glue42 Enterprise**](https://glue42.com/enterprise/) also offers a JavaScript [Logger API](../../../glue42-concepts/glue42-platform-features/index.html#logging) that enables your Glue42 apps to output logs to files or to the console.*
+
+### Default Configuration
+
+By default, [**Glue42 Enterprise**](https://glue42.com/enterprise/) uses two of the core `log4js-node` [appenders](https://log4js-node.github.io/log4js-node/appenders.html) - `file` and `multiFile`. The `file` appender is used for logging events related to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) app itself, while the `multiFile` appender is used for logging events related to each Glue42 enabled app.
+
+The following is the default logging configuration for [**Glue42 Enterprise**](https://glue42.com/enterprise/), which you can modify according the specifications laid out in the `log4js-node` [documentation](https://log4js-node.github.io/log4js-node/index.html):
+
+```json
+{
+    "appenders": {
+        "app": {
+            "type": "file",
+            "filename": "%GLUE-USER-DATA%/logs/application.log",
+            "maxLogSize": 10485760,
+            "backups": 5,
+            "minLevel": "info",
+            "keepFileExt": true,
+            "compress": true
+        },
+        "applications": {
+            "type": "multiFile",
+            "base": "%GLUE-USER-DATA%/logs/applications/",
+            "property": "applicationName",
+            "extension": ".log",
+            "maxLogSize": 10485760,
+            "backups": 3,
+            "category": "app-own-log",
+            "layout": {
+                "type": "pattern",
+                "pattern": "[%d] [%p] [%X{instanceId}] %X{loggerName} - %m"
+            }
+        }
+    },
+    "categories": {
+        "default": {
+            "appenders": ["app"],
+            "level": "debug"
+        },
+        "glue-logger": {
+            "appenders": ["app"],
+            "level": "trace"
+        },
+        "app-own-log": {
+            "appenders": ["applications"],
+            "level": "trace"
+        }
+    }
+}
+```
+
+### Custom Log Appenders
+
+You can add any other `log4js-node` [appenders](https://log4js-node.github.io/log4js-node/appenders.html) (core, optional and custom) and [categories](https://log4js-node.github.io/log4js-node/categories.html) to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) logging configuration.
+
+The following example demonstrates how to add the [`logstashHTTP`](https://github.com/log4js-node/logstashHTTP) optional appender to [**Glue42 Enterprise**](https://glue42.com/enterprise/):
+
+1. Create a directory for the appender and run the following command to install it:
+
+```cmd
+npm install @log4js-node/logstash-http
+```
+
+2. Create an `index.js` file in which import and export the appender:
+
+```javascript
+module.exports = require("@log4js-node/logstash-http");
+```
+
+3. Add the [`logstashHTTP`](https://github.com/log4js-node/logstashHTTP) appender to the [**Glue42 Enterprise**](https://glue42.com/enterprise/) configuration in the `logger.json` file under the `"appenders"` top-level key:
+
+```json
+{
+    "appenders": {
+        "logstash": {
+            "type": "%GDDIR%/assets/logstash-http",
+            "url": "http://localhost:9200/_bulk",
+            "application": "My App",
+            "logType": "application",
+            "logChannel": "node"
+        }
+    }
+}
+```
+
+The `"type"` property must point to the location of the [`logstash-http`](https://www.npmjs.com/package/@log4js-node/logstash-http) package. You can also use environment variables.
+
+4. Under the `"categories"` top-level key, define the log event [categories](https://log4js-node.github.io/log4js-node/categories.html) for which the log appender will be used:
+
+```json
+{
+    "categories": {
+        "my-custom-category": {
+            "appenders": ["logstash"],
+            "level": "info"
+        }
+    }
+}
+```

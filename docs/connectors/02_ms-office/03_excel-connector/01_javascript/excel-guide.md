@@ -1,10 +1,10 @@
 ## Introduction
 
-The Glue42 Excel Connector allows applications to use Excel as a local data editor. The application uploads tabular data into Excel, so that the user may view it and edit it in a familiar environment. Any changes can then be transmitted back to the application for validation, processing, auditing and/or long-term storage.
+The Glue42 Excel Connector allows apps to use Excel as a local data editor. The app uploads tabular data into Excel, so that the user may view it and edit it in a familiar environment. Any changes can then be transmitted back to the app for validation, processing, auditing and/or long-term storage.
 
 ## Initialization
 
-As shown in the [Set Up Your Application](../../set-up-your-application/javascript/index.html) section, you need to initialize the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) library and set the [`excel`](../../../../reference/glue4office/latest/excel/index.html) property of the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) configuration object to `true`:
+As shown in the [Set Up Your App](../../set-up-your-app/javascript/index.html) section, you need to initialize the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) library and set the [`excel`](../../../../reference/glue4office/latest/excel/index.html) property of the [`glue4office`](../../../../reference/glue4office/latest/glue4office/index.html) configuration object to `true`:
 
 ```javascript
 const config = {
@@ -93,13 +93,13 @@ Note that the `Promise` returned by the [`openSheet()`](../../../../reference/gl
 
 ## Customization Options
 
-By default, when your application sends data to Excel, the Glue42 Connector will create a new workbook, a new spreadsheet in the workbook, and place the unformatted data in the 1st row and column (A1).
+By default, when your app sends data to Excel, the Glue42 Connector will create a new workbook, a new spreadsheet in the workbook, and place the unformatted data in the 1st row and column (A1).
 
 There are certain customizations you can apply by specifying the [`options`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetConfig-options) property in the [`OpenSheetConfig`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetConfig) object.
 
 ### Column Customization
 
-If you are planning to take updates from the user into your app, you shouldn't rely on the ordering of the rows when accepting the data because the user might have filtered or sorted the data before returning it to your application. This means that:
+If you are planning to take updates from the user into your app, you shouldn't rely on the ordering of the rows when accepting the data because the user might have filtered or sorted the data before returning it to your app. This means that:
 
 - all your rows must be keyed somehow, so you can track what has changed
 - you must not accept changes to columns containing keys
@@ -119,7 +119,7 @@ const columns = [
 
 ### Preventing Saving Temporary Workbooks
 
-If your users need to message data to Excel, but aren't allowed to save it locally, and should instead return the data to be saved in your application, you can set the [`inhibitLocalSave`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-inhibitLocalSave) flag to `true` to prevent the users from saving temporary workbooks.
+If your users need to message data to Excel, but aren't allowed to save it locally, and should instead return the data to be saved in your app, you can set the [`inhibitLocalSave`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-inhibitLocalSave) flag to `true` to prevent the users from saving temporary workbooks.
 
 ### Custom Workbook, Sheet and Range
 
@@ -143,7 +143,7 @@ Note that all these settings are optional. If the workbook doesn't exist, it is 
 
 ### Using Templates
 
-Excel Templates are workbooks that can be used to create a framework that the Glue42 Excel Connector should use when displaying a new set of data to the user. When the application invokes a Glue42 Excel API method, it may request that the data be added to a copy of an existing workbook (the template) that has been formatted to present the data correctly for the user. The Glue42 Excel Connector will then make a copy of the workbook and paste the data into it, instead of using a new blank workbook.
+Excel Templates are workbooks that can be used to create a framework that the Glue42 Excel Connector should use when displaying a new set of data to the user. When the app invokes a Glue42 Excel API method, it may request that the data be added to a copy of an existing workbook (the template) that has been formatted to present the data correctly for the user. The Glue42 Excel Connector will then make a copy of the workbook and paste the data into it, instead of using a new blank workbook.
 
 If you want to send formatted data to Excel or you want to include more than just the data (e.g. headers, footers, charts and maps), you can use [`templateWorkbook`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-templateWorkbook) and [`templateSheet`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-templateWorksheet):
 
@@ -160,7 +160,7 @@ const config = {
 
 ## Receiving Updates from Excel
 
-Once you have obtained a reference to the opened spreadsheet, you can subscribe for and start tracking updates made by the user, receive and validate them in your application, using the [`onChanged()`](../../../../reference/glue4office/latest/excel/index.html#Sheet-onChanged) method on the [`Sheet`](../../../../reference/glue4office/latest/excel/index.html#Sheet) object:
+Once you have obtained a reference to the opened spreadsheet, you can subscribe for and start tracking updates made by the user, receive and validate them in your app, using the [`onChanged()`](../../../../reference/glue4office/latest/excel/index.html#Sheet-onChanged) method on the [`Sheet`](../../../../reference/glue4office/latest/excel/index.html#Sheet) object:
 
 ```javascript
 const config = {
@@ -263,11 +263,11 @@ const stateColumn = {
 }
 ```
 
-When your application has set the [`validation`](../../../../reference/glue4office/latest/excel/index.html#ColumnConfig-validation) property and the [`alert`](../../../../reference/glue4office/latest/excel/index.html#Validation-alert) is `Stop`, Excel won't even attempt to return data back to your application if the user input is invalid.
+When your app has set the [`validation`](../../../../reference/glue4office/latest/excel/index.html#ColumnConfig-validation) property and the [`alert`](../../../../reference/glue4office/latest/excel/index.html#Validation-alert) is `Stop`, Excel won't even attempt to return data back to your app if the user input is invalid.
 
 ### Programmatic Validation
 
-When your app needs a more sophisticated validation than what the [`validation`](../../../../reference/glue4office/latest/excel/index.html#ColumnConfig-validation) property can offer, you can write code to completely control the validation of the data sent from Excel to your application.
+When your app needs a more sophisticated validation than what the [`validation`](../../../../reference/glue4office/latest/excel/index.html#ColumnConfig-validation) property can offer, you can write code to completely control the validation of the data sent from Excel to your app.
 
 Here is again how subscribing for user updates looks like:
 
@@ -277,7 +277,7 @@ sheet.onChanged((data, errorCallback, doneCallback, delta) => {
 })
 ```
 
-When your app receives an update from Excel, you can signal Excel back by calling the `errorCallback` and let Excel know that there were errors in the user's input which need to be corrected in Excel before the data is accepted by your web application.
+When your app receives an update from Excel, you can signal Excel back by calling the `errorCallback` and let Excel know that there were errors in the user's input which need to be corrected in Excel before the data is accepted by your web app.
 
 The `errorCallback` accepts a list of [validation errors](../../../../reference/glue4office/latest/excel/index.html#ValidationError), where a validation error specifies which cell (row and column) is in error and what the problem is. Here is an example of handling multiple validation errors:
 
@@ -330,7 +330,7 @@ The possible values are:
 |`row`|When the user changes one or more cells in a given row and then selects a cell in a different row|
 |`save`|When the user tries to save the worksheet|
 
-The `row` options is the most interactive, since your application gets updated as the user moves through the spreadsheet.
+The `row` options is the most interactive, since your app gets updated as the user moves through the spreadsheet.
 
 When using the `button` option, you can also customize the caption of the button and where it is placed by using the [`buttonText`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-buttonText) and [`buttonRange`](../../../../reference/glue4office/latest/excel/index.html#OpenSheetOptions-buttonRange) properties:
 

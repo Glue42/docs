@@ -1,6 +1,6 @@
 ## Channels Configuration
 
-Channels are based on [Shared Contexts](../../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) - named objects, holding cross-application data in the form of key/value pairs. The Glue42 [Channels](../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) are defined in a `channels.json` file located in `%LocalAppData%\Tick42\GlueDesktop\config`. It contains an array of objects, each one defining a different Channel.
+Channels are based on [Shared Contexts](../../../glue42-concepts/data-sharing-between-apps/shared-contexts/overview/index.html) - named objects, holding cross-app data in the form of key/value pairs. The Glue42 [Channels](../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html) are defined in a `channels.json` file located in `%LocalAppData%\Tick42\GlueDesktop\config`. It contains an array of objects, each one defining a different Channel.
 
 Here is an example of minimal definition of two Channels - red and blue:
 
@@ -24,10 +24,10 @@ Here is an example of minimal definition of two Channels - red and blue:
 | Property | Description |
 |----------|-------------|
 | `name` | Required. Unique ID of the Channel. |
-| `meta` | Required. Meta data about the Channel. The minimum you must specify here is the Channel color. You can also define other meta data which will be visible to all applications using the Channel. |
+| `meta` | Required. Meta data about the Channel. The minimum you must specify here is the Channel color. You can also define other meta data which will be visible to all apps using the Channel. |
 | `color` | The Channel color, displayed on the Channel Selector UI and on each app using that Channel. Can be either an HTML color name or a hexadecimal color code. |
 
-You can define any number of Channels in [**Glue42 Enterprise**](https://glue42.com/enterprise/) for your applications to use.
+You can define any number of Channels in [**Glue42 Enterprise**](https://glue42.com/enterprise/) for your apps to use.
 
 Here is an example of adding a custom purple Channel to the already existing list of Channels in [**Glue42 Enterprise**](https://glue42.com/enterprise/):
 
@@ -44,7 +44,7 @@ Here is an example of adding a custom purple Channel to the already existing lis
 
 ## Adding Channels to Your App
 
-To add the Channel selector to your window, set `"allowChannels"` to `true` in your [application configuration](../application/index.html) file, under the `"details"` top-level key:
+To add the Channel selector to your window, set `"allowChannels"` to `true` in your [app configuration](../application/index.html) file, under the `"details"` top-level key:
 
 ```json
 {
@@ -58,4 +58,4 @@ To add the Channel selector to your window, set `"allowChannels"` to `true` in y
         "allowChannels": true
     }
 }
-``` 
+```

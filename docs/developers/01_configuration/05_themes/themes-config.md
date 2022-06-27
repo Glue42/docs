@@ -10,7 +10,7 @@ Set various theme properties - global theme properties, properties for individua
 
 ### Global
 
-The frame of a Glue42 Window (or a group of windows) is its outermost container - changing its thickness will change the visual width and height of the window (window group) without affecting the window content. The border of a window is the border of the actual application loaded inside the Glue42 Window and can be thought of as padding - if you increase the border size, the window content will shrink correspondingly.
+The frame of a Glue42 Window (or a group of windows) is its outermost container - changing its thickness will change the visual width and height of the window (window group) without affecting the window content. The border of a window is the border of the actual app loaded inside the Glue42 Window and can be thought of as padding - if you increase the border size, the window content will shrink correspondingly.
 
 *Note that [Glue42 Windows](../../../glue42-concepts/windows/window-management/overview/index.html) with `"mode": "tab"` and `"mode": "flat"` have borders and a frame, while windows with `"mode": "html"` only have a frame.*
 

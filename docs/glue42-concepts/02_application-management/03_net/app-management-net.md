@@ -1,14 +1,14 @@
-## Listing Applications
+## Listing Apps
 
 The .NET App Management API is accessible through `glue.AppManager`.
 
-To get a collection of all available Glue42 enabled applications, use the `AwaitApplications()` method:
+To get a collection of all available Glue42 enabled apps, use the `AwaitApplications()` method:
 
 ```csharp
-var applications = await glue.AppManager.AwaitApplications();
+var apps = await glue.AppManager.AwaitApplications();
 ```
 
-To get a specific application, use `AwaitApplication()` and pass a predicate function for finding the desired application:
+To get a specific app, use `AwaitApplication()` and pass a predicate function for finding the desired app:
 
 ```csharp
 var app = await glue.AppManager.AwaitApplication(a => a.Name == "appName");
@@ -16,38 +16,38 @@ var app = await glue.AppManager.AwaitApplication(a => a.Name == "appName");
 
 *See the .NET [App Management example](https://github.com/Glue42/net-examples/tree/master/app-management-demo) on GitHub.*
 
-## Starting Applications
+## Starting Apps
 
-To start an application, use the `Start()` method of an application instance:
+To start an app, use the `Start()` method of an app instance:
 
 ```csharp
-// Get the application.
+// Get the app.
 var app = await glue.AppManager.AwaitApplication(a => a.Name == "appName");
 
-// Start the application.
+// Start the app.
 app.Start();
 ```
 
-### Application Context
+### App Context
 
-The `Start()` method accepts a context object (application starting context) as an optional parameter. The following example demonstrates how to create an application context and pass it to the application you want to start:
+The `Start()` method accepts a context object (app starting context) as an optional parameter. The following example demonstrates how to create an app context and pass it to the app you want to start:
 
 ```csharp
-// Create application context.
+// Create app context.
 var context = AppManagerContext.CreateNew();
 context.Set("selectedClient", "3");
 
-// Pass the context when starting the application.
+// Pass the context when starting the app.
 app.Start(context);
 ```
 
-## Applications Instances
+## App Instances
 
-Each Glue42 enabled application may have multiple running instances. Each instance of a .NET application may have multiple windows belonging to that particular instance.
+Each Glue42 enabled app may have multiple running instances. Each instance of a .NET app may have multiple windows belonging to that particular instance.
 
 ### Current Instance
 
-To get a reference to the current instance of your application, use the `MyInstance` property:
+To get a reference to the current instance of your app, use the `MyInstance` property:
 
 ```csharp
 var myAppInstance = glue.AppManager.MyInstance;
@@ -55,22 +55,22 @@ var myAppInstance = glue.AppManager.MyInstance;
 
 ### Instance Windows
 
-To get a collection of all Glue42 Windows belonging to an application instance, use the `Windows` property of the application instance:
+To get a collection of all Glue42 Windows belonging to an app instance, use the `Windows` property of the app instance:
 
 ```csharp
-// Get an application.
+// Get an app.
 var app = await AppManager.AwaitApplication(a => a.Name == "appName");
-// Get the windows belonging to the application instance.
+// Get the windows belonging to the app instance.
 var appWindows = app.Instances.FirstOrDefault()?.Windows;
 ```
 
 ## Events
 
-The .NET App Management API offers methods for monitoring application and instance events - adding/removing applications, starting/stopping instances and more.
+The .NET App Management API offers methods for monitoring app and instance events - adding/removing apps, starting/stopping instances and more.
 
-### Application
+### App
 
-To get notified when an application definition has been added, use the `ApplicationAdded` event:
+To get notified when an app definition has been added, use the `ApplicationAdded` event:
 
 ```csharp
 glue.AppManager.ApplicationAdded += (appManager, appArgs) =>
@@ -79,7 +79,7 @@ glue.AppManager.ApplicationAdded += (appManager, appArgs) =>
     };
 ```
 
-To get notified when an application definition has been removed, use the `ApplicationRemoved` event:
+To get notified when an app definition has been removed, use the `ApplicationRemoved` event:
 
 ```csharp
 glue.AppManager.ApplicationRemoved += (appManager, appArgs) =>
@@ -88,7 +88,7 @@ glue.AppManager.ApplicationRemoved += (appManager, appArgs) =>
     };
 ```
 
-To get notified when an application definition has been updated, use the `ApplicationUpdated` event:
+To get notified when an app definition has been updated, use the `ApplicationUpdated` event:
 
 ```csharp
 glue.AppManager.ApplicationUpdated += (appManager, appArgs) =>
@@ -99,7 +99,7 @@ glue.AppManager.ApplicationUpdated += (appManager, appArgs) =>
 
 ### Instance
 
-To get notified when an application instance has been started, use the `ApplicationInstanceStarted` event:
+To get notified when an app instance has been started, use the `ApplicationInstanceStarted` event:
 
 ```csharp
 glue.AppManager.ApplicationInstanceStarted += (appManager, instanceArgs) =>
@@ -108,7 +108,7 @@ glue.AppManager.ApplicationInstanceStarted += (appManager, instanceArgs) =>
     };
 ```
 
-To get notified when an application instance has been stopped, use the `ApplicationInstanceStopped` event:
+To get notified when an app instance has been stopped, use the `ApplicationInstanceStopped` event:
 
 ```csharp
 glue.AppManager.ApplicationInstanceStopped += (appManager, instanceArgs) =>
@@ -119,13 +119,13 @@ glue.AppManager.ApplicationInstanceStopped += (appManager, instanceArgs) =>
 
 ## Multi Window Apps
 
-Glue42 .NET offers support for applications (WPF and WinForms) consisting of multiple windows. Each window can be registered not only as a [Glue42 Window](../../windows/window-management/net/index.html#glue42_windows), but also as a Glue42 application that you can save and restore in a [Layout](../../windows/layouts/overview/index.html), start directly from the Glue42 Toolbar, etc. This features allows you to register WPF and WinForms windows at runtime and to properly persist their state when saving and restoring a Layout.
+Glue42 .NET offers support for apps (WPF and WinForms) consisting of multiple windows. Each window can be registered not only as a [Glue42 Window](../../windows/window-management/net/index.html#glue42_windows), but also as a Glue42 app that you can save and restore in a [Layout](../../windows/layouts/overview/index.html), start directly from the Glue42 Toolbar, etc. This features allows you to register WPF and WinForms windows at runtime and to properly persist their state when saving and restoring a Layout.
 
 *See the .NET [Multi Window Demo example](https://github.com/Glue42/net-examples/tree/master/multiwindow-demo) on GitHub.*
 
 ### Registering Apps at Runtime
 
-To register a WPF window as an application at runtime, use the `RegisterWPFApp()` generic method. It accepts the types of the window, the state to save/restore and the execution context that can be passed to the application and provides an application definition builder:
+To register a WPF window as an app at runtime, use the `RegisterWPFApp()` generic method. It accepts the types of the window, the state to save/restore and the execution context that can be passed to the app and provides an app definition builder:
 
 ```csharp
 glue.AppManager.RegisterWPFApp<MyWindow, MyState, MainWindow>(app =>
@@ -177,7 +177,7 @@ public void Initialize(MainWindow context, SymbolState state, Glue42 glue, GDSta
 }
 ```
 
-- `Shutdown()` - Invoked when the application is closed by [**Glue42 Enterprise**](https://glue42.com/enterprise/).
+- `Shutdown()` - Invoked when the app is closed by [**Glue42 Enterprise**](https://glue42.com/enterprise/).
 
 Implementing the `Shutdown()` method:
 
@@ -194,34 +194,34 @@ public void Shutdown()
 
 ### Registering App Instances
 
-Once the windows of the app are registered as Glue42 applications, the application becomes responsible for announcing when initiating a new instance through its logic in order to notify [**Glue42 Enterprise**](https://glue42.com/enterprise/) about the new instance. If the window has been started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) (e.g., from the Glue42 Toolbar), this is handled automatically. Use the `RegisterAppWindow()` from the [Window Management API](../../windows/window-management/net/index.html#registering_windows_as_app_instances) method or a combination of the `RegisterWindow()` method (see [Registering Windows](../../windows/window-management/net/index.html#registering_windows)) and the `RegisterInstance()` methods.
+Once the windows of the app are registered as Glue42 apps, the app becomes responsible for announcing when initiating a new instance through its logic in order to notify [**Glue42 Enterprise**](https://glue42.com/enterprise/) about the new instance. If the window has been started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) (e.g., from the Glue42 Toolbar), this is handled automatically. Use the `RegisterAppWindow()` from the [Window Management API](../../windows/window-management/net/index.html#registering_windows_as_app_instances) method or a combination of the `RegisterWindow()` method (see [Registering Windows](../../windows/window-management/net/index.html#registering_windows)) and the `RegisterInstance()` methods.
 
-The `RegisterAppWindow()` method registers the window both as a Glue42 Window and as a Glue42 application instance. It accepts the WPF window object (or the WinForms window handle), the Glue42 application object, the application name and an application options builder as arguments:
+The `RegisterAppWindow()` method registers the window both as a Glue42 Window and as a Glue42 app instance. It accepts the WPF window object (or the WinForms window handle), the Glue42 app object, the app name and an app options builder as arguments:
 
 ```csharp
 var placement = new GlueWindowScreenPlacement();
 
 glue.GlueWindows.RegisterAppWindow(myWindow, myWindow, myWindowAppName,
-        // Specify application options.
+        // Specify app options.
         builder => builder
         .WithPlacement(placement)
         .WithType(GlueWindowType.Tab));
 ```
 
-The `RegisterWindow()` method accepts the WPF window object (or the WinForms window handle) and `RegisterInstance()` accepts the application name, the Glue42 Window ID, the Glue42 application object and the synchronization context as arguments:
+The `RegisterWindow()` method accepts the WPF window object (or the WinForms window handle) and `RegisterInstance()` accepts the app name, the Glue42 Window ID, the Glue42 app object and the synchronization context as arguments:
 
 ```csharp
 // Register the window as a Glue42 Window.
 glue.GlueWindows.RegisterWindow(myWindow).ContinueWith(r =>
     {
-        // Register the Glue42 application instance.
+        // Register the Glue42 app instance.
         glue.AppManager.RegisterInstance(myWindowAppName, r.Result.Id, myWindow, SynchronizationContext.Current);
     });
 ```
 
 ### Saving and Restoring State
 
-To save the state of applications registered at runtime, use the `SetSaveRestoreStateEndpoint()` method of the `InitializeOptions` class to provide application state when initializing the Glue42 library in your main window:
+To save the state of apps registered at runtime, use the `SetSaveRestoreStateEndpoint()` method of the `InitializeOptions` class to provide app state when initializing the Glue42 library in your main window:
 
 ```csharp
 var initializeOptions = new InitializeOptions();
@@ -246,9 +246,9 @@ Selector.SelectedIndex = appState?.SelectedIndex ?? -1;
 
 ## Bootstrapped Apps
 
-A common use-case is to have a bootstrapping application that handles user login and launches your apps. The bootstrapper can be any application and in the general case it isn't Glue42 enabled, but the applications it launches are. This scenario can be handled both through [app configuration](#bootstrapped_apps-app_configuration) or [runtime configuration](#bootstrapped_apps-runtime_configuration) when initializing Glue42 in the respective apps.
+A common use-case is to have a bootstrapping app that handles user login and launches your apps. The bootstrapper can be any app and in the general case it isn't Glue42 enabled, but the apps it launches are. This scenario can be handled both through [app configuration](#bootstrapped_apps-app_configuration) or [runtime configuration](#bootstrapped_apps-runtime_configuration) when initializing Glue42 in the respective apps.
 
-*Note that defining application configurations for Glue42 enabled .NET apps isn't mandatory. Glue42 enabled .NET applications announce themselves to [**Glue42 Enterprise**](https://glue42.com/enterprise/) automatically when started. The configuration file is necessary only if you want your app to be launchable from [**Glue42 Enterprise**](https://glue42.com/enterprise/). If you decide to create application configurations for the bootstrapper and the bootstrapped apps, the name of the bootstrapper specified in the `"name"` property of the bootstrapper configuration, in the `"launcherApp"` property of the bootstrapped app configuration, and in the initialization options in the bootstrapped app code must be the same.*
+*Note that defining app configurations for Glue42 enabled .NET apps isn't mandatory. Glue42 enabled .NET apps announce themselves to [**Glue42 Enterprise**](https://glue42.com/enterprise/) automatically when started. The configuration file is necessary only if you want your app to be launchable from [**Glue42 Enterprise**](https://glue42.com/enterprise/). If you decide to create app configurations for the bootstrapper and the bootstrapped apps, the name of the bootstrapper specified in the `"name"` property of the bootstrapper configuration, in the `"launcherApp"` property of the bootstrapped app configuration, and in the initialization options in the bootstrapped app code must be the same.*
 
 You must specify the name of the bootstrapping app and clear the starting context passed by [**Glue42 Enterprise**](https://glue42.com/enterprise/) to it. Clearing the starting context is very important, because [**Glue42 Enterprise**](https://glue42.com/enterprise/) by default will store the command line arguments with which the bootstrapper has been started and will try to pass them again on restore, which in some cases may not be possible or may lead to undesired results.
 
@@ -263,7 +263,7 @@ To specify the name of the bootstrapper in the [app configurations](../../../dev
     "type": "exe",
     "details": {
         "path": "%GDDIR%/PathToBootstrappedApp/",
-        // Must match the application name specified in the
+        // Must match the app name specified in the
         // bootstrapper configuration and in the bootstrapped app code.
         "launcherApp": "MyBootstrapper"
     }
@@ -305,7 +305,7 @@ To clear the starting context for the bootstrapper, set the `"startingContextMod
 
 ### Runtime Configuration
 
-It is mandatory to specify the name of the bootstrapper in the `InitializeOptions` object during the [initialization](../../../getting-started/how-to/glue42-enable-your-app/net/index.html) of Glue42 in your bootstrapped app, irrespective of whether you have created an [application configuration](../../../developers/configuration/application/index.html#app_configuration-exe) for it. This is necessary, because when a Glue42 enabled .NET app announces itself to [**Glue42 Enterprise**](https://glue42.com/enterprise/), it overwrites the configuration settings specified in its configuration file.
+It is mandatory to specify the name of the bootstrapper in the `InitializeOptions` object during the [initialization](../../../getting-started/how-to/glue42-enable-your-app/net/index.html) of Glue42 in your bootstrapped app, irrespective of whether you have created an [app configuration](../../../developers/configuration/application/index.html#app_configuration-exe) for it. This is necessary, because when a Glue42 enabled .NET app announces itself to [**Glue42 Enterprise**](https://glue42.com/enterprise/), it overwrites the configuration settings specified in its configuration file.
 
 The following example demonstrates how to instruct [**Glue42 Enterprise**](https://glue42.com/enterprise/) to:
 

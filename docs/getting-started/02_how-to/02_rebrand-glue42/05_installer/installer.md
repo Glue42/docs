@@ -1,8 +1,8 @@
 ## Extensible Installer
 
-Most tasks for customizing [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be accomplished by using the extensibility features of the Glue42 installer application. Whether it's changing the interface and behavior of the installer, modifying Glue42 components, substituting default with custom configurations, creating shortcuts, or adding custom resources like icons, splash screen, loaders and more, the installer application offers ways for automating almost all customization processes.
+Most tasks for customizing [**Glue42 Enterprise**](https://glue42.com/enterprise/) can be accomplished by using the extensibility features of the Glue42 installer app. Whether it's changing the interface and behavior of the installer, modifying Glue42 components, substituting default with custom configurations, creating shortcuts, or adding custom resources like icons, splash screen, loaders and more, the installer app offers ways for automating almost all customization processes.
 
-The basic premise of the installer extensibility mode is to repackage the stock Glue42 installer application into a new executable file together with your custom configurations and resources. To accomplish this, you must use the provided [basic setup for creating a repackaged installer](https://enterprise.glue42.com/upload/docs/sfx-installer-example.zip). Some customizations can be achieved by modifying the [extensibility configuration file](#extensible_installer-extensibility_configuration_file) for the repackaged installer, while others require you to directly modify or replace resources in the provided basic setup.
+The basic premise of the installer extensibility mode is to repackage the stock Glue42 installer app into a new executable file together with your custom configurations and resources. To accomplish this, you must use the provided [basic setup for creating a repackaged installer](https://enterprise.glue42.com/upload/docs/sfx-installer-example.zip). Some customizations can be achieved by modifying the [extensibility configuration file](#extensible_installer-extensibility_configuration_file) for the repackaged installer, while others require you to directly modify or replace resources in the provided basic setup.
 
 *For descriptions of the files contained in the basic setup and details on how to use it, see the [Extensibility Installer Example](#extensible_installer_example) section.*
 
@@ -89,7 +89,7 @@ Use to uninstall the product. The installer will start directly from the Uninsta
 
 - `"unattended"`
 
-Provides a continuous, uninterrupted installation process from the moment the installer is started until the installation succeeds or fails. The user won't be asked to take any action. The installation process can't be completed while certain applications are running - e.g., [**Glue42 Enterprise**](https://glue42.com/enterprise/), or Excel/Word/Outlook, unless the corresponding [Glue42 Connector](../../../../connectors/general-overview/index.html) has been disabled in the `"artifacts"` extensibility point. By default, an unattended installation will exit with a non-zero exit code when it encounters conflicts, but you can specify options for conflict handling.
+Provides a continuous, uninterrupted installation process from the moment the installer is started until the installation succeeds or fails. The user won't be asked to take any action. The installation process can't be completed while certain apps are running - e.g., [**Glue42 Enterprise**](https://glue42.com/enterprise/), or Excel/Word/Outlook, unless the corresponding [Glue42 Connector](../../../../connectors/general-overview/index.html) has been disabled in the `"artifacts"` extensibility point. By default, an unattended installation will exit with a non-zero exit code when it encounters conflicts, but you can specify options for conflict handling.
 
 | Argument | Type | Description |
 |----------|------|-------------|
@@ -829,7 +829,7 @@ To try resuming the installation a specified number of times at a specified inte
 }
 ```
 
-*Note that the installation process can't be completed while certain applications are running - e.g., [**Glue42 Enterprise**](https://glue42.com/enterprise/), or Excel/Word/Outlook, unless the corresponding [Glue42 Connector](../../../../connectors/general-overview/index.html) has been disabled in the `"artifacts"` extensibility point.*
+*Note that the installation process can't be completed while certain apps are running - e.g., [**Glue42 Enterprise**](https://glue42.com/enterprise/), or Excel/Word/Outlook, unless the corresponding [Glue42 Connector](../../../../connectors/general-overview/index.html) has been disabled in the `"artifacts"` extensibility point.*
 
 *See also [Extensibility Point: "startup"](#extensible_installer-extensibility_points__items-extensibility_point_startup).*
 
@@ -1186,7 +1186,7 @@ The basic setup for creating a custom installer contains the following files and
 | `info.rc` | Describes the Windows file properties applied to the repackaged installer. Change the values of the properties inside to your preference. |
 | `installer-icon-composite.ico` | Contains the icon used for the repackaged installer executable. Note that Windows Explorer sometimes fails to show the proper icon after packaging due to icon caching. If the installer icon seems not to be updated, select a different Explorer view (e.g., switch to "Details" or "Tiles") to see the updated icon. |
 | `produce-sfx-installer.bat` | Script for producing a repackaged installer. After your customizations are complete, run this script to repackage the installer. |
-| `ResourceHacker.exe` | Tool for editing resources for Windows applications. |
+| `ResourceHacker.exe` | Tool for editing resources for Windows apps. |
 | `\custom-installer-files` | Contains custom resources that will be included in the repackaged installer (`banner.png`, `icon.ico`, `logo.png`), custom system configuration for [**Glue42 Enterprise**](https://glue42.com/enterprise/) that will replace the default one (`system.json`), a custom script for copying resources after installation (`copy-resources.bat`) and a file for configuring the extensibility features of the installer (`extensibility.json`). Here you must place your [**Glue42 Enterprise**](https://glue42.com/enterprise/) installer and rename it to `glue42-enterprise-installer.exe`. |
 | `extensibility.json` | A JSON file located in `\custom-installer-files` containing configuration instructions for the repackaged installer. Use the different [Extensibility Points & Items](#extensible_installer-extensibility_points__items) to control the extensibility features of the installer. |
 
@@ -1204,9 +1204,9 @@ In this step-by-step guide you will be creating a custom [**Glue42 Enterprise**]
 
 - creating a custom shortcut;
 
-- installing [**Glue42 Enterprise**](https://glue42.com/enterprise/) with a custom system configuration in order to setup [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve [application configurations from a REST service](../functionality/index.html#remote_apps__layouts-rest_stores-apps);
+- installing [**Glue42 Enterprise**](https://glue42.com/enterprise/) with a custom system configuration in order to setup [**Glue42 Enterprise**](https://glue42.com/enterprise/) to retrieve [app configurations from a REST service](../functionality/index.html#remote_apps__layouts-rest_stores-apps);
 
-*You must have a running REST service from which to retrieve application configurations. For testing purposes, you can use the [Node.js REST Configuration Example](https://github.com/Tick42/rest-config-example-node-js).*
+*You must have a running REST service from which to retrieve app configurations. For testing purposes, you can use the [Node.js REST Configuration Example](https://github.com/Tick42/rest-config-example-node-js).*
 
 - running a custom script that will copy a resource to a [**Glue42 Enterprise**](https://glue42.com/enterprise/) folder after installation;
 
@@ -1368,7 +1368,7 @@ The shortcut will use the provided custom icon file for its icon. This icon file
 
 8. **Custom system configuration file for Glue42 Enterprise**
 
-Use the default `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in the `%LocalAppData%\Tick42\GlueDesktop\config` folder as a basis for your custom system configuration. Get the `system.json` from a previous installation of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and modify the `"appStores"` top-level array to configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to [retrieve application configurations from a REST service](../functionality/index.html#remote_apps__layouts-rest_stores-apps):
+Use the default `system.json` file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) located in the `%LocalAppData%\Tick42\GlueDesktop\config` folder as a basis for your custom system configuration. Get the `system.json` from a previous installation of [**Glue42 Enterprise**](https://glue42.com/enterprise/) and modify the `"appStores"` top-level array to configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to [retrieve app configurations from a REST service](../functionality/index.html#remote_apps__layouts-rest_stores-apps):
 
 ```json
 {

@@ -1,14 +1,14 @@
 ## Overview
 
-There are two general approaches for testing Glue42 enabled applications depending on whether you are an individual app owner or a team within your organization responsible for the Glue42 integration flow.
+There are two general approaches for testing Glue42 enabled apps depending on whether you are an individual app owner or a team within your organization responsible for the Glue42 integration flow.
 
-Application owners can test their Glue42 apps by mocking the Glue42 methods used in them with the help of any familiar testing framework.
+App owners can test their Glue42 apps by mocking the Glue42 methods used in them with the help of any familiar testing framework.
 
 For end-to-end automation tests, it is recommended to use the [Playwright](https://playwright.dev/) testing tool. The next section details a sample test case using Playwright.
 
 ## Testing with Playwright
 
-[Playwright](https://playwright.dev/) allows you to create end-to-end automation tests for [**Glue42 Enterprise**](https://glue42.com/enterprise/) and your Glue42 enabled applications.
+[Playwright](https://playwright.dev/) allows you to create end-to-end automation tests for [**Glue42 Enterprise**](https://glue42.com/enterprise/) and your Glue42 enabled apps.
 
 *For more in-depth information on using Playwright, see the [Playwright official documentation](https://playwright.dev/docs/intro).*
 
@@ -16,7 +16,7 @@ For end-to-end automation tests, it is recommended to use the [Playwright](https
 
 #### Testing Example
 
-The following test example demonstrates how to start [**Glue42 Enterprise**](https://glue42.com/enterprise/) and wait for it to load, then open the Applications view, search for the Glue42 Dev Tools application, start it and wait for it to load.
+The following test example demonstrates how to start [**Glue42 Enterprise**](https://glue42.com/enterprise/) and wait for it to load, then open the Applications view, search for the Glue42 Dev Tools app, start it and wait for it to load.
 
 1. Import the required test objects and define the [**Glue42 Enterprise**](https://glue42.com/enterprise/) working directory and the path to the Glue42 executable file:
 
@@ -66,14 +66,14 @@ const waitForAppToLoad = (appName, electronApp) => {
 // Timeout for the test.
 test.setTimeout(60000);
 
-test("Launch Dev Tools from the Glue42 Application Manager and wait for it to appear.", async () => {
+test("Launch Dev Tools from the Glue42 Toolbar and wait for it to appear.", async () => {
     // Step 1: Start Glue42 Enterprise.
     const electronApp = await electron.launch({
         executablePath: gdExePath,
         cwd: gdDir
     });
 
-    // Step 2: Wait for the Glue42 Application Manager to appear.
+    // Step 2: Wait for the Glue42 Toolbar to appear.
     const { page } = await waitForAppToLoad("glue42-application-manager", electronApp);
 
     // Step 3: Click on the element with an "apps" ID to expand the Applications view.

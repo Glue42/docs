@@ -2,7 +2,7 @@
 
 *See the [Delphi 10](https://github.com/Glue42/native-examples/tree/main/glue-com/GlueDelphi) and [Delphi 7](https://github.com/Glue42/native-examples/tree/main/glue-com/GlueDelphi7) examples on GitHub which demonstrate various [**Glue42 Enterprise**](https://glue42.com/enterprise/) features.*
 
-The Glue42 COM library allows you to Glue42 enable your Delphi applications, integrate them with other Glue42 enabled applications in [**Glue42 Enterprise**](https://glue42.com/enterprise/) and use Glue42 functionality in them. To access Glue42 functionalities in your Delphi application, you have to reference and initialize the Glue42 COM library. Currently, the Glue42 COM library supports Delphi 7 and Delphi 10.
+The Glue42 COM library allows you to Glue42 enable your Delphi apps, integrate them with other Glue42 enabled apps in [**Glue42 Enterprise**](https://glue42.com/enterprise/) and use Glue42 functionality in them. To access Glue42 functionalities in your Delphi app, you have to reference and initialize the Glue42 COM library. Currently, the Glue42 COM library supports Delphi 7 and Delphi 10.
 
 ## Using the Glue42 COM Library
 
@@ -20,7 +20,7 @@ To use any [**Glue42 Enterprise**](https://glue42.com/enterprise/) functionality
 
 ### Initialization
 
-Initialize the Glue42 interface in the application main form by following these steps:
+Initialize the Glue42 interface in the app main form by following these steps:
 
 1. Import the `GlueCOM_TLB` unit:
 
@@ -92,7 +92,7 @@ end;
 
 ## App Configuration
 
-To add your Delphi application to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with application configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
+To add your Delphi app to the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html), you must create a JSON file with app configuration. Place this file in the `%LocalAppData%\Tick42\UserData\<ENV-REG>\apps` folder, where `<ENV-REG>` must be replaced with the environment and region of your [**Glue42 Enterprise**](https://glue42.com/enterprise/) copy (e.g., `T42-DEMO`).
 
 The following is an example configuration for a Delphi app:
 
@@ -113,13 +113,13 @@ The following is an example configuration for a Delphi app:
 | Property | Description |
 |----------|-------------|
 | `"type"` | Must be `"exe"`. |
-| `"path"` | The path to the application - relative or absolute. You can also use the `%GDDIR%` environment variable, which points to the [Glue42 Enterprise](https://glue42.com/enterprise/) installation folder. |
+| `"path"` | The path to the app - relative or absolute. You can also use the `%GDDIR%` environment variable, which points to the [Glue42 Enterprise](https://glue42.com/enterprise/) installation folder. |
 | `"command"` | The actual command to execute (the EXE file name). |
 | `"parameters"` | Specifies command line arguments. |
 
 ## Glue42 Delphi Concepts
 
-Once the Glue42 COM library has been initialized, your application has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
+Once the Glue42 COM library has been initialized, your app has access to all Glue42 functionalities. For more detailed information on the different Glue42 concepts and APIs, see:
 
 - [App Management](../../../../glue42-concepts/application-management/delphi/index.html)
 - [Shared Contexts](../../../../glue42-concepts/data-sharing-between-apps/shared-contexts/delphi/index.html)
@@ -407,7 +407,7 @@ TStreamDataLambda = procedure(Method: GlueMethod;
 
 This reference describes the components in the Glue42 COM library relevant to Delphi.
 
-*Note that the library also contains components that aren't intended to be directly used by Delphi applications.*
+*Note that the library also contains components that aren't intended to be directly used by Delphi apps.*
 
 ## Enums
 
@@ -486,7 +486,7 @@ This reference describes the components in the Glue42 COM library relevant to De
 
 ### GlueWindowEventType
 
-*Note that some event types aren't applicable to Delphi applications.*
+*Note that some event types aren't applicable to Delphi apps.*
 
 | Name | Value | Hex |
 |------|-------|-----|
@@ -524,15 +524,15 @@ This reference describes the components in the Glue42 COM library relevant to De
 
 ### GlueAppDefinition
 
-Definition of a child application to be registered in Glue42.
+Definition of a child app to be registered in Glue42.
 
 **Properties**
 
 | Name | Type | Description |
 |------|------|-------------|
-| `Category` | `WideString` | Application category. |
-| `Name` | `WideString` | Application name with which the app will be registered in Glue42. |
-| `title` | `WideString` | Application title as it will appear in the UI of the Glue42 Application Manager. |
+| `Category` | `WideString` | App category. |
+| `Name` | `WideString` | App name with which the app will be registered in Glue42. |
+| `title` | `WideString` | App title as it will appear in the [Glue42 Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html). |
 
 ### GlueConfiguration
 
@@ -548,9 +548,9 @@ Used for overriding the default Glue42 configuration.
 |------|------|-------------|
 | `LoggingConfigurationPath` | `WideString` | Logging configuration path. |
 | `GWUri` | `WideString` | Glue42 Gateway URI. |
-| `AppDefinitionStartup` | `WideString` | Application startup file. |
-| `AppDefinitionStartupArgs` | `WideString` | Application startup arguments. |
-| `AppDefinitionTitle` | `WideString` | Application title. |
+| `AppDefinitionStartup` | `WideString` | App startup file. |
+| `AppDefinitionStartupArgs` | `WideString` | App startup arguments. |
+| `AppDefinitionTitle` | `WideString` | App title. |
 
 ### GlueContext
 
@@ -583,12 +583,12 @@ Describes the identity of a Glue42 instance, i.e. how the instance is seen by ot
 | Name | Type | Description |
 |------|------|-------------|
 | `InstanceId` | `WideString` | Identifier of the Glue42 instance. |
-| `Version` | `WideString` | Version reported by the application instance. |
+| `Version` | `WideString` | Version reported by the app instance. |
 | `MachineName` | `WideString` | Machine (network) name. |
 | `ProcessId` | `Integer` | Process ID (PID). |
 | `ProcessStartTime` | `Int64` | Glue42 time when the process was started. |
 | `UserName` | `WideString` | User name associated with the process. |
-| `ApplicationName` | `WideString` | Glue42 application name. |
+| `ApplicationName` | `WideString` | Glue42 app name. |
 | `Environment` | `WideString` | Glue42 environment. |
 | `Region` | `WideString` | Glue42 region. |
 | `ServiceName` | `WideString` | Glue42 service name. |
@@ -617,7 +617,7 @@ Describes an Interop method.
 | `Name` | `WideString` | Method name. |
 | `Input` | `WideString` | *Optional.* String representation of the method input arguments signature. |
 | `Output` | `WideString` | *Optional.* String representation of the method return value signature. |
-| `Instance` | [`GlueInstance`](#types-glueinstance) | Information about the Glue42 application instance that has registered the Interop method. |
+| `Instance` | [`GlueInstance`](#types-glueinstance) | Information about the Glue42 app instance that has registered the Interop method. |
 | `RegistrationCookie` | `WideString` | Method registration cookie. |
 | `Flags` | [`GlueMethodFlags`](#enums-gluemethodflags) | Interop method flags. |
 | `ObjectTypes` | `PSafeArray` | *Optional.* Array of `WideString` values specifying the types of objects that the method works with (e.g., `Instrument`, `Client`, etc.). |
@@ -671,7 +671,7 @@ An instance of this is passed to the implementation of the [`CreateApp`](#interf
 
 #### AnnounceAppCreationFailure
 
-Informs Glue42 that a new child application instance couldn't be created.
+Informs Glue42 that a new child app instance couldn't be created.
 
 *Parameters:*
 
@@ -683,20 +683,20 @@ Informs Glue42 that a new child application instance couldn't be created.
 
 #### RegisterAppInstance
 
-Registers a new child application instance in Glue42.
+Registers a new child app instance in Glue42.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `hwnd` | `Integer` | Handle to the window representing the Glue42 application instance. |
+| `hwnd` | `Integer` | Handle to the window representing the Glue42 app instance. |
 | `glueApp` | [`IGlueApp`](#interfaces-iglueapp) | An object of a class implementing the `IGlueApp` interface. |
 
 *Return value:* [`IGlueWindow`](#interfaces-igluewindow)
 
 ### IAppFactory
 
-Implementing this interface allows an object to act as a child application factory.
+Implementing this interface allows an object to act as a child app factory.
 
 *See also:*
 
@@ -706,15 +706,15 @@ Implementing this interface allows an object to act as a child application facto
 
 #### CreateApp
 
-Creates a new instance of a child application.
+Creates a new instance of a child app.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `appDefName` | `WideString` | Name with which the child application has been registered. |
-| `state` | [`GlueValue`](#types-gluevalue) | Saved application state. |
-| `announcer` | [`IAppAnnouncer`](#interfaces-iappannouncer) | Object used for announcing to Glue42 successful or failed application creation. |
+| `appDefName` | `WideString` | Name with which the child app has been registered. |
+| `state` | [`GlueValue`](#types-gluevalue) | Saved app state. |
+| `announcer` | [`IAppAnnouncer`](#interfaces-iappannouncer) | Object used for announcing to Glue42 successful or failed app creation. |
 
 *Return value:* `HResult`
 
@@ -722,13 +722,13 @@ Creates a new instance of a child application.
 
 ### IAppFactoryRegistry
 
-This interface is used for registering application factories and application instances.
+This interface is used for registering app factories and app instances.
 
 **Methods**
 
 #### RegisterAppFactory
 
-Registers an app factory as a creator of a child application with the provided definition.
+Registers an app factory as a creator of a child app with the provided definition.
 
 *Parameters:*
 
@@ -741,13 +741,13 @@ Registers an app factory as a creator of a child application with the provided d
 
 #### RegisterAppInstance
 
-Register an application instance in Glue42.
+Register an app instance in Glue42.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `appDefName` | `WideString` | Application name. |
+| `appDefName` | `WideString` | App name. |
 | `glueWindow` | [IGlueWindow](#interfaces-igluewindow) | A registered Glue42 Window. |
 | `glueApp` | [IGlueApp](#interfaces-iglueapp) | An object of a class implementing the `IGlueApp` interface. |
 
@@ -837,7 +837,7 @@ Gets the current Glue42 instance.
 
 *Return value:* [`GlueInstance`](#types-glueinstance)
 
-Contains information about the current Glue42 application instance.
+Contains information about the current Glue42 app instance.
 
 #### GetKnownContexts
 
@@ -851,13 +851,13 @@ An array of [`GlueContext`](#types-gluecontext) values. The returned value must 
 
 #### GetMethodNamesForTarget
 
-Gets the names of the Interop methods exposed by an application.
+Gets the names of the Interop methods exposed by an app.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `targetRegex` | `WideString` | *Optional.* Regular expression for filtering by application name. An empty string will match all application names. |
+| `targetRegex` | `WideString` | *Optional.* Regular expression for filtering by app name. An empty string will match all app names. |
 
 *Return value:* `PSafeArray`
 
@@ -865,7 +865,7 @@ An array of `WideString` values with the method names. The returned value must b
 
 #### GetMethodsForInstance
 
-Gets the Interop methods exposed by matching one or more application instances.
+Gets the Interop methods exposed by matching one or more app instances.
 
 *Parameters:*
 
@@ -880,13 +880,13 @@ An array of [`GlueMethod`](#types-gluemethod) objects. The returned value must b
 
 #### GetStartingContext
 
-Gets the starting context for the application.
+Gets the starting context for the app.
 
 *Parameters:* None
 
 *Return value:* [`GlueValue`](#types-gluevalue)
 
-A [`GlueValue`](#types-gluevalue) containing the starting context for the application.
+A [`GlueValue`](#types-gluevalue) containing the starting context for the app.
 
 #### GetStartupWindowSettings
 
@@ -900,13 +900,13 @@ An object of [`IGlueWindowSettings`](#interfaces-igluewindowsettings) containing
 
 #### GetTargets
 
-Gets the names of all active applications (targets) currently offering Interop methods.
+Gets the names of all active apps (targets) currently offering Interop methods.
 
 *Parameters:* None
 
 *Return value:* `PSafeArray`
 
-An array of `WideString` values with the application names. The returned value must be destroyed with `SafeArrayDestroy` when no longer needed.
+An array of `WideString` values with the app names. The returned value must be destroyed with `SafeArrayDestroy` when no longer needed.
 
 #### InvokeMethod
 
@@ -954,7 +954,7 @@ Invokes an Interop method synchronously.
 | `methodName` | `WideString` | Name of the method to invoke. |
 | `argsAsJson` | `WideString` | Arguments in JSON format to pass to the method. |
 | `resultFieldPath` | `WideString` | *Optional.* Field path. If provided, the return value will be the value of the specified field within the entire result structure. |
-| `targetRegex` | `WideString` | *Optional.* Regular expression for filtering targets by application name. If provided, the method will be invoked on all targets with application name matching the regular expression. If not provided, the method will be invoked on a single target. |
+| `targetRegex` | `WideString` | *Optional.* Regular expression for filtering targets by app name. If provided, the method will be invoked on all targets with app name matching the regular expression. If not provided, the method will be invoked on a single target. |
 
 *Return value:* `WideString`
 
@@ -962,7 +962,7 @@ The string represents the return values from the method invocation in JSON forma
 
 #### IsLaunchedByGD
 
-Determines whether the application was started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) or as a standalone executable.
+Determines whether the app was started by [**Glue42 Enterprise**](https://glue42.com/enterprise/) or as a standalone executable.
 
 *Parameters:* None
 
@@ -1149,25 +1149,25 @@ Overrides the Glue42 logging configuration path. This method must be invoked bef
 
 #### Start
 
-Connects to Glue42 and announces the application instance. The connection to Glue42 is necessary for using any Glue42 functionality.
+Connects to Glue42 and announces the app instance. The connection to Glue42 is necessary for using any Glue42 functionality.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `Instance` | [`GlueInstance`](#types-glueinstance) | Describes the identity to use when announcing the Glue42 application instance. |
+| `Instance` | [`GlueInstance`](#types-glueinstance) | Describes the identity to use when announcing the Glue42 app instance. |
 
 *Return value:* None
 
 #### StartWithAppName
 
-Connects to Glue42 and announces the application instance. The connection to Glue42 is necessary for using any Glue42 functionality.
+Connects to Glue42 and announces the app instance. The connection to Glue42 is necessary for using any Glue42 functionality.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `ApplicationName` | `WideString` | The application name to use when announcing the Glue42 application instance. |
+| `ApplicationName` | `WideString` | The app name to use when announcing the Glue42 app instance. |
 
 *Return value:* None
 
@@ -1208,13 +1208,13 @@ Subscribes to a Glue42 shared context.
 
 #### SubscribeStream
 
-Subscribes to an Interop stream published by a Glue42 application instance and sets the related stream event handler.
+Subscribes to an Interop stream published by a Glue42 app instance and sets the related stream event handler.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `stream` | [`GlueMethod`](#types-gluemethod) | Description of the Interop streaming method to which to subscribe. The `Name` and `Instance.InstanceId` properties must be initialized respectively with the name of the Interop stream and the instance ID of the Glue42 application publishing the stream. |
+| `stream` | [`GlueMethod`](#types-gluemethod) | Description of the Interop streaming method to which to subscribe. The `Name` and `Instance.InstanceId` properties must be initialized respectively with the name of the Interop stream and the instance ID of the Glue42 app publishing the stream. |
 | `subscriptionRequestArgs` | `PSafeArray` | An array of [`GlueContextValue`](#types-gluecontextvalue) values representing the arguments to pass with the subscription request. |
 | `streamHandler` | [`IGlueStreamHandler`](#interfaces-igluestreamhandler) | An object of a class implementing the `IGlueStreamHandler` interface which will receive the stream event notifications. |
 | `subscriptionTimeoutMsecs` | `Int64` | The subscription request will time out after the specified number of milliseconds. If the provided value is less than or equal to zero, then the default timeout value will be used. |
@@ -1223,7 +1223,7 @@ Subscribes to an Interop stream published by a Glue42 application instance and s
 
 #### SubscribeStreams
 
-Subscribes to an Interop stream published by one or more Glue42 applications and sets the related stream event handler.
+Subscribes to an Interop stream published by one or more Glue42 apps and sets the related stream event handler.
 
 *Parameters:*
 
@@ -1241,7 +1241,7 @@ Subscribes to an Interop stream published by one or more Glue42 applications and
 
 #### SubscribeStreamsFilterTargets
 
-Subscribes to an Interop stream published by one or more Glue42 applications and sets the related stream event handler. Subscription targets can be filtered by name.
+Subscribes to an Interop stream published by one or more Glue42 apps and sets the related stream event handler. Subscription targets can be filtered by name.
 
 *Parameters:*
 
@@ -1249,7 +1249,7 @@ Subscribes to an Interop stream published by one or more Glue42 applications and
 |------|------|-------------|
 | `streamName` | `WideString` | Name of the Interop stream to subscribe to. |
 | `subscriptionRequestArgs` | `PSafeArray` | An array of [`GlueContextValue`](#types-gluecontextvalue) values representing the arguments to pass with the subscription request. |
-| `targetRegex` | `WideString` | *Optional.* Regular expression for filtering targets by application name. An empty string will match all application names. |
+| `targetRegex` | `WideString` | *Optional.* Regular expression for filtering targets by app name. An empty string will match all app names. |
 | `all` | `WordBool` | Indicates whether the subscription request should be sent to all matching targets or only to the first one. |
 | `streamHandler` | [`IGlueStreamHandler`](#interfaces-igluestreamhandler) | An object of a class implementing the `IGlueStreamHandler` interface which will receive the stream event notifications. |
 | `subscriptionTimeoutMsecs` | `Int64` | The subscription request will time out after the specified number of milliseconds. If the provided value is less than or equal to zero, then the default timeout value will be used. |
@@ -1310,7 +1310,7 @@ The following methods of `IGlue42` exposed in the COM library aren't intended to
 
 ### IGlueApp
 
-Implementing this interface allows an object to be registered as a Glue42 application instance.
+Implementing this interface allows an object to be registered as a Glue42 app instance.
 
 *See also:*
 
@@ -1321,14 +1321,14 @@ Implementing this interface allows an object to be registered as a Glue42 applic
 
 #### Initialize
 
-Initializes a child application.
+Initializes a child app.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `state` | [`GlueValue`](#types-gluevalue) | A previously saved application state. |
-| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the application. |
+| `state` | [`GlueValue`](#types-gluevalue) | A previously saved app state. |
+| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the app. |
 
 *Return value:* `HResult`
 
@@ -1336,13 +1336,13 @@ Initializes a child application.
 
 #### SaveState
 
-Saves the application state.
+Saves the app state.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `receiver` | [`IGlueValueReceiver`](#interfaces-igluevaluereceiver) | An instance of [`IGlueValueReceiver`](#interfaces-igluevaluereceiver) which can be used to set the the application state to be saved. |
+| `receiver` | [`IGlueValueReceiver`](#interfaces-igluevaluereceiver) | An instance of [`IGlueValueReceiver`](#interfaces-igluevaluereceiver) which can be used to set the the app state to be saved. |
 
 *Return value:* `HResult`
 
@@ -1350,7 +1350,7 @@ Saves the application state.
 
 #### Shutdown
 
-Shuts down the application when Glue42 shuts down.
+Shuts down the app when Glue42 shuts down.
 
 *Parameters:* None
 
@@ -1905,14 +1905,14 @@ Handles the event when a new shared context is created.
 
 #### HandleInstanceStatus
 
-Handles the event when a Glue42 application instance appears or disappears.
+Handles the event when a Glue42 app instance appears or disappears.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `Instance` | [`GlueInstance`](#types-glueinstance) | Information about the Glue42 application instance associated with the event. |
-| `active` | `WordBool` | Indicates whether the application instance is now active. |
+| `Instance` | [`GlueInstance`](#types-glueinstance) | Information about the Glue42 app instance associated with the event. |
+| `active` | `WordBool` | Indicates whether the app instance is now active. |
 
 *Return value:* `HResult`
 
@@ -1920,7 +1920,7 @@ Handles the event when a Glue42 application instance appears or disappears.
 
 #### HandleMethodStatus
 
-Handles the event when an Interop method is registered or unregistered by an application instance.
+Handles the event when an Interop method is registered or unregistered by an app instance.
 
 *Parameters:*
 
@@ -1994,9 +1994,9 @@ Handles the invocation of a registered Interop method.
 | Name | Type | Description |
 |------|------|-------------|
 | `Method` | [`GlueMethod`](#types-gluemethod) | Information about the Interop method that is invoked. |
-| `caller` | [`GlueInstance`](#types-glueinstance) | Information about the Glue42 application instance that has invoked the method. |
+| `caller` | [`GlueInstance`](#types-glueinstance) | Information about the Glue42 app instance that has invoked the method. |
 | `requestValues` | `PSafeArray` | An array of [`GlueContextValue`](#types-gluecontextvalue) values representing the method invocation arguments. |
-| `resultCallback` | [`IGlueServerMethodResultCallback`](#interfaces-iglueservermethodresultcallback) | An object of a class implementing the `IGlueServerMethodResultCallback` interface. Can be used to send the result of the method invocation to the caller application instance. |
+| `resultCallback` | [`IGlueServerMethodResultCallback`](#interfaces-iglueservermethodresultcallback) | An object of a class implementing the `IGlueServerMethodResultCallback` interface. Can be used to send the result of the method invocation to the caller app instance. |
 
 *Return value:* `HResult`
 
@@ -2010,7 +2010,7 @@ An instance of this is passed to the implementation of the [`HandleInvocationReq
 
 #### SendResult
 
-Sends the result from invoking an Interop method to the caller application instance.
+Sends the result from invoking an Interop method to the caller app instance.
 
 *Parameters:*
 
@@ -2049,7 +2049,7 @@ Rejects an Interop stream subscription request.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `Result` | [`GlueResult`](#types-glueresult) | Rejection information to be sent back to the application requesting the subscription. |
+| `Result` | [`GlueResult`](#types-glueresult) | Rejection information to be sent back to the app requesting the subscription. |
 
 *Return value:* None
 
@@ -2260,13 +2260,13 @@ Disconnects the subscriber from the Interop stream.
 
 #### GetSubscriberInstance
 
-Gets the Glue42 application instance subscribed to the stream.
+Gets the Glue42 app instance subscribed to the stream.
 
 *Parameters:* None
 
 *Return value:* [`GlueInstance`](#types-glueinstance)
 
-Description of the Glue42 application instance subscribed to the stream.
+Description of the Glue42 app instance subscribed to the stream.
 
 #### Push
 
@@ -2312,7 +2312,7 @@ Handles the event when a new subscriber to the stream has been accepted.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `subscriberInstance` | [`GlueInstance`](#types-glueinstance) | Description of the Glue42 application instance which has subscribed to the stream. |
+| `subscriberInstance` | [`GlueInstance`](#types-glueinstance) | Description of the Glue42 app instance which has subscribed to the stream. |
 | `glueStreamSubscriber` | [`IGlueStreamSubscriber`](#interfaces-igluestreamsubscriber) | An instance of `IGlueStreamSubscriber` representing the new subscriber. |
 | `requestValues` | `PSafeArray` | An array of [`GlueContextValue`](#types-gluecontextvalue) values representing the arguments passed with the subscription request. |
 
@@ -2328,7 +2328,7 @@ Handles the event when a subscriber has unsubscribed from the stream. This also 
 
 | Name | Type | Description |
 |------|------|-------------|
-| `subscriberInstance` | [`GlueInstance`](#types-glueinstance) | Description of the Glue42 application instance which is no longer subscribed to the stream. |
+| `subscriberInstance` | [`GlueInstance`](#types-glueinstance) | Description of the Glue42 app instance which is no longer subscribed to the stream. |
 | `glueStreamSubscriber` | [`IGlueStreamSubscriber`](#interfaces-igluestreamsubscriber) | An instance of `IGlueStreamSubscriber` representing the lost subscriber. |
 
 *Return value:* `HResult`
@@ -2337,14 +2337,14 @@ Handles the event when a subscriber has unsubscribed from the stream. This also 
 
 #### HandleSubscriptionRequest
 
-Handles the event when a Glue42 application instance requests to subscribe to the stream.
+Handles the event when a Glue42 app instance requests to subscribe to the stream.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
 | `stream` | [`GlueMethod`](#types-gluemethod) | Description of the Interop stream for which the subscription is requested. |
-| `caller` | [`GlueInstance`](#types-glueinstance) | Description of the Glue42 application instance requesting to subscribe to the stream. |
+| `caller` | [`GlueInstance`](#types-glueinstance) | Description of the Glue42 app instance requesting to subscribe to the stream. |
 | `requestValues` | `PSafeArray` | An array of [`GlueContextValue`](#types-gluecontextvalue) values representing the arguments passed with the subscription request. |
 | `callback` | [`IGlueServerSubscriptionCallback`](#interfaces-iglueserversubscriptioncallback) | An instance of `IGlueServerSubscriptionCallback` which can be used to accept or reject the subscription request. |
 
@@ -2360,13 +2360,13 @@ An instance of this is passed to the implementation of the [`SaveState`](#interf
 
 #### SendGlueValue
 
-Sends a [`GlueValue`](#types-gluevalue) to be set as an application state.
+Sends a [`GlueValue`](#types-gluevalue) to be set as an app state.
 
 *Parameters:*
 
 | Name | Type | Description |
 |------|------|-------------|
-| `glueValue` | [`GlueValue`](#types-gluevalue) | Value to set as an application state. |
+| `glueValue` | [`GlueValue`](#types-gluevalue) | Value to set as an app state. |
 
 *Return value:* None
 
@@ -2505,7 +2505,7 @@ Handles the event when the user changes the Channel via the Channel Selector box
 
 | Name | Type | Description |
 |------|------|-------------|
-| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the application. |
+| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the app. |
 | `channel` | [`IGlueContext`](#interfaces-igluecontext) | The context object of the newly selected Channel. |
 | `prevChannel` | [`GlueContext`](#types-gluecontext) | Information about the previously selected Channel. |
 
@@ -2521,7 +2521,7 @@ Handles the event when the data in the currently selected Channel has changed or
 
 | Name | Type | Description |
 |------|------|-------------|
-| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the application. |
+| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the app. |
 | `channelUpdate` | [`IGlueContextUpdate`](#interfaces-igluecontextupdate) | This object can be used to obtain information about the update of the Channel context. |
 
 *Return value:* `HResult`
@@ -2536,7 +2536,7 @@ Handles additional window events.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the application. |
+| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the app. |
 | `eventType` | [`GlueWindowEventType`](#enums-gluewindoweventtype) | The type of the window event. |
 | `eventData` | [`GlueValue`](#types-gluevalue) | Additional information about the window event. |
 
@@ -2552,7 +2552,7 @@ Handles the event when the Glue42 Window is destroyed.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the application. |
+| `glueWindow` | [`IGlueWindow`](#interfaces-igluewindow) | The registered Glue42 Window for the app. |
 
 *Return value:* `HResult`
 
@@ -2575,7 +2575,7 @@ Contains properties representing the settings to use during a Glue42 Window regi
 | `Channel` | `WideString` | `''` | Specifies the Channel to be initially selected. No Channel is selected by default. |
 | `ChannelSupport` | `WordBool` | `False` | Specifies whether the window will have Channel support enabled. |
 | `FrameColor` | `WideString` | `''` | The color of the window frame. (Currently unusable.) |
-| `Icon` | `WideString` | `''` | Icon for the application. (Currently unusable.) |
+| `Icon` | `WideString` | `''` | Icon for the app. (Currently unusable.) |
 | `IsSticky` | `WordBool` | `True` | Specifies whether the window can be stuck to other Glue42 Windows or window groups. |
 | `MaxHeight` | `Integer` | `0` | Specifies the maximum height (in pixels) to which the window can be resized. A value of `0` means no limit. The height of the window title bar isn't included. |
 | `Maximizable` | `Integer` | `True` | Specifies whether the window will have a "Maximize" button. |
@@ -2585,8 +2585,8 @@ Contains properties representing the settings to use during a Glue42 Window regi
 | `MinWidth` | `Integer` | `0` | Specifies the minimum width (in pixels) to which the window can be resized. |
 | `ShowTaskbarIcon` | `WordBool` | `True` | Specifies whether the window should have an icon in the taskbar. |
 | `StandardButtons` | `WideString` | `''` | Optional list of comma-separated values specifying which command buttons will be available in the window title bar. See [Standard Buttons](#interfaces-igluewindowsettings-standard_buttons) below. |
-| `SynchronousDestroy` | `WordBool` | `False` | Delphi applications must always set this value to `True`. |
-| `Title` | `WideString` | `''` | Specifies the window title. If an empty string is provided, the initial window title will be set to the name of the Glue42 application registering the window. |
+| `SynchronousDestroy` | `WordBool` | `False` | Delphi apps must always set this value to `True`. |
+| `Title` | `WideString` | `''` | Specifies the window title. If an empty string is provided, the initial window title will be set to the name of the Glue42 app registering the window. |
 | `Type` | `WideString` | `'Flat'` | Specifies the window type. The available types are `"Flat"` and  `"Tab"`. |
 
 #### StandardButtons

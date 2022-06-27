@@ -2,7 +2,7 @@
 
 The Bloomberg Groups are visual color-coded named groups (much like [Glue42 Channels](../../../../glue42-concepts/data-sharing-between-apps/channels/overview/index.html)) which the user can select from the UI of Bloomberg Components. They provide data synchronization across Bloomberg Components (e.g., if two components are in the same colored group, when an instrument changes in one component, the other component is updated respectively). The Bloomberg Connector API provides configurable mapping between the Bloomberg Groups and the Glue42 Channels.
 
-Below you can see how the Bloomberg Connector automatically synchronizes the Glue42 enabled demo applications that are on the channel mapped to the respective Bloomberg group of the running Bloomberg components:
+Below you can see how the Bloomberg Connector automatically synchronizes the Glue42 enabled demo apps that are on the channel mapped to the respective Bloomberg group of the running Bloomberg components:
 
 ![BBG-Channels](../../../../images/bloomberg/bbg-channels.gif)
 

@@ -128,11 +128,11 @@ Since this information is compiled into the executable file at build time, the r
 
 - Installer UI
 
-The product name displayed in the installer can be changed only through the extensibility features of the installer application. For more details, see the [Installer](../installer/index.html#installer_ui-product_name) section.
+The product name displayed in the installer can be changed only through the extensibility features of the installer app. For more details, see the [Installer](../installer/index.html#installer_ui-product_name) section.
 
 - Splash Screen and Toolbars
 
-To change the product name in the splash screen or the toolbar applications, you must modify the respective applications. For more details on how to customize the splash screen and the Glue42 Toolbars, see the [Splash Screen](#splash_screen) and [Toolbar](../toolbar/index.html) sections.
+To change the product name in the splash screen or the toolbar apps, you must modify the respective apps. For more details on how to customize the splash screen and the Glue42 Toolbars, see the [Splash Screen](#splash_screen) and [Toolbar](../toolbar/index.html) sections.
 
 ## Version
 
@@ -158,7 +158,7 @@ The built-in [**Glue42 Enterprise**](https://glue42.com/enterprise/) icons are r
 - the taskbar icon for the [Workspaces App](../../../../glue42-concepts/windows/workspaces/overview/index.html#workspaces_concepts-frame);
 - the icon for the [**Glue42 Enterprise**](https://glue42.com/enterprise/) executable file;
 
-*For details on how to change the icons of the automatically created shortcuts when using the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installer application for deployment, see the [Installer > Shortcuts](../installer/index.html#shortcuts) section. For details on how to change the installer screen icons, see the [Installer > Installer UI](../installer/index.html#installer_ui) section.*
+*For details on how to change the icons of the automatically created shortcuts when using the [**Glue42 Enterprise**](https://glue42.com/enterprise/) installer app for deployment, see the [Installer > Shortcuts](../installer/index.html#shortcuts) section. For details on how to change the installer screen icons, see the [Installer > Installer UI](../installer/index.html#installer_ui) section.*
 
 ### Glue42 Enterprise
 
@@ -174,9 +174,9 @@ To change the icon displayed in the system tray, go to `%LocalAppData%\Tick42\Gl
 
 ### App Default
 
-The `logo.ico` file located in `%LocalAppData%\Tick42\GlueDesktop\assets\images` is used as a default taskbar icon for Glue42 enabled applications. To change it, replace the `logo.ico` file with your own custom icon, keeping the name `logo.ico`.
+The `logo.ico` file located in `%LocalAppData%\Tick42\GlueDesktop\assets\images` is used as a default taskbar icon for Glue42 enabled apps. To change it, replace the `logo.ico` file with your own custom icon, keeping the name `logo.ico`.
 
-*Note that the [Floating Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html#floating_toolbar) application also uses this icon by default as its taskbar icon.*
+*Note that the [Floating Toolbar](../../../../glue42-concepts/glue42-toolbar/index.html#floating_toolbar) app also uses this icon by default as its taskbar icon.*
 
 ### Window Groups
 
@@ -234,24 +234,24 @@ The taskbar icon for the [Workspaces App](../../../../glue42-concepts/windows/wo
 
 ### Executable File
 
-The icon for the [**Glue42 Enterprise**](https://glue42.com/enterprise/) executable file (`tick42-glue-desktop.exe`) is compiled into the application at build time and can't be changed without invalidating its Authenticode signature. For this reason, the recommended approach is to send your custom icon to the Glue42 team to include it in your customized build step. If that isn't possible, you can replace the icon using a tool for updating Windows executable resources. Keep in mind that if you update the executable file, you'll need to Authenticode sign it yourself, otherwise it won't have a valid signature, which might trigger warnings from Windows or antivirus software.
+The icon for the [**Glue42 Enterprise**](https://glue42.com/enterprise/) executable file (`tick42-glue-desktop.exe`) is compiled into the app at build time and can't be changed without invalidating its Authenticode signature. For this reason, the recommended approach is to send your custom icon to the Glue42 team to include it in your customized build step. If that isn't possible, you can replace the icon using a tool for updating Windows executable resources. Keep in mind that if you update the executable file, you'll need to Authenticode sign it yourself, otherwise it won't have a valid signature, which might trigger warnings from Windows or antivirus software.
 
 ## Notifications
 
-The default applications for handling Glue42 [Notifications](../../../../glue42-concepts/notifications/overview/index.html) - the Glue42 Notification Panel and notification toasts - can be customized visually or altogether replaced with your own custom apps. It is also possible to filter notifications, enable or disable notification toasts and specify their size and duration through configuration.
+The default apps for handling Glue42 [Notifications](../../../../glue42-concepts/notifications/overview/index.html) - the Glue42 Notification Panel and notification toasts - can be customized visually or altogether replaced with your own custom apps. It is also possible to filter notifications, enable or disable notification toasts and specify their size and duration through configuration.
 
 ### Configuration
 
-The [application configurations](../../../../developers/configuration/application/index.html) for the Notification Panel and the notification toast apps are in the `gns.json` file located in `%LocalAppData%\Tick42\GlueDesktop\config\apps`. The Notification Panel is named `"js-gns-dialog-panel"` and the notification toast - `"js-gns-dialog-toast"`.
+The [app configurations](../../../../developers/configuration/application/index.html) for the Notification Panel and the notification toast apps are in the `gns.json` file located in `%LocalAppData%\Tick42\GlueDesktop\config\apps`. The Notification Panel is named `"js-gns-dialog-panel"` and the notification toast - `"js-gns-dialog-toast"`.
 
 #### Filtering Notifications
 
-To filter notifications by application name, use the `"sourceFilter"` property under the `"customProperties"` top-level key of the Notification Panel configuration. The `"sourceFilter"` object has the following properties:
+To filter notifications by app name, use the `"sourceFilter"` property under the `"customProperties"` top-level key of the Notification Panel configuration. The `"sourceFilter"` object has the following properties:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `"allowed"` | `string[]` | List of the application names of the allowed notification sources. Use a wildcard (`"*"`) to allow all. |
-| `"blocked"` | `string[]` | List of the application names of the blocked notification sources. Use a wildcard (`"*"`) to block all. |
+| `"allowed"` | `string[]` | List of the app names of the allowed notification sources. Use a wildcard (`"*"`) to allow all. |
+| `"blocked"` | `string[]` | List of the app names of the blocked notification sources. Use a wildcard (`"*"`) to block all. |
 
 If you set the `"allowed"` or `"blocked"` property to an empty array (default for both properties), all notification sources will be allowed or blocked respectively. The allowed list is applied first, then the blocked, which means that if an app is in both lists, it will be blocked.
 
@@ -298,13 +298,13 @@ The following example demonstrates how to enable notification toasts, specify th
 
 ### Styles
 
-The Glue42 Notification Panel and notification toasts are web applications that can be modified by editing their HTML and CSS files.
+The Glue42 Notification Panel and notification toasts are web apps that can be modified by editing their HTML and CSS files.
 
 The HTML files of the default notification apps are located in `%LocalAppData%\Tick42\GlueDesktop\assets\tick42-gns-js-ui` and are named `dialog-panel.html` for the Notification Panel and `dialog-toast.html` for the notification toasts. Use them to remove, edit or add custom elements to the apps.
 
 As a base style, the default notification apps use the Glue42 web themes bundle - `t42bootstrap.bundle.css`, located in `%LocalAppData%\Tick42\GlueDesktop\assets\styles`. As a style override is used the `panel.css` file located in `%LocalAppData%\Tick42\GlueDesktop\assets\tick42-gns-js-ui\dialog_panel`. Either use the `panel.css` file to override the existing styles, or create your own CSS override file and reference it in the HTML files of the default apps.
 
-To change the taskbar icon of the Notification Panel, modify the [application configuration](../../../../developers/configuration/application/index.html) of the Notification Panel app. Either provide a path to your custom icon using the `"icon"` top-level configuration property, or replace the `icon.ico` file in the `%LocalAppData%\Tick42\GlueDesktop\assets\tick42-gns-js-ui\resources` folder:
+To change the taskbar icon of the Notification Panel, modify the [app configuration](../../../../developers/configuration/application/index.html) of the Notification Panel app. Either provide a path to your custom icon using the `"icon"` top-level configuration property, or replace the `icon.ico` file in the `%LocalAppData%\Tick42\GlueDesktop\assets\tick42-gns-js-ui\resources` folder:
 
 ```json
 {
@@ -315,7 +315,7 @@ To change the taskbar icon of the Notification Panel, modify the [application co
 
 ### Custom Notification Apps
 
-To replace the default notification apps with your own custom apps, remove or edit the existing [application configurations](../../../../developers/configuration/application/index.html) for the Notification Panel and the notification toast apps. Provide the URLs to your custom apps and don't change the `"name"` properties in the configurations - keep the original names of the apps (`"js-gns-dialog-panel"` for the Notification Panel and `"js-gns-dialog-toast"` for the notification toast), otherwise the Glue42 Notification Service won't function properly.
+To replace the default notification apps with your own custom apps, remove or edit the existing [app configurations](../../../../developers/configuration/application/index.html) for the Notification Panel and the notification toast apps. Provide the URLs to your custom apps and don't change the `"name"` properties in the configurations - keep the original names of the apps (`"js-gns-dialog-panel"` for the Notification Panel and `"js-gns-dialog-toast"` for the notification toast), otherwise the Glue42 Notification Service won't function properly.
 
 The following is an example configuration for a custom notification toast app:
 
