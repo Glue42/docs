@@ -31,6 +31,6 @@ In a licensed [**Glue42 Core+**](https://glue42.com/core-plus/) project, you can
 - automatic [FDC3](https://fdc3.finos.org/) implementation injection;
 - Glue42 Developer Tools (Interop Viewer, Context Viewer) for tracking the behavior of [Interop methods and streams](https://core-docs.glue42.com/capabilities/data-sharing-between-apps/interop/index.html), and [shared contexts](https://core-docs.glue42.com/capabilities/data-sharing-between-apps/shared-contexts/index.html).
 
-[**Glue42 Core+**](https://glue42.com/core-plus/) enables you to [connect](https://core-docs.glue42.com/capabilities/connectivity-to-enterprise/index.html) your web project to [**Glue42 Enterprise**](https://glue42.com/enterprise/), to connect to a [Glue42 Server](../../glue42-concepts/glue42-server/index.html), and even achieve interoperability across different user machines. Customer support is also available under a paid license for [**Glue42 Core+**](https://glue42.com/core-plus/).
+[**Glue42 Core+**](https://glue42.com/core-plus/) enables you to connect to a [Glue42 Server](../../glue42-concepts/glue42-server/index.html), and even achieve interoperability across different user machines. Customer support is also available under a paid license for [**Glue42 Core+**](https://glue42.com/core-plus/).
 
-*For more details, see the [Glue42 Core+](https://core-docs.glue42.com/getting-started/what-is-glue42-core-plus/index.html) documentation.*
+*For more details, see the [Glue42 Core+ product page](https://glue42.com/core-plus/) and the [official Glue42 Core+ documentation](https://core-docs.glue42.com/getting-started/what-is-glue42-core-plus/index.html).*
