@@ -191,7 +191,6 @@ excel.openSheet(config)
             doneCallback();
         });
     });
-});
 ```
 
 The function passed to [`onChanged()`](../../../../reference/glue4office/latest/excel/index.html#Sheet-onChanged) will be called with the data sent from Excel. The `data` parameter holds an array of objects where each object corresponds to a row in Excel. Each object will have a number of properties populated with data, where each property will correspond to the [`fieldName`](../../../../reference/glue4office/latest/excel/index.html#ColumnConfig-fieldName) property you have passed in the respective column definition when calling [`openSheet()`](../../../../reference/glue4office/latest/excel/index.html#API-openSheet).
@@ -350,30 +349,37 @@ excel.openSheet(config).then(sheet => ...)
 
 ## Excel Scripting
 
-Upon launching, the Glue42 Excel Connector registers the following streams and methods:
+Upon launching, the Glue42 Excel Connector registers the following Interop methods and streams:
 
-|Method|Description|
-|------|-----------|
-|T42.ExcelScript.Grid.AddRow|Method: Add Row to Sheet|
-|T42.ExcelScript.Table.AddRow|Method: Add Row to Table|
-|T42.ExcelScript.Workbook.Create|Method: Create Workbook|
-|T42.ExcelScript.Workbook.Open|Method: Open Workbook/Get Sheets|
-|T42.ExcelScript.Worksheet.Write|Method: Update/Insert Row in Grid/Table|
-|T42.ExcelScript.Grid.OnRowAdded|Stream: Row Added to Sheet|
-|T42.ExcelScript.Table.OnRowAdded|Stream: Row Added to Table|
-|T42.ExcelScript.Grid.OnRowUpdated|Stream: Row Updated in Sheet|
-|T42.ExcelScript.Table.OnRowUpdated|Stream: Row Updated in Table|
-|T42.ExcelScript.Worksheet.OnAdded|Stream: Worksheet Added|
-|T42.ExcelScript.Grid.FindRow|Method: Find Row in Sheet|
-|T42.ExcelScript.Table.FindRow|Method: Find Row in Table|
-|T42.ExcelScript.Workbook.IsOpen|Method: Find Workbook|
-|T42.ExcelScript.Workbook.GetFolders|Method: Get Folders|
-|T42.ExcelScript.Workbook.GetFiles|Method: Get Files|
-|T42.ExcelScript.Workbook.Open|Method: Get Sheets|
-|T42.ExcelScript.Grid.ReadRow|Method: Get Columns in Sheet|
-|T42.ExcelScript.Table.ReadRow|Method: Get Columns in Table|
-|T42.ExcelScript.Table.GetInformation|Method: Get Tables|
-|T42.ExcelScript.Workbook.GetTemplates|Method: Get Templates|
+| Method | Description |
+|--------|-------------|
+| `"T42.ExcelPad.ShowGrid"` | Displays a grid of data in Excel for the user to edit. |
+| `"T42.ExcelPad.ShowTable"` | Displays a table of data in Excel for the user to edit. |
+| `"T42.ExcelScript.GetState"` | Returns the state of Excel - workbooks and worksheets. |
+| `"T42.ExcelScript.Grid.AddRow"` |	Adds a new row with data to the end of a grid. |
+| `"T42.ExcelScript.Grid.FindRow"` | Searches a grid for a row that contains a given column value. |
+| `"T42.ExcelScript.Grid.GetInformation"` | Gets Excel grid information. |
+| `"T42.ExcelScript.Grid.OnRowAdded"` |	Subscribes for the event which fires when one or more new rows have been added to a grid. |
+| `"T42.ExcelScript.Grid.OnRowUpdated"` | Subscribes for the event which fires when one or more rows have been changed in a grid. |
+| `"T42.ExcelScript.Grid.ReadRow"` | Reads a row of data from a grid. |
+| `"T42.ExcelScript.Table.AddRow"` | Adds a new row with data to the end of a table. |
+| `"T42.ExcelScript.Table.FindRow"` | Searches a table for a row that contains a given column value. |
+| `"T42.ExcelScript.Table.GetInformation"` | Gets Excel table information. |
+| `"T42.ExcelScript.Table.OnRowAdded"` | Subscribes for the event which fires when one or more rows have been added to a table. |
+| `"T42.ExcelScript.Table.OnRowUpdated"` | Subscribes for the event which fires when one or more rows have been changed in a table. |
+| `"T42.ExcelScript.Table.ReadRow"` | Reads a row of data from a table. |
+| `"T42.ExcelScript.Workbook.Create"` |	Creates a new blank workbook and returns the list of worksheets in it. |
+| `"T42.ExcelScript.Workbook.GetFiles"` | Gets the workbooks in a whitelisted folder. |
+| `"T42.ExcelScript.Workbook.GetFolders"` |	Gets a list of folders that may be searched according to the configuration. |
+| `"T42.ExcelScript.Workbook.GetTemplates"` | Gets the templates in a whitelisted folder. |
+| `"T42.ExcelScript.Workbook.IsOpen"` |	Indicates whether a workbook is open. |
+| `"T42.ExcelScript.Workbook.OnAdded"` | Subscribes for the event which fires when a new workbook has been created. |
+| `"T42.ExcelScript.Workbook.OnOpened"` | Subscribes for the event which fires when a workbook has been opened. |
+| `"T42.ExcelScript.Workbook.Open"` | Opens a workbook and returns the list of worksheets in it. |
+| `"T42.ExcelScript.Workbook.SetWindowState"` |	Sets the Excel window state - normal, maximized, minimized, focused, etc. |
+| `"T42.ExcelScript.Worksheet.Create"` | Creates a new worksheet in the current workbook. |
+| `"T42.ExcelScript.Worksheet.OnAdded"` | Subscribes for the event which fires when a new worksheets has been added in a workbook. |
+| `"T42.ExcelScript.Worksheet.Write"` |	Updates a worksheet with new data. |
 
 ## Reference
 
