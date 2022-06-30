@@ -1,6 +1,6 @@
 ## System Configuration
 
-The system configuration of [**Glue42 Enterprise**](https://glue42.com/enterprise/) is located in the `system.json` file in the main configuration folder - `%LocalAppData%\Tick42\GlueDesktop\config`. This file allows you to alter system-wide configurations for window behavior, app stores, Gateway settings and much more. In most cases, the default configuration settings should suffice. For more details, see the [system configuration schema](../../../assets/configuration/system.json).
+The system configuration of [**Glue42 Enterprise**](https://glue42.com/enterprise/) is located in the `system.json` file in the main configuration folder - `%LocalAppData%\Tick42\GlueDesktop\config`. This file allows you to alter system-wide configurations for window behavior, app stores, Gateway settings and much more. In most cases, the default configuration settings should suffice. For more details, see the [system configuration](../../../assets/configuration/system.json) and the [Glue42 Gateway configuration](../../../assets/configuration/gw.json) schemas.
 
 See also the [Glue42 Platform Features](../../../glue42-concepts/glue42-platform-features/index.html) section of the documentation, as many of the platform features are configured via the `system.json` file.
 
@@ -12,7 +12,7 @@ The [logging](#logging) configuration for [**Glue42 Enterprise**](https://glue42
 
 ## Dynamic Gateway Port
 
-The Glue42 Gateway starts on port 8385 by default. In environments where multiple user sessions run on the same machine (e.g., running [**Glue42 Enterprise**](https://glue42.com/enterprise/) as a Citrix Virtual App), using a predefined port won't work, as the first instance of [**Glue42 Enterprise**](https://glue42.com/enterprise/) will occupy that port and all other instances won't be able to connect. To avoid this, the Glue42 Gateway can be configured from the `system.json` file to choose dynamically a free port on startup.
+The Glue42 Gateway starts on port 8385 by default. In environments where multiple user sessions run on the same machine (e.g., running [**Glue42 Enterprise**](https://glue42.com/enterprise/) as a Citrix Virtual App), using a predefined port won't work, as the first instance of [**Glue42 Enterprise**](https://glue42.com/enterprise/) will occupy that port and all other instances won't be able to connect. To avoid this, the Glue42 Gateway can be configured from the `"gw"` top-level key of the `system.json` file to choose dynamically a free port on startup.
 
 To configure the Glue42 Gateway to use a random free port, go to the `"configuration"` object under the `"gw"` top-level key and set its `"port"` property to `0`:
 
@@ -25,6 +25,8 @@ To configure the Glue42 Gateway to use a random free port, go to the `"configura
     }
 }
 ```
+
+*For more details on configuring the Glue42 Gateway, see the [Glue42 Gateway configuration schema](../../../assets/configuration/gw.json).*
 
 ## App Stores
 

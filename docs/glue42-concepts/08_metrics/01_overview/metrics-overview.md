@@ -41,6 +41,8 @@ The example configuration below shows how to allow only the [User Journey](#gene
 }
 ```
 
+*See also the [system configuration](../../../assets/configuration/system.json) and the [Glue42 Gateway configuration](../../../assets/configuration/gw.json) schemas.*
+
 [**Glue42 Enterprise**](https://glue42.com/enterprise/) offers the following types of out-of-the-box metrics:
 
 - [Performance Metrics](#generation-performance_metrics)

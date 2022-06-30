@@ -4,5 +4,6 @@
     "displayTitle": true,
     "expanded": true,
     "titleType": "chapter | title | subtitle | technology",
-    "externalURL": "https://..."
+    "externalURL": "https://...",
+    "class": "CSS-class-name"
 }

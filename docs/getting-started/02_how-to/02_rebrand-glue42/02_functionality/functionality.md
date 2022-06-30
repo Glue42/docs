@@ -206,6 +206,8 @@ To enable [**Glue42 Enterprise**](https://glue42.com/enterprise/) to run in diff
 
 To set different environments/regions in which to run [**Glue42 Enterprise**](https://glue42.com/enterprise/), use the `system.json` configuration file of [**Glue42 Enterprise**](https://glue42.com/enterprise/) as a common configuration. Create separate system configuration files for all environments/regions and in each one define only the settings specific for the environment/region. When you start [**Glue42 Enterprise**](https://glue42.com/enterprise/) in a certain environment/region, the respective configuration file will be merged with the base `system.json` file, overriding the settings in it.
 
+*See also the [system configuration](../../../../assets/configuration/system.json) and the [Glue42 Gateway configuration](../../../../assets/configuration/gw.json) schemas.*
+
 It is important to either specify a different port for the Glue42 Gateway for each environment/region, or to use a [Dynamic Gateway Port](../../../../developers/configuration/system/index.html#dynamic_gateway_port) by setting the Glue42 Gateway port to `0` in the base system configuration file. Otherwise, you won't be able to run multiple instances of [**Glue42 Enterprise**](https://glue42.com/enterprise/) simultaneously in different environments/regions, as the first started instance will occupy the specified port and the other instances won't be able to connect.
 
 Use the `"gw"` top-level key in the `system.json` file to set the port number. The following example demonstrates how to configure [**Glue42 Enterprise**](https://glue42.com/enterprise/) to use a random free port for each of its instances by setting the Glue42 Gateway port to `0`:

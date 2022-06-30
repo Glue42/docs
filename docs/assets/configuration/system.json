@@ -140,31 +140,7 @@
             "$ref": "authController.json"
         },
         "gw": {
-            "description": "Glue42 Gateway configuration.",
-            "type": "object",
-            "properties": {
-                "embedded": {
-                    "description": "Whether to embed the Glue42 Gateway in Glue42 Desktop or not.",
-                    "type": "boolean"
-                },
-                "configuration": {
-                    "$ref": "#/definitions/gatewayConfig"
-                },
-                "url": {
-                    "description": "A host to connect to. Will be used only if `embedded` is `false`.",
-                    "type": "string"
-                },
-                "killPortOccupier": {
-                    "description": "The application that has occupied the port will be killed.",
-                    "type": "boolean",
-                    "default": false
-                },
-                "discoveryTimeout": {
-                    "description": "A timeout in seconds to wait for the Gateway to provide an endpoint.",
-                    "type": "number"
-                }
-            },
-            "additionalProperties": false
+            "$ref": "gw.json"
         },
         "windows": {
             "description": "Defines defaults for various window settings like border color, size areas, buttons etc.",
@@ -177,6 +153,28 @@
             "default": [],
             "items": {
                 "$ref": "#/definitions/appStoreConfig"
+            },
+            "additionalProperties": false
+        },
+        "appStoresCustomError": {
+            "description": "Defines a custom error ",
+            "type": "object",
+            "default": {
+                "enabled": false
+            },
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": ""
+                },
+                "title": {
+                    "type": "string",
+                    "description": ""
+                },
+                "body": {
+                    "type": "string",
+                    "description": ""
+                }
             },
             "additionalProperties": false
         },
@@ -1767,179 +1765,6 @@
                 }
             }
         },
-        "gatewayConfig": {
-            "type": "object",
-            "properties": {
-                "showConsole": {
-                    "description": "If `true`, the console will be visible.",
-                    "type": "boolean"
-                },
-                "port": {
-                    "description": "The Glue42 Gateway will start on that port.",
-                    "type": "integer",
-                    "default": 8080
-                },
-                "route": {
-                    "type": "string"
-                },
-                "logLevel": {
-                    "type": "string"
-                },
-                "logConfig": {
-                    "type": "object",
-                    "properties": {
-                        "appenders": {},
-                        "categories": {}
-                    },
-                    "additionalProperties": true
-                },
-                "metrics": {
-                    "$ref": "gwMetrics.json"
-                },
-                "customMetricsPublishers": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "required": [
-                            "file"
-                        ],
-                        "properties": {
-                            "file": {
-                                "type": "string"
-                            },
-                            "publisherConfiguration": {},
-                            "metricsConfiguration": {
-                                "$ref": "gwMetrics.json#/definitions/JsMetricsPublisherConfig"
-                            }
-                        }
-                    }
-                },
-                "authentication": {
-                    "type": "object",
-                    "properties": {
-                        "available": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            },
-                            "default": [
-                                "basic"
-                            ]
-                        },
-                        "default": {
-                            "type": "string",
-                            "default": "basic"
-                        },
-                        "token-ttl": {
-                            "type": "integer",
-                            "default": 60000
-                        },
-                        "timeout": {
-                            "type": "integer",
-                            "default": 5000
-                        },
-                        "max-pending-requests": {
-                            "type": "integer",
-                            "default": 20000
-                        }
-                    }
-                },
-                "customAuthenticators": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "object",
-                        "properties": {
-                            "file": {
-                                "type": "string"
-                            },
-                            "configuration": {
-                                "type": "object"
-                            }
-                        },
-                        "required": [
-                            "file"
-                        ],
-                        "additionalProperties": false
-                    }
-                },
-                "cluster": {
-                    "type": "object",
-                    "properties": {
-                        "enabled": {
-                            "type": "boolean",
-                            "default": false
-                        },
-                        "type": {
-                            "type": "string",
-                            "default": "broker"
-                        },
-                        "embedded_broker": {
-                            "type": "object",
-                            "properties": {
-                                "enabled": {
-                                    "type": "boolean"
-                                },
-                                "route": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "configuration": {
-                            "type": "object",
-                            "properties": {
-                                "binding": {
-                                    "type": "object",
-                                    "properties": {
-                                        "port": {
-                                            "type": "number",
-                                            "default": 8085
-                                        },
-                                        "ip": {
-                                            "type": "string",
-                                            "default": "0.0.0.0"
-                                        }
-                                    },
-                                    "additionalProperties": false
-                                },
-                                "node_id": {
-                                    "type": "number",
-                                    "description": "Specifies the unique node ID in the mesh - this is required for static directories. Make sure that different Glue42 Gateways in the same mesh have different IDs."
-                                },
-                                "directory": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "default": "rest"
-                                        },
-                                        "config": {
-                                            "type": "object",
-                                            "properties": {
-                                                "directory_uri": {
-                                                    "type": "string",
-                                                    "default": "http://localhost:8888"
-                                                },
-                                                "announce_interval": {
-                                                    "type": "number",
-                                                    "default": 10000
-                                                }
-                                            },
-                                            "additionalProperties": false
-                                        },
-                                        "members": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/definitions/meshStaticMember"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "securityConfig": {
             "description": "Global security settings.",
             "properties": {
@@ -2465,17 +2290,6 @@
                     "description": "Default zoom level.",
                     "type": "number",
                     "default": 100
-                }
-            }
-        },
-        "meshStaticMember": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "type": "number"
-                },
-                "endpoint": {
-                    "type": "string"
                 }
             }
         },
@@ -3025,6 +2839,10 @@
                                                 "centerScreen"
                                             ]
                                         },
+                                        "icon": {
+                                            "type": "string",
+                                            "description": "Icon for the action to be displayed in the context menu. Must point to a local file."
+                                        },
                                         "singleInstanceTitle": {
                                             "type": "string",
                                             "description": "Title of the action to be displayed in the context menu when there is a single instance with a single taskbar icon."
@@ -3038,7 +2856,8 @@
                                         "type"
                                     ]
                                 },
-                                "type": "array"
+                                "type": "array",
+                                "default": []
                             }
                         }
                     },
@@ -3049,6 +2868,7 @@
                             "actions": [
                                 {
                                     "type": "centerScreen",
+                                    "icon": "%GDDIR%/assets/images/center.ico",
                                     "singleInstanceTitle": "Center on Primary Screen",
                                     "multiInstanceTitle": "Center all on Primary Screen"
                                 }

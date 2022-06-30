@@ -100,6 +100,8 @@ Use the `"loadingText"`, `"loadingTextFont"`, `"loadingTextFontSize"` and `"load
 
 ![Loading animation](../../../../images/themes/custom-window-loader.png)
 
+*If you need a loader without the Glue42 logo, you can use [this sample neutral loader](https://enterprise.glue42.com/upload/neutral-loader-xaml.zip).*
+
 ### Layouts & Workspaces
 
 To replace the Layouts and Workspaces loader HTML file, go to `%LocalAppData%\Tick42\GlueDesktop\assets\loader` and add your own custom file.

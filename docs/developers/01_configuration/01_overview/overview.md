@@ -7,6 +7,7 @@
 The following JSON schemas describe the available options for configuring [**Glue42 Enterprise**](https://glue42.com/enterprise/):
 
 - [System configuration schema](../../../assets/configuration/system.json)
+- [Glue42 Gateway configuration schema](../../../assets/configuration/gw.json) - schema for the `"gw"` key of the `system.json` file, containing configuration for the Glue42 Gateway: [port](../system/index.html#dynamic_gateway_port), [metrics](../../../glue42-concepts/metrics/overview/index.html) and more;
 - [App configuration schema](../../../assets/configuration/application.json)
 - [Glue42 Windows configuration schema](../../../assets/configuration/stickywindows.json)
 - [Themes configuration schema](../../../assets/configuration/themes.json)

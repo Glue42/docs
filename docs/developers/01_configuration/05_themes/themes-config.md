@@ -133,6 +133,8 @@ Setting custom text, font, font size and text color for the Glue42 Window loader
 
 ![Loading animation](../../../images/themes/custom-window-loader.png)
 
+*If you need a loader without the Glue42 logo, you can use [this sample neutral loader](https://enterprise.glue42.com/upload/neutral-loader-xaml.zip).*
+
 ### Tabs
 
 The theme properties for individual tab windows are located under the `"tabs"` key in the `themes.json` file.
